@@ -5,7 +5,6 @@
 package proyMina;
 
 import proyMina.vista.interfaces.Ingreso;
-import proyMina.vista.interfaces.LoginProyMina;
 
 /**
  *
@@ -17,8 +16,7 @@ public class TeamHM {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        LoginProyMina logueo= new LoginProyMina();
-        //Ingreso logueo= new Ingreso();
+        Ingreso logueo= new Ingreso();
         logueo.setVisible(true);
     }
     

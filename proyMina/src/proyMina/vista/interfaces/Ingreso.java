@@ -34,6 +34,7 @@ public final class Ingreso extends javax.swing.JFrame {
     
    clsConnection oConn = new clsConnection();
    clsFunciones  oFunc = new clsFunciones();
+   clsGlobales oGlob = new clsGlobales();
    public String seded="";
    public JComboBox cboEmpresa;
    public static String  nombresede;
@@ -215,7 +216,20 @@ public final class Ingreso extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(565, 302));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+  
+ private void validar() {
+        if (cboUsuarios.getSelectedIndex() > 0) {
+            
+            doctor = cboUsuarios.getSelectedItem().toString();
+            // System.out.println("nombre de la sede :"+nombresede);
+            String sqlStmt;
+            String area;
+            // Prepara Variable para realizar el Query
+            sqlStmt = "Select rol_user, sistema, admision, farmacia, cmp_user, dni_user, nombre_user, apellido_user, usuario_user, pass_user from usuarios Where usuario_user='" + cboUsuarios.getSelectedItem() + "' And pass_user='" + String.valueOf(txtpass.getPassword()) + "'";
 
+            oConn.FnBoolQueryExecute(sqlStmt);
+        }
+ }
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btncancelarActionPerformed
@@ -246,12 +260,12 @@ enter(evt);
    }//GEN-LAST:event_txtHoraLoginKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //if(!btIngreso.isSelected(null)){
-          int conta= oFunc.contadorPrimario("desktop_detalle_parametros");
-          System.out.print("el contador es: "+conta);
-       //validar();
-       //}else{oFunc.SubSistemaMensajeError("Seleccione Area a Ingresar");
-      // }
+       
+         // int conta= oFunc.contadorPrimario("desktop_detalle_parametros");
+         // System.out.print("el contador es: "+conta);
+       validar();
+      
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed

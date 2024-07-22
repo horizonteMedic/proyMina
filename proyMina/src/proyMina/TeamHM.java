@@ -17,8 +17,8 @@ public class TeamHM {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       // LoginProyMina logueo= new LoginProyMina();
-        Ingreso logueo= new Ingreso();
+        LoginProyMina logueo= new LoginProyMina();
+        //Ingreso logueo= new Ingreso();
         logueo.setVisible(true);
     }
     

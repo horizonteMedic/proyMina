@@ -27,9 +27,6 @@ import proyMina.modelo.clsGlobales;
 
 public final class Ingreso extends javax.swing.JFrame {
    //variales Area Usuario
-    static final boolean PROCESO_CODIGO = true;
-    static final boolean ADMISION_CODIGO = true;
-     static final boolean FARMACIA_CODIGO = true;
     public static String doctor;
     
    clsConnection oConn = new clsConnection();
@@ -40,7 +37,6 @@ public final class Ingreso extends javax.swing.JFrame {
    public static String  nombresede;
       public static String  ipd;
 
-   String emp;
        public Ingreso()  {
             
         initComponents(); 

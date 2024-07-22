@@ -48,7 +48,7 @@ public final class Ingreso extends javax.swing.JFrame {
        
         FileInputStream in = null;
         try {
-            in = new FileInputStream("pierola.properties");
+            in = new FileInputStream("azure.properties");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,7 +76,6 @@ public final class Ingreso extends javax.swing.JFrame {
        //    lbliduser.setVisible(false);
             fecha();
             CargarUsuarios();
-            CargarSedes();
         }
         AutoCompleteDecorator.decorate(this.cboUsuarios);
     }
@@ -247,10 +246,12 @@ enter(evt);
    }//GEN-LAST:event_txtHoraLoginKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if(!btIngreso.isSelected(null)){
-       // validar();
-       }else{oFunc.SubSistemaMensajeError("Seleccione Area a Ingresar");
-       }
+       //if(!btIngreso.isSelected(null)){
+          int conta= oFunc.contadorPrimario("desktop_detalle_parametros");
+          System.out.print("el contador es: "+conta);
+       //validar();
+       //}else{oFunc.SubSistemaMensajeError("Seleccione Area a Ingresar");
+      // }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
@@ -421,50 +422,12 @@ Date dateHora = new Date();
         txtFechaLogin.setText(formato.format(dateHoy));
         txtHoraLogin.setText(FormatoHora.format(dateHora));
 }
-private void CargarSedes(){
-      String sQuery;        
-        // Prepara el Query
-        sQuery ="select nombre_Sede from sede where estado='1' order by cod_Sede";
-        
-        if (oConn.FnBoolQueryExecute(sQuery))
-        {
-            try 
-            {
-                // Verifica resultados
-                 while (oConn.setResult.next())
-                 {                     
-                     // Obtiene los datos de la Consulta
-                    // cboSede.addItem(oConn.setResult.getString ("nombre_Sede"));
-                     
-                 }
-                 
-                 // Cierra Resultados
-              
-            } 
-            catch (SQLException ex) 
-            {
-                //JOptionPane.showMessageDialorootPane,ex);
-                oFunc.SubSistemaMensajeInformacion(ex.toString());
-                Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        try {
-            oConn.sqlStmt.close();
-            oConn.setResult.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // selecciona
-       // cboSede.setSelectedItem(seded);
-        //cboSede.setSelectedIndex(1);
 
-
-}
 
  private void CargarUsuarios(){
       String sQuery;        
         // Prepara el Query
-        sQuery ="SELECT usuario_user FROM usuarios";
+        sQuery ="SELECT name_user FROM desktop_empleado";
         
         if (oConn.FnBoolQueryExecute(sQuery))
         {
@@ -474,7 +437,7 @@ private void CargarSedes(){
                  while (oConn.setResult.next())
                  {                     
                      // Obtiene los datos de la Consulta
-                     cboUsuarios.addItem(oConn.setResult.getString ("usuario_user"));
+                     cboUsuarios.addItem(oConn.setResult.getString ("name_user"));
                      
                  }
                  

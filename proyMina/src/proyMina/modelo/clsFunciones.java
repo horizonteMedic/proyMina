@@ -512,6 +512,22 @@ public Formatter nFactura(){
 return fmt;
 }
 
+
+public int contadorPrimario(String nameTable){
+    int contador=0;
+    String consulta="select  count(*)+1 as contador from "+nameTable;
+    oConn.FnBoolQueryExecute(consulta);
+    try {
+        if(oConn.setResult.next()){
+            contador = oConn.setResult.getInt("contador");
+         }
+        
+    } catch (Exception e) {
+    }
+return contador;
+}
+
+
 public boolean vFactura(Formatter nFactura, Formatter nSerie){
 /*
  * Validamos Factura

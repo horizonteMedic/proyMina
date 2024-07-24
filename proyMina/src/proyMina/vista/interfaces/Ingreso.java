@@ -257,9 +257,10 @@ enter(evt);
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-         // int conta= oFunc.contadorPrimario("desktop_detalle_parametros");
-         // System.out.print("el contador es: "+conta);
-       validar();
+
+    Camara camara=new Camara();
+    camara.setVisible(true);
+    
       
     
     }//GEN-LAST:event_jButton1ActionPerformed

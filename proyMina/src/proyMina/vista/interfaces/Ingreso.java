@@ -272,7 +272,7 @@ enter(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
-      //validar();
+      validar();
     }//GEN-LAST:event_txtpassActionPerformed
 
     private void cboUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboUsuariosActionPerformed

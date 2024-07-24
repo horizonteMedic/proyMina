@@ -43,7 +43,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     
 
     //jFrame
-    SedeMina sm;
+    AccesosUsuario sm;
     Configuracion c;
     
     javax.swing.ImageIcon oIconoSi = new javax.swing.ImageIcon(ClassLoader.getSystemResource("imagenes/chek.gif"));
@@ -343,7 +343,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     private void sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedeActionPerformed
 
         if(estacerrado(sm)){
-            sm =new SedeMina();                          
+            sm =new AccesosUsuario();                          
             ImageIcon ticon = new ImageIcon(ClassLoader.getSystemResource("imagenes/enfermera.png"));
             sm.setFrameIcon(ticon);
             sm.setLocation(centradoXY(sm));
@@ -467,11 +467,11 @@ public class PrincipalMina extends javax.swing.JFrame {
     private javax.swing.JButton sede;
     // End of variables declaration//GEN-END:variables
 
-    private boolean estacerrado(SedeMina sm) {
+    private boolean estacerrado(AccesosUsuario sm) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private Point centradoXY(SedeMina sm) {
+    private Point centradoXY(AccesosUsuario sm) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

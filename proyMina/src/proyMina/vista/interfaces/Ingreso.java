@@ -33,8 +33,9 @@ public final class Ingreso extends javax.swing.JFrame {
    clsFunciones  oFunc = new clsFunciones();
    clsGlobales oGlob = new clsGlobales();
    public String seded="";
+   
    public JComboBox cboEmpresa;
-   public static String  nombresede;
+   
       public static String  ipd;
 
        public Ingreso()  {
@@ -209,22 +210,28 @@ public final class Ingreso extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
 
-        setSize(new java.awt.Dimension(565, 302));
+        setSize(new java.awt.Dimension(567, 302));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
   
  private void validar() {
-        if (cboUsuarios.getSelectedIndex() > 0) {
+        if (cboUsuarios.getSelectedIndex() > 0) {           
             
-            doctor = cboUsuarios.getSelectedItem().toString();
+           doctor = cboUsuarios.getSelectedItem().toString();
             // System.out.println("nombre de la sede :"+nombresede);
             String sqlStmt;
-            String area;
-            // Prepara Variable para realizar el Query
-            sqlStmt = "Select rol_user, sistema, admision, farmacia, cmp_user, dni_user, nombre_user, apellido_user, usuario_user, pass_user from usuarios Where usuario_user='" + cboUsuarios.getSelectedItem() + "' And pass_user='" + String.valueOf(txtpass.getPassword()) + "'";
-
+            //String area;
+            //Prepara Variable para realizar el Query
+            sqlStmt = "Select name_user from desktop_empleado Where name_user='" + cboUsuarios.getSelectedItem() 
+                    + "' And pass='" + String.valueOf(txtpass.getPassword()) + "'";
             oConn.FnBoolQueryExecute(sqlStmt);
-        }
+            PrincipalMina s = new PrincipalMina();
+            s.setVisible(true);
+       
+        }else {
+               oFunc.SubSistemaMensajeInformacion("No Tiene Autorización para Ingresar a Sistema");
+              } 
+
  }
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
         System.exit(0);

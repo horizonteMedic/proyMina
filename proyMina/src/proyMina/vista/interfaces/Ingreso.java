@@ -31,7 +31,6 @@ public final class Ingreso extends javax.swing.JFrame {
     
    clsConnection oConn = new clsConnection();
    clsFunciones  oFunc = new clsFunciones();
-   clsGlobales oGlob = new clsGlobales();
    public String seded="";
    
    public JComboBox cboEmpresa;
@@ -208,7 +207,7 @@ public final class Ingreso extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 223, -1, 20));
 
         setSize(new java.awt.Dimension(567, 302));
         setLocationRelativeTo(null);
@@ -217,16 +216,31 @@ public final class Ingreso extends javax.swing.JFrame {
  private void validar() {
         if (cboUsuarios.getSelectedIndex() > 0) {           
             
-           doctor = cboUsuarios.getSelectedItem().toString();
+           //doctor = cboUsuarios.getSelectedItem().toString();
             // System.out.println("nombre de la sede :"+nombresede);
             String sqlStmt;
             //String area;
             //Prepara Variable para realizar el Query
-            sqlStmt = "Select name_user from desktop_empleado Where name_user='" + cboUsuarios.getSelectedItem() 
+            sqlStmt = "Select name_user from desktop_empleado Where name_user='" + cboUsuarios.getSelectedItem().toString().trim()
                     + "' And pass='" + String.valueOf(txtpass.getPassword()) + "'";
+            System.out.println(sqlStmt);
             oConn.FnBoolQueryExecute(sqlStmt);
-            PrincipalMina s = new PrincipalMina();
-            s.setVisible(true);
+            try{
+             if (oConn.setResult.next()){
+                         PrincipalMina s = new PrincipalMina();
+                         s.setVisible(true);
+                         Ingreso.this.dispose();
+                         clsGlobales.sUser=cboUsuarios.getSelectedItem().toString().trim();
+             }
+             else 
+              oFunc.SubSistemaMensajeInformacion("Usuario o Contraseña incorrectos!");
+
+            }catch(Exception e){
+                
+            }
+                    
+           
+
        
         }else {
                oFunc.SubSistemaMensajeInformacion("No Tiene Autorización para Ingresar a Sistema");
@@ -265,14 +279,22 @@ enter(evt);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
 
+<<<<<<< HEAD
    // Camara camara=new Camara();
    // camara.setVisible(true);
     
+=======
+    //Camara camara=new Camara();
+    //camara.setVisible(true);
+    
+    validar();
+      
+>>>>>>> f7046fe7b9b6c1f10f7598c03f19bfe6675c3b23
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
-      //validar();
+      validar();
     }//GEN-LAST:event_txtpassActionPerformed
 
     private void cboUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboUsuariosActionPerformed

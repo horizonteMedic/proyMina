@@ -6,6 +6,7 @@ package proyMina.vista.interfaces;
 
 import java.awt.Point;
 import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import proyMina.modelo.clsConnection;
 import proyMina.modelo.clsFunciones;
@@ -51,6 +52,8 @@ public class PrincipalMina extends javax.swing.JFrame {
     
     public PrincipalMina() {
         initComponents();
+        this.setSize(816,501);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -125,88 +128,130 @@ public class PrincipalMina extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/empleado.png"))); // NOI18N
+        jButton2.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton2.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, -1));
 
         Admision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/admision.png"))); // NOI18N
+        Admision.setMaximumSize(new java.awt.Dimension(70, 70));
+        Admision.setMinimumSize(new java.awt.Dimension(70, 70));
         Admision.setPreferredSize(new java.awt.Dimension(39, 39));
         Admision.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdmisionActionPerformed(evt);
             }
         });
+        getContentPane().add(Admision, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 71, 68));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/triaje.png"))); // NOI18N
+        jButton1.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton1.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton1.setPreferredSize(new java.awt.Dimension(39, 39));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 71, 71));
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/paciente.png"))); // NOI18N
+        jButton8.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton8.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/usuario.png"))); // NOI18N
+        jButton4.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton4.setMinimumSize(new java.awt.Dimension(70, 70));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, -1));
 
         sede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/sede.png"))); // NOI18N
+        sede.setMaximumSize(new java.awt.Dimension(70, 70));
+        sede.setMinimumSize(new java.awt.Dimension(70, 70));
         sede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sedeActionPerformed(evt);
             }
         });
+        getContentPane().add(sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/privilegio.png"))); // NOI18N
+        jButton9.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton9.setMinimumSize(new java.awt.Dimension(70, 70));
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/contratas.png"))); // NOI18N
+        jButton6.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton6.setMinimumSize(new java.awt.Dimension(70, 70));
+        jButton6.setPreferredSize(new java.awt.Dimension(70, 70));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, -1, -1));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/rol.png"))); // NOI18N
+        jButton5.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton5.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
         Configuracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/empresa.png"))); // NOI18N
+        Configuracion.setMaximumSize(new java.awt.Dimension(70, 70));
+        Configuracion.setMinimumSize(new java.awt.Dimension(70, 70));
         Configuracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfiguracionActionPerformed(evt);
             }
         });
+        getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         jLabel6.setText("⁠Contratas");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, -1, -1));
 
         jLabel1.setText("Admision");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         jLabel2.setText("Triaje");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         jLabel4.setText("Pacientes");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, -1, -1));
 
         jLabel3.setText("Empleados");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, -1));
 
         jLabel9.setText("Usuarios");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, -1, -1));
 
         jLabel10.setText("Sede");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, -1));
 
         jLabel5.setText("Privilegios");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, -1));
 
         jLabel8.setText("Rol");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
         jLabel7.setText("Configuracion");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
         jMenu1.setText("INICIO");
 
@@ -233,100 +278,6 @@ public class PrincipalMina extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Admision, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Configuracion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(sede)
-                                        .addGap(187, 187, 187)
-                                        .addComponent(jButton9))
-                                    .addComponent(jLabel6))
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel5)
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel10))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel8))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton6)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButton8)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addGap(47, 47, 47)
-                                                .addComponent(jLabel2)
-                                                .addGap(48, 48, 48)
-                                                .addComponent(jLabel4))
-                                            .addComponent(jButton5))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(38, 38, 38)
-                                                .addComponent(jLabel3)
-                                                .addGap(38, 38, 38)
-                                                .addComponent(jLabel9))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(56, 56, 56)
-                                                .addComponent(jButton2)
-                                                .addGap(63, 63, 63)
-                                                .addComponent(jButton4)))))))))
-                .addContainerGap(132, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Admision, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8)
-                            .addComponent(jButton2))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel9)))
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(Configuracion)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sede, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel5))
-                .addContainerGap(177, Short.MAX_VALUE))
-        );
-
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
@@ -341,18 +292,9 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedeActionPerformed
-
-        if(estacerrado(sm)){
             sm =new AccesosUsuario();                          
-            ImageIcon ticon = new ImageIcon(ClassLoader.getSystemResource("imagenes/enfermera.png"));
-            sm.setFrameIcon(ticon);
-            sm.setLocation(centradoXY(sm));
-            //sm.show();
-            sm.setVisible(true); 
-        }else{
-            sm.moveToFront();
-            //JOptionPane.showMessageDialog(this,"Error: La ventana ya esta abierta...");
-        } 
+            sm.setVisible(true);
+   
     }//GEN-LAST:event_sedeActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -364,17 +306,8 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfiguracionActionPerformed
-        if(estacerrado(c)){  
           c =new Configuracion();
-                    
-            ImageIcon ticon = new ImageIcon(ClassLoader.getSystemResource("imagenes/enfermera.png"));
-            c.setFrameIcon(ticon);
-            c.setLocation(centradoXY(c));
-            c.setVisible(true);
-           }else{
-            c.moveToFront();
-             //JOptionPane.showMessageDialog(this,"Error: La ventana ya esta abierta...");
-            }
+          c.setVisible(true);
     }//GEN-LAST:event_ConfiguracionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -467,22 +400,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     private javax.swing.JButton sede;
     // End of variables declaration//GEN-END:variables
 
-    private boolean estacerrado(AccesosUsuario sm) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    private Point centradoXY(AccesosUsuario sm) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    private boolean estacerrado(Configuracion c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    private Point centradoXY(Configuracion c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     private static class ph {
 
         public ph() {

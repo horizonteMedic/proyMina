@@ -35,7 +35,6 @@ public class AccesosUsuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         buscar = new javax.swing.JTextField();
@@ -80,8 +79,6 @@ public class AccesosUsuario extends javax.swing.JFrame {
 
         jButton1.setText("AGREGAR EMPLEADO");
 
-        jButton2.setText("AGREGAR USUARIO");
-
         jLabel1.setText("Lista de Empleados Registrados");
 
         jLabel2.setText("Buscar :");
@@ -120,13 +117,12 @@ public class AccesosUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btneditar)
-                    .addComponent(btnmostrar))
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(144, 144, 144))
+                    .addComponent(btnmostrar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btneditar)
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton1)))
+                .addGap(130, 130, 130))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,12 +139,10 @@ public class AccesosUsuario extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(btneditar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(41, 41, 41)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(btnmostrar))))
+                        .addGap(3, 3, 3)
+                        .addComponent(btnmostrar)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -204,7 +198,6 @@ public class AccesosUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnmostrar;
     private javax.swing.JTextField buscar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

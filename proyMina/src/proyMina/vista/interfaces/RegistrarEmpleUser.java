@@ -15,6 +15,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
      */
     public RegistrarEmpleUser() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -26,55 +27,54 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         RegistrarEmpresaoContrata = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        TipoEmpreyContra = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        dni_empleado = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel8.setText("AGREGAR UNA EMPRESA O CONTRATA");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Nuevo Empleado"));
+        jPanel1.setToolTipText("Agregar Nuevo Empleado");
 
-        jLabel6.setText("Tipo : ");
+        RegistrarEmpresaoContrata.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        RegistrarEmpresaoContrata.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 74, -1, -1));
 
-        TipoEmpreyContra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione  Empresa o Contrata" }));
-        TipoEmpreyContra.addActionListener(new java.awt.event.ActionListener() {
+        dni_empleado.setText(" ");
+        dni_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoEmpreyContraActionPerformed(evt);
+                dni_empleadoActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(dni_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 120, -1));
 
-        jLabel1.setText("Ruc :");
-
-        jTextField1.setText(" ");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Razon Social : ");
+        jLabel2.setText("Nombre y Apellidos : ");
+        RegistrarEmpresaoContrata.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
         jLabel3.setText("Direccion : ");
+        RegistrarEmpresaoContrata.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
 
         jLabel4.setText("Telefono : ");
+        RegistrarEmpresaoContrata.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
-        jLabel7.setText("Respondable : ");
-
-        jLabel5.setText("Email : ");
+        jLabel5.setText("Email  : ");
+        RegistrarEmpresaoContrata.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 50, -1));
 
         jTextField2.setText(" ");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +82,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 244, -1));
 
         jTextField3.setText(" ");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +90,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 170, -1));
 
         jTextField5.setText(" ");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -96,13 +98,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 jTextField5ActionPerformed(evt);
             }
         });
-
-        jTextField4.setText(" ");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
+        RegistrarEmpresaoContrata.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 200, -1));
 
         jTextField6.setText(" ");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -110,89 +106,74 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 jTextField6ActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 244, -1));
 
-        jButton1.setText("REGISTRAR");
+        jButton1.setText("Limpiar");
+        RegistrarEmpresaoContrata.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 90, -1));
 
-        javax.swing.GroupLayout RegistrarEmpresaoContrataLayout = new javax.swing.GroupLayout(RegistrarEmpresaoContrata);
-        RegistrarEmpresaoContrata.setLayout(RegistrarEmpresaoContrataLayout);
-        RegistrarEmpresaoContrataLayout.setHorizontalGroup(
-            RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
-            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                                    .addComponent(jTextField6)))
-                            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addGap(24, 24, 24)
-                                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel6))
-                                .addGap(8, 8, 8)
-                                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField2)
-                                    .addComponent(TipoEmpreyContra, 0, 244, Short.MAX_VALUE)))))
-                    .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+        jLabel6.setText("Dni :");
+        RegistrarEmpresaoContrata.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Dni", "Nombres  y Apellidos", "Telefono", "Email", "Direccion "
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(35);
+        }
+
+        RegistrarEmpresaoContrata.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 780, 170));
+        RegistrarEmpresaoContrata.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jButton2.setText("Registrar");
+        RegistrarEmpresaoContrata.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 90, -1));
+
+        jLabel7.setText("Direccion : ");
+        RegistrarEmpresaoContrata.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+
+        jTextField7.setText(" ");
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+        RegistrarEmpresaoContrata.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 244, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
         );
-        RegistrarEmpresaoContrataLayout.setVerticalGroup(
-            RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(TipoEmpreyContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(26, 26, 26)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addComponent(jButton1)
-                .addContainerGap(20, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,23 +182,25 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("Agregar Nuevos Empleados");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void dni_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dni_empleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_dni_empleadoActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
@@ -231,17 +214,13 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void TipoEmpreyContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoEmpreyContraActionPerformed
-        
-    }//GEN-LAST:event_TipoEmpreyContraActionPerformed
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,8 +259,9 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel RegistrarEmpresaoContrata;
-    private javax.swing.JComboBox<String> TipoEmpreyContra;
+    private javax.swing.JTextField dni_empleado;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -289,12 +269,14 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

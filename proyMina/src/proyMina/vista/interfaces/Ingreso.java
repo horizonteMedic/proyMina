@@ -265,10 +265,9 @@ enter(evt);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
 
-    Camara camara=new Camara();
-    camara.setVisible(true);
+   // Camara camara=new Camara();
+   // camara.setVisible(true);
     
-      
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -5,6 +5,8 @@
 package proyMina.vista.interfaces;
 
 import javax.swing.ImageIcon;
+import proyMina.modelo.clsConnection;
+import proyMina.modelo.clsFunciones;
 
 /**
  *
@@ -12,9 +14,9 @@ import javax.swing.ImageIcon;
  */
 public class AccesosUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Sede
-     */
+    clsConnection oConn = new clsConnection();
+    clsFunciones  oFunc = new clsFunciones();
+    clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     public AccesosUsuario() {
         initComponents();
     }
@@ -37,7 +39,7 @@ public class AccesosUsuario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        buscar = new javax.swing.JTextField();
+        Buscar_Empleado = new javax.swing.JTextField();
         btneditar = new javax.swing.JButton();
         btnmostrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -78,15 +80,20 @@ public class AccesosUsuario extends javax.swing.JFrame {
         );
 
         jButton1.setText("AGREGAR EMPLEADO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Lista de Empleados Registrados");
 
         jLabel2.setText("Buscar :");
 
-        buscar.setText(" ");
-        buscar.addActionListener(new java.awt.event.ActionListener() {
+        Buscar_Empleado.setText(" ");
+        Buscar_Empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
+                Buscar_EmpleadoActionPerformed(evt);
             }
         });
 
@@ -113,7 +120,7 @@ public class AccesosUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Buscar_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +141,7 @@ public class AccesosUsuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Buscar_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(btneditar))
@@ -151,9 +158,26 @@ public class AccesosUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+    private void Buscar_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_EmpleadoActionPerformed
+            if(!Buscar_Empleado.getText().isEmpty()){
+            if(!oPe.nOrden(Buscar_Empleado, "infor_conductores"))  {
+               
+                String Sql="select d.nombres_pa,d.apellidos_pa , d.nivel_est_pa, d.cod_pa, d.fecha_nacimiento_pa , "
+                + "n.cargo_de ,n.razon_empresa, EXTRACT(YEAR FROM age(current_date,d.fecha_nacimiento_pa)) AS  edad, n.fecha_apertura_po from datos_paciente AS d "
+                + "INNER JOIN n_orden_ocupacional AS n ON (d.cod_pa=n.cod_pa) WHERE n.n_orden ='"+n_orden.getText()+"'";
+                oConn.FnBoolQueryExecute(Sql);       
+       
+        
+        
+        
+        
+            }
+            }
+    }//GEN-LAST:event_Buscar_EmpleadoActionPerformed
+            
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buscarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,9 +218,9 @@ public class AccesosUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Buscar_Empleado;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnmostrar;
-    private javax.swing.JTextField buscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;

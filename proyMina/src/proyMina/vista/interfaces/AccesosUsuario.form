@@ -59,7 +59,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buscar" min="-2" pref="330" max="-2" attributes="0"/>
+                      <Component id="Buscar_Empleado" min="-2" pref="330" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel1" alignment="0" min="-2" pref="246" max="-2" attributes="0"/>
               </Group>
@@ -86,7 +86,7 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Buscar_Empleado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -191,6 +191,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="AGREGAR EMPLEADO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -202,12 +205,12 @@
         <Property name="text" type="java.lang.String" value="Buscar :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="buscar">
+    <Component class="javax.swing.JTextField" name="Buscar_Empleado">
       <Properties>
         <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Buscar_EmpleadoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btneditar">

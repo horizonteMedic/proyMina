@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/modelo/clsConnection.java</file>
-            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/Ingreso.java</file>
-=======
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/Camara.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/PrincipalMina.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/modelo/clsFunciones.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/Ingreso.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarEmpleUser.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarSede.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarEmpContra.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/modelo/clsGlobales.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/AccesosUsuario.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/Configuracion.java</file>
->>>>>>> f7046fe7b9b6c1f10f7598c03f19bfe6675c3b23
-        </group>
+        <group/>
     </open-files>
 </project-private>

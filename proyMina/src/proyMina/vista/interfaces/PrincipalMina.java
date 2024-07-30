@@ -44,8 +44,9 @@ public class PrincipalMina extends javax.swing.JFrame {
     
 
     //jFrame
-    AccesosUsuario sm;
+    AccesosUsuario au;
     Configuracion c;
+    PacienteMina pm;
     
     javax.swing.ImageIcon oIconoSi = new javax.swing.ImageIcon(ClassLoader.getSystemResource("imagenes/chek.gif"));
     
@@ -54,6 +55,7 @@ public class PrincipalMina extends javax.swing.JFrame {
         initComponents();
         this.setSize(816,501);
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -71,15 +73,6 @@ public class PrincipalMina extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jButton2 = new javax.swing.JButton();
-        Admision = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        sede = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         Configuracion = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -91,6 +84,16 @@ public class PrincipalMina extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        Admision = new javax.swing.JButton();
+        Triaje = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        BuscarEmpleado = new javax.swing.JButton();
+        Sede = new javax.swing.JButton();
+        CrearRoles = new javax.swing.JButton();
+        PrivilegiosEmpleados = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -128,92 +131,12 @@ public class PrincipalMina extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/empleado.png"))); // NOI18N
-        jButton2.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton2.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, -1));
-
-        Admision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/admision.png"))); // NOI18N
-        Admision.setMaximumSize(new java.awt.Dimension(70, 70));
-        Admision.setMinimumSize(new java.awt.Dimension(70, 70));
-        Admision.setPreferredSize(new java.awt.Dimension(39, 39));
-        Admision.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdmisionActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Admision, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 71, 68));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/triaje.png"))); // NOI18N
-        jButton1.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton1.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton1.setPreferredSize(new java.awt.Dimension(39, 39));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 71, 71));
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/paciente.png"))); // NOI18N
-        jButton8.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton8.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/usuario.png"))); // NOI18N
-        jButton4.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton4.setMinimumSize(new java.awt.Dimension(70, 70));
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, -1));
-
-        sede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/sede.png"))); // NOI18N
-        sede.setMaximumSize(new java.awt.Dimension(70, 70));
-        sede.setMinimumSize(new java.awt.Dimension(70, 70));
-        sede.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sedeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
-
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/privilegio.png"))); // NOI18N
-        jButton9.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton9.setMinimumSize(new java.awt.Dimension(70, 70));
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/contratas.png"))); // NOI18N
-        jButton6.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton6.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton6.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, -1, -1));
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/rol.png"))); // NOI18N
-        jButton5.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton5.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
-
         Configuracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/empresa.png"))); // NOI18N
+        Configuracion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Configuracion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Configuracion.setMaximumSize(new java.awt.Dimension(70, 70));
         Configuracion.setMinimumSize(new java.awt.Dimension(70, 70));
         Configuracion.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +144,7 @@ public class PrincipalMina extends javax.swing.JFrame {
                 ConfiguracionActionPerformed(evt);
             }
         });
-        getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+        getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 90, -1));
 
         jLabel6.setText("⁠Contratas");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, -1, -1));
@@ -241,7 +164,7 @@ public class PrincipalMina extends javax.swing.JFrame {
         jLabel9.setText("Usuarios");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, -1, -1));
 
-        jLabel10.setText("Sede");
+        jLabel10.setText("SEDE-CO");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, -1));
 
         jLabel5.setText("Privilegios");
@@ -252,6 +175,142 @@ public class PrincipalMina extends javax.swing.JFrame {
 
         jLabel7.setText("Configuracion");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
+
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setName(""); // NOI18N
+
+        Admision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/admision.png"))); // NOI18N
+        Admision.setMaximumSize(new java.awt.Dimension(70, 70));
+        Admision.setMinimumSize(new java.awt.Dimension(70, 70));
+        Admision.setPreferredSize(new java.awt.Dimension(94, 72));
+        Admision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdmisionActionPerformed(evt);
+            }
+        });
+
+        Triaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/triaje.png"))); // NOI18N
+        Triaje.setMaximumSize(new java.awt.Dimension(70, 70));
+        Triaje.setMinimumSize(new java.awt.Dimension(70, 70));
+        Triaje.setPreferredSize(new java.awt.Dimension(39, 39));
+        Triaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TriajeActionPerformed(evt);
+            }
+        });
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/paciente.png"))); // NOI18N
+        jButton8.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton8.setMinimumSize(new java.awt.Dimension(70, 70));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        BuscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/empleado.png"))); // NOI18N
+        BuscarEmpleado.setMaximumSize(new java.awt.Dimension(70, 70));
+        BuscarEmpleado.setMinimumSize(new java.awt.Dimension(70, 70));
+        BuscarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarEmpleadoActionPerformed(evt);
+            }
+        });
+
+        Sede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/sede.png"))); // NOI18N
+        Sede.setMaximumSize(new java.awt.Dimension(70, 70));
+        Sede.setMinimumSize(new java.awt.Dimension(70, 70));
+        Sede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SedeActionPerformed(evt);
+            }
+        });
+
+        CrearRoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/rol.png"))); // NOI18N
+        CrearRoles.setMaximumSize(new java.awt.Dimension(70, 70));
+        CrearRoles.setMinimumSize(new java.awt.Dimension(70, 70));
+        CrearRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearRolesActionPerformed(evt);
+            }
+        });
+
+        PrivilegiosEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/privilegio.png"))); // NOI18N
+        PrivilegiosEmpleados.setMaximumSize(new java.awt.Dimension(70, 70));
+        PrivilegiosEmpleados.setMinimumSize(new java.awt.Dimension(70, 70));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/usuario.png"))); // NOI18N
+        jButton4.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton4.setMinimumSize(new java.awt.Dimension(70, 70));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/contratas.png"))); // NOI18N
+        jButton6.setMaximumSize(new java.awt.Dimension(70, 70));
+        jButton6.setMinimumSize(new java.awt.Dimension(70, 70));
+        jButton6.setPreferredSize(new java.awt.Dimension(70, 70));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(Admision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addComponent(Triaje, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Sede, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(CrearRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BuscarEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrivilegiosEmpleados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Triaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Admision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(49, 49, 49))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CrearRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Sede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrivilegiosEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 410));
 
         jMenu1.setText("INICIO");
 
@@ -291,32 +350,33 @@ public class PrincipalMina extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedeActionPerformed
-            sm =new AccesosUsuario();                          
-            sm.setVisible(true);
+    private void SedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SedeActionPerformed
+            
    
-    }//GEN-LAST:event_sedeActionPerformed
+    }//GEN-LAST:event_SedeActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+       pm =new PacienteMina();
+       pm.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void BuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarEmpleadoActionPerformed
+       au =new AccesosUsuario();
+          au.setVisible(true);
+    }//GEN-LAST:event_BuscarEmpleadoActionPerformed
 
     private void ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfiguracionActionPerformed
           c =new Configuracion();
           c.setVisible(true);
     }//GEN-LAST:event_ConfiguracionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void TriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TriajeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_TriajeActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void CrearRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearRolesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_CrearRolesActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
      System.exit(0);
@@ -327,6 +387,10 @@ public class PrincipalMina extends javax.swing.JFrame {
         i.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_CambiarUserActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,15 +432,16 @@ public class PrincipalMina extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admision;
+    private javax.swing.JButton BuscarEmpleado;
     private javax.swing.JMenuItem CambiarUser;
     private javax.swing.JButton Configuracion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton CrearRoles;
+    private javax.swing.JButton PrivilegiosEmpleados;
+    private javax.swing.JButton Sede;
+    private javax.swing.JButton Triaje;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
@@ -397,7 +462,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JButton sede;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     

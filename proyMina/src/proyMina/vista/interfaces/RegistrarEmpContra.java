@@ -51,12 +51,18 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         responsable = new javax.swing.JTextField();
         correo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        RegistrarEmpresaoContrata.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setText("AGREGAR UNA EMPRESA O CONTRATA");
+        RegistrarEmpresaoContrata.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 220, -1));
 
         jLabel6.setText("Tipo : ");
+        RegistrarEmpresaoContrata.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         tipo_emp_contrata.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione  Empresa o Contrata" }));
         tipo_emp_contrata.addActionListener(new java.awt.event.ActionListener() {
@@ -64,8 +70,10 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 tipo_emp_contrataActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(tipo_emp_contrata, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 244, -1));
 
         jLabel1.setText("Ruc :");
+        RegistrarEmpresaoContrata.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
         ruc.setText(" ");
         ruc.addActionListener(new java.awt.event.ActionListener() {
@@ -73,16 +81,22 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 rucActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(ruc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 244, -1));
 
         jLabel2.setText("Razon Social : ");
+        RegistrarEmpresaoContrata.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
         jLabel3.setText("Direccion : ");
+        RegistrarEmpresaoContrata.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         jLabel4.setText("Telefono : ");
+        RegistrarEmpresaoContrata.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         jLabel7.setText("Respondable : ");
+        RegistrarEmpresaoContrata.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         jLabel5.setText("Email : ");
+        RegistrarEmpresaoContrata.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
 
         razon_social.setText(" ");
         razon_social.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +104,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 razon_socialActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(razon_social, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 244, -1));
 
         celular.setText(" ");
         celular.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +112,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 celularActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 244, -1));
 
         direccion.setText(" ");
         direccion.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +120,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 direccionActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 244, -1));
 
         responsable.setText(" ");
         responsable.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +128,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 responsableActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 244, -1));
 
         correo.setText(" ");
         correo.addActionListener(new java.awt.event.ActionListener() {
@@ -118,90 +136,13 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 correoActionPerformed(evt);
             }
         });
+        RegistrarEmpresaoContrata.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 244, -1));
 
-        jButton1.setText("REGISTRAR");
+        jButton1.setText("Editar");
+        RegistrarEmpresaoContrata.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 118, -1));
 
-        javax.swing.GroupLayout RegistrarEmpresaoContrataLayout = new javax.swing.GroupLayout(RegistrarEmpresaoContrata);
-        RegistrarEmpresaoContrata.setLayout(RegistrarEmpresaoContrataLayout);
-        RegistrarEmpresaoContrataLayout.setHorizontalGroup(
-            RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                        .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(responsable, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                            .addComponent(correo)))
-                    .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                        .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(24, 24, 24)
-                        .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                        .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6))
-                        .addGap(8, 8, 8)
-                        .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ruc, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(razon_social)
-                            .addComponent(tipo_emp_contrata, 0, 244, Short.MAX_VALUE))))
-                .addContainerGap(79, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))))
-        );
-        RegistrarEmpresaoContrataLayout.setVerticalGroup(
-            RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(razon_social, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(26, 26, 26)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(responsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        jButton2.setText("Registrar");
+        RegistrarEmpresaoContrata.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 118, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,21 +150,22 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void rucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rucActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_rucActionPerformed
 
     private void razon_socialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_razon_socialActionPerformed
@@ -292,6 +234,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     private javax.swing.JTextField correo;
     private javax.swing.JTextField direccion;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

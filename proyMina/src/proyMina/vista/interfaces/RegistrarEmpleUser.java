@@ -66,7 +66,6 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         btnRegistrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        ubigeo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         MASCULINO = new javax.swing.JRadioButton();
         FEMENINO = new javax.swing.JRadioButton();
@@ -76,7 +75,6 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         pass = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         cargo = new javax.swing.JTextField();
@@ -110,13 +108,13 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         RegistrarEmpresaoContrata.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 120, -1));
 
         jLabel2.setText("Contraseña : ");
-        RegistrarEmpresaoContrata.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
 
         jLabel3.setText("Fecha Nacimiento :");
         RegistrarEmpresaoContrata.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel4.setText("Provincia :");
-        RegistrarEmpresaoContrata.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
 
         jLabel5.setText("Email  :");
         RegistrarEmpresaoContrata.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 50, -1));
@@ -178,7 +176,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setPreferredWidth(35);
         }
 
-        RegistrarEmpresaoContrata.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 1010, 170));
+        RegistrarEmpresaoContrata.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 1010, 170));
         RegistrarEmpresaoContrata.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agegar.png"))); // NOI18N
@@ -192,13 +190,6 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
 
         jLabel7.setText("Apellidos : ");
         RegistrarEmpresaoContrata.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, -1));
-
-        ubigeo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ubigeoActionPerformed(evt);
-            }
-        });
-        RegistrarEmpresaoContrata.add(ubigeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 250, -1));
 
         jLabel8.setText("Sexo : ");
         RegistrarEmpresaoContrata.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
@@ -260,16 +251,13 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 passActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 250, -1));
-
-        jLabel12.setText("Ubigeo :");
-        RegistrarEmpresaoContrata.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, -1, -1));
+        RegistrarEmpresaoContrata.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 250, -1));
 
         jLabel13.setText("Direccion :");
-        RegistrarEmpresaoContrata.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
 
         jLabel14.setText("Nombre de Usuario :");
-        RegistrarEmpresaoContrata.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
 
         cargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,14 +271,14 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 direccionActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 250, -1));
+        RegistrarEmpresaoContrata.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 250, -1));
 
         name_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name_userActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 250, -1));
+        RegistrarEmpresaoContrata.add(name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 250, -1));
 
         cip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +293,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 estadoActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 90, -1));
+        RegistrarEmpresaoContrata.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 90, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -353,7 +341,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         RegistrarEmpresaoContrata.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
 
         jLabel16.setText("Distrito : ");
-        RegistrarEmpresaoContrata.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
 
         jLabel17.setText("Departamento : ");
         RegistrarEmpresaoContrata.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
@@ -456,41 +444,13 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
 
         if(!dni.getText().isEmpty()){
             if(!oPe.validar(dni, "desktop_empleado","dni"))  {
-            String Sql="select des_ubi_dis.nombre_distrito, des_ubi_pro.nombre_provincia,des_ubi_dep.nombre_departamento,"+ 
-                "dni,apellidos,nombres, celular, cargo,cip, correo_elect\n" +
-                "direccion, fecha_nacimiento, estado from desktop_empleado as des_emple \n" +
-                "left join desktop_ubigeo_distrito as des_ubi_dis on des_emple.ubigeo=des_ubi_dis.id_distrito_ubigeo \n" +
-                "left join desktop_ubigeo_provincia as des_ubi_pro on des_ubi_dis.id_provincia_ubigeo=des_ubi_pro.id_provincia_ubigeo\n" +
-                "left join desktop_ubigeo_departamento as des_ubi_dep on des_ubi_pro.id_departamento_ubigeo=des_ubi_dep.id_departamento_ubigeo\n" +
-                "Where dni='" +dni.getText();                     
-          oConn.FnBoolQueryExecute(Sql);
-          try {
-                if (oConn.setResult.next()) {
-                    dni.setText(oConn.setResult.getString("dni"));
-                    apellidos.setText(oConn.setResult.getString("apellidos"));
-                    nombres.setText(oConn.setResult.getString("nombres"));
-                   // sexo.setText(oConn.setResult.getString("sexo"));                    
-                    celular.setText(oConn.setResult.getString("celular"));
-                    cargo.setText(oConn.setResult.getString("cargo"));
-                    cip.setText(oConn.setResult.getString("cip"));
-                    correo_elect.setText(oConn.setResult.getString("correo_elect"));
-                    direccion.setText(oConn.setResult.getString("direccion"));
-                    name_user.setText(oConn.setResult.getString("name_user"));
-                    pass.setText(oConn.setResult.getString("pass"));
-                    estado.setSelected(oConn.setResult.getBoolean("estado"));
-                    
-                    }else{
-                    oFunc.SubSistemaMensajeError("No se encuentra registro del rol ");
-                }
-                oConn.sqlStmt.close();
-            } catch (SQLException ex) {
-              oFunc.SubSistemaMensajeInformacion("Error :" + ex.getMessage());
-            }
+             oFunc.SubSistemaMensajeError("El Empleado no se encuentra Registrado ");
             }
             else
                 { oFunc.SubSistemaMensajeError("El empleado si existe si desea actualizar - click Editar");
                     btnEditar.setEnabled(true);
-                    btnActualizar.setEnabled(false);
+                    btnActualizar.setEnabled(true);
+                    btnRegistrar.setEnabled(false);
                 }
             }        
                   
@@ -508,11 +468,6 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         cargo.requestFocus();
         cargo.setText("");
     }//GEN-LAST:event_correo_electActionPerformed
-
-    private void ubigeoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubigeoActionPerformed
-        direccion.requestFocus();
-        direccion.setText("");
-    }//GEN-LAST:event_ubigeoActionPerformed
 
     private void nombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombresActionPerformed
         apellidos.requestFocus();
@@ -545,8 +500,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     }//GEN-LAST:event_name_userActionPerformed
 
     private void cipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cipActionPerformed
-        ubigeo.requestFocus();
-        ubigeo.setText("");
+        
     }//GEN-LAST:event_cipActionPerformed
 
     private void MASCULINOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MASCULINOActionPerformed
@@ -607,7 +561,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(!dni.getText().isEmpty()){
           String Sql="select des_ubi_dis.nombre_distrito, des_ubi_pro.nombre_provincia,des_ubi_dep.nombre_departamento,"+ 
-                "dni,apellidos,nombres, celular, cargo,cip, correo_elect\n" +
+                "dni,apellidos,nombres, direccion,celular, sexo, cargo,cip, correo_elect,estado,name_user,pass,\n" +
                 "direccion, fecha_nacimiento, estado from desktop_empleado as des_emple \n" +
                 "left join desktop_ubigeo_distrito as des_ubi_dis on des_emple.ubigeo=des_ubi_dis.id_distrito_ubigeo \n" +
                 "left join desktop_ubigeo_provincia as des_ubi_pro on des_ubi_dis.id_provincia_ubigeo=des_ubi_pro.id_provincia_ubigeo\n" +
@@ -621,12 +575,27 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                     apellidos.setText(oConn.setResult.getString("apellidos"));
                     nombres.setText(oConn.setResult.getString("nombres"));                    
                     celular.setText(oConn.setResult.getString("celular"));
+                    direccion.setText(oConn.setResult.getString("direccion"));
                     cargo.setText(oConn.setResult.getString("cargo"));
                     cip.setText(oConn.setResult.getString("cip"));
+                    fecha_nacimiento.setDate(oConn.setResult.getDate("fecha_nacimiento"));
                     correo_elect.setText(oConn.setResult.getString("correo_elect"));                   
                     estado.setSelected(oConn.setResult.getBoolean("estado"));
-                    btnRegistrar.setEnabled(true);
+                    name_user.setText(oConn.setResult.getString("name_user")); 
+                    pass.setText(oConn.setResult.getString("pass"));
+                    if(oConn.setResult.getString("sexo").contains("MASCULINO"))
+                    MASCULINO.setSelected(true);
+                    else
+                    FEMENINO.setSelected(true);
+                    String provincia=oConn.setResult.getString("nombre_provincia").trim().toUpperCase();
+                    String distrito=oConn.setResult.getString("nombre_distrito").trim().toUpperCase();
+                    cboDepartamento.setSelectedItem(oConn.setResult.getString("nombre_departamento").trim().toUpperCase());
+
+                    cboProvincia.setSelectedItem(provincia);
+                    cboDistrito.setSelectedItem(distrito);
+                    btnActualizar.setEnabled(true);
                     btnEditar.setEnabled(false);
+                    btnRegistrar.setEnabled(false);
                     }else{
                     oFunc.SubSistemaMensajeError("No se encuentra registro de sede ");
                 }
@@ -738,23 +707,27 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             String Query ;
             strSqlStmt="UPDATE desktop_empleado ";
             Query="SET "; 
-            Query += dni.getText();
-            Query += ",'"+nombres.getText().toString().toUpperCase().trim()+ "'";
-            Query += ",'"+apellidos.getText().toString().toUpperCase().trim()+ "'";            
-            Query += ",'"+celular.getText()+ "'";
-            Query += ",'"+cargo.getText().toUpperCase().trim()+ "'";
-            Query += ",'"+correo_elect.getText()+ "'";
-            Query += ",'"+ubigeo.getText()+ "'";
-            Query += ",'"+direccion.getText().toUpperCase().trim()+ "'";
-            Query += ",'"+fecha_nacimiento.getDate()+ "'";
-            Query += ",'"+estado.isSelected()+ "'";
-            Query += ",'"+name_user.getText().toString().trim()+ "'";
-            Query += ",'"+pass.getText().toString().trim()+ "'";
-            Query += ",'"+clsGlobales.sUser+ "'";
-            Query += ",'"+formato.format(dateHoy)+ "'";
+            Query += "dni="+dni.getText();
+            Query += ",nombres='"+nombres.getText().toString().toUpperCase().trim()+ "'";
+            Query += ",apellidos='"+apellidos.getText().toString().toUpperCase().trim()+ "'";            
+            Query += ",celular='"+celular.getText()+ "'";
+            Query += ",cargo='"+cargo.getText().toUpperCase().trim()+ "'";
+            Query += ",correo_elect='"+correo_elect.getText()+ "'";
+            Query += ",Ubigeo='"+Ubigeo()+ "'";
+            if(MASCULINO.isSelected()){
+               Query += ",sexo='"+MASCULINO.getText() +"MASCULINO'";
+            }else {
+               Query += ",sexo='"+FEMENINO.getText() +"FEMENINO'";
+            }
+            
+            Query += ",direccion='"+direccion.getText().toUpperCase().trim()+ "'";
+            Query += ",fecha_nacimiento='"+fecha_nacimiento.getDate()+ "'";
+            Query += ",estado='"+estado.isSelected()+ "'";
+            Query += ",name_user='"+name_user.getText().toString().trim()+ "'";
+            Query += ",pass='"+pass.getText().toString().trim()+ "'";            
             Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
             Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
-            Query +=" WHERE ruc='" + Key + "'";
+            Query +=" WHERE dni='" + Key + "'";
             System.out.println("El comando es :" + strSqlStmt + Query );
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + Query)){
                 oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
@@ -814,9 +787,10 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
 }
      private void CargarProvincias(){
       String sQuery; 
+      System.out.println("llego al metodo cargar provincias");
       if(cboDepartamento.getSelectedIndex()>0){
       cboProvincia.removeAllItems();
-    cboProvincia.addItem("Seleccione");
+      cboProvincia.addItem("Seleccione Provincia");
         // Prepara el Query
         sQuery ="select nombre_provincia from desktop_ubigeo_departamento as ubi_dep inner join desktop_ubigeo_provincia as ubi_prov\n" +
 "	on ubi_dep.id_departamento_ubigeo=ubi_prov.id_departamento_ubigeo where TRIM(UPPER(ubi_dep.nombre_departamento))='"+cboDepartamento.getSelectedItem().toString().trim()+"'";
@@ -898,6 +872,31 @@ private void CargarDistrito(){
         cboDistrito.setSelectedIndex(0);
       }
 }
+public String Ubigeo(){
+    String sQuery;      
+    String ubigeo = "";
+    sQuery ="select des_ubi_dis.id_distrito_ubigeo "+                 
+            "from  desktop_ubigeo_distrito as des_ubi_dis  \n" +
+            "left join desktop_ubigeo_provincia as des_ubi_pro on des_ubi_dis.id_provincia_ubigeo=des_ubi_pro.id_provincia_ubigeo\n" +
+            "left join desktop_ubigeo_departamento as des_ubi_dep on des_ubi_pro.id_departamento_ubigeo=des_ubi_dep.id_departamento_ubigeo\n" +
+            " Where TRIM(UPPER(nombre_departamento))='" +cboDepartamento.getSelectedItem().toString().trim()+"'"+
+            " AND TRIM(UPPER(nombre_provincia)) = '" + cboProvincia.getSelectedItem().toString().trim()+ "'" +
+            " AND TRIM(UPPER(nombre_distrito)) = '" + cboDistrito.getSelectedItem().toString().trim()+ "'";
+    System.out.println(sQuery);
+              oConn.FnBoolQueryExecute(sQuery);
+          try {
+                if (oConn.setResult.next()) {
+                    ubigeo= oConn.setResult.getString("id_distrito_ubigeo");
+
+                    }else{
+                    oFunc.SubSistemaMensajeError("No se encuentra ubigeo ");
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                oFunc.SubSistemaMensajeInformacion("Error:" + ex.getMessage());
+            }
+          return ubigeo;
+}
     private void btnRegistrar(){
         if (!dni.getText().isEmpty()){
             if(!oPe.validar(dni,"desktop_empleado","dni")){
@@ -919,7 +918,7 @@ private void CargarDistrito(){
             strSqlStmt += ",celular";Query += ",'"+celular.getText()+ "'";
             strSqlStmt += ",cargo";Query += ",'"+cargo.getText()+ "'";
             strSqlStmt += ",correo_elect";Query += ",'"+correo_elect.getText()+ "'";
-            strSqlStmt += ",ubigeo";Query += ",'"+ubigeo.getText()+ "'";
+            strSqlStmt += ",ubigeo";Query += ",'"+Ubigeo()+ "'";
             strSqlStmt += ",direccion";Query += ",'"+direccion.getText()+ "'";
             strSqlStmt += ",fecha_nacimiento";Query += ",'"+fecha_nacimiento.getDate()+ "'";
             strSqlStmt += ",estado";Query += ",'"+estado.isSelected()+ "'";
@@ -932,7 +931,10 @@ private void CargarDistrito(){
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
-                       }         
+                    btnEditar.setEnabled(false);
+                    btnActualizar.setEnabled(false);
+                    
+                    }         
             }        
         }   
             else                     
@@ -968,13 +970,18 @@ celular.setText(null);
 cargo.setText(null);
 cip.setText(null);
 correo_elect.setText(null);
-ubigeo.setText(null);
 dni.setText(null);
 direccion.setText(null);
-//fecha_nacimiento.setDate(null);
+fecha_nacimiento.setDate(new Date());
+cboDepartamento.setSelectedItem(null);
+cboProvincia.setSelectedItem(null);
+cboDistrito.setSelectedItem(null);
 estado.setSelected(true);
 name_user.setText(null);
 pass.setText(null);
+btnActualizar.setEnabled(true);
+btnEditar.setEnabled(true);
+btnRegistrar.setEnabled(true);
 
 }
 
@@ -1033,7 +1040,6 @@ pass.setText(null);
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1054,6 +1060,5 @@ pass.setText(null);
     private javax.swing.JTextField name_user;
     private javax.swing.JTextField nombres;
     private javax.swing.JTextField pass;
-    private javax.swing.JTextField ubigeo;
     // End of variables declaration//GEN-END:variables
 }

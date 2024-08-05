@@ -44,6 +44,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     
 
     //jFrame
+    Roles r;
     AccesosUsuario au;
     Configuracion c;
     PacienteMina pm;
@@ -375,7 +376,8 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_TriajeActionPerformed
 
     private void CrearRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearRolesActionPerformed
-        // TODO add your handling code here:
+        r =new Roles();
+          r.setVisible(true);
     }//GEN-LAST:event_CrearRolesActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

@@ -3,8 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package proyMina.vista.interfaces;
-public class RegistrarSede extends javax.swing.JFrame {
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import proyMina.modelo.clsConnection;
+import proyMina.modelo.clsFunciones;
+import proyMina.modelo.clsGlobales;
+import proyMina.modelo.clsOperacionesUsuarios;
+
+public class RegistrarSede extends javax.swing.JFrame {
+    clsConnection oConn = new clsConnection();
+    clsFunciones oFunc = new clsFunciones();
+    clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
+    Date dateHoy = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");  
     
     public RegistrarSede() {
         initComponents();
@@ -21,88 +34,242 @@ public class RegistrarSede extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        actualizar = new javax.swing.JButton();
         nomenclatura = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         nombre_sede = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         capacidad = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         estado = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
+        registrar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         descripcion = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JToggleButton();
+        btnEditar1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("AGREGAR SEDE");
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("AGREGAR  SEDE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 100, -1));
-
-        jButton1.setText("Editar  / Actualizar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        actualizar.setText("Actualizar");
+        actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 110, -1));
 
         nomenclatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nomenclaturaActionPerformed(evt);
             }
         });
-        jPanel1.add(nomenclatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 66, 305, -1));
+        jPanel1.add(nomenclatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 305, -1));
 
         jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 94, 236, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 236, -1));
 
         jLabel3.setText("Codigo");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 44, 236, -1));
-        jPanel1.add(nombre_sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 116, 305, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 236, -1));
+        jPanel1.add(nombre_sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 305, -1));
 
         jLabel4.setText("Descripcion");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 150, 236, -1));
-        jPanel1.add(capacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 225, 305, -1));
-
-        jLabel5.setText("Estado");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 253, 236, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 236, -1));
+        jPanel1.add(capacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 305, -1));
 
         estado.setText("Activar");
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 275, -1, -1));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
-        jButton2.setText("Registrar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
+        registrar.setText("Registrar");
+        registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 120, -1));
 
         jLabel6.setText("Capacidad");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 203, 236, -1));
-        jPanel1.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 175, 305, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 236, -1));
+        jPanel1.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 305, -1));
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 110, -1));
+
+        btnEditar1.setText("Editar");
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomenclaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomenclaturaActionPerformed
-      // if(){
-       
-       
-       
-       
-     //  }
+      if(!nomenclatura.getText().isEmpty()){
+            if(!oPe.validarText(nomenclatura, "desktop_sede","nomenclatura"))  {
+            String Sql="select nomenclatura,nombre_sede,capacidad, descripcion , estado "                
+                +"FROM desktop_sede "                
+                +"WHERE nombre_sede ='"+nomenclatura.getText().toUpperCase()+"'";                      
+          oConn.FnBoolQueryExecute(Sql);
+          try {
+                if (oConn.setResult.next()) {
+                    nomenclatura.setText(oConn.setResult.getString("nomenclatura"));
+                    nombre_sede.setText(oConn.setResult.getString("nombre_sede"));
+                    capacidad.setText(oConn.setResult.getString("capacidad"));
+                    descripcion.setText(oConn.setResult.getString("descripcion"));
+                    estado.setSelected(oConn.setResult.getBoolean("estado"));
+                    }else{
+                    oFunc.SubSistemaMensajeError("No se encuentra registro la sede ");
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+              oFunc.SubSistemaMensajeInformacion("Error :" + ex.getMessage());
+            }
+            }
+            else
+                { oFunc.SubSistemaMensajeError("La sede si existe si desea actualizar - click Editar");
+                    btnEditar1.setEnabled(true);
+                    registrar.setEnabled(false);
+                }
+            }        
     }//GEN-LAST:event_nomenclaturaActionPerformed
+
+    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
+        actualizar();
+    }//GEN-LAST:event_actualizarActionPerformed
+
+    private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
+        registrar();
+    }//GEN-LAST:event_registrarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       btnLimpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+   if(!nomenclatura.getText().isEmpty()){
+          String Sql="select nomenclatura,nombre_sede,capacidad,descripcion ,estado , r.*"                
+                +"FROM desktop_sede as r "                
+                +"WHERE nomenclatura ='"+nomenclatura.getText().toUpperCase()+"'"; 
+                System.out.println(Sql);                
+          oConn.FnBoolQueryExecute(Sql);
+          try {
+                if (oConn.setResult.next()) {
+                    nomenclatura.setText(oConn.setResult.getString("nomenclatura"));
+                    nombre_sede.setText(oConn.setResult.getString("nombre_sede"));
+                    capacidad.setText(oConn.setResult.getString("capacidad"));
+                    descripcion.setText(oConn.setResult.getString("descripcion"));
+                    estado.setSelected(oConn.setResult.getBoolean("estado"));
+                    registrar.setEnabled(true);
+                    btnEditar1.setEnabled(false);
+                    }else{
+                    oFunc.SubSistemaMensajeError("No se encuentra registro de sede ");
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                oFunc.SubSistemaMensajeInformacion("Error:" + ex.getMessage());
+            }
+      }
+      else
+            oFunc.SubSistemaMensajeError("debes crear una nueva sede");
+    }//GEN-LAST:event_btnEditar1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+
+private void actualizar(){
+String Key=nomenclatura.getText();
+         if(!nomenclatura.getText().isEmpty()){                
+            String strSqlStmt;
+            String Query ;
+            strSqlStmt="UPDATE desktop_sede ";
+            Query="SET ";          
+            Query += "nomenclatura='"+nomenclatura.getText()+ "'";
+            Query += ",nombre_sede='"+nombre_sede.getText().toUpperCase().trim()+ "'";
+            Query += ",descripcion='"+descripcion.getText().toUpperCase().trim()+ "'";
+            Query += ",capacidad='"+capacidad.getText()+ "'";          
+            Query += ",estado='"+estado.isSelected()+ "'";            
+            Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
+            Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
+
+            Query +=" WHERE nomenclatura='" + Key + "'";
+            System.out.println("El comando es :" + strSqlStmt + Query );
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + Query)){
+                oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+                btnLimpiar();                                             
+            }else{
+                 oFunc.SubSistemaMensajeError("error en registro");
+                 }            
+    }
+
+}
+
+private void registrar(){
+if (!nomenclatura.getText().isEmpty()){
+            String strSqlStmt;
+            String Query ;
+            strSqlStmt="INSERT INTO desktop_sede (";
+            Query="Values(";
+            if (!nomenclatura.getText().isEmpty() )
+                {strSqlStmt += "nomenclatura";Query += "'"+nomenclatura.getText()+"'";}
+                strSqlStmt += ",nombre_sede";Query += ",'"+nombre_sede.getText().toUpperCase().trim()+ "'";
+                strSqlStmt += ",descripcion";Query += ",'"+descripcion.getText().toUpperCase().trim()+ "'";
+                strSqlStmt += ",capacidad";Query += ",'"+capacidad.getText().toUpperCase().trim()+ "'";                
+                strSqlStmt += ",estado";Query += ",'"+estado.isSelected()+ "'";
+                //Auditoria
+                strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
+                strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+                
+            System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+                oFunc.SubSistemaMensajeInformacion("Se ha agregado con Éxito");
+               // limpiar();
+            } else{
+                    oFunc.SubSistemaMensajeError("Error en registro de sede ");
+                       }                         
+            }
+
+}
+
+private void btnLimpiar(){
+        nomenclatura.setText(null);
+        nombre_sede.setText(null);
+        capacidad.setText(null);
+        descripcion.setText(null);
+        estado.setSelected(true);
+        btnEditar1.setEnabled(false);
+        registrar.setEnabled(true);
+
+}
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -136,19 +303,21 @@ public class RegistrarSede extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualizar;
+    private javax.swing.JToggleButton btnEditar1;
+    private javax.swing.JToggleButton btnLimpiar;
     private javax.swing.JTextField capacidad;
     private javax.swing.JTextField descripcion;
     private javax.swing.JCheckBox estado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nombre_sede;
     private javax.swing.JTextField nomenclatura;
+    private javax.swing.JButton registrar;
     // End of variables declaration//GEN-END:variables
 }
+
+

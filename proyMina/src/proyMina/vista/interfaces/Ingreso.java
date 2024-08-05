@@ -279,13 +279,13 @@ enter(evt);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
 
-    DemoButtons camara=new DemoButtons();
+    //DemoButtons camara=new DemoButtons();
    // camara.setVisible(true);
     
    // FirmaDigital camara=new FirmaDigital();
-    camara.setVisible(true);
+    //camara.setVisible(true);
     
-   // validar();
+    validar();
       
     
     }//GEN-LAST:event_jButton1ActionPerformed

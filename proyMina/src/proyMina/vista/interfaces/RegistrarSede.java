@@ -21,6 +21,7 @@ public class RegistrarSede extends javax.swing.JFrame {
     
     public RegistrarSede() {
         initComponents();
+        estado.setEnabled(true);
         this.setLocationRelativeTo(null);
     }
 
@@ -34,7 +35,7 @@ public class RegistrarSede extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        actualizar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         nomenclatura = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -42,74 +43,150 @@ public class RegistrarSede extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         capacidad = new javax.swing.JTextField();
         estado = new javax.swing.JCheckBox();
-        registrar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         descripcion = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JToggleButton();
-        btnEditar1 = new javax.swing.JToggleButton();
+        btnEditar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("AGREGAR SEDE");
+        setTitle("AGREGAR NUEVA SEDE");
         setResizable(false);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        actualizar.setText("Actualizar");
-        actualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actualizarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 110, -1));
 
         nomenclatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nomenclaturaActionPerformed(evt);
             }
         });
-        jPanel1.add(nomenclatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 305, -1));
-
-        jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 236, -1));
-
-        jLabel3.setText("Codigo");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 236, -1));
-        jPanel1.add(nombre_sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 305, -1));
-
-        jLabel4.setText("Descripcion");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 236, -1));
-        jPanel1.add(capacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 305, -1));
-
-        estado.setText("Activar");
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
-
-        registrar.setText("Registrar");
-        registrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarActionPerformed(evt);
+        nomenclatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nomenclaturaKeyTyped(evt);
             }
         });
-        jPanel1.add(registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 120, -1));
 
-        jLabel6.setText("Capacidad");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 236, -1));
-        jPanel1.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 305, -1));
+        jLabel2.setText("Nombre de Sede :");
 
+        jLabel3.setText("Codigo :");
+
+        nombre_sede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombre_sedeActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Descripcion :");
+
+        capacidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                capacidadKeyTyped(evt);
+            }
+        });
+
+        estado.setText("Activar");
+
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Capacidad :");
+
+        descripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descripcionActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 110, -1));
 
-        btnEditar1.setText("Editar");
-        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditar1ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 110, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre_sede, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estado)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomenclatura, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEditar)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(nombre_sede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(4, 4, 4)
+                        .addComponent(nomenclatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnActualizar)
+                        .addGap(7, 7, 7)
+                        .addComponent(btnLimpiar)))
+                .addGap(4, 4, 4)
+                .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel6)
+                .addGap(4, 4, 4)
+                .addComponent(capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(estado)
+                    .addComponent(btnRegistrar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,77 +194,51 @@ public class RegistrarSede extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomenclaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomenclaturaActionPerformed
-      if(!nomenclatura.getText().isEmpty()){
-            if(!oPe.validarText(nomenclatura, "desktop_sede","nomenclatura"))  {
-            String Sql="select nomenclatura,nombre_sede,capacidad, descripcion , estado "                
-                +"FROM desktop_sede "                
-                +"WHERE nombre_sede ='"+nomenclatura.getText().toUpperCase()+"'";                      
-          oConn.FnBoolQueryExecute(Sql);
-          try {
-                if (oConn.setResult.next()) {
-                    nomenclatura.setText(oConn.setResult.getString("nomenclatura"));
-                    nombre_sede.setText(oConn.setResult.getString("nombre_sede"));
-                    capacidad.setText(oConn.setResult.getString("capacidad"));
-                    descripcion.setText(oConn.setResult.getString("descripcion"));
-                    estado.setSelected(oConn.setResult.getBoolean("estado"));
-                    }else{
-                    oFunc.SubSistemaMensajeError("No se encuentra registro la sede ");
-                }
-                oConn.sqlStmt.close();
-            } catch (SQLException ex) {
-              oFunc.SubSistemaMensajeInformacion("Error :" + ex.getMessage());
-            }
-            }
-            else
-                { oFunc.SubSistemaMensajeError("La sede si existe si desea actualizar - click Editar");
-                    btnEditar1.setEnabled(true);
-                    registrar.setEnabled(false);
-                }
-            }        
+        descripcion.requestFocus();
     }//GEN-LAST:event_nomenclaturaActionPerformed
 
-    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
-        actualizar();
-    }//GEN-LAST:event_actualizarActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        btnActualizar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        registrar();
-    }//GEN-LAST:event_registrarActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        btnRegistrar();
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        btnLimpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
-   if(!nomenclatura.getText().isEmpty()){
-          String Sql="select nomenclatura,nombre_sede,capacidad,descripcion ,estado , r.*"                
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+   if(!nombre_sede.getText().isEmpty()){
+          String Sql="select nombre_sede,nomenclatura,capacidad,descripcion ,estado , r.*"                
                 +"FROM desktop_sede as r "                
-                +"WHERE nomenclatura ='"+nomenclatura.getText().toUpperCase()+"'"; 
+                +"WHERE nombre_sede ='"+nombre_sede.getText().toUpperCase().trim()+"'"; 
                 System.out.println(Sql);                
           oConn.FnBoolQueryExecute(Sql);
           try {
                 if (oConn.setResult.next()) {
-                    nomenclatura.setText(oConn.setResult.getString("nomenclatura"));
                     nombre_sede.setText(oConn.setResult.getString("nombre_sede"));
+                    nomenclatura.setText(oConn.setResult.getString("nomenclatura"));                    
                     capacidad.setText(oConn.setResult.getString("capacidad"));
                     descripcion.setText(oConn.setResult.getString("descripcion"));
-                    estado.setSelected(oConn.setResult.getBoolean("estado"));
-                    registrar.setEnabled(true);
-                    btnEditar1.setEnabled(false);
+                    estado.setSelected(oConn.setResult.getBoolean("estado"));                   
+                    btnRegistrar.setEnabled(false);
+                    btnActualizar.setEnabled(true);
+                    btnEditar.setEnabled(false);
+                    btnLimpiar.setEnabled(true);
                     }else{
                     oFunc.SubSistemaMensajeError("No se encuentra registro de sede ");
                 }
@@ -198,48 +249,100 @@ public class RegistrarSede extends javax.swing.JFrame {
       }
       else
             oFunc.SubSistemaMensajeError("debes crear una nueva sede");
-    }//GEN-LAST:event_btnEditar1ActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void nombre_sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_sedeActionPerformed
+        nomenclatura.requestFocus();
+        
+        if(!nombre_sede.getText().isEmpty()){
+            if(!oPe.validarText(nombre_sede, "desktop_sede","nombre_sede"))  {
+             oFunc.SubSistemaMensajeError("El nombre de sede no se encuentra Registrado ");
+                    btnEditar.setEnabled(false);
+                    btnActualizar.setEnabled(false);
+                    btnRegistrar.setEnabled(true);
+                    btnLimpiar.setEnabled(true);
+            }
+            else
+                { oFunc.SubSistemaMensajeError("La Sede si existe si desea actualizar - click en Editar");
+                    btnEditar.setEnabled(true);
+                    btnActualizar.setEnabled(false);
+                    btnRegistrar.setEnabled(false);
+                    btnLimpiar.setEnabled(true);
+                }
+            }        
+    }//GEN-LAST:event_nombre_sedeActionPerformed
+
+    private void nomenclaturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomenclaturaKeyTyped
+    int key = evt.getKeyChar();
+
+    boolean numeros = key >= 48 && key <= 57;        
+    if (!numeros)
+    {
+        evt.consume();
+    }        
+    if(nomenclatura.getText().length()>=20)
+     {
+       evt.consume();
+     }
+    }//GEN-LAST:event_nomenclaturaKeyTyped
+
+    private void capacidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_capacidadKeyTyped
+     int key = evt.getKeyChar();
+
+    boolean numeros = key >= 48 && key <= 57;        
+    if (!numeros)
+    {
+        evt.consume();
+    }        
+    if(capacidad.getText().length()>=3000)
+     {
+       evt.consume();
+     }  
+    }//GEN-LAST:event_capacidadKeyTyped
+
+    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
+        capacidad.requestFocus();
+    }//GEN-LAST:event_descripcionActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
-private void actualizar(){
-String Key=nomenclatura.getText();
-         if(!nomenclatura.getText().isEmpty()){                
+private void btnActualizar(){
+String Key=nombre_sede.getText();
+         if(!nombre_sede.getText().isEmpty()){                
             String strSqlStmt;
             String Query ;
             strSqlStmt="UPDATE desktop_sede ";
             Query="SET ";          
-            Query += "nomenclatura='"+nomenclatura.getText()+ "'";
-            Query += ",nombre_sede='"+nombre_sede.getText().toUpperCase().trim()+ "'";
+            Query += "nombre_sede='"+nombre_sede.getText().toUpperCase().trim()+ "'";
+            Query += ",nomenclatura='"+nomenclatura.getText().toUpperCase().trim()+ "'";
             Query += ",descripcion='"+descripcion.getText().toUpperCase().trim()+ "'";
             Query += ",capacidad='"+capacidad.getText()+ "'";          
             Query += ",estado='"+estado.isSelected()+ "'";            
             Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
             Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
 
-            Query +=" WHERE nomenclatura='" + Key + "'";
+            Query +=" WHERE nombre_sede='" + Key + "'";
             System.out.println("El comando es :" + strSqlStmt + Query );
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + Query)){
                 oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
                 btnLimpiar();                                             
             }else{
-                 oFunc.SubSistemaMensajeError("error en registro");
+                 oFunc.SubSistemaMensajeError("Error en registro");
                  }            
     }
-
 }
 
-private void registrar(){
-if (!nomenclatura.getText().isEmpty()){
+private void btnRegistrar(){
+if (!nombre_sede.getText().isEmpty()){
             String strSqlStmt;
             String Query ;
             strSqlStmt="INSERT INTO desktop_sede (";
             Query="Values(";
-            if (!nomenclatura.getText().isEmpty() )
-                {strSqlStmt += "nomenclatura";Query += "'"+nomenclatura.getText()+"'";}
-                strSqlStmt += ",nombre_sede";Query += ",'"+nombre_sede.getText().toUpperCase().trim()+ "'";
+            if (!nombre_sede.getText().isEmpty() )
+                {strSqlStmt += "nombre_sede";Query += "'"+nombre_sede.getText().toUpperCase().trim()+"'";}
+                strSqlStmt += ",nomenclatura";Query += ",'"+nomenclatura.getText().trim()+ "'";
                 strSqlStmt += ",descripcion";Query += ",'"+descripcion.getText().toUpperCase().trim()+ "'";
                 strSqlStmt += ",capacidad";Query += ",'"+capacidad.getText().toUpperCase().trim()+ "'";                
                 strSqlStmt += ",estado";Query += ",'"+estado.isSelected()+ "'";
@@ -250,7 +353,7 @@ if (!nomenclatura.getText().isEmpty()){
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                 oFunc.SubSistemaMensajeInformacion("Se ha agregado con Éxito");
-               // limpiar();
+                    btnLimpiar();
             } else{
                     oFunc.SubSistemaMensajeError("Error en registro de sede ");
                        }                         
@@ -264,8 +367,9 @@ private void btnLimpiar(){
         capacidad.setText(null);
         descripcion.setText(null);
         estado.setSelected(true);
-        btnEditar1.setEnabled(false);
-        registrar.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnRegistrar.setEnabled(true);
+        btnActualizar.setEnabled(true);
 
 }
 
@@ -303,9 +407,10 @@ private void btnLimpiar(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualizar;
-    private javax.swing.JToggleButton btnEditar1;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JToggleButton btnEditar;
     private javax.swing.JToggleButton btnLimpiar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JTextField capacidad;
     private javax.swing.JTextField descripcion;
     private javax.swing.JCheckBox estado;
@@ -316,7 +421,6 @@ private void btnLimpiar(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nombre_sede;
     private javax.swing.JTextField nomenclatura;
-    private javax.swing.JButton registrar;
     // End of variables declaration//GEN-END:variables
 }
 

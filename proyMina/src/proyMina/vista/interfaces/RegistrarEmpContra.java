@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import proyMina.modelo.clsConnection;
 import proyMina.modelo.clsFunciones;
 import proyMina.modelo.clsGlobales;
@@ -26,13 +27,13 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     public RegistrarEmpContra() {
         
-        initComponents();
+        initComponents();        
+        setLocationRelativeTo(null);  
+        tipo_emp_contrata = new JComboBox<>();
         tipo_emp_contrata.addItem("EMPRESA");
         tipo_emp_contrata.addItem("CONTRATA");
-        setLocationRelativeTo(null);
-        
-      
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +73,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
 
         jLabel6.setText("Tipo : ");
 
-        tipo_emp_contrata.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione  Empresa o Contrata" }));
+        tipo_emp_contrata.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione  Empresa o Contrata", "EMPRESA", "CONTRATA" }));
         tipo_emp_contrata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipo_emp_contrataActionPerformed(evt);
@@ -86,10 +87,17 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 rucActionPerformed(evt);
             }
         });
+        ruc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rucKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                rucKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Razon Social : ");
 
-        razon_social.setText(" ");
         razon_social.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 razon_socialActionPerformed(evt);
@@ -98,7 +106,6 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
 
         jLabel3.setText("Direccion : ");
 
-        direccion.setText(" ");
         direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 direccionActionPerformed(evt);
@@ -111,6 +118,11 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         celular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 celularActionPerformed(evt);
+            }
+        });
+        celular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                celularKeyTyped(evt);
             }
         });
 
@@ -132,6 +144,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +152,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +160,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +168,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,101 +183,104 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(8, 8, 8)
-                        .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(281, 281, 281))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel4)
-                        .addGap(15, 15, 15)
-                        .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(13, 13, 13)
-                        .addComponent(responsable, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
-                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel1)
-                        .addGap(14, 14, 14)
-                        .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(15, 15, 15)
-                        .addComponent(razon_social, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3)
-                        .addGap(11, 11, 11)
-                        .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel5)
+                                .addGap(12, 12, 12)
+                                .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(direccion))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(celular))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(13, 13, 13)
+                                .addComponent(responsable, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(razon_social, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(razon_social, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnLimpiar)))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(responsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnRegistrar)))
-                        .addGap(30, 30, 30))
+                                .addComponent(btnRegistrar))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActualizar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnActualizar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout RegistrarEmpresaoContrataLayout = new javax.swing.GroupLayout(RegistrarEmpresaoContrata);
         RegistrarEmpresaoContrata.setLayout(RegistrarEmpresaoContrataLayout);
         RegistrarEmpresaoContrataLayout.setHorizontalGroup(
             RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         RegistrarEmpresaoContrataLayout.setVerticalGroup(
             RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,14 +293,12 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, 512, Short.MAX_VALUE)
+                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         RegistrarEmpresaoContrata.getAccessibleContext().setAccessibleName("AGREGAR EMPRESA O CONTRATA");
@@ -290,23 +307,40 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void rucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rucActionPerformed
+        tipo_emp_contrata.requestFocus();
         
+        if(!ruc.getText().isEmpty()){
+            if(!oPe.validar(ruc, "desktop_empresa_contrata","ruc"))  {
+             oFunc.SubSistemaMensajeError("El Ruc no se encuentra Registrado ");
+                    btnEditar.setEnabled(false);
+                    btnActualizar.setEnabled(false);
+                    btnRegistrar.setEnabled(true);
+                    btnLimpiar.setEnabled(true);
+            }
+            else
+                { oFunc.SubSistemaMensajeError("El Ruc si existe si desea actualizar - click en Editar");
+                    btnEditar.setEnabled(true);
+                    btnActualizar.setEnabled(true);
+                    btnLimpiar.setEnabled(true);
+                    btnRegistrar.setEnabled(false);
+                }
+            }           
     }//GEN-LAST:event_rucActionPerformed
 
     private void razon_socialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_razon_socialActionPerformed
-        // TODO add your handling code here:
+        direccion.requestFocus();
     }//GEN-LAST:event_razon_socialActionPerformed
 
     private void celularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_celularActionPerformed
-        // TODO add your handling code here:
+       responsable.requestFocus();
     }//GEN-LAST:event_celularActionPerformed
 
     private void responsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_responsableActionPerformed
-        // TODO add your handling code here:
+        correo.requestFocus();
     }//GEN-LAST:event_responsableActionPerformed
 
     private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
-        // TODO add your handling code here:
+        celular.requestFocus();
     }//GEN-LAST:event_direccionActionPerformed
 
     private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
@@ -314,7 +348,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     }//GEN-LAST:event_correoActionPerformed
 
     private void tipo_emp_contrataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipo_emp_contrataActionPerformed
-        // TODO add your handling code here:
+        razon_social.requestFocus();
     }//GEN-LAST:event_tipo_emp_contrataActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -331,39 +365,72 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(!ruc.getText().isEmpty()){
-          String Sql="select ruc,razon_social,responsable,direccion,correo ,celular , r.*"                
+          String Sql="select ruc,razon_social,tipo_emp_cont,responsable,direccion,correo ,celular , r.*"                
                 +"FROM desktop_empresa_contrata as r "                
-                +"WHERE ruc ='"+ruc.getText().toUpperCase()+"'"; 
+                +"WHERE ruc ='"+ruc.getText().trim()+"'"; 
                 System.out.println(Sql);                
           oConn.FnBoolQueryExecute(Sql);
           try {
                 if (oConn.setResult.next()) {
-                    ruc.setText(oConn.setResult.getString("nomenclatura"));
-                    razon_social.setText(oConn.setResult.getString("nombre_sede"));
-                    responsable.setText(oConn.setResult.getString("nombre_sede"));
-                    direccion.setText(oConn.setResult.getString("nombre_sede"));
-                    correo.setText(oConn.setResult.getString("nombre_sede"));
-                    celular.setText(oConn.setResult.getString("capacidad"));
-                    
-                    btnRegistrar.setEnabled(true);
+                    ruc.setText(oConn.setResult.getString("ruc"));                    
+                    razon_social.setText(oConn.setResult.getString("razon_social"));
+                    responsable.setText(oConn.setResult.getString("responsable"));
+                    direccion.setText(oConn.setResult.getString("direccion"));
+                    correo.setText(oConn.setResult.getString("correo"));
+                    celular.setText(oConn.setResult.getString("celular"));
+                    String tipoEmpCont = oConn.setResult.getString("tipo_emp_cont");
+                        if (tipoEmpCont.contains("EMPRESA")) {
+                            tipo_emp_contrata.setSelectedItem("EMPRESA");
+                        } else {
+                            tipo_emp_contrata.setSelectedItem("CONTRATA");
+                        }
+                    btnRegistrar.setEnabled(false);
+                    btnActualizar.setEnabled(true);
                     btnEditar.setEnabled(false);
+                    btnLimpiar.setEnabled(true);
                     }else{
-                    oFunc.SubSistemaMensajeError("No se encuentra registro de empresa contrata ");
+                    oFunc.SubSistemaMensajeError("No se encuentra registro del ruc ");
                 }
                 oConn.sqlStmt.close();
             } catch (SQLException ex) {
                 oFunc.SubSistemaMensajeInformacion("Error:" + ex.getMessage());
             }
-      }
-      else
-            oFunc.SubSistemaMensajeError("debes registrar una empresa o contrata");
+      }      
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void rucKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rucKeyPressed
     
-    
+    }//GEN-LAST:event_rucKeyPressed
+
+    private void rucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rucKeyTyped
+    int key = evt.getKeyChar();
+
+    boolean numeros = key >= 48 && key <= 57;        
+    if (!numeros)
+    {
+        evt.consume();
+    }        
+    if(ruc.getText().length()>=11)
+     {
+       evt.consume();
+     }
+    }//GEN-LAST:event_rucKeyTyped
+
+    private void celularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_celularKeyTyped
+       int key = evt.getKeyChar();
+
+    boolean numeros = key >= 48 && key <= 57;        
+    if (!numeros)
+    {
+        evt.consume();
+    }        
+    if(ruc.getText().length()>=10)
+     {
+       evt.consume();
+     }
+    }//GEN-LAST:event_celularKeyTyped
+
+        
     private void btnActualizar(){
     String Key=ruc.getText();
          if(!ruc.getText().isEmpty()){                
@@ -409,11 +476,15 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             strSqlStmt += ",celular";Query += ",'"+celular.getText().toString().toUpperCase().trim()+ "'";
             strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
             strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+            
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado con Éxito");
+                btnLimpiar();
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo Registrar");
+                    btnEditar.setEnabled(false);
+                    btnActualizar.setEnabled(false);
                        }         
             }        
         }   

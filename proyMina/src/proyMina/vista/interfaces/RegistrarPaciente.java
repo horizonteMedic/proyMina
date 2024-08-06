@@ -29,7 +29,7 @@ import proyMina.modelo.clsGlobales;
 import proyMina.modelo.clsOperacionesUsuarios;
 
 
-public class RegistrarEmpleUser extends javax.swing.JFrame {
+public class RegistrarPaciente extends javax.swing.JFrame {
     Date dateHoy = new Date();
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
     clsConnection oConn = new clsConnection();
@@ -37,7 +37,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     
     
-    public RegistrarEmpleUser() {
+    public RegistrarPaciente() {
         initComponents();
         AutoCompleteDecorator.decorate(this.cboDepartamento);
         AutoCompleteDecorator.decorate(this.cboProvincia);
@@ -467,7 +467,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 try {
                     comunirApiConsultaReserva(dni.getText().toString().trim());
                 } catch (Exception ex) {
-                    Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             else
@@ -1104,20 +1104,21 @@ btnRegistrar.setEnabled(true);
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarEmpleUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarEmpleUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarEmpleUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarEmpleUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarEmpleUser().setVisible(true);
+                new RegistrarPaciente().setVisible(true);
             }
         });
     }

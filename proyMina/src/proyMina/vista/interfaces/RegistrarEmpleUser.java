@@ -440,7 +440,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
-        //MASCULINO.requestFocus();
+        MASCULINO.requestFocus();
 
         if(!dni.getText().isEmpty()){
             if(!oPe.validar(dni, "desktop_empleado","dni"))  {

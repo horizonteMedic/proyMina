@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import proyMina.modelo.clsConnection;
 import proyMina.modelo.clsFunciones;
 import proyMina.modelo.clsGlobales;
@@ -26,13 +27,13 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     public RegistrarEmpContra() {
         
-        initComponents();
+        initComponents();        
+        setLocationRelativeTo(null);  
+        tipo_emp_contrata = new JComboBox<>();
         tipo_emp_contrata.addItem("EMPRESA");
         tipo_emp_contrata.addItem("CONTRATA");
-        setLocationRelativeTo(null);
-        
-      
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,6 +87,14 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                 rucActionPerformed(evt);
             }
         });
+        ruc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rucKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                rucKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Razon Social : ");
 
@@ -132,6 +141,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +149,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +157,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +165,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,50 +180,47 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel6)
-                        .addGap(8, 8, 8)
-                        .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel4)
-                        .addGap(15, 15, 15)
-                        .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(13, 13, 13)
-                        .addComponent(responsable, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
-                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel1)
-                        .addGap(14, 14, 14)
-                        .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(50, 50, 50)
+                            .addComponent(jLabel6)
+                            .addGap(10, 10, 10)
+                            .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel4)
+                            .addGap(15, 15, 15)
+                            .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addGap(13, 13, 13)
+                            .addComponent(responsable, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(jLabel5)
+                            .addGap(12, 12, 12)
+                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(50, 50, 50)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel3)
+                            .addGap(10, 10, 10)
+                            .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(15, 15, 15)
-                        .addComponent(razon_social, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3)
-                        .addGap(11, 11, 11)
-                        .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35))
+                        .addComponent(razon_social, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +232,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -231,25 +241,25 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(razon_social, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnLimpiar)))
-                        .addGap(16, 16, 16)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(responsable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnRegistrar)))
-                        .addGap(30, 30, 30))
+                        .addGap(20, 20, 20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -261,7 +271,9 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         RegistrarEmpresaoContrata.setLayout(RegistrarEmpresaoContrataLayout);
         RegistrarEmpresaoContrataLayout.setHorizontalGroup(
             RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(RegistrarEmpresaoContrataLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         RegistrarEmpresaoContrataLayout.setVerticalGroup(
             RegistrarEmpresaoContrataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +286,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.PREFERRED_SIZE, 512, Short.MAX_VALUE)
+                .addComponent(RegistrarEmpresaoContrata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -290,7 +302,17 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void rucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rucActionPerformed
-        
+        if(!ruc.getText().isEmpty()){
+            if(!oPe.validar(ruc, "desktop_empresa_contrata","ruc"))  {
+             oFunc.SubSistemaMensajeError("El Ruc no se encuentra Registrado ");
+            }
+            else
+                { oFunc.SubSistemaMensajeError("El Ruc si existe si desea actualizar - click en Editar");
+                    btnEditar.setEnabled(true);
+                    btnActualizar.setEnabled(true);
+                    btnRegistrar.setEnabled(false);
+                }
+            }           
     }//GEN-LAST:event_rucActionPerformed
 
     private void razon_socialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_razon_socialActionPerformed
@@ -331,7 +353,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(!ruc.getText().isEmpty()){
-          String Sql="select ruc,razon_social,responsable,direccion,correo ,celular , r.*"                
+          String Sql="select ruc,razon_social,tipo_emp_cont,responsable,direccion,correo ,celular , r.*"                
                 +"FROM desktop_empresa_contrata as r "                
                 +"WHERE ruc ='"+ruc.getText().toUpperCase()+"'"; 
                 System.out.println(Sql);                
@@ -344,11 +366,16 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                     direccion.setText(oConn.setResult.getString("nombre_sede"));
                     correo.setText(oConn.setResult.getString("nombre_sede"));
                     celular.setText(oConn.setResult.getString("capacidad"));
-                    
+                    String tipoEmpCont = oConn.setResult.getString("tipo_emp_cont");
+                        if (tipoEmpCont.contains("EMPRESA")) {
+                            tipo_emp_contrata.setSelectedItem("EMPRESA");
+                        } else {
+                            tipo_emp_contrata.setSelectedItem("CONTRATA");
+                        }
                     btnRegistrar.setEnabled(true);
                     btnEditar.setEnabled(false);
                     }else{
-                    oFunc.SubSistemaMensajeError("No se encuentra registro de empresa contrata ");
+                    oFunc.SubSistemaMensajeError("No se encuentra registro del ruc ");
                 }
                 oConn.sqlStmt.close();
             } catch (SQLException ex) {
@@ -359,11 +386,25 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             oFunc.SubSistemaMensajeError("debes registrar una empresa o contrata");
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void rucKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rucKeyPressed
     
-    
+    }//GEN-LAST:event_rucKeyPressed
+
+    private void rucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rucKeyTyped
+    int key = evt.getKeyChar();
+
+    boolean numeros = key >= 48 && key <= 57;        
+    if (!numeros)
+    {
+        evt.consume();
+    }        
+    if(ruc.getText().length()>=11)
+     {
+       evt.consume();
+     }
+    }//GEN-LAST:event_rucKeyTyped
+
+        
     private void btnActualizar(){
     String Key=ruc.getText();
          if(!ruc.getText().isEmpty()){                

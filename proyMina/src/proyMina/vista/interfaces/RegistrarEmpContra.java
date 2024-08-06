@@ -29,9 +29,9 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         
         initComponents();        
         setLocationRelativeTo(null);  
-        tipo_emp_contrata = new JComboBox<>();
-        tipo_emp_contrata.addItem("EMPRESA");
-        tipo_emp_contrata.addItem("CONTRATA");
+        tipo_emp_cont = new JComboBox<>();
+        tipo_emp_cont.addItem("EMPRESA");
+        tipo_emp_cont.addItem("CONTRATA");
     }
     
 
@@ -47,7 +47,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         RegistrarEmpresaoContrata = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        tipo_emp_contrata = new javax.swing.JComboBox<>();
+        tipo_emp_cont = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         ruc = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -73,10 +73,10 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
 
         jLabel6.setText("Tipo : ");
 
-        tipo_emp_contrata.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione  Empresa o Contrata", "EMPRESA", "CONTRATA" }));
-        tipo_emp_contrata.addActionListener(new java.awt.event.ActionListener() {
+        tipo_emp_cont.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione  Empresa o Contrata", "EMPRESA", "CONTRATA" }));
+        tipo_emp_cont.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipo_emp_contrataActionPerformed(evt);
+                tipo_emp_contActionPerformed(evt);
             }
         });
 
@@ -221,7 +221,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(ruc, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(tipo_emp_cont, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,7 +242,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(tipo_emp_contrata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tipo_emp_cont, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -307,7 +307,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void rucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rucActionPerformed
-        tipo_emp_contrata.requestFocus();
+        tipo_emp_cont.requestFocus();
         
         if(!ruc.getText().isEmpty()){
             if(!oPe.validar(ruc, "desktop_empresa_contrata","ruc"))  {
@@ -347,9 +347,9 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_correoActionPerformed
 
-    private void tipo_emp_contrataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipo_emp_contrataActionPerformed
+    private void tipo_emp_contActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipo_emp_contActionPerformed
         razon_social.requestFocus();
-    }//GEN-LAST:event_tipo_emp_contrataActionPerformed
+    }//GEN-LAST:event_tipo_emp_contActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         btnActualizar();
@@ -378,12 +378,10 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                     direccion.setText(oConn.setResult.getString("direccion"));
                     correo.setText(oConn.setResult.getString("correo"));
                     celular.setText(oConn.setResult.getString("celular"));
-                    String tipoEmpCont = oConn.setResult.getString("tipo_emp_cont");
-                        if (tipoEmpCont.contains("EMPRESA")) {
-                            tipo_emp_contrata.setSelectedItem("EMPRESA");
-                        } else {
-                            tipo_emp_contrata.setSelectedItem("CONTRATA");
-                        }
+                    
+                    String tipo_E_C=oConn.setResult.getString("tipo_emp_cont").trim().toUpperCase();              
+                    tipo_emp_cont.setSelectedItem(tipo_E_C);  
+                    
                     btnRegistrar.setEnabled(false);
                     btnActualizar.setEnabled(true);
                     btnEditar.setEnabled(false);
@@ -410,7 +408,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     {
         evt.consume();
     }        
-    if(ruc.getText().length()>=11)
+    if(ruc.getText().length()>=10)
      {
        evt.consume();
      }
@@ -424,7 +422,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     {
         evt.consume();
     }        
-    if(ruc.getText().length()>=10)
+    if(ruc.getText().length()>=9)
      {
        evt.consume();
      }
@@ -439,11 +437,13 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             strSqlStmt="UPDATE desktop_empresa_contrata ";
             Query="SET ";          
             Query += "ruc='"+ruc.getText().toUpperCase().trim()+ "'";
+            Query += ",tipo_emp_cont='"+tipo_emp_cont.getSelectedItem().toString().trim()+ "'";
             Query += ",razon_social='"+razon_social.getText().toUpperCase().trim()+ "'";
             Query += ",direccion='"+direccion.getText().toUpperCase().trim()+ "'";
             Query += ",responsable='"+responsable.getText().toUpperCase().trim()+ "'";
             Query += ",correo='"+correo.getText().toUpperCase().trim()+ "'";
-            Query += ",celular='"+celular.getText()+ "'";          
+            Query += ",celular='"+celular.getText()+ "'"; 
+            
             Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
             Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
 
@@ -468,12 +468,13 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             strSqlStmt="INSERT INTO desktop_empresa_contrata (";
             Query="Values(";
             strSqlStmt += "id_emp_contrata";Query +=key+",";
-            strSqlStmt += ",ruc";Query += ruc.getText();
+            strSqlStmt += ",ruc";Query += ruc.getText().trim();
             strSqlStmt += ",razon_social";Query += ",'"+razon_social.getText().toString().toUpperCase().trim()+ "'";
+            strSqlStmt += ",tipo_emp_cont";Query += ",'"+tipo_emp_cont.getSelectedItem().toString().trim()+ "'";
             strSqlStmt += ",direccion";Query += ",'"+direccion.getText().toString().toUpperCase().trim()+ "'";
             strSqlStmt += ",responsable";Query += ",'"+responsable.getText().toString().toUpperCase().trim()+ "'";
             strSqlStmt += ",correo";Query += ",'"+correo.getText().toString().toUpperCase().trim()+ "'";
-            strSqlStmt += ",celular";Query += ",'"+celular.getText().toString().toUpperCase().trim()+ "'";
+            strSqlStmt += ",celular";Query += ",'"+celular.getText().toString().toUpperCase().trim()+ "'";     
             strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
             strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
             
@@ -498,7 +499,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
    if ( ruc.getText().trim().length() <= 11 )
        {
        } else {  
-       oFunc.SubSistemaMensajeError("el ruc debe tener 11 digitos");
+       oFunc.SubSistemaMensajeError("El Ruc debe tener 11 digitos");
        bResultado = false;
         }
    if(ruc.toString().isEmpty()){
@@ -516,7 +517,9 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         responsable.setText(null);
         correo.setText(null);
         celular.setText(null);
-        btnEditar.setEnabled(false);
+        tipo_emp_cont.setSelectedItem(null);
+        btnActualizar.setEnabled(true);
+        btnEditar.setEnabled(true);
         btnRegistrar.setEnabled(true);
     }
     public static void main(String args[]) {
@@ -572,7 +575,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     private javax.swing.JTextField razon_social;
     private javax.swing.JTextField responsable;
     private javax.swing.JTextField ruc;
-    private javax.swing.JComboBox<String> tipo_emp_contrata;
+    private javax.swing.JComboBox<String> tipo_emp_cont;
     // End of variables declaration//GEN-END:variables
 
     void setFrameIcon(ImageIcon ticon) {

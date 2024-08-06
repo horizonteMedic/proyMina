@@ -412,6 +412,11 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         RegistrarEmpresaoContrata.add(cboProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 200, -1));
 
         jComboBoxEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "SOLTERO", "CASADO", "VIUDO", "DIVORCIADO", "CONVIVIENTE" }));
+        jComboBoxEstadoCivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoCivilActionPerformed(evt);
+            }
+        });
         RegistrarEmpresaoContrata.add(jComboBoxEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 200, -1));
 
         jLabel18.setText("Distrito : ");
@@ -608,6 +613,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                     FEMENINO.setSelected(true);
                     String provincia=oConn.setResult.getString("nombre_provincia").trim().toUpperCase();
                     String distrito=oConn.setResult.getString("nombre_distrito").trim().toUpperCase();
+                    
                     cboDepartamento.setSelectedItem(oConn.setResult.getString("nombre_departamento").trim().toUpperCase());
 
                     cboProvincia.setSelectedItem(provincia);
@@ -715,6 +721,10 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnActualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void jComboBoxEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoCivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEstadoCivilActionPerformed
 
     /**
      * @param args the command line arguments

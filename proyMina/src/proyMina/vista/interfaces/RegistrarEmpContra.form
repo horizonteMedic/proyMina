@@ -118,7 +118,7 @@
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="ruc" alignment="1" min="-2" pref="244" max="-2" attributes="0"/>
-                                          <Component id="tipo_emp_contrata" min="-2" pref="244" max="-2" attributes="0"/>
+                                          <Component id="tipo_emp_cont" min="-2" pref="244" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -148,7 +148,7 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tipo_emp_contrata" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tipo_emp_cont" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -199,7 +199,7 @@
                 <Property name="text" type="java.lang.String" value="Tipo : "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="tipo_emp_contrata">
+            <Component class="javax.swing.JComboBox" name="tipo_emp_cont">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
@@ -210,7 +210,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipo_emp_contrataActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipo_emp_contActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

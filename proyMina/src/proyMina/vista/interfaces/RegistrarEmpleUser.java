@@ -9,6 +9,10 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.json.JSONObject;
+import proyMina.modelo.DisableSSLVerification;
 import proyMina.modelo.clsConnection;
 import static proyMina.modelo.clsConnection.oConnection;
 import proyMina.modelo.clsFunciones;
@@ -91,6 +97,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         cboDepartamento = new javax.swing.JComboBox();
         cboProvincia = new javax.swing.JComboBox();
+        jComboBoxEstadoCivil = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -340,8 +348,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         jLabel15.setText("Celular :");
         RegistrarEmpresaoContrata.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
 
-        jLabel16.setText("Distrito : ");
-        RegistrarEmpresaoContrata.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+        jLabel16.setText("Estado Civil:");
+        RegistrarEmpresaoContrata.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
         jLabel17.setText("Departamento : ");
         RegistrarEmpresaoContrata.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
@@ -403,6 +411,12 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         });
         RegistrarEmpresaoContrata.add(cboProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 200, -1));
 
+        jComboBoxEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "SOLTERO", "CASADO", "VIUDO", "DIVORCIADO", "CONVIVIENTE" }));
+        RegistrarEmpresaoContrata.add(jComboBoxEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 200, -1));
+
+        jLabel18.setText("Distrito : ");
+        RegistrarEmpresaoContrata.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -445,6 +459,11 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         if(!dni.getText().isEmpty()){
             if(!oPe.validar(dni, "desktop_empleado","dni"))  {
              oFunc.SubSistemaMensajeError("El Empleado no se encuentra Registrado ");
+                try {
+                    comunirApiConsultaReserva(dni.getText().toString().trim());
+                } catch (Exception ex) {
+                    Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             else
                 { oFunc.SubSistemaMensajeError("El empleado si existe si desea actualizar - click Editar");
@@ -700,6 +719,71 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+       
+      public void comunirApiConsultaReserva(String dni) throws Exception {
+      SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+         try {
+            DisableSSLVerification.disableSSL();  
+            URL url = new URL("https://hmintegracion.azurewebsites.net/api/v01/st/registros/consumoApis/"+dni);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
+
+
+            int code = con.getResponseCode();
+            System.out.println("Response Code: " + code);
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                System.out.println("Response line: " + responseLine.trim());
+                    response.append(responseLine.trim());
+                }
+                  System.out.println("Response: " + response.toString());
+                     JSONObject objectJson = new JSONObject(response.toString());
+                     JSONObject objectJsonData=objectJson.getJSONObject("data");
+                     nombres.setText(objectJsonData.getString("nombres"));
+                     apellidos.setText(objectJsonData.getString("apellido_paterno")+ " "+objectJsonData.getString("apellido_materno"));
+                     fecha_nacimiento.setDate(formato.parse(objectJsonData.getString("fecha_nacimiento")));
+                     cboDepartamento.setSelectedItem(objectJsonData.getString("departamento"));
+                     cboProvincia.setSelectedItem(objectJsonData.getString("provincia"));
+                     cboDistrito.setSelectedItem(objectJsonData.getString("distrito"));
+                     direccion.setText(objectJsonData.getString("direccion"));
+                     jComboBoxEstadoCivil.setSelectedItem(objectJsonData.getString("estado_civil"));
+                     if(objectJsonData.getString("sexo").contains("M")){
+                         MASCULINO.setSelected(true);
+                     }
+                     else
+                         FEMENINO.setSelected(true);
+
+
+                    /*
+                    System.out.println("el campo es:"+objectJson.getLong("id_resp"));
+                    
+                    System.out.println("el campo es:"+objectJson.getString("rucEmpresa"));
+                    System.out.println("el campo es:"+objectJson.getString("rucContrata"));
+                    System.out.println("el campo es:"+objectJson.getString("cargo"));
+                    System.out.println("el campo es:"+objectJson.getString("area"));
+                    System.out.println("el campo es:"+objectJson.getString("tipoExamen"));
+                    System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
+                      */
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+   
+   
+   
+   
+    
+    
     private void btnActualizar (){
     String Key=dni.getText();
          if(!dni.getText().isEmpty()){                
@@ -719,7 +803,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             }else {
                Query += ",sexo='"+FEMENINO.getText() +"FEMENINO'";
             }
-            
+            Query += ",estado_civil='"+jComboBoxEstadoCivil.getSelectedItem().toString().trim()+ "'";
             Query += ",direccion='"+direccion.getText().toUpperCase().trim()+ "'";
             Query += ",fecha_nacimiento='"+fecha_nacimiento.getDate()+ "'";
             Query += ",estado='"+estado.isSelected()+ "'";
@@ -915,6 +999,7 @@ public String Ubigeo(){
             }else {
                strSqlStmt += ",sexo";Query += ",'FEMINO'";
             }
+            strSqlStmt += ",estado_civil";Query += ",'"+jComboBoxEstadoCivil.getSelectedItem().toString().trim()+ "'";
             strSqlStmt += ",celular";Query += ",'"+celular.getText()+ "'";
             strSqlStmt += ",cargo";Query += ",'"+cargo.getText()+ "'";
             strSqlStmt += ",correo_elect";Query += ",'"+correo_elect.getText()+ "'";
@@ -976,6 +1061,7 @@ fecha_nacimiento.setDate(new Date());
 cboDepartamento.setSelectedItem(null);
 cboProvincia.setSelectedItem(null);
 cboDistrito.setSelectedItem(null);
+jComboBoxEstadoCivil.setSelectedItem(null);
 estado.setSelected(true);
 name_user.setText(null);
 pass.setText(null);
@@ -1037,6 +1123,7 @@ btnRegistrar.setEnabled(true);
     private javax.swing.JTextField dni;
     private javax.swing.JCheckBox estado;
     private com.toedter.calendar.JDateChooser fecha_nacimiento;
+    private javax.swing.JComboBox<String> jComboBoxEstadoCivil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1045,6 +1132,7 @@ btnRegistrar.setEnabled(true);
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

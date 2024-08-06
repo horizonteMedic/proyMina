@@ -579,9 +579,11 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(!dni.getText().isEmpty()){
-          String Sql="select des_ubi_dis.nombre_distrito, des_ubi_pro.nombre_provincia,des_ubi_dep.nombre_departamento,"+ 
+          String Sql="select translate(des_ubi_dis.nombre_distrito,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_distrito, "
+                  + "translate(des_ubi_pro.nombre_provincia,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_provincia ,"
+                  + "translate(des_ubi_dep.nombre_departamento,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_departamento,"+ 
                 "dni,apellidos,nombres, direccion,celular, sexo, cargo,cip, correo_elect,estado,name_user,pass,\n" +
-                "direccion, fecha_nacimiento, estado from desktop_empleado as des_emple \n" +
+                "direccion, fecha_nacimiento, des_emple.estado_civil from desktop_empleado as des_emple \n" +
                 "left join desktop_ubigeo_distrito as des_ubi_dis on des_emple.ubigeo=des_ubi_dis.id_distrito_ubigeo \n" +
                 "left join desktop_ubigeo_provincia as des_ubi_pro on des_ubi_dis.id_provincia_ubigeo=des_ubi_pro.id_provincia_ubigeo\n" +
                 "left join desktop_ubigeo_departamento as des_ubi_dep on des_ubi_pro.id_departamento_ubigeo=des_ubi_dep.id_departamento_ubigeo\n" +
@@ -608,10 +610,13 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                     FEMENINO.setSelected(true);
                     String provincia=oConn.setResult.getString("nombre_provincia").trim().toUpperCase();
                     String distrito=oConn.setResult.getString("nombre_distrito").trim().toUpperCase();
-                    cboDepartamento.setSelectedItem(oConn.setResult.getString("nombre_departamento").trim().toUpperCase());
+                    String estadoCivil=oConn.setResult.getString("estado_civil").trim().toUpperCase();
+                                    System.out.println(estadoCivil);                
 
+                    cboDepartamento.setSelectedItem(oConn.setResult.getString("nombre_departamento").trim().toUpperCase());
                     cboProvincia.setSelectedItem(provincia);
                     cboDistrito.setSelectedItem(distrito);
+                    jComboBoxEstadoCivil.setSelectedItem(estadoCivil);
                     btnActualizar.setEnabled(true);
                     btnEditar.setEnabled(false);
                     btnRegistrar.setEnabled(false);
@@ -835,7 +840,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
      private void CargarDepartamentos(){
       String sQuery;        
         // Prepara el Query
-        sQuery ="SELECT nombre_departamento FROM desktop_ubigeo_departamento";
+        sQuery ="SELECT translate(nombre_departamento,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_departamento FROM desktop_ubigeo_departamento";
         
         if (oConn.FnBoolQueryExecute(sQuery))
         {
@@ -876,7 +881,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
       cboProvincia.removeAllItems();
       cboProvincia.addItem("Seleccione Provincia");
         // Prepara el Query
-        sQuery ="select nombre_provincia from desktop_ubigeo_departamento as ubi_dep inner join desktop_ubigeo_provincia as ubi_prov\n" +
+        sQuery ="select translate(nombre_provincia,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_provincia from desktop_ubigeo_departamento as ubi_dep inner join desktop_ubigeo_provincia as ubi_prov\n" +
 "	on ubi_dep.id_departamento_ubigeo=ubi_prov.id_departamento_ubigeo where TRIM(UPPER(ubi_dep.nombre_departamento))='"+cboDepartamento.getSelectedItem().toString().trim()+"'";
         System.out.println("la consulta "+sQuery);
         if (oConn.FnBoolQueryExecute(sQuery))
@@ -920,7 +925,7 @@ private void CargarDistrito(){
     //cboDistrito.addItem("Seleccione");
 
         // Prepara el Query
-        sQuery ="select nombre_distrito from desktop_ubigeo_provincia as ubi_prov inner join desktop_ubigeo_distrito as ubi_dis\n" +
+        sQuery ="select translate(nombre_distrito,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_distrito from desktop_ubigeo_provincia as ubi_prov inner join desktop_ubigeo_distrito as ubi_dis\n" +
 "	on ubi_prov.id_provincia_ubigeo=ubi_dis.id_provincia_ubigeo where TRIM(UPPER(ubi_prov.nombre_provincia))='" +cboProvincia.getSelectedItem().toString().trim()+"'";
         System.out.println("la consulta "+sQuery);
         if (oConn.FnBoolQueryExecute(sQuery))
@@ -963,9 +968,9 @@ public String Ubigeo(){
             "from  desktop_ubigeo_distrito as des_ubi_dis  \n" +
             "left join desktop_ubigeo_provincia as des_ubi_pro on des_ubi_dis.id_provincia_ubigeo=des_ubi_pro.id_provincia_ubigeo\n" +
             "left join desktop_ubigeo_departamento as des_ubi_dep on des_ubi_pro.id_departamento_ubigeo=des_ubi_dep.id_departamento_ubigeo\n" +
-            " Where TRIM(UPPER(nombre_departamento))='" +cboDepartamento.getSelectedItem().toString().trim()+"'"+
-            " AND TRIM(UPPER(nombre_provincia)) = '" + cboProvincia.getSelectedItem().toString().trim()+ "'" +
-            " AND TRIM(UPPER(nombre_distrito)) = '" + cboDistrito.getSelectedItem().toString().trim()+ "'";
+            " Where translate(TRIM(UPPER(nombre_departamento)),'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU')='" +cboDepartamento.getSelectedItem().toString().trim()+"'"+
+            " AND translate(TRIM(UPPER(nombre_provincia)),'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') = '" + cboProvincia.getSelectedItem().toString().trim()+ "'" +
+            " AND translate(TRIM(UPPER(nombre_distrito)),'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') = '" + cboDistrito.getSelectedItem().toString().trim()+ "'";
     System.out.println(sQuery);
               oConn.FnBoolQueryExecute(sQuery);
           try {

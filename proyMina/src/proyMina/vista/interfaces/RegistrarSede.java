@@ -48,10 +48,14 @@ public class RegistrarSede extends javax.swing.JFrame {
         descripcion = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JToggleButton();
         btnEditar = new javax.swing.JToggleButton();
+        jLabel7 = new javax.swing.JLabel();
+        fecha_campaña = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AGREGAR NUEVA SEDE");
         setResizable(false);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -60,6 +64,7 @@ public class RegistrarSede extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 119, -1));
 
         nomenclatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,26 +76,33 @@ public class RegistrarSede extends javax.swing.JFrame {
                 nomenclaturaKeyTyped(evt);
             }
         });
+        jPanel1.add(nomenclatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 305, -1));
 
         jLabel2.setText("Nombre de Sede :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, -1));
 
         jLabel3.setText("Codigo :");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 50, -1));
 
         nombre_sede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombre_sedeActionPerformed(evt);
             }
         });
+        jPanel1.add(nombre_sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 305, -1));
 
         jLabel4.setText("Descripcion :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 80, -1));
 
         capacidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 capacidadKeyTyped(evt);
             }
         });
+        jPanel1.add(capacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 305, -1));
 
         estado.setText("Activar");
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
         btnRegistrar.setText("Registrar");
@@ -99,14 +111,17 @@ public class RegistrarSede extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 119, -1));
 
-        jLabel6.setText("Capacidad :");
+        jLabel6.setText("fecha :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 40, -1));
 
         descripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descripcionActionPerformed(evt);
             }
         });
+        jPanel1.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 305, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -115,6 +130,7 @@ public class RegistrarSede extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 119, -1));
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
         btnEditar.setText("Editar");
@@ -123,70 +139,11 @@ public class RegistrarSede extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 119, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombre_sede, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(estado)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nomenclatura, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEditar)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(4, 4, 4)
-                        .addComponent(nombre_sede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(4, 4, 4)
-                        .addComponent(nomenclatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnActualizar)
-                        .addGap(7, 7, 7)
-                        .addComponent(btnLimpiar)))
-                .addGap(4, 4, 4)
-                .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel6)
-                .addGap(4, 4, 4)
-                .addComponent(capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estado)
-                    .addComponent(btnRegistrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel7.setText("Capacidad :");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 80, -1));
+        jPanel1.add(fecha_campaña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,12 +151,14 @@ public class RegistrarSede extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,8 +182,7 @@ public class RegistrarSede extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
    if(!nombre_sede.getText().isEmpty()){
-          String Sql="select nombre_sede,nomenclatura,capacidad,descripcion ,estado , r.*"                
-                +"FROM desktop_sede as r "                
+          String Sql="select nombre_sede,nomenclatura,fecha_campaña,capacidad,descripcion ,estado FROM desktop_sede "                
                 +"WHERE nombre_sede ='"+nombre_sede.getText().toUpperCase().trim()+"'"; 
                 System.out.println(Sql);                
           oConn.FnBoolQueryExecute(Sql);
@@ -234,6 +192,7 @@ public class RegistrarSede extends javax.swing.JFrame {
                     nomenclatura.setText(oConn.setResult.getString("nomenclatura"));                    
                     capacidad.setText(oConn.setResult.getString("capacidad"));
                     descripcion.setText(oConn.setResult.getString("descripcion"));
+                    fecha_campaña.setDate(oConn.setResult.getDate("fecha_campaña"));
                     estado.setSelected(oConn.setResult.getBoolean("estado"));                   
                     btnRegistrar.setEnabled(false);
                     btnActualizar.setEnabled(true);
@@ -265,7 +224,7 @@ public class RegistrarSede extends javax.swing.JFrame {
             else
                 { oFunc.SubSistemaMensajeError("La Sede si existe si desea actualizar - click en Editar");
                     btnEditar.setEnabled(true);
-                    btnActualizar.setEnabled(false);
+                    btnActualizar.setEnabled(true);
                     btnRegistrar.setEnabled(false);
                     btnLimpiar.setEnabled(true);
                 }
@@ -319,7 +278,8 @@ String Key=nombre_sede.getText();
             Query += ",nomenclatura='"+nomenclatura.getText().toUpperCase().trim()+ "'";
             Query += ",descripcion='"+descripcion.getText().toUpperCase().trim()+ "'";
             Query += ",capacidad='"+capacidad.getText()+ "'";          
-            Query += ",estado='"+estado.isSelected()+ "'";            
+            Query += ",estado='"+estado.isSelected()+ "'";
+            Query += ",fecha_campaña='"+fecha_campaña.getDate()+ "'";            
             Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
             Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
 
@@ -344,7 +304,8 @@ if (!nombre_sede.getText().isEmpty()){
                 {strSqlStmt += "nombre_sede";Query += "'"+nombre_sede.getText().toUpperCase().trim()+"'";}
                 strSqlStmt += ",nomenclatura";Query += ",'"+nomenclatura.getText().trim()+ "'";
                 strSqlStmt += ",descripcion";Query += ",'"+descripcion.getText().toUpperCase().trim()+ "'";
-                strSqlStmt += ",capacidad";Query += ",'"+capacidad.getText().toUpperCase().trim()+ "'";                
+                strSqlStmt += ",capacidad";Query += ",'"+capacidad.getText().toUpperCase().trim()+ "'";  
+                strSqlStmt += ",fecha_campaña";Query += ",'"+fecha_campaña.getDate()+ "'";
                 strSqlStmt += ",estado";Query += ",'"+estado.isSelected()+ "'";
                 //Auditoria
                 strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
@@ -370,6 +331,7 @@ private void btnLimpiar(){
         btnEditar.setEnabled(true);
         btnRegistrar.setEnabled(true);
         btnActualizar.setEnabled(true);
+        fecha_campaña.setDate(new Date());
 
 }
 
@@ -414,10 +376,12 @@ private void btnLimpiar(){
     private javax.swing.JTextField capacidad;
     private javax.swing.JTextField descripcion;
     private javax.swing.JCheckBox estado;
+    private com.toedter.calendar.JDateChooser fecha_campaña;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nombre_sede;
     private javax.swing.JTextField nomenclatura;

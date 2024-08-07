@@ -617,7 +617,6 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                     String distrito=oConn.setResult.getString("nombre_distrito").trim().toUpperCase();
 
                     
-                    cboDepartamento.setSelectedItem(oConn.setResult.getString("nombre_departamento").trim().toUpperCase());
 
                     String estadoCivil=oConn.setResult.getString("estado_civil").trim().toUpperCase();
                                     System.out.println(estadoCivil);                
@@ -818,9 +817,9 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             Query += ",correo_elect='"+correo_elect.getText()+ "'";
             Query += ",Ubigeo='"+Ubigeo()+ "'";
             if(MASCULINO.isSelected()){
-               Query += ",sexo='"+MASCULINO.getText() +"MASCULINO'";
+               Query += ",sexo='MASCULINO'";
             }else {
-               Query += ",sexo='"+FEMENINO.getText() +"FEMENINO'";
+               Query += ",sexo='FEMENINO'";
             }
             Query += ",estado_civil='"+jComboBoxEstadoCivil.getSelectedItem().toString().trim()+ "'";
             Query += ",direccion='"+direccion.getText().toUpperCase().trim()+ "'";

@@ -29,9 +29,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
         
         initComponents();        
         setLocationRelativeTo(null);  
-        tipo_emp_cont = new JComboBox<>();
-        tipo_emp_cont.addItem("EMPRESA");
-        tipo_emp_cont.addItem("CONTRATA");
+
     }
     
 
@@ -365,7 +363,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(!ruc.getText().isEmpty()){
-          String Sql="select ruc,razon_social,tipo_emp_cont,responsable,direccion,correo ,celular , r.*"                
+          String Sql="select ruc,razon_social,tipo_emp_cont,responsable,direccion,correo ,celular "                
                 +"FROM desktop_empresa_contrata as r "                
                 +"WHERE ruc ='"+ruc.getText().trim()+"'"; 
                 System.out.println(Sql);                
@@ -379,7 +377,8 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                     correo.setText(oConn.setResult.getString("correo"));
                     celular.setText(oConn.setResult.getString("celular"));
                     
-                    String tipo_E_C=oConn.setResult.getString("tipo_emp_cont").trim().toUpperCase();              
+                    String tipo_E_C=oConn.setResult.getString("tipo_emp_cont").trim().toUpperCase();     
+                    
                     tipo_emp_cont.setSelectedItem(tipo_E_C);  
                     
                     btnRegistrar.setEnabled(false);

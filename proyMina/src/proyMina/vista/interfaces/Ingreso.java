@@ -111,13 +111,10 @@ public final class Ingreso extends javax.swing.JFrame {
                 formKeyPressed(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUsuario_L.setText("Usuario :");
-        getContentPane().add(lblUsuario_L, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 98, -1, -1));
 
         lblpass.setText("Contraseña :");
-        getContentPane().add(lblpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 128, -1, -1));
 
         txtpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +126,6 @@ public final class Ingreso extends javax.swing.JFrame {
                 txtpassKeyPressed(evt);
             }
         });
-        getContentPane().add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 125, 123, -1));
 
         btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyMina/vista/imagenes/cerrar.png"))); // NOI18N
         btncancelar.setText("Cerrar");
@@ -138,18 +134,14 @@ public final class Ingreso extends javax.swing.JFrame {
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Datos de Acceso al Sistema");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carnet.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 25, -1, 115));
 
         lblFecha.setText("Fecha :");
-        getContentPane().add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 153, -1, -1));
 
         txtFechaLogin.setEditable(false);
         txtFechaLogin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -163,10 +155,8 @@ public final class Ingreso extends javax.swing.JFrame {
                 txtFechaLoginKeyPressed(evt);
             }
         });
-        getContentPane().add(txtFechaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 153, 123, -1));
 
         lblHora.setText("Hora :");
-        getContentPane().add(lblHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 187, -1, -1));
 
         txtHoraLogin.setEditable(false);
         txtHoraLogin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -175,7 +165,6 @@ public final class Ingreso extends javax.swing.JFrame {
                 txtHoraLoginKeyPressed(evt);
             }
         });
-        getContentPane().add(txtHoraLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 183, 123, -1));
 
         cboUsuarios.setEditable(true);
         cboUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione algun usuario" }));
@@ -198,7 +187,6 @@ public final class Ingreso extends javax.swing.JFrame {
                 cboUsuariosKeyPressed(evt);
             }
         });
-        getContentPane().add(cboUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 93, 256, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyMina/vista/imagenes/entrar.png"))); // NOI18N
         jButton1.setText("Entrar");
@@ -207,9 +195,79 @@ public final class Ingreso extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 223, -1, 20));
 
-        setSize(new java.awt.Dimension(567, 302));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(lblUsuario_L)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblFecha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFechaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblpass)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblHora)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtHoraLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(45, 45, 45)
+                                .addComponent(btncancelar)))))
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUsuario_L))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblpass))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFechaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFecha))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblHora)
+                            .addComponent(txtHoraLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btncancelar))
+                .addGap(0, 28, Short.MAX_VALUE))
+        );
+
+        setSize(new java.awt.Dimension(531, 246));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
   

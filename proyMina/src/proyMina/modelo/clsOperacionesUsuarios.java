@@ -161,6 +161,35 @@ public boolean nOrden(JTextField n, String t ){
   return bResultado;
 }
 
+public boolean validarHistoriaClinica(JTextField n,String ValorFecha, String t, String dni,String fecha ){
+  boolean bResultado = false;
+    if (!n.getText().isEmpty()) {
+            String sQuery;
+
+            sQuery = "Select "+dni+" from "+ t +" Where " + dni+" =" + n.getText().toString()+" and "+fecha+"='"+ValorFecha+"'";
+              System.out.println(sQuery);
+            //Ejecuta el Query
+            oConn.FnBoolQueryExecute(sQuery);
+
+            // Capturo el Error
+            try {
+
+                // Verifico que haya habido resultados
+                if (oConn.setResult.next()) {
+                    // Resultado
+                    bResultado = true;
+                   // oFunc.SubSistemaMensajeError("Número de Orden Utilizado");
+                   // n.setText(null);
+                }
+
+                // Cierro los Resultados
+                oConn.setResult.close();
+
+            } catch (SQLException ex) {
+            }
+        }
+  return bResultado;
+}
 
 public boolean validar(JTextField n, String t, String columna ){
   boolean bResultado = false;

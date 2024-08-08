@@ -10,15 +10,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.json.JSONObject;
 import proyMina.modelo.DisableSSLVerification;
@@ -35,7 +44,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     clsConnection oConn = new clsConnection();
     clsFunciones oFunc = new clsFunciones();
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
-    
+    private ImageIcon image;
+    private Icon icon;
     
     public RegistrarEmpleUser() {
         initComponents();
@@ -99,6 +109,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         cboProvincia = new javax.swing.JComboBox();
         jComboBoxEstadoCivil = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -422,6 +433,14 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         jLabel18.setText("Distrito : ");
         RegistrarEmpresaoContrata.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
 
+        jButton1.setText("Cargar Sello");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        RegistrarEmpresaoContrata.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, -1, -1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -734,10 +753,97 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxEstadoCivilActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+               
+        
+        if(dni.getText().toString().length()>1)
+        {
+        FileNameExtensionFilter filtro= new FileNameExtensionFilter("Solo imagenes","png","jpg");
+
+                JFileChooser jfile = new JFileChooser();
+        jfile.setFileFilter(filtro);
+
+        int resultado = jfile.showOpenDialog(this);
+
+        if (resultado != JFileChooser.CANCEL_OPTION) {
+            File fileName = jfile.getSelectedFile();
+            
+            //System.out.println("la ruta es: "+fileName.getName());
+                    try {
+                        byte[] fileContent = Files.readAllBytes(fileName.toPath());
+                       // System.out.println(Base64.getEncoder().encodeToString(fileContent));
+                        String laBase64=Base64.getEncoder().encodeToString(fileContent);
+           comunirApiRegistroArchivoEmpleado(fileName.getName(),dni.getText(),laBase64);
+                    } catch (IOException ex) {
+                        Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+
+
+        }
+        
+                            oFunc.SubSistemaMensajeError("SELLO CARGADO");
+
+        }
+        else
+                                oFunc.SubSistemaMensajeError("Registre un dni");
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
+       public void comunirApiRegistroArchivoEmpleado(String path, String dniEmp,String base64String) throws Exception {
+         String p1 = null,p2 = null,p3 = null,
+                 p4 = null,p5 = null,p6 = null,
+                 p7 = null,p8 = null,p9 = null,p10 = null, 
+                 p11 = null,p12 = null,p13 = null,
+                 p14 = null,p15 = null,p16 = null,p17 = null,p18 = null; 
+         try {
+            DisableSSLVerification.disableSSL();  
+            URL url = new URL("https://hmintegracion.azurewebsites.net/api/v01/st/registros/registrarArchivoEmpleado");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
+  
+//            System.out.println(Sql);
+            String jsonInputString = "{\n" +
+                                    "   \"ruta\": null,\n" +
+                                    "   \"nombreArchivo\":\""+path+"\",\n" +
+                                    "   \"dni\":"+dniEmp+",\n" +
+                                    "  \"extension\": \".jpg\",\n" +
+                                    "  \"tipoArchivo\":\"SELLO MEDICO\",\n" +
+                                    "  \"base64\":\""+base64String+"\"}";
+            System.out.println(jsonInputString);
+            try (OutputStream os = con.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+            int code = con.getResponseCode();
+            System.out.println("Response Code: " + code);
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                    System.out.println("Response: " + response.toString());
+                   
+               
+            }
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+   
+   
        
       public void comunirApiConsultaReserva(String dni) throws Exception {
       SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
@@ -887,6 +993,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         cboDepartamento.setSelectedIndex(0);
 
 }
+     
+     
      private void CargarProvincias(){
       String sQuery; 
       System.out.println("llego al metodo cargar provincias");
@@ -1141,6 +1249,7 @@ btnRegistrar.setEnabled(true);
     private javax.swing.JTextField dni;
     private javax.swing.JCheckBox estado;
     private com.toedter.calendar.JDateChooser fecha_nacimiento;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBoxEstadoCivil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -419,7 +419,8 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void SedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SedeActionPerformed
-
+            FarmaciaInventario farmacia= new FarmaciaInventario();
+            farmacia.setVisible(true);
     }//GEN-LAST:event_SedeActionPerformed
 
     /**

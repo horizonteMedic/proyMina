@@ -5,20 +5,21 @@
             <url>src/proyMina/modelo/clsOperacionesUsuarios.java</url>
             <bookmark id="1">
                 <name/>
-                <line>164</line>
+                <line>193</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/PrincipalMina.java</file>
-            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/RegistrarEmpleUser.java</file>
-            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/FarmaciaInventario.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/PrincipalMina.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarPaciente.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/FichaTriaje.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/Ingreso.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarEmpleUser.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarEmpContra.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/modelo/clsOperacionesUsuarios.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/FarmaciaInventario.java</file>
         </group>
->>>>>>> 4830398808e707c6770acdf3007e077331a511da
     </open-files>
 </project-private>

@@ -336,8 +336,8 @@ public class FarmaciaInventario extends javax.swing.JFrame {
     private void jTableFarmaciaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFarmaciaMousePressed
        if (evt.getClickCount() == 2) {
                 //     System.out.println("va entrar en el cod de 2 click");
-                Integer cod = Integer.valueOf(jTableFarmacia.getValueAt(jTableFarmacia.getSelectedRow(), 0).toString());
-                System.out.println("el cod es:" + cod);
+                //Integer cod = Integer.valueOf(jTableFarmacia.getValueAt(jTableFarmacia.getSelectedRow(), 0).toString());
+               // System.out.println("el cod es:" + cod);
                 idFarmacia=Integer.valueOf(jTableFarmacia.getValueAt(jTableFarmacia.getSelectedRow(), 0).toString());
                 jComboBoxSede.setSelectedItem(String.valueOf(jTableFarmacia.getValueAt(jTableFarmacia.getSelectedRow(), 1).toString()));
                 jTextFieldTipo.setText(String.valueOf(jTableFarmacia.getValueAt(jTableFarmacia.getSelectedRow(), 2).toString()));

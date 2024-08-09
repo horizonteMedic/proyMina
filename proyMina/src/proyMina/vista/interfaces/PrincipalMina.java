@@ -44,6 +44,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     
 
     //jFrame
+    Ficha_triaje_panel_principal ft;
     Roles r;
     AccesosUsuario au;
     Configuracion c;
@@ -417,7 +418,9 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfiguracionActionPerformed
 
     private void TriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TriajeActionPerformed
-        // TODO add your handling code here:
+         ft =new Ficha_triaje_panel_principal();
+         ft.show();
+          //ft.setVisible(true);
     }//GEN-LAST:event_TriajeActionPerformed
 
     private void CrearRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearRolesActionPerformed

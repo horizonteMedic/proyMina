@@ -1291,7 +1291,7 @@ boolean bResultado=true;
                 consumirApiSello();
                 Map parameters = new HashMap(); 
                 parameters.put("Norden",cod);             
-                parameters.put("Firma",base64String);             
+              //  parameters.put("Firma",base64String);             
 
                   try 
                 {

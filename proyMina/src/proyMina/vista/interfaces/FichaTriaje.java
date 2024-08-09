@@ -2206,6 +2206,9 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
                 }
                   System.out.println("Response: " + response.toString());
                      JSONObject objectJson = new JSONObject(response.toString());
+                  System.out.println("Response: " + objectJson);
+                  System.out.println("Response: " + objectJson.getString("base64"));
+
                      base64String=(objectJson.getString("base64"));
                  
 

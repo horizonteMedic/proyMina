@@ -178,9 +178,9 @@
                                   <Component id="Admision" min="-2" pref="90" max="-2" attributes="0"/>
                                   <Component id="Configuracion" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="Sede" min="-2" pref="94" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="CrearRoles" min="-2" pref="89" max="-2" attributes="0"/>
@@ -190,7 +190,6 @@
                                       <Component id="jButton6" min="-2" pref="89" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="Triaje" min="-2" pref="94" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="jButton8" min="-2" pref="89" max="-2" attributes="0"/>

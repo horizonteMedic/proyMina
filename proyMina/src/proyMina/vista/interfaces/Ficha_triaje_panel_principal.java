@@ -15,6 +15,9 @@ public class Ficha_triaje_panel_principal extends javax.swing.JFrame {
      */
     public Ficha_triaje_panel_principal() {
         initComponents();
+        FichaTriaje fi_tri = new FichaTriaje();
+        escritorio.add(fi_tri);
+        fi_tri.show();     
         
     }
 

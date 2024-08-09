@@ -148,6 +148,8 @@ public class RegistrarPaciente extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         cboEstadoCivil = new javax.swing.JComboBox<>();
         celular = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         BuscarPaciente = new javax.swing.JToggleButton();
         dni_paciente = new javax.swing.JTextField();
@@ -451,6 +453,22 @@ public class RegistrarPaciente extends javax.swing.JFrame {
             }
         });
         RegistrarEmpresaoContrata.add(celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 250, -1));
+
+        jButton1.setText("Camara");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        RegistrarEmpresaoContrata.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, -1, -1));
+
+        jButton2.setText("Firma");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        RegistrarEmpresaoContrata.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 190, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1149,6 +1167,16 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     private void btnEditar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditar2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Camara cama= new Camara();
+        cama.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       DemoButtons demo=new DemoButtons();
+       demo.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 public void BuscarPaciente(){
     if(!dni_paciente.getText().isEmpty()){
         String Sql="SELECT dni, p.nombres ||' '|| p.apellidos as nombres, EXTRACT(YEAR FROM age(current_date,p.fecha_nacimiento)) AS  edad from desktop_datos_pacientes as p  "                
@@ -1645,6 +1673,8 @@ private void llenar_tabla_hc(){
     private javax.swing.JTextField dni_paciente;
     private javax.swing.JTextField edad;
     private com.toedter.calendar.JDateChooser fecha_nacimiento;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

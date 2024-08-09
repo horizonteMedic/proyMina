@@ -12,7 +12,11 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -34,6 +38,9 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.json.JSONObject;
+import proyMina.modelo.DisableSSLVerification;
+import proyMina.modelo.clsGlobales;
 public final class FichaTriaje extends javax.swing.JInternalFrame {
  clsConnection oConn = new clsConnection();
    clsFunciones  oFunc = new clsFunciones();
@@ -43,6 +50,9 @@ public final class FichaTriaje extends javax.swing.JInternalFrame {
         javax.swing.ImageIcon oNo = null;
 String[]Triaje = new String[]{};
      DefaultTableModel model;
+     int dni=0;
+     String base64String="";
+     
    public FichaTriaje() {
       initComponents();
  
@@ -52,6 +62,7 @@ String[]Triaje = new String[]{};
        HabilitaReOr();
        sbCargarDatosOcupacional("");
        jtTriaje.setIconAt(0, new ImageIcon(ClassLoader.getSystemResource("imagenes/reportes.png")));
+       calcularDniUser();
    }
 
    
@@ -1267,16 +1278,21 @@ boolean bResultado=true;
        if (evt.getClickCount() == 2) 
         {  
             Integer cod  = Integer.valueOf( tbTriaje.getValueAt(tbTriaje.getSelectedRow(),0).toString());
-            print(cod);
+           try {
+               print(cod);
+           } catch (Exception ex) {
+               Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+           }
             
         }
        
     }//GEN-LAST:event_tbTriajeMouseClicked
-       private void print(Integer cod){
-
+       private void print(Integer cod) throws Exception{
+                consumirApiSello();
                 Map parameters = new HashMap(); 
                 parameters.put("Norden",cod);             
-                
+                parameters.put("Firma",base64String);             
+
                   try 
                 {
                     String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"Triaje_1.jasper";
@@ -1730,6 +1746,7 @@ boolean bResultado=true;
         return bResultado;
         
     }
+       
        private void Actualizar(){
            String sCodigo=txtNumero.getText();
         String strSqlStmt;
@@ -2121,7 +2138,97 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
       //  System.exit(0);
 
     }
+      
+      public void calcularDniUser()
+    {
+        // Para devolver el resultado
+        
+        // Para el Query
+        String sQuery="";
+        
+        // Prepara el Query
+        sQuery  = "select dni from desktop_empleado where name_user='"+clsGlobales.sUser+"'";
+        
+   
+        //Ejecuta el Query
+        oConn.FnBoolQueryExecute(sQuery);
+        
+        // Capturo el Error
+        try {
+            
+            // Verifico que haya habido resultados
+            if (oConn.setResult.next())
+            {
+                
+               dni= oConn.setResult.getInt("dni");
+                // Resultado
+//             oFunc.SubSistemaMensajeError("Número de Orden Utilizado");
+//             txtNumero.setText(null);
+//             txtNumero.requestFocus();
+            }
+            
+            // Cierro los Resultados
+            oConn.sqlStmt.close();
+            
+        } catch (SQLException ex) {
+         
+        }
+        
+        
+        
+        // Retorna el Resultado
+        
+    }
+       
+    
+    
+      public void consumirApiSello() throws Exception {
+      SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+         try {
+            DisableSSLVerification.disableSSL();  
+            URL url = new URL("https://hmintegracion.azurewebsites.net/api/v01/st/registros/detalleArchivoEmpleado/"+dni+"/SELLO MEDICO");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
 
+
+            int code = con.getResponseCode();
+            System.out.println("Response Code: " + code);
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                System.out.println("Response line: " + responseLine.trim());
+                    response.append(responseLine.trim());
+                }
+                  System.out.println("Response: " + response.toString());
+                     JSONObject objectJson = new JSONObject(response.toString());
+                     base64String=(objectJson.getString("base64"));
+                 
+
+
+                    /*
+                    System.out.println("el campo es:"+objectJson.getLong("id_resp"));
+                    
+                    System.out.println("el campo es:"+objectJson.getString("rucEmpresa"));
+                    System.out.println("el campo es:"+objectJson.getString("rucContrata"));
+                    System.out.println("el campo es:"+objectJson.getString("cargo"));
+                    System.out.println("el campo es:"+objectJson.getString("area"));
+                    System.out.println("el campo es:"+objectJson.getString("tipoExamen"));
+                    System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
+                      */
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+   
+   
 public int calcularEdad(Calendar fechaNac){
     Calendar today = Calendar.getInstance();
     int diay = today.get(Calendar.YEAR);

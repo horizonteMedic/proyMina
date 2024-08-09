@@ -529,6 +529,11 @@ public class RegistrarPaciente extends javax.swing.JFrame {
 
         btnEditar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
         btnEditar2.setText("Editar");
+        btnEditar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar2ActionPerformed(evt);
+            }
+        });
 
         cboEmpresa.setEditable(true);
         cboEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
@@ -1140,6 +1145,10 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     private void cboContrataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboContrataKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboContrataKeyPressed
+
+    private void btnEditar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditar2ActionPerformed
 public void BuscarPaciente(){
     if(!dni_paciente.getText().isEmpty()){
         String Sql="SELECT dni, p.nombres ||' '|| p.apellidos as nombres, EXTRACT(YEAR FROM age(current_date,p.fecha_nacimiento)) AS  edad from desktop_datos_pacientes as p  "                

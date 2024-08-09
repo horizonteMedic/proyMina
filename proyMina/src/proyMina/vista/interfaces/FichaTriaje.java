@@ -12,18 +12,27 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public final class FichaTriaje extends javax.swing.JInternalFrame {
  clsConnection oConn = new clsConnection();
@@ -36,16 +45,16 @@ String[]Triaje = new String[]{};
      DefaultTableModel model;
    public FichaTriaje() {
       initComponents();
-   
-      
-      CargarEmpresas();
-      CargarContratas();
-      CargarServicios();
+ 
+
+       // CargarEmpresas();
+      //CargarContratas();
        HabilitaReOr();
        sbCargarDatosOcupacional("");
        jtTriaje.setIconAt(0, new ImageIcon(ClassLoader.getSystemResource("imagenes/reportes.png")));
    }
 
+   
    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,12 +67,8 @@ String[]Triaje = new String[]{};
         cboEmpresa = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         cboContratas = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        cboTipoServicio = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         FechaNacimiento = new com.toedter.calendar.JDateChooser();
         FechaTriaje = new com.toedter.calendar.JDateChooser();
@@ -186,17 +191,7 @@ String[]Triaje = new String[]{};
             }
         });
 
-        jLabel3.setText("Ex.Médico :");
-
-        cboTipoServicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboTipoServicioActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Nombres:");
-
-        jLabel6.setText("Apellidos:");
 
         jLabel7.setText("Fecha Nac:");
 
@@ -282,20 +277,9 @@ String[]Triaje = new String[]{};
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboTipoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(chkRocupacional)))
+                .addGap(36, 36, 36)
+                .addComponent(chkRocupacional)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,43 +293,51 @@ String[]Triaje = new String[]{};
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel28)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(cboContratas, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblBuscarID1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbRecibo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbOrden))
-                            .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboContratas, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel32))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                .addComponent(txtApellido))
-                            .addComponent(FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(FechaTriaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(161, 161, 161)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(FechaTriaje, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jLabel33)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblBuscarID1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbRecibo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbOrden))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,10 +352,6 @@ String[]Triaje = new String[]{};
                     .addComponent(rbRecibo)
                     .addComponent(rbOrden))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cboTipoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -382,15 +370,14 @@ String[]Triaje = new String[]{};
                     .addComponent(jLabel5)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33)
-                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel33)
+                        .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addComponent(FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(FechaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
@@ -960,8 +947,9 @@ String[]Triaje = new String[]{};
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(310, Short.MAX_VALUE))
-                    .addComponent(jtTriaje)))
+                        .addGap(0, 297, Short.MAX_VALUE))
+                    .addComponent(jtTriaje))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -991,7 +979,7 @@ String[]Triaje = new String[]{};
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtTriaje)))
                 .addGap(5, 5, 5))
             .addComponent(jSeparator1)
         );
@@ -1020,7 +1008,7 @@ String[]Triaje = new String[]{};
    private void txtHistorialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHistorialKeyPressed
      if(txtHistorial.getText().equals("")){
         if (evt.getKeyCode()== KeyEvent.VK_ENTER){
-            abrirDialoj();
+
         }
      }
    }//GEN-LAST:event_txtHistorialKeyPressed
@@ -1039,10 +1027,6 @@ String[]Triaje = new String[]{};
       
    }//GEN-LAST:event_rbReciboActionPerformed
 
-    private void cboTipoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoServicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboTipoServicioActionPerformed
-
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
      
          if (chkRocupacional.isSelected()) {
@@ -1052,31 +1036,27 @@ String[]Triaje = new String[]{};
                 if (!OrdenExiste()) {
                      System.out.println("funcion orden existe");
                     if (rbOrden.isSelected()) {
-                            System.out.println("entrnado a la consulta"); 
-                        String Sql = "select desktop_datos_paciente.nombres_pa,"
-                                + "desktop_datos_paciente.apellidos_pa,"
-                                + "desktop_datos_paciente.fecha_nacimiento_pa,"
-                                + "n_orden_ocupacional.nom_examen,"
-                                + "n_orden_ocupacional.razon_empresa,"
-                                + "n_orden_ocupacional.razon_contrata "
-                                + "FROM desktop_datos_paciente as desk_dpa "
-                                + "INNER JOIN n_orden_ocupacional "
-                                + "ON (desk_dpa.cod_pa = n_orden_ocupacional.cod_pa) "
-                                + "WHERE n_orden_ocupacional.n_orden=" + txtNumero.getText() + ";";
+                            System.out.println("entrando a la consulta"); 
+                        String Sql = "select n_orden ,fecha_nacimiento, EXTRACT(YEAR FROM age(current_date,dat_pa.fecha_nacimiento)) AS  edad, dni_paciente,dat_pa.nombres ||' '|| dat_pa.apellidos as nombres, (case when ruc_empresa is null then 'N/A' \n" +
+                    "else (select razon_social from desktop_empresa_contrata where tipo_emp_cont = 'EMPRESA' \n" +
+                    "AND ruc=ruc_empresa) end ) as razon_social_empresa ,(case when ruc_contrata is null then 'N/A' \n" +
+                    "else (select razon_social from desktop_empresa_contrata where tipo_emp_cont = 'CONTRATA' \n" +
+                    "AND ruc=ruc_contrata) end ) as razon_social_contrata from desktop_datos_historia_clinica as hist_clini \n" +
+                    "inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni"
+                    + " WHERE hist_clini.n_orden=" + txtNumero.getText() + ";";
                         System.out.println(Sql);
                         oConn.FnBoolQueryExecute(Sql);
 
                         try {
                             if (oConn.setResult.next()) {
-                                txtNombre.setText(oConn.setResult.getString("nombres_pa"));
-                                txtApellido.setText(oConn.setResult.getString("apellidos_pa"));
-                                FechaNacimiento.setDate(oConn.setResult.getDate("fecha_nacimiento_pa"));
-                                cboTipoServicio.setSelectedItem(oConn.setResult.getString("nom_examen"));
-                                cboEmpresa.setSelectedItem(oConn.setResult.getString("razon_empresa"));
-                                cboContratas.setSelectedItem(oConn.setResult.getString("razon_contrata"));
+                                txtNombre.setText(oConn.setResult.getString("nombres"));
+                                FechaNacimiento.setDate(oConn.setResult.getDate("fecha_nacimiento"));
+                                cboEmpresa.setSelectedItem(oConn.setResult.getString("razon_social_empresa"));
+                                cboContratas.setSelectedItem(oConn.setResult.getString("razon_social_contrata"));
                                 FechaTriaje.requestFocusInWindow();
                                 txtNumero.setEnabled(false);
-                                txtEdad.setText(String.valueOf(calcularEdad(FechaNacimiento.getCalendar())));
+                                txtEdad.setText(oConn.setResult.getString("edad"));
+                                
                                 fecha();
                                 habilitaTriaje(true);
                                 oConn.setResult.close();
@@ -1090,12 +1070,12 @@ String[]Triaje = new String[]{};
                         }
                     }
                 }
+                
             
         }
          }
-        if(chkAsistencial.isSelected()){ 
-           CargarAsistencial();
-        }
+      
+        
     }//GEN-LAST:event_txtNumeroActionPerformed
   public void habilitaTriaje(boolean r){
    txtTalla.setEnabled(r);
@@ -1116,7 +1096,7 @@ Date dateHoy = new Date();
        FechaTriaje.setDate(dateHoy);
         
 }
-   private void CargarAsistencial(){
+  /* private void CargarAsistencial(){
         if (!txtNumero.getText().isEmpty()) {
                 if (!OrdenExiste()) {
                         if (rbOrden.isSelected()) {
@@ -1147,7 +1127,7 @@ Date dateHoy = new Date();
                     
                }
             }
-   }
+   }*/
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
           
         int k=(int)evt.getKeyChar();
@@ -1194,7 +1174,7 @@ Date dateHoy = new Date();
                      if(validar()){
             String strSqlStmt;
              String Query ;
-            strSqlStmt="INSERT INTO triaje(";
+            strSqlStmt="INSERT INTO desktop_triaje(";
             Query="Values('";
             if (txtNumero.getText().trim().length()>= 1 ){strSqlStmt += "n_orden";Query += txtNumero.getText().toString()+ "'";}
               if (txtEdad.getText().trim().length()>= 1 ){strSqlStmt += ",edad";Query += ",'"+txtEdad.getText().toString()+ "'";}
@@ -1242,57 +1222,7 @@ Date dateHoy = new Date();
         }else {  oFunc.SubSistemaMensajeError("Llene los Campos correctamente");txtNumero.requestFocus();}
        }
    } 
-   private void AgregarAsistencial(){
-        if(chkAsistencial.isSelected()){
-            if(!txtNumero.getText().isEmpty()){
-                 if(!OrdenExiste()){
-                     if(validar()){
-            String strSqlStmt;
-             String Query ;
-            strSqlStmt="INSERT INTO triaje_asistencial(";
-            Query="Values('";
-            if (txtNumero.getText().trim().length()>= 1 ){strSqlStmt += "n_hcl";Query += txtNumero.getText().toString()+ "'";}
-              if (txtEdad.getText().trim().length()>= 1 ){strSqlStmt += ",edad";Query += ",'"+txtEdad.getText().toString()+ "'";}
-              if (((JTextField)FechaTriaje.getDateEditor().getUiComponent()).getText().trim().length()> 1 ){strSqlStmt+= ",fecha_triaje";Query+= ",'"+FechaTriaje.getDate().toString()+ "'";}
-              if (txtTalla.getText().trim().length()>= 1 ){strSqlStmt += ",talla";Query += ",'"+txtTalla.getText().toString()+ "'";}
-              if (txtPesoTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",peso";Query += ",'"+txtPesoTriaje.getText().toString()+ "'";}
-              if (txtImcTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",imc";Query += ",'"+txtImcTriaje.getText().toString()+ "'";}
-              if (txtCinturaTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",cintura";Query += ",'"+txtCinturaTriaje.getText().toString()+ "'";}
-              if (txtIccTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",icc";Query += ",'"+ txtIccTriaje.getText().toString()+ "'";}
-              if (txtCaderaTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",cadera";Query += ",'"+txtCaderaTriaje.getText().toString()+ "'";}
-              if (txtTemperaturaTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",temperatura";Query += ",'"+txtTemperaturaTriaje.getText().toString()+ "'";}
-              if (txtFcardiacaTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",f_cardiaca";Query += ",'"+txtFcardiacaTriaje.getText().toString()+ "'";}
-              if (txtSatTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",sat_02";Query += ",'"+txtSatTriaje.getText().toString()+ "'";}
-              if (txtPerimetroCuelloTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",perimetro_cuello";Query += ",'"+txtPerimetroCuelloTriaje.getText().toString()+ "'";}
-              if (txtSistolicaTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",sistolica";Query += ",'"+txtSistolicaTriaje.getText().toString()+ "'";}
-              if (txtDiastolicaTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",diastolica";Query += ",'"+txtDiastolicaTriaje.getText().toString()+ "'";}
-              if (txtFRespiratoriaTriaje.getText().trim().length()>= 1 ){strSqlStmt += ",f_respiratoria";Query += ",'"+txtFRespiratoriaTriaje.getText().toString()+ "'";}
-              
-               
-               if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
-                oFunc.SubSistemaMensajeInformacion("Se ha registrado la Entrada con Éxito");
-                LimpiarFichaTriaje();
-                txtNumero.setEnabled(true);
-                txtNumero.requestFocus();
-                sbCargarDatosOcupacional("");
-                try {
-                    oConn.sqlStmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                }else{
-                     oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
-                       }
-                         try {
-                             oConn.sqlStmt.close();
-                         } catch (SQLException ex) {
-                             Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-                }
-        }
-        }else {  oFunc.SubSistemaMensajeError("Llene los Campos correctamente");txtNumero.requestFocus();}
-        }
-    }
+
     private boolean validar(){
 boolean bResultado=true;
   
@@ -1337,11 +1267,29 @@ boolean bResultado=true;
        if (evt.getClickCount() == 2) 
         {  
             Integer cod  = Integer.valueOf( tbTriaje.getValueAt(tbTriaje.getSelectedRow(),0).toString());
-            oPe.print(cod, "Triaje.jasper", "Ficha Triaje");
+            print(cod);
             
         }
+       
     }//GEN-LAST:event_tbTriajeMouseClicked
+       private void print(Integer cod){
 
+                Map parameters = new HashMap(); 
+                parameters.put("Norden",cod);             
+                
+                  try 
+                {
+                    String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"Triaje_1.jasper";
+                    JasperReport myReport = (JasperReport) JRLoader.loadObjectFromFile(direccionReporte);
+                    JasperPrint myPrint = JasperFillManager.fillReport(myReport,parameters,clsConnection.oConnection);
+                    JasperViewer viewer = new JasperViewer(myPrint, false);
+                    viewer.setTitle("FORMATO TRIAJE");
+                   // viewer.setAlwaysOnTop(true);
+                    viewer.setVisible(true);
+                 } catch (JRException ex) {
+                    Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ }
     private void btnDiagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagnosticoActionPerformed
 //       if(!txtIccTriaje.getText().isEmpty() && !txtIccTriaje.getText().isEmpty()
 //               &&!txtSistolicaTriaje.getText().isEmpty()&&!txtDiastolicaTriaje.getText().isEmpty()
@@ -1414,14 +1362,14 @@ boolean bResultado=true;
 
     private void txtPerimetroCuelloTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPerimetroCuelloTriajeActionPerformed
         if (!txtPerimetroCuelloTriaje.getText().isEmpty()) {
-            String sql = "SELECT dp.sexo_pa FROM datos_paciente as dp "
-            + "inner join n_orden_ocupacional AS n ON(dp.cod_pa = n.cod_pa) "
+            String sql = "SELECT dp.sexo FROM desktop_datos_paciente as dp "
+            + "inner join desktop_datos_historia_clinica AS n ON(dp.dni = n.dni_paciente) "
             + "where n.n_orden='" + txtNumero.getText().toString() + "'";
             oConn.FnBoolQueryExecute(sql);
 
             try {
                 if (oConn.setResult.next()) {
-                    String sexo = oConn.setResult.getString("sexo_pa");
+                    String sexo = oConn.setResult.getString("sexo");
                     float cuello = Float.parseFloat(txtPerimetroCuelloTriaje.getText().toString());
                     if ("M".equals(sexo)) {
                         if (cuello < 43.2) {
@@ -1468,15 +1416,15 @@ boolean bResultado=true;
 
     private void txtTemperaturaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTemperaturaTriajeActionPerformed
         if(!txtIccTriaje.getText().isEmpty()){
-            String sql="SELECT dp.sexo_pa FROM datos_paciente as dp "
-            +"inner join n_orden_ocupacional AS n ON(dp.cod_pa = n.cod_pa) "
+            String sql="SELECT dp.sexo FROM desktop_datos_paciente as dp "
+            +"inner join desktop_datos_historia_clinica AS n ON(dp.dni = n.dni_paciente) "
             + "where n.n_orden='"+txtNumero.getText().toString()+"'";
             oConn.FnBoolQueryExecute(sql);
 
             try {
                 if (oConn.setResult.next())
                 {
-                    String sexo=oConn.setResult.getString("sexo_pa");
+                    String sexo=oConn.setResult.getString("sexo");
                     float icc = Float.parseFloat(txtIccTriaje.getText().toString());
                     if ("M".equals(sexo)) {
                         if (icc >= 0.78 && icc < 0.95) {
@@ -1586,24 +1534,22 @@ boolean bResultado=true;
             txtNumero.setEnabled(false);
             habilitaTriaje(false);
             Integer cod  = Integer.valueOf( tbTriaje.getValueAt(tbTriaje.getSelectedRow(),0).toString());
-            String Sql = "select dp.nombres_pa,dp.apellidos_pa,dp.fecha_nacimiento_pa,n.nom_examen,n.razon_empresa,n.razon_contrata,\n" +
+            String Sql = "select dp.nombres,dp.apellidos,dp.fecha_nacimiento,n.ruc_empresa,n.ruc_contrata,\n" +
                 "	t.edad, t.fecha_triaje, t.talla, t.peso, \n" +
                 "       t.imc, t.cintura, t.icc, t.cadera, t.temperatura, t.f_cardiaca, t.sat_02, t.perimetro_cuello, \n" +
-                "       t.sistolica, t.diastolica, t.f_respiratoria, t.conclusion FROM datos_paciente as dp\n" +
-                "       INNER JOIN n_orden_ocupacional as n ON (dp.cod_pa = n.cod_pa) \n" +
-                "       INNER JOIN triaje as t ON (t.n_orden = n.n_orden) \n" +
-                "       WHERE n.n_orden='" + cod+"'";
-            
+                "       t.sistolica, t.diastolica, t.f_respiratoria, t.conclusion FROM desktop_datos_pacientes as dp\n" +
+                "       INNER JOIN desktop_datos_historia_clinica as n ON (dp.dni = n.dni_paciente) \n" +
+                "       INNER JOIN desktop_triaje as t ON (t.n_orden = n.n_orden) \n" +
+                "       WHERE n.n_orden= " + cod+"";
+            System.out.println(Sql);
             oConn.FnBoolQueryExecute(Sql);
             try {
                 if (oConn.setResult.next()) {
                     txtNumero.setText(String.valueOf(cod));
-                    txtNombre.setText(oConn.setResult.getString("nombres_pa"));
-                    txtApellido.setText(oConn.setResult.getString("apellidos_pa"));
-                    FechaNacimiento.setDate(oConn.setResult.getDate("fecha_nacimiento_pa"));
-                    cboTipoServicio.setSelectedItem(oConn.setResult.getString("nom_examen"));
-                    cboEmpresa.setSelectedItem(oConn.setResult.getString("razon_empresa"));
-                    cboContratas.setSelectedItem(oConn.setResult.getString("razon_contrata"));
+                    txtNombre.setText(oConn.setResult.getString("nombres"));
+                    FechaNacimiento.setDate(oConn.setResult.getDate("fecha_nacimiento"));
+                    cboEmpresa.setSelectedItem(oConn.setResult.getString("ruc_empresa"));
+                    cboContratas.setSelectedItem(oConn.setResult.getString("ruc_contrata"));
                     txtEdad.setText(oConn.setResult.getString("edad"));
                     FechaTriaje.setDate(oConn.setResult.getDate("fecha_triaje"));
                     txtTalla.setText(oConn.setResult.getString("talla"));
@@ -1661,7 +1607,6 @@ boolean bResultado=true;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox cboContratas;
     private javax.swing.JComboBox cboEmpresa;
-    private javax.swing.JComboBox cboTipoServicio;
     private javax.swing.JCheckBox chkOcupacional;
     private javax.swing.JCheckBox chkPacientes;
     private javax.swing.JCheckBox chkRocupacional;
@@ -1687,7 +1632,6 @@ boolean bResultado=true;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1696,7 +1640,6 @@ boolean bResultado=true;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1718,7 +1661,6 @@ boolean bResultado=true;
     private javax.swing.JRadioButton rbRecibo;
     private javax.swing.JTable tbTriaje;
     private javax.swing.ButtonGroup tipoPaciente;
-    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtBuscarCod;
     private javax.swing.JTextField txtCaderaTriaje;
@@ -1756,7 +1698,7 @@ boolean bResultado=true;
         
         // Prepara el Query
         if(chkRocupacional.isSelected()){
-        sQuery  = "Select * from triaje Where n_orden="+txtNumero.getText().toString();
+        sQuery  = "Select * from desktop_triaje Where n_orden="+txtNumero.getText().toString();
         }
    
         //Ejecuta el Query
@@ -1793,7 +1735,7 @@ boolean bResultado=true;
         String strSqlStmt;
         
 //      sCodigo = tbOcupacional.getValueAt(tbOcupacional.getSelectedRow(), 0).toString();
-        strSqlStmt="UPDATE triaje\n" +
+        strSqlStmt="UPDATE desktop_triaje\n" +
                 "   SET edad='" + txtEdad.getText().toString() + "', fecha_triaje='" + FechaTriaje.getDate().toString() + "', \n" +
                 "       talla='" + txtTalla.getText().toString() + "', peso='" + txtPesoTriaje.getText().toString() + "', "+
                 "       imc='" + txtImcTriaje.getText().toString() + "', cintura='" + txtCinturaTriaje.getText().toString() + "', "+ 
@@ -1827,12 +1769,10 @@ boolean bResultado=true;
        }
    private void LimpiarFichaTriaje(){
    txtNumero.setText(null);
-   cboTipoServicio.setSelectedIndex(-1);
    cboContratas.setSelectedIndex(-1);
    cboEmpresa.setSelectedIndex(-1);
    txtHistorial.setText(null);
    txtNombre.setText(null);
-   txtApellido.setText(null);
    FechaNacimiento.setDate(null);
    txtEdad.setText(null);
    FechaTriaje.setDate(null);
@@ -1851,16 +1791,13 @@ boolean bResultado=true;
    txtFRespiratoriaTriaje.setText(null);
    txtDiagnostico.setText(null);
    txtNumero.requestFocus();
-   chkAsistencial.setSelected(false);
            
    
    }
    private void HabilitaReOr(){
-   cboTipoServicio.setEnabled(false);
    cboEmpresa.setEnabled(false);
    cboContratas.setEnabled(false);
    txtHistorial.setEditable(false);
-   txtApellido.setEditable(false);
    txtNombre.setEditable(false);
    FechaNacimiento.setEnabled(false);
    txtEdad.setEditable(false);
@@ -1880,22 +1817,22 @@ boolean bResultado=true;
    txtFcardiacaTriaje.requestFocus();
   
    }
-    private void abrirDialoj(){
+    /*private void abrirDialoj(){
        FichaTriajeModalCod FrmModalCod = new FichaTriajeModalCod(null,true);
         FrmModalCod.setLocationRelativeTo(null);
         FrmModalCod.setVisible(true);
     
-    }
+    }*/
     private void diagnostico(){
-        String sql="SELECT dp.sexo_pa FROM datos_paciente as dp " 
-                +"inner join n_orden_ocupacional AS n ON(dp.cod_pa = n.cod_pa) "
+        String sql="SELECT dp.sexo FROM dektop_datos_pacientes as dp " 
+                +"inner join desktop_datos_historia_clinica AS n ON(dp.dni = n.dni_paciente) "
                 + "where n.n_orden='"+txtNumero.getText().toString()+"'";
         oConn.FnBoolQueryExecute(sql);
         
         try {
             if (oConn.setResult.next())
             {
-               String sexo=oConn.setResult.getString("sexo_pa");
+               String sexo=oConn.setResult.getString("sexo");
                 float imc = Float.parseFloat(txtImcTriaje.getText().toString());
                 float sistolica = Float.parseFloat(txtSistolicaTriaje.getText().toString());
                 float diastolica = Float.parseFloat(txtDiastolicaTriaje.getText().toString());
@@ -1961,17 +1898,45 @@ boolean bResultado=true;
             oFunc.SubSistemaMensajeError("No existe registros del cliente");
        }
     }
-   
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  /* 
+    
 private void CargarEmpresas(){
       String sQuery;        
-        sQuery ="SELECT razon_empresa FROM empresas";
+        sQuery ="SELECT razon_social FROM desktop_empresa_contrata";
          if (oConn.FnBoolQueryExecute(sQuery))
         {
             try 
             {
               while (oConn.setResult.next())
                  {                    
-                     cboEmpresa.addItem(oConn.setResult.getString ("razon_empresa"));   
+                     cboEmpresa.addItem(oConn.setResult.getString ("razon_social"));   
                  }
               oConn.setResult.close();
             } 
@@ -1990,15 +1955,17 @@ private void CargarEmpresas(){
             Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
+
+//FichaTriaje
 private void CargarContratas(){
       String sQuery;        
-        sQuery ="SELECT razon_contrata FROM contratas";
+        sQuery ="SELECT razon_social FROM desktop_empresa_contrata";
          if (oConn.FnBoolQueryExecute(sQuery))
         {
             try {
               while (oConn.setResult.next())
                  {             
-                     cboContratas.addItem(oConn.setResult.getString ("razon_contrata"));   
+                     cboContratas.addItem(oConn.setResult.getString ("razon_social"));   
                  }
               oConn.setResult.close();
             } 
@@ -2016,109 +1983,14 @@ private void CargarContratas(){
             Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
-private void CargarServicios(){
-      String sQuery;        
-        sQuery ="SELECT nom_examen FROM examen_medico_ocupacional";
-         if (oConn.FnBoolQueryExecute(sQuery))
-        {
-            try {
-              while (oConn.setResult.next())
-                 {             
-                     cboTipoServicio.addItem(oConn.setResult.getString ("nom_examen"));   
-                 }
-              oConn.setResult.close();
-            } 
-            catch (SQLException ex){
-                oFunc.SubSistemaMensajeInformacion(ex.toString());
-                Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        cboTipoServicio.setSelectedIndex(-1);
-        cboTipoServicio.setBackground(Color.lightGray);
-        AutoCompleteDecorator.decorate(this.cboTipoServicio);
-        try {
-            oConn.sqlStmt.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
-        }
-}
 
+*/
 void sbCargarDatosOcupacional(String valor){
-    String [] titulos={"N°Orden","Nombre","Fecha","Empresa","Contrata","T.Examen","Cargo","F.Aptitud","Estado","H.Entrada","H_Salida"};
+    String [] titulos={"N°Orden","Fecha Nacimiento","Edad","dni_paciente","Nombres"};
     String [] registros = new String[11];
-    String sql="";
-    if(!txtBuscarCod.getText().isEmpty()){
-        sql="select n_orden_ocupacional.n_orden, \n" +
-"            datos_paciente.nombres_pa||''||datos_paciente.apellidos_pa AS nombres, \n" +
-"            triaje.fecha_triaje,n_orden_ocupacional.razon_empresa,n_orden_ocupacional.razon_contrata,"
-             + "n_orden_ocupacional.nom_examen,n_orden_ocupacional.cargo_de,\n" +
-"            n_orden_ocupacional.n_hora,ca.n_orden as aptitud,ca.horasalida,a.n_orden as anexo7d,o.n_orden as observados,ac.n_orden as anexoc,"
-            + "bc.n_orden as conduccion,ba.n_orden as altura,  "+
-                  "CASE WHEN ca.chkapto = 'TRUE' THEN 'Apto'\n" +
-                    " WHEN ca.chkapto_restriccion = 'TRUE' THEN 'Apto con Restriccion'\n" +
-                    " WHEN ca.chkno_apto = 'TRUE' THEN 'No Apto'  END as estado, \n" +
-             "CASE  WHEN ac.apto = 'TRUE' THEN 'Apto'\n" +
-                    " WHEN ac.no_apto = 'TRUE' THEN 'No Apto' END as estadoac, \n" +
-            "CASE  WHEN a.apto = 'TRUE' THEN 'Apto'\n" +
-                  " WHEN a.no_apto = 'TRUE' THEN 'No Apto' END as estadoad,"
-              + "CASE  WHEN bc.chk_si = 'TRUE' THEN 'Apto'\n" +
-                  " WHEN bc.chk_observado = 'TRUE' THEN 'Observado'\n" +
-                    " WHEN bc.chk_apto_r = 'TRUE' THEN 'Apto con Restriccion'\n" +
-                    " WHEN bc.chk_no = 'TRUE' THEN 'No Apto' END as estadobc,"
-            + "CASE  WHEN ba.chk_si = 'TRUE' THEN 'Apto'\n" +
-                  " WHEN ba.chk_observado = 'TRUE' THEN 'Observado'\n" +
-                    " WHEN ba.chk_apto_r = 'TRUE' THEN 'Apto con Restriccion'\n" +
-                    " WHEN ba.chk_no_apto = 'TRUE' THEN 'No Apto' END as estadoba," 
-            + " o.examenes \n" +
-             " From datos_paciente \n" +
-"            inner join n_orden_ocupacional \n" +
-"            ON (datos_paciente.cod_pa = n_orden_ocupacional.cod_pa)\n" +
-"            left join certificado_aptitud_medico_ocupacional as ca ON (ca.n_orden=n_orden_ocupacional.n_orden)\n" +
-"            left join anexo7d as a ON (a.n_orden=n_orden_ocupacional.n_orden)\n" +
-"            left join observaciones as o ON (o.n_orden=n_orden_ocupacional.n_orden)\n" +
-           "left join anexoc as ac ON (ac.n_orden=n_orden_ocupacional.n_orden)"   +
-           " left join b_certificado_conduccion as bc ON (bc.n_orden=n_orden_ocupacional.n_orden)"+
-           " left join b_certificado_altura as ba ON (ba.n_orden=n_orden_ocupacional.n_orden)"   +  
-"            inner join triaje on (n_orden_ocupacional.n_orden = triaje.n_orden)\n" +
-"            where   triaje.n_orden ='" +txtBuscarCod.getText().toString()+"'"+
-"            ORDER BY triaje.n_orden desc limit 20";
-    }else{
-          sql ="select n_orden_ocupacional.n_orden, "
-            + "datos_paciente.nombres_pa||''||datos_paciente.apellidos_pa AS nombres, "
-            + "n_orden_ocupacional.n_hora,triaje.fecha_triaje,n_orden_ocupacional.razon_empresa,n_orden_ocupacional.razon_contrata,"
-                  + "n_orden_ocupacional.nom_examen,n_orden_ocupacional.cargo_de,"
-            + "ca.n_orden as aptitud,ca.horasalida,a.n_orden as anexo7d,o.n_orden as observados,ac.n_orden as anexoc,  "
-            + "bc.n_orden as conduccion,ba.n_orden as altura,  "
-            + "CASE  WHEN ca.chkapto = 'TRUE' THEN 'Apto'\n" +
-                    " WHEN ca.chkapto_restriccion = 'TRUE' THEN 'Apto con Restriccion'\n" +
-                    " WHEN ca.chkno_apto = 'TRUE' THEN 'No Apto'  END as estado, \n" 
-            + "CASE  WHEN ac.apto = 'TRUE' THEN 'Apto'\n" +
-                    " WHEN ac.no_apto = 'TRUE' THEN 'No Apto' END as estadoac, \n" 
-            + "CASE  WHEN a.apto = 'TRUE' THEN 'Apto'\n" +
-                    " WHEN a.no_apto = 'TRUE' THEN 'No Apto' END as estadoad,"
-              + "CASE  WHEN bc.chk_si = 'TRUE' THEN 'Apto'\n" +
-                  " WHEN bc.chk_observado = 'TRUE' THEN 'Observado'\n" +
-                    " WHEN bc.chk_apto_r = 'TRUE' THEN 'Apto con Restriccion'\n" +
-                    " WHEN bc.chk_no = 'TRUE' THEN 'No Apto' END as estadobc,"
-            + "CASE  WHEN ba.chk_si = 'TRUE' THEN 'Apto'\n" +
-                  " WHEN ba.chk_observado = 'TRUE' THEN 'Observado'\n" +
-                    " WHEN ba.chk_apto_r = 'TRUE' THEN 'Apto con Restriccion'\n" +
-                    " WHEN ba.chk_no_apto = 'TRUE' THEN 'No Apto' END as estadoba,"
-            + " o.examenes \n" 
-            + "From datos_paciente "
-            + "inner join n_orden_ocupacional "
-            + "ON (datos_paciente.cod_pa = n_orden_ocupacional.cod_pa)"
-            +" left join certificado_aptitud_medico_ocupacional as ca ON (ca.n_orden=n_orden_ocupacional.n_orden)"
-            +" left join anexo7d as a ON (a.n_orden=n_orden_ocupacional.n_orden)"
-            +" left join anexoc as ac ON (ac.n_orden=n_orden_ocupacional.n_orden)"
-            +" left join observaciones as o ON (o.n_orden=n_orden_ocupacional.n_orden)"
-            +" left join b_certificado_conduccion as bc ON (bc.n_orden=n_orden_ocupacional.n_orden)"
-           +" left join b_certificado_altura as ba ON (ba.n_orden=n_orden_ocupacional.n_orden)"     
-           + "inner join triaje on (n_orden_ocupacional.n_orden = triaje.n_orden)"
-            + "where CONCAT(nombres_pa,' ',apellidos_pa) LIKE '%"+valor+"%' "
-            + "ORDER BY triaje.n_orden desc limit 20";    
-      // DefaultTableModel tblDatos = (DefaultTableModel) tblProductos.getModel(); 
-    }
+    String sql="select triaje.n_orden ,fecha_nacimiento, EXTRACT(YEAR FROM age(current_date,dat_pa.fecha_nacimiento)) AS  edad, dni_paciente,dat_pa.nombres ||' '|| dat_pa.apellidos as nombres from desktop_datos_historia_clinica as hist_clini \n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni inner join desktop_triaje as triaje  on hist_clini.n_orden=triaje.n_orden order by triaje.n_orden desc ";
+    
       model = new DefaultTableModel(null,titulos){        
               @Override
           public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2132,20 +2004,12 @@ void sbCargarDatosOcupacional(String valor){
                 while (oConn.setResult.next())
                 {        
                     registros[0]= oConn.setResult.getString("n_orden");
-                    registros[1]= oConn.setResult.getString("nombres");
-                    registros[2]= formato.format(oConn.setResult.getDate("fecha_triaje"));
-                    registros[3]= oConn.setResult.getString("razon_empresa");
-                    registros[4]= oConn.setResult.getString("razon_contrata");
-                    String exa=oConn.setResult.getString("nom_examen");
-                    registros[5]= exa;
-                    registros[6]= oConn.setResult.getString("cargo_de");
-                    String s=oConn.setResult.getString("aptitud");
-                    String a=oConn.setResult.getString("anexo7d");
-                    String o=oConn.setResult.getString("observados");
-                    String ac=oConn.setResult.getString("anexoc");
-                    String bc=oConn.setResult.getString("conduccion");
-                    String ba=oConn.setResult.getString("altura");
-                    if(s != null ){
+                    registros[1]= oConn.setResult.getDate("fecha_nacimiento").toString();
+                    registros[2]= oConn.setResult.getString("edad");
+                    registros[3]= oConn.setResult.getString("dni_paciente");
+                    registros[4]= oConn.setResult.getString("nombres");
+                  
+                   /* if(s != null ){
                         registros[7]="COMPLETO";
                         registros[8]= oConn.setResult.getString("estado");
                     }else if( a != null && "ANEXO-7D".equals(exa)){
@@ -2166,16 +2030,15 @@ void sbCargarDatosOcupacional(String valor){
                     }else{ 
                         registros[7]="FALTA";
                         registros[8]= " ";
-                    }
-                    registros[9]= oConn.setResult.getString("n_hora");
-                    registros[10]= oConn.setResult.getString("horasalida");
+                    }*/
+                    
                     //registros[3]=oConn.setResult.getString("anexo7c");
-                    tbTriaje.setDefaultRenderer(Object.class, new MyCellRenderer());
+                   // tbTriaje.setDefaultRenderer(Object.class, new MyCellRenderer());
                      model.addRow(registros);
                 }
                   // Coloca el Modelo de Nueva Cuenta
                   tbTriaje.setModel(model);
-                  sbTablaTriaje();
+                 // sbTablaTriaje();
                  // Cierra Resultados
                  oConn.setResult.close();
             } 
@@ -2192,8 +2055,9 @@ void sbCargarDatosOcupacional(String valor){
          Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
      }
 }
+/*
 public class MyCellRenderer extends DefaultTableCellRenderer {
-    @Override
+   @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         boolean valid = String.valueOf(table.getValueAt(row, 7)).equals("COMPLETO");
@@ -2204,6 +2068,7 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
         return component;
     }
 }
+
     private void sbTablaTriaje() {
         tbTriaje.getColumnModel().getColumn(0).setMinWidth(50);
         tbTriaje.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -2242,7 +2107,7 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
         //jtTicket.removeColumn(jtTicket.getColumnModel().getColumn(4));
 
     }
-    
+    */
     public void cerrarVentana(){
         // JOptionPane.showMessageDialog(null, "probando para cerrar el stament");
         System.out.println("cerro esta ventana");

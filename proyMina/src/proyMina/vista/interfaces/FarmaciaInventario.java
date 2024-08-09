@@ -453,7 +453,24 @@ public class FarmaciaInventario extends javax.swing.JFrame {
                     public boolean isCellEditable(int rowIndex, int columnIndex) {
                         return false;
                     }};
-                String vSql="select id_farmacia,nombre_sede, tipo,nombre_producto, cantidad,descripcion, marca, fecha_vencimiento from desktop_farmacia_inventario;";
+                String vSql="select dfi.id_farmacia,dfi.nombre_sede,dfi.tipo,dfi.nombre_producto,dfi.cantidad as cantidad_total,\n" +
+"	(CASE WHEN (select (case when cantidad1 is null then 0 else cantidad1 end) +\n" +
+"		(case when cantidad2 is null then 0 else cantidad2 end) +\n" +
+"		(case when cantidad3 is null then 0 else cantidad3 end) +\n" +
+"		(case when cantidad4 is null then 0 else cantidad4 end)\n" +
+"	from desktop_historia_clinica_detalle where (trata1 <> 'N/A' and trata2 <> 'N/A' and trata3 <> 'N/A' and trata4 <> 'N/A') or \n" +
+"	trata1=dfi.nombre_producto or trata2=dfi.nombre_producto or trata3=dfi.nombre_producto or trata4=dfi.nombre_producto\n" +
+"	) IS NULL THEN 0 ELSE \n" +
+"	(select (case when cantidad1 is null then 0 else cantidad1 end) +\n" +
+"		(case when cantidad2 is null then 0 else cantidad2 end) +\n" +
+"		(case when cantidad3 is null then 0 else cantidad3 end) +\n" +
+"		(case when cantidad4 is null then 0 else cantidad4 end)\n" +
+"	from desktop_historia_clinica_detalle where (trata1 <> 'N/A' and trata2 <> 'N/A' and trata3 <> 'N/A' and trata4 <> 'N/A') or \n" +
+"	trata1=dfi.nombre_producto or trata2=dfi.nombre_producto or trata3=dfi.nombre_producto or trata4=dfi.nombre_producto\n" +
+"	)\n" +
+"	END) as cantidad_consumida,\n" +
+"	dfi.descripcion,dfi.marca,dfi.fecha_vencimiento \n" +
+"	from desktop_farmacia_inventario AS dfi;";
     
                 if (oConn.FnBoolQueryExecute(vSql))
                 {

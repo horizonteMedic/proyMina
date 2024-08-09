@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import proyMina.modelo.clsConnection;
 import proyMina.modelo.clsFunciones;
+import proyMina.modelo.clsGlobales;
 import proyMina.modelo.clsOperacionesUsuarios;
 
 /**
@@ -32,8 +33,18 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     public HistoriaClinicaGeriatria() {
         initComponents();
         AutoCompleteDecorator.decorate(this.cboDiagnostico1);
+        AutoCompleteDecorator.decorate(this.cboDiagnostico2);
+        AutoCompleteDecorator.decorate(this.cboDiagnostico3);
+        AutoCompleteDecorator.decorate(this.cboDiagnostico4);
         AutoCompleteDecorator.decorate(this.cboCodigo1);
-        
+        AutoCompleteDecorator.decorate(this.cboCodigo2);
+        AutoCompleteDecorator.decorate(this.cboCodigo3);
+        AutoCompleteDecorator.decorate(this.cboCodigo4);
+        AutoCompleteDecorator.decorate(this.cboMedicamento1);
+        AutoCompleteDecorator.decorate(this.cboMedicamento2);
+        AutoCompleteDecorator.decorate(this.cboMedicamento3);
+        AutoCompleteDecorator.decorate(this.cboMedicamento4);
+       cargarMedicamentos();
         cargarDiagnosticos();
     }
 
@@ -58,10 +69,10 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextRecom = new javax.swing.JTextArea();
         jLabel29 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextExamFisico = new javax.swing.JTextArea();
         jLabel30 = new javax.swing.JLabel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -198,15 +209,15 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextRecom.setColumns(20);
+        jTextRecom.setRows(5);
+        jScrollPane1.setViewportView(jTextRecom);
 
         jLabel29.setText("Recomendaciones:");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTextExamFisico.setColumns(20);
+        jTextExamFisico.setRows(5);
+        jScrollPane2.setViewportView(jTextExamFisico);
 
         jLabel30.setText("Examen Fisico:");
 
@@ -279,6 +290,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         cboDiagnostico1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cboDiagnostico1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cboDiagnostico1KeyReleased(evt);
             }
         });
 
@@ -910,7 +924,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodigo4KeyPressed
 
     private void cboCodigo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo4ActionPerformed
-        // TODO add your handling code here:
+                if(cboCodigo4.getSelectedIndex()>0)        
+        cargarDiagnosticosDescripcion(4);
     }//GEN-LAST:event_cboCodigo4ActionPerformed
 
     private void cboCodigo4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MousePressed
@@ -934,7 +949,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico4KeyPressed
 
     private void cboDiagnostico4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico4ActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_cboDiagnostico4ActionPerformed
 
     private void cboDiagnostico4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MousePressed
@@ -958,7 +973,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodigo3KeyPressed
 
     private void cboCodigo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo3ActionPerformed
-        // TODO add your handling code here:
+                if(cboCodigo3.getSelectedIndex()>0)       
+        cargarDiagnosticosDescripcion(3);
+
     }//GEN-LAST:event_cboCodigo3ActionPerformed
 
     private void cboCodigo3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo3MousePressed
@@ -982,7 +999,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico3KeyPressed
 
     private void cboDiagnostico3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico3ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cboDiagnostico3ActionPerformed
 
     private void cboDiagnostico3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MousePressed
@@ -1006,7 +1023,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodigo2KeyPressed
 
     private void cboCodigo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo2ActionPerformed
-        // TODO add your handling code here:
+                if(cboCodigo2.getSelectedIndex()>0)       
+        cargarDiagnosticosDescripcion(2);
     }//GEN-LAST:event_cboCodigo2ActionPerformed
 
     private void cboCodigo2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo2MousePressed
@@ -1030,7 +1048,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico2KeyPressed
 
     private void cboDiagnostico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cboDiagnostico2ActionPerformed
 
     private void cboDiagnostico2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MousePressed
@@ -1050,11 +1068,17 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico2PopupMenuWillBecomeInvisible
 
     private void cboDiagnostico1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico1KeyPressed
-        // TODO add your handling code here:
+               System.out.println("llego al key released");
+           char c = (char) evt.getKeyCode();
+    if(c == evt.VK_ENTER){
+                System.out.println("esta en el enter");
+                cargarDiagnosticosCodigo(1);
+    }
+        
     }//GEN-LAST:event_cboDiagnostico1KeyPressed
 
     private void cboDiagnostico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cboDiagnostico1ActionPerformed
 
     private void cboDiagnostico1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico1MousePressed
@@ -1078,11 +1102,12 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodigo1KeyPressed
 
     private void cboCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo1ActionPerformed
-        // TODO add your handling code here:
+                if(cboCodigo1.getSelectedIndex()>0)
+        cargarDiagnosticosDescripcion(1);
     }//GEN-LAST:event_cboCodigo1ActionPerformed
 
     private void cboCodigo1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MousePressed
-        // TODO add your handling code here:
+        System.out.println("mouse presed");
     }//GEN-LAST:event_cboCodigo1MousePressed
 
     private void cboCodigo1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MouseEntered
@@ -1090,7 +1115,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodigo1MouseEntered
 
     private void cboCodigo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cboCodigo1MouseClicked
 
     private void cboCodigo1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo1PopupMenuWillBecomeInvisible
@@ -1122,6 +1147,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboMedicamento1KeyPressed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    registrarHistoria();
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -1207,7 +1234,54 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboMedicamento4KeyPressed
 
-    
+    private void cboDiagnostico1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico1KeyReleased
+
+
+    }//GEN-LAST:event_cboDiagnostico1KeyReleased
+
+                private void cargarMedicamentos(){
+            try {
+                String sQuery;
+                // Prepara el Query
+                sQuery ="select nombre_producto from desktop_farmacia_inventario;";
+                System.out.println(sQuery);
+                if (oConn.FnBoolQueryExecute(sQuery))
+                {
+                    try
+                    {
+                        // Verifica resultados
+                        while (oConn.setResult.next())
+                        {
+        
+                                cboMedicamento1.addItem(oConn.setResult.getString ("nombre_producto"));
+                                cboMedicamento2.addItem(oConn.setResult.getString ("nombre_producto"));
+                                cboMedicamento3.addItem(oConn.setResult.getString ("nombre_producto"));
+                                cboMedicamento4.addItem(oConn.setResult.getString ("nombre_producto"));
+                           
+                        }
+                        
+                        // Cierra Resultados
+                        oConn.setResult.close();
+                    }
+                    catch (SQLException ex)
+                    {
+                        //JOptionPane.showMessageDialorootPane,ex);
+                        oFunc.SubSistemaMensajeInformacion(ex.toString());
+                        Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+                // selecciona
+                    cboMedicamento1.setSelectedIndex(0);
+                    cboMedicamento2.setSelectedIndex(0);
+                    cboMedicamento3.setSelectedIndex(0);
+                    cboMedicamento4.setSelectedIndex(0);
+      
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
             private void cargarDiagnosticos(){
             try {
                 String sQuery;
@@ -1261,26 +1335,32 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         
             private void cargarDiagnosticosDescripcion(int nivel){
             try {
-                String sQuery;
+                String sQuery="";
                 // Prepara el Query
+                if(nivel ==1)
                 sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo1.getSelectedItem().toString().trim()+"'";
-                System.out.println(sQuery);
+                if(nivel ==2)
+                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo2.getSelectedItem().toString().trim()+"'";
+                if(nivel ==3)
+                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo3.getSelectedItem().toString().trim()+"'";
+                if(nivel ==4)
+                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo4.getSelectedItem().toString().trim()+"'";                
+                                                
                 if (oConn.FnBoolQueryExecute(sQuery))
                 {
                     try
                     {
                         // Verifica resultados
-                        while (oConn.setResult.next())
+                         while (oConn.setResult.next())
                         {
-        
-                                cboDiagnostico1.addItem(oConn.setResult.getString ("descripcion"));
-                                cboCodigo1.addItem(oConn.setResult.getString ("codigo"));
-                                cboDiagnostico2.addItem(oConn.setResult.getString ("descripcion"));
-                                cboCodigo2.addItem(oConn.setResult.getString ("codigo"));                                
-                                cboDiagnostico3.addItem(oConn.setResult.getString ("descripcion"));
-                                cboCodigo3.addItem(oConn.setResult.getString ("codigo"));                                
-                                cboDiagnostico4.addItem(oConn.setResult.getString ("descripcion"));
-                                cboCodigo4.addItem(oConn.setResult.getString ("codigo"));                            
+                                if(nivel ==1)
+                                cboDiagnostico1.setSelectedItem(oConn.setResult.getString ("descripcion"));
+                                if(nivel ==2)
+                                cboDiagnostico2.setSelectedItem(oConn.setResult.getString ("descripcion"));
+                                if(nivel ==3)
+                                cboDiagnostico3.setSelectedItem(oConn.setResult.getString ("descripcion"));
+                                if(nivel ==4)
+                                cboDiagnostico4.setSelectedItem(oConn.setResult.getString ("descripcion"));
                         }
                         
                         // Cierra Resultados
@@ -1295,20 +1375,63 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 }
                 
                 // selecciona
-                    cboDiagnostico1.setSelectedIndex(0);
-                    cboCodigo1.setSelectedIndex(0);
-                    cboDiagnostico2.setSelectedIndex(0);
-                    cboCodigo2.setSelectedIndex(0);
-                    cboDiagnostico3.setSelectedIndex(0);
-                    cboCodigo3.setSelectedIndex(0);
-                    cboDiagnostico4.setSelectedIndex(0);
-                    cboCodigo4.setSelectedIndex(0);
+
                 oConn.sqlStmt.close();
             } catch (SQLException ex) {
                 Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
-    
+   
+            
+         private void cargarDiagnosticosCodigo(int nivel){
+            try {
+                String sQuery="";
+                // Prepara el Query
+                if(nivel ==1)
+                sQuery ="select codigo from desktop_cie10 where descripcion='"+cboDiagnostico1.getSelectedItem().toString().trim()+"'";
+                if(nivel ==2)
+                sQuery ="select codigo from desktop_cie10 where descripcion='"+cboDiagnostico2.getSelectedItem().toString().trim()+"'";
+                if(nivel ==3)
+                sQuery ="select codigo from desktop_cie10 where descripcion='"+cboDiagnostico3.getSelectedItem().toString().trim()+"'";
+                if(nivel ==4)
+                sQuery ="select codigo from desktop_cie10 where descripcion='"+cboDiagnostico4.getSelectedItem().toString().trim()+"'";
+                
+                System.out.println(sQuery);
+                if (oConn.FnBoolQueryExecute(sQuery))
+                {
+                    try
+                    {
+                        // Verifica resultados
+                        while (oConn.setResult.next())
+                        {
+                                if(nivel ==1)
+                                cboCodigo1.setSelectedItem(oConn.setResult.getString ("codigo"));
+                                if(nivel ==2)
+                                cboCodigo2.setSelectedItem(oConn.setResult.getString ("codigo"));
+                                if(nivel ==3)
+                                cboCodigo3.setSelectedItem(oConn.setResult.getString ("codigo"));
+                                if(nivel ==4)
+                                cboCodigo4.setSelectedItem(oConn.setResult.getString ("codigo"));
+                        }
+                        
+                        // Cierra Resultados
+                        oConn.setResult.close();
+                    }
+                    catch (SQLException ex)
+                    {
+                        //JOptionPane.showMessageDialorootPane,ex);
+                        oFunc.SubSistemaMensajeInformacion(ex.toString());
+                        Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+                // selecciona
+
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
     
     private void cargarDatosPaciente(){
       String sQuery;     
@@ -1356,6 +1479,117 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                           oFunc.SubSistemaMensajeInformacion("Debe de ingresar una historia clinica");
 
 }
+    
+    
+    private void registrarHistoria(){
+                String strSqlStmt;
+            String Query ;
+            strSqlStmt="INSERT INTO desktop_historia_clinica_detalle (";
+            Query="Values(";
+            strSqlStmt += "n_orden";Query += n_orden_hc.getText();
+            strSqlStmt += ",tipo";Query += ",'GERIATRIA'";
+            
+            if(jTextExamFisico.getText().toString().trim().length()>0){
+            strSqlStmt += ",examen_fisico";Query += ",'"+jTextExamFisico.getText().toString().toUpperCase().trim()+ "'";}
+            else{
+            strSqlStmt += ",examen_fisico";Query += ","+null;}
+
+            if(jTextRecom.getText().toString().trim().length()>0){            
+            strSqlStmt += ",recomendacion";Query += ",'"+jTextRecom.getText().toString().trim()+ "'";
+            }
+            else{
+            strSqlStmt += ",recomendacion";Query += ","+null;}
+                
+            strSqlStmt += ",diagnostico1";Query += ",'"+cboDiagnostico1.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",codigo_diag1";Query += ",'"+cboCodigo1.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",diagnostico2";Query += ",'"+cboDiagnostico2.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",codigo_diag2";Query += ",'"+cboCodigo2.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",diagnostico3";Query += ",'"+cboDiagnostico3.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",codigo_diag3";Query += ",'"+cboCodigo3.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",diagnostico4";Query += ",'"+cboDiagnostico4.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",codigo_diag4";Query += ",'"+cboCodigo4.getSelectedItem().toString().trim()+ "'";
+
+            strSqlStmt += ",trata1";Query += ",'"+cboMedicamento1.getSelectedItem().toString().trim()+ "'";
+            if(jTextFieldCantidad1.getText().toString().trim().length()>0){
+            strSqlStmt += ",cantidad1";Query += ","+jTextFieldCantidad1.getText().toString().trim();}
+            else{
+            strSqlStmt += ",cantidad1";Query += ","+null;}    
+            
+            if(jTextFieldHorario1.getText().toString().trim().length()>0){
+            strSqlStmt += ",horario1";Query += ",'"+jTextFieldHorario1.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",horario1";Query += ","+null;}   
+            
+            if(jTextFieldFrecuencia1.getText().toString().trim().length()>0){
+            strSqlStmt += ",frecuencia1";Query += ",'"+jTextFieldFrecuencia1.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",frecuencia1";Query += ","+null;}   
+            
+            
+            
+            strSqlStmt += ",trata2";Query += ",'"+cboMedicamento2.getSelectedItem().toString().trim()+ "'";
+            if(jTextFieldCantidad2.getText().toString().trim().length()>0){
+            strSqlStmt += ",cantidad2";Query += ","+jTextFieldCantidad2.getText().toString().trim();}
+            else{
+            strSqlStmt += ",cantidad2";Query += ","+null;}    
+            
+            if(jTextFieldHorario2.getText().toString().trim().length()>0){
+            strSqlStmt += ",horario2";Query += ",'"+jTextFieldHorario2.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",horario2";Query += ","+null;}   
+            
+            if(jTextFieldFrecuencia2.getText().toString().trim().length()>0){
+            strSqlStmt += ",frecuencia2";Query += ",'"+jTextFieldFrecuencia2.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",frecuencia2";Query += ","+null;}              
+            
+            strSqlStmt += ",trata3";Query += ",'"+cboMedicamento3.getSelectedItem().toString().trim()+ "'";
+            if(jTextFieldCantidad3.getText().toString().trim().length()>0){
+            strSqlStmt += ",cantidad3";Query += ","+jTextFieldCantidad3.getText().toString().trim();}
+            else{
+            strSqlStmt += ",cantidad3";Query += ","+null;}    
+            
+            if(jTextFieldHorario3.getText().toString().trim().length()>0){
+            strSqlStmt += ",horario3";Query += ",'"+jTextFieldHorario3.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",horario3";Query += ","+null;}   
+            
+            if(jTextFieldFrecuencia3.getText().toString().trim().length()>0){
+            strSqlStmt += ",frecuencia3";Query += ",'"+jTextFieldFrecuencia3.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",frecuencia3";Query += ","+null;}
+            
+            strSqlStmt += ",trata4";Query += ",'"+cboMedicamento4.getSelectedItem().toString().trim()+ "'";
+            if(jTextFieldCantidad4.getText().toString().trim().length()>0){
+            strSqlStmt += ",cantidad4";Query += ","+jTextFieldCantidad4.getText().toString().trim();}
+            else{
+            strSqlStmt += ",cantidad4";Query += ","+null;}    
+            
+            if(jTextFieldHorario4.getText().toString().trim().length()>0){
+            strSqlStmt += ",horario4";Query += ",'"+jTextFieldHorario4.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",horario4";Query += ","+null;}   
+            
+            if(jTextFieldFrecuencia4.getText().toString().trim().length()>0){
+            strSqlStmt += ",frecuencia4";Query += ",'"+jTextFieldFrecuencia4.getText().toString().trim()+ "'";}
+            else{
+            strSqlStmt += ",frecuencia4";Query += ","+null;}   
+
+            strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
+            strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+            System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+                oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
+            } else{
+                    oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
+                    btnEditar.setEnabled(false);
+                    btnActualizar.setEnabled(false);
+                    
+                    }  
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -1431,8 +1665,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextExamFisico;
     private javax.swing.JTextField jTextFieldCantidad1;
     private javax.swing.JTextField jTextFieldCantidad2;
     private javax.swing.JTextField jTextFieldCantidad3;
@@ -1445,6 +1678,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldHorario2;
     private javax.swing.JTextField jTextFieldHorario3;
     private javax.swing.JTextField jTextFieldHorario4;
+    private javax.swing.JTextArea jTextRecom;
     private javax.swing.JTextField n_orden_hc;
     private javax.swing.JTextField nombres_hcpaciente;
     // End of variables declaration//GEN-END:variables

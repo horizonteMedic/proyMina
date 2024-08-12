@@ -13,7 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -1292,8 +1294,13 @@ boolean bResultado=true;
                 consumirApiSello();
                 Map parameters = new HashMap(); 
                 parameters.put("Norden",cod);   
+<<<<<<< HEAD
                 byte[] byteArray = base64String.getBytes();
                 parameters.put("Firma",byteArray);             
+=======
+                InputStream targetStream = new ByteArrayInputStream(base64String.getBytes());     
+                parameters.put("Firma",targetStream);             
+>>>>>>> f91e3b11874f96b07f7eda395a7e38d2fd1d1b4d
                 System.out.println("los parametros son: "+parameters);
                   try 
                 {

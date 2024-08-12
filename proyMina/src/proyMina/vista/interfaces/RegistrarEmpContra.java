@@ -298,7 +298,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
   
     private void rucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rucActionPerformed
-        tipo_emp_cont.requestFocus();        
+    tipo_emp_cont.requestFocus();   
        if(tipo_emp_cont.getSelectedIndex() > 0){
             if(!ruc.getText().isEmpty()){
             if(!oPe.validarRuc_tipo(ruc,tipo_emp_cont.getSelectedItem().toString().trim(), "desktop_empresa_contrata","ruc","tipo_emp_cont"))  {
@@ -315,9 +315,10 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
                     btnLimpiar.setEnabled(true);
                     btnRegistrar.setEnabled(false);
                 }
-            }     
+            }
        }
        else oFunc.SubSistemaMensajeError("Seleccione el tipo de empresa o contrata ");
+       
     }//GEN-LAST:event_rucActionPerformed
 
     private void razon_socialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_razon_socialActionPerformed

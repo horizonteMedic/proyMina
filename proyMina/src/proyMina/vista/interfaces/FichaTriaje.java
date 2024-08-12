@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -1290,9 +1291,10 @@ boolean bResultado=true;
        private void print(Integer cod) throws Exception{
                 consumirApiSello();
                 Map parameters = new HashMap(); 
-                parameters.put("Norden",cod);             
-              //  parameters.put("Firma",base64String);             
-
+                parameters.put("Norden",cod);   
+                byte[] byteArray = base64String.getBytes(StandardCharsets.UTF_8);
+                parameters.put("Firma",byteArray);             
+                System.out.println("los parametros son: "+parameters);
                   try 
                 {
                     String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"Triaje_1.jasper";
@@ -2186,7 +2188,7 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
       SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
          try {
             DisableSSLVerification.disableSSL();  
-            URL url = new URL("https://hmintegracion.azurewebsites.net/api/v01/st/registros/detalleArchivoEmpleado/"+dni+"/SELLO MEDICO");
+            URL url = new URL("https://hmintegracion.azurewebsites.net/api/v01/st/registros/detalleArchivoEmpleado/"+dni+"/FIRMA");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("Content-Type", "application/json; utf-8");

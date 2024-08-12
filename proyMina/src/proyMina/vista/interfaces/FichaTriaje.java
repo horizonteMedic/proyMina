@@ -1293,14 +1293,11 @@ boolean bResultado=true;
        private void print(Integer cod) throws Exception{
                 consumirApiSello();
                 Map parameters = new HashMap(); 
-                parameters.put("Norden",cod);   
-<<<<<<< HEAD
-                byte[] byteArray = base64String.getBytes();
-                parameters.put("Firma",byteArray);             
-=======
+                parameters.put("Norden",cod);          
+
                 InputStream targetStream = new ByteArrayInputStream(base64String.getBytes());     
                 parameters.put("Firma",targetStream);             
->>>>>>> f91e3b11874f96b07f7eda395a7e38d2fd1d1b4d
+
                 System.out.println("los parametros son: "+parameters);
                   try 
                 {

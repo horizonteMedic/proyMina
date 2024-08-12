@@ -1292,7 +1292,7 @@ boolean bResultado=true;
                 consumirApiSello();
                 Map parameters = new HashMap(); 
                 parameters.put("Norden",cod);   
-                byte[] byteArray = base64String.getBytes(StandardCharsets.UTF_8);
+                byte[] byteArray = base64String.getBytes();
                 parameters.put("Firma",byteArray);             
                 System.out.println("los parametros son: "+parameters);
                   try 

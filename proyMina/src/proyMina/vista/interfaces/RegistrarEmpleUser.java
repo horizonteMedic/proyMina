@@ -816,7 +816,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                                     "   \"nombreArchivo\":\""+path+"\",\n" +
                                     "   \"dni\":"+dniEmp+",\n" +
                                     "  \"extension\": \".jpg\",\n" +
-                                    "  \"tipoArchivo\":\"SELLO MEDICO\",\n" +
+                                    "  \"tipoArchivo\":\"FIRMA\",\n" +
                                     "  \"base64\":\""+base64String+"\"}";
             System.out.println(jsonInputString);
             try (OutputStream os = con.getOutputStream()) {

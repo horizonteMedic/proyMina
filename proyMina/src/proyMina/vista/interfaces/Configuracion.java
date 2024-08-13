@@ -44,6 +44,7 @@ public class Configuracion extends javax.swing.JFrame {
         initComponents();
         System.out.println("El Nombre de Usuario es : " + clsGlobales.sUser);
         this.setLocationRelativeTo(null);
+        //llenar_tabla_hc();
     }
 
     Configuracion(Configuracion c) {

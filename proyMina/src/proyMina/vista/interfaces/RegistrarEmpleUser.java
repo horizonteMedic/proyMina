@@ -47,6 +47,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     private ImageIcon image;
     private Icon icon;
     
+    
     public RegistrarEmpleUser() {
         initComponents();
         AutoCompleteDecorator.decorate(this.cboDepartamento);
@@ -57,9 +58,12 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         btnLimpiar();
         estado.setSelected(true);
         this.setLocationRelativeTo(null);
+        //validar vacios
+        
        
     }
-
+    
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -124,19 +128,24 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 dniActionPerformed(evt);
             }
         });
+        dni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dniKeyTyped(evt);
+            }
+        });
         RegistrarEmpresaoContrata.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 120, -1));
 
-        jLabel2.setText("Contraseña : ");
+        jLabel2.setText("Contraseña :");
         RegistrarEmpresaoContrata.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
 
-        jLabel3.setText("Fecha Nacimiento :");
+        jLabel3.setText("*Fecha Nacimiento :");
         RegistrarEmpresaoContrata.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
-        jLabel4.setText("Provincia :");
+        jLabel4.setText("*Provincia :");
         RegistrarEmpresaoContrata.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
 
         jLabel5.setText("Email  :");
-        RegistrarEmpresaoContrata.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 50, -1));
+        RegistrarEmpresaoContrata.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 50, -1));
 
         celular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,14 +157,14 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 celularKeyTyped(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 180, -1));
+        RegistrarEmpresaoContrata.add(celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 140, -1));
 
         correo_elect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 correo_electActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(correo_elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 250, -1));
+        RegistrarEmpresaoContrata.add(correo_elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 300, -1));
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
         btnEditar.setText("Editar");
@@ -164,9 +173,9 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 90, 130, -1));
+        RegistrarEmpresaoContrata.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 130, -1));
 
-        jLabel6.setText("Dni :");
+        jLabel6.setText("*Dni :");
         RegistrarEmpresaoContrata.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -205,12 +214,12 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 50, 130, -1));
+        RegistrarEmpresaoContrata.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 120, 130, -1));
 
-        jLabel7.setText("Apellidos : ");
+        jLabel7.setText("*Apellidos :");
         RegistrarEmpresaoContrata.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, -1));
 
-        jLabel8.setText("Sexo : ");
+        jLabel8.setText("*Sexo :");
         RegistrarEmpresaoContrata.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
 
         MASCULINO.setText("M");
@@ -256,24 +265,24 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         });
         RegistrarEmpresaoContrata.add(apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 250, -1));
 
-        jLabel9.setText("Nombres : ");
+        jLabel9.setText("*Nombres : ");
         RegistrarEmpresaoContrata.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         jLabel10.setText("Profesion :");
-        RegistrarEmpresaoContrata.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
 
         jLabel11.setText("Cip :");
-        RegistrarEmpresaoContrata.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
         pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 250, -1));
+        RegistrarEmpresaoContrata.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 140, -1));
 
-        jLabel13.setText("Direccion :");
-        RegistrarEmpresaoContrata.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
+        jLabel13.setText("*Direccion :");
+        RegistrarEmpresaoContrata.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
 
         jLabel14.setText("Nombre de Usuario :");
         RegistrarEmpresaoContrata.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
@@ -283,28 +292,28 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 cargoActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 250, -1));
+        RegistrarEmpresaoContrata.add(cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 300, -1));
 
         direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 direccionActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 250, -1));
+        RegistrarEmpresaoContrata.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 310, -1));
 
         name_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name_userActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 250, -1));
+        RegistrarEmpresaoContrata.add(name_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 140, -1));
 
         cip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cipActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(cip, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 140, -1));
+        RegistrarEmpresaoContrata.add(cip, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 110, -1));
 
         estado.setText(" Activo");
         estado.addActionListener(new java.awt.event.ActionListener() {
@@ -321,7 +330,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, 130, -1));
+        RegistrarEmpresaoContrata.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 90, 130, -1));
         RegistrarEmpresaoContrata.add(fecha_nacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 160, -1));
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
@@ -331,7 +340,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 130, 130, -1));
+        RegistrarEmpresaoContrata.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, 130, -1));
 
         cboDistrito.setEditable(true);
         cboDistrito.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un Distrito" }));
@@ -357,12 +366,12 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         RegistrarEmpresaoContrata.add(cboDistrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 200, -1));
 
         jLabel15.setText("Celular :");
-        RegistrarEmpresaoContrata.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
+        RegistrarEmpresaoContrata.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
-        jLabel16.setText("Estado Civil:");
+        jLabel16.setText("*Estado Civil:");
         RegistrarEmpresaoContrata.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
-        jLabel17.setText("Departamento : ");
+        jLabel17.setText("*Departamento : ");
         RegistrarEmpresaoContrata.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         cboDepartamento.setEditable(true);
@@ -430,7 +439,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         });
         RegistrarEmpresaoContrata.add(jComboBoxEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 200, -1));
 
-        jLabel18.setText("Distrito : ");
+        jLabel18.setText("*Distrito :");
         RegistrarEmpresaoContrata.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
 
         jButton1.setText("Cargar Sello");
@@ -439,7 +448,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, -1, -1));
+        RegistrarEmpresaoContrata.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 130, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -483,6 +492,10 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         if(!dni.getText().isEmpty()){
             if(!oPe.validar(dni, "desktop_empleado","dni"))  {
              oFunc.SubSistemaMensajeError("El Empleado no se encuentra Registrado ");
+                    btnEditar.setEnabled(false);
+                    btnActualizar.setEnabled(false);
+                    btnRegistrar.setEnabled(true);
+                    btnLimpiar.setEnabled(true);
                 try {
                     comunirApiConsultaReserva(dni.getText().toString().trim());
                 } catch (Exception ex) {
@@ -492,8 +505,9 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             else
                 { oFunc.SubSistemaMensajeError("El empleado si existe si desea actualizar - click Editar");
                     btnEditar.setEnabled(true);
-                    btnActualizar.setEnabled(true);
+                    btnActualizar.setEnabled(false);
                     btnRegistrar.setEnabled(false);
+                    btnLimpiar.setEnabled(true);
                 }
             }        
                   
@@ -503,8 +517,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     }//GEN-LAST:event_dniActionPerformed
 
     private void celularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_celularActionPerformed
-        correo_elect.requestFocus();
-        correo_elect.setText("");
+        name_user.requestFocus();
+     
     }//GEN-LAST:event_celularActionPerformed
 
     private void correo_electActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correo_electActionPerformed
@@ -533,8 +547,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     }//GEN-LAST:event_cargoActionPerformed
 
     private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
-        name_user.requestFocus();
-        name_user.setText("");
+        correo_elect.requestFocus();
+       
     }//GEN-LAST:event_direccionActionPerformed
 
     private void name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_userActionPerformed
@@ -563,6 +577,9 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     }//GEN-LAST:event_FEMENINOActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        
+        
+        
         btnRegistrar();       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -574,7 +591,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     {
         evt.consume();
     }        
-    if(celular.getText().length()>=10)
+    if(celular.getText().length()>=9)
      {
        evt.consume();
      }
@@ -602,6 +619,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
         if(!dni.getText().isEmpty()){
           String Sql="select translate(des_ubi_dis.nombre_distrito,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_distrito, "
                   + "translate(des_ubi_pro.nombre_provincia,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_provincia ,"
@@ -792,6 +810,20 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void dniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dniKeyTyped
+        int key = evt.getKeyChar();
+
+    boolean numeros = key >= 48 && key <= 57;        
+    if (!numeros)
+    {
+        evt.consume();
+    }        
+    if(dni.getText().length()>=8)
+     {
+       evt.consume();
+     }
+    }//GEN-LAST:event_dniKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -917,22 +949,47 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             Query="SET "; 
             Query += "dni="+dni.getText();
             Query += ",nombres='"+nombres.getText().toString().toUpperCase().trim()+ "'";
-            Query += ",apellidos='"+apellidos.getText().toString().toUpperCase().trim()+ "'";            
-            Query += ",celular='"+celular.getText()+ "'";
-            Query += ",cargo='"+cargo.getText().toUpperCase().trim()+ "'";
-            Query += ",correo_elect='"+correo_elect.getText()+ "'";
+            Query += ",apellidos='"+apellidos.getText().toString().toUpperCase().trim()+ "'"; 
+            //celular
+            String cel = celular.getText().trim();
+            Query += ",celular=" + (cel.isEmpty() ? "NULL" : "'" + cel + "'");
+            //cargo
+            String Oficio = cargo.getText().toUpperCase().trim();
+            Query += ",cargo=" + (Oficio.isEmpty() ? "NULL" : "'" + Oficio + "'");
+            //correo
+            String correo = correo_elect.getText().trim();
+            Query += ",correo_elect=" + (correo.isEmpty() ? "NULL" : "'" + correo + "'");
+            
             Query += ",Ubigeo='"+Ubigeo()+ "'";
+            
             if(MASCULINO.isSelected()){
                Query += ",sexo='MASCULINO'";
             }else {
                Query += ",sexo='FEMENINO'";
             }
+            
             Query += ",estado_civil='"+jComboBoxEstadoCivil.getSelectedItem().toString().trim()+ "'";
-            Query += ",direccion='"+direccion.getText().toUpperCase().trim()+ "'";
+            
+            // dirección
+            String dir = direccion.getText().toUpperCase().trim();
+            Query += ",direccion=" + (dir.isEmpty() ? "NULL" : "'" + dir + "'");
+            
             Query += ",fecha_nacimiento='"+fecha_nacimiento.getDate()+ "'";
             Query += ",estado='"+estado.isSelected()+ "'";
-            Query += ",name_user='"+name_user.getText().toString().trim()+ "'";
-            Query += ",pass='"+pass.getText().toString().trim()+ "'";            
+            String nameUser = name_user.getText().toString().trim();
+                if (nameUser.isEmpty()) {
+                    oFunc.SubSistemaMensajeError("El campo 'Nombre de Usuario' es obligatorio.");
+                    return; 
+                } else {
+                    Query += ",name_user='" + nameUser + "'";
+                }
+            String password = pass.getText().toString().trim();
+                if (password.isEmpty()) {
+                    oFunc.SubSistemaMensajeError("El campo 'Contraseña' es obligatorio.");
+                    return; 
+                } else {
+                    Query += ",pass='" + password + "'";
+                }         
             Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
             Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
             Query +=" WHERE dni='" + Key + "'";
@@ -1126,30 +1183,56 @@ public String Ubigeo(){
                strSqlStmt += ",sexo";Query += ",'FEMINO'";
             }
             strSqlStmt += ",estado_civil";Query += ",'"+jComboBoxEstadoCivil.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",celular";Query += ",'"+celular.getText()+ "'";
-            strSqlStmt += ",cargo";Query += ",'"+cargo.getText()+ "'";
-            strSqlStmt += ",correo_elect";Query += ",'"+correo_elect.getText()+ "'";
+            String cel = celular.getText().trim();
+                strSqlStmt += ",celular";
+                Query += (cel.isEmpty() ? ",NULL" : ",'" + cel + "'");
+            
+            String cipValue = cip.getText().trim();
+                strSqlStmt += ",cip";
+                Query += (cipValue.isEmpty() ? ",NULL" : ",'" + cipValue + "'");
+                
+            String oficio = cargo.getText().toUpperCase().trim();
+                strSqlStmt += ",cargo";
+                Query += (oficio.isEmpty() ? ",NULL" : ",'" + oficio + "'");
+            String correo = correo_elect.getText().trim();
+                strSqlStmt += ",correo_elect";
+                Query += (correo.isEmpty() ? ",NULL" : ",'" + correo + "'");
             strSqlStmt += ",ubigeo";Query += ",'"+Ubigeo()+ "'";
             strSqlStmt += ",direccion";Query += ",'"+direccion.getText()+ "'";
             strSqlStmt += ",fecha_nacimiento";Query += ",'"+fecha_nacimiento.getDate()+ "'";
             strSqlStmt += ",estado";Query += ",'"+estado.isSelected()+ "'";
-            strSqlStmt += ",name_user";Query += ",'"+name_user.getText().toString().trim()+ "'";
-            strSqlStmt += ",pass";Query += ",'"+pass.getText().toString().trim()+ "'";
+            String nameUser = name_user.getText().toString().trim();
+                if (nameUser.isEmpty()) {
+                    oFunc.SubSistemaMensajeError("El campo 'Nombre de Usuario' es obligatorio.");
+                    return;
+                } else {
+                    strSqlStmt += ",name_user";
+                    Query += ",'" + nameUser + "'";
+                }
+            String password = pass.getText().toString().trim();
+                if (password.isEmpty()) {
+                    oFunc.SubSistemaMensajeError("El campo 'Contraseña' es obligatorio.");
+                    return;
+                } else {
+                    strSqlStmt += ",pass";
+                    Query += ",'" + password + "'";
+                }
             strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
             strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
-                oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
+                oFunc.SubSistemaMensajeInformacion("Se ha registrado el Empleado con Éxito");
+               
+                btnLimpiar();
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
-                    btnEditar.setEnabled(false);
-                    btnActualizar.setEnabled(false);
+                    
                     
                     }         
             }        
         }   
             else                     
-                oFunc.SubSistemaMensajeError("El Dni ya se encuentra Registrado ");
+                oFunc.SubSistemaMensajeError("El Dni del Empleado ya esta Registrado ");
     }
     }
 private boolean Validar(){
@@ -1184,10 +1267,10 @@ correo_elect.setText(null);
 dni.setText(null);
 direccion.setText(null);
 fecha_nacimiento.setDate(new Date());
-cboDepartamento.setSelectedItem(null);
-cboProvincia.setSelectedItem(null);
-cboDistrito.setSelectedItem(null);
-jComboBoxEstadoCivil.setSelectedItem(null);
+cboDepartamento.setSelectedItem("Seleccione una opcion");
+cboProvincia.setSelectedItem("Seleccione una opcion");
+cboDistrito.setSelectedItem("Seleccione una opcion");
+jComboBoxEstadoCivil.setSelectedItem("Seleccione una opcion");
 estado.setSelected(true);
 name_user.setText(null);
 pass.setText(null);

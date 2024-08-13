@@ -112,6 +112,41 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        txtImcTriaje = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtFcardiacaTriaje = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        txtIccTriaje = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtCinturaTriaje = new javax.swing.JTextField();
+        txtSatTriaje = new javax.swing.JTextField();
+        txtCaderaTriaje = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtTemperaturaTriaje = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        txtTalla = new javax.swing.JTextField();
+        txtPesoTriaje = new javax.swing.JTextField();
+        txtPerimetroCuelloTriaje = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtSistolicaTriaje = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        txtFRespiratoriaTriaje = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        txtDiastolicaTriaje = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        atxtObservacionesAltura = new javax.swing.JScrollPane();
+        txtDiagnostico = new javax.swing.JTextArea();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("HISTORIA CLINICA GERIATRIA");
@@ -159,21 +194,20 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel24)
                     .addComponent(jLabel23)
                     .addComponent(jLabel25)
-                    .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel26))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(nombres_hcpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(86, 86, 86)
-                                .addComponent(jLabel26)
-                                .addGap(18, 18, 18)
-                                .addComponent(fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombres_hcpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -182,7 +216,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(n_orden_hc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(BuscarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(763, 763, 763))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,23 +224,23 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel23)
-                        .addComponent(n_orden_hc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BuscarPaciente))
+                    .addComponent(n_orden_hc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarPaciente)
+                    .addComponent(jLabel23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel24)
-                        .addComponent(nombres_hcpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26))
-                    .addComponent(fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombres_hcpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
                     .addComponent(jLabel27))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel26)
+                    .addComponent(fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTextRecom.setColumns(20);
@@ -505,12 +539,18 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(345, 345, 345)
+                .addComponent(jLabel40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 529, Short.MAX_VALUE)
+                .addComponent(jLabel41)
+                .addGap(94, 94, 94))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboDiagnostico3, 0, 740, Short.MAX_VALUE)
+                    .addComponent(cboDiagnostico3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cboDiagnostico2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cboDiagnostico1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboDiagnostico4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cboDiagnostico4, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
@@ -521,22 +561,16 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(cboCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(jLabel40)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 529, Short.MAX_VALUE)
-                .addComponent(jLabel41)
-                .addGap(94, 94, 94))
+                .addGap(30, 30, 30))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel40)
                     .addComponent(jLabel41))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboDiagnostico1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -552,7 +586,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboCodigo4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboDiagnostico4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Diagnosticos", jPanel2);
@@ -783,9 +817,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboMedicamento3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldCantidad3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldHorario3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldFrecuencia3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTextFieldFrecuencia3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldHorario3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboMedicamento4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -829,71 +862,369 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             }
         });
 
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtImcTriaje.setEditable(false);
+        txtImcTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImcTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel32.setText("Kg.");
+
+        jLabel15.setText("Temperatura:");
+
+        txtFcardiacaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFcardiacaTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Cintura:");
+
+        jLabel18.setText("ICC:");
+
+        txtIccTriaje.setEditable(false);
+        txtIccTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIccTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("IMC:");
+
+        jLabel14.setText("Cadera:");
+
+        jLabel31.setText("m.");
+
+        jLabel16.setText("F. Cardiaca:");
+
+        jLabel10.setText("Talla:");
+
+        txtCinturaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCinturaTriajeActionPerformed(evt);
+            }
+        });
+        txtCinturaTriaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCinturaTriajeKeyTyped(evt);
+            }
+        });
+
+        txtSatTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSatTriajeActionPerformed(evt);
+            }
+        });
+
+        txtCaderaTriaje.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCaderaTriajeFocusLost(evt);
+            }
+        });
+        txtCaderaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCaderaTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("SAT. 02:");
+
+        txtTemperaturaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTemperaturaTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("Perimetro Cuello:");
+
+        txtTalla.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTallaFocusLost(evt);
+            }
+        });
+        txtTalla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTallaActionPerformed(evt);
+            }
+        });
+        txtTalla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTallaKeyTyped(evt);
+            }
+        });
+
+        txtPesoTriaje.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPesoTriajeFocusLost(evt);
+            }
+        });
+        txtPesoTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesoTriajeActionPerformed(evt);
+            }
+        });
+        txtPesoTriaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesoTriajeKeyTyped(evt);
+            }
+        });
+
+        txtPerimetroCuelloTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPerimetroCuelloTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Peso:");
+
+        txtSistolicaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSistolicaTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setText("F. Respiratoria:");
+
+        jLabel20.setText("Sistólica:");
+
+        txtFRespiratoriaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFRespiratoriaTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setText("mm Hg");
+
+        txtDiastolicaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDiastolicaTriajeActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Diastólica:");
+
+        jLabel21.setText("mm Hg");
+
+        txtDiagnostico.setColumns(20);
+        txtDiagnostico.setRows(2);
+        atxtObservacionesAltura.setViewportView(txtDiagnostico);
+
+        jLabel34.setText("Recomendaciones");
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel35.setText("INFORMACIÓN DE TRIAJE");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel11)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel12)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCinturaTriaje)
+                    .addComponent(txtIccTriaje)
+                    .addComponent(txtPesoTriaje)
+                    .addComponent(txtImcTriaje)
+                    .addComponent(txtTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel32))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(txtFcardiacaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel34))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTemperaturaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCaderaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtSistolicaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel21)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel33))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtDiastolicaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel28)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtFRespiratoriaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPerimetroCuelloTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSatTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(atxtObservacionesAltura)))
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(279, 279, 279)
+                .addComponent(jLabel35)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel35)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel31)
+                            .addComponent(txtTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtPesoTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel32))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtImcTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(txtCinturaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(txtIccTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19)
+                            .addComponent(txtPerimetroCuelloTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(txtCaderaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(txtTemperaturaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel33)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel20)
+                                        .addComponent(txtSistolicaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel21)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtDiastolicaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel28)
+                                    .addComponent(txtFRespiratoriaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel22))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtFcardiacaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel34))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(txtSatTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(atxtObservacionesAltura, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(178, 178, 178))
+                    .addComponent(jTabbedPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel29)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(77, 77, 77)
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(107, 107, 107)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(153, 153, 153)))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel29)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel29))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(71, 71, 71))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel30)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel30))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnActualizar)
                     .addComponent(btnEditar)
                     .addComponent(btnLimpiar))
-                .addGap(37, 37, 37))
+                .addContainerGap())
         );
+
+        jPanel4.getAccessibleContext().setAccessibleName("Información de Triaje");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void n_orden_hcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n_orden_hcActionPerformed
-   
+        cargarDatosPaciente();
     }//GEN-LAST:event_n_orden_hcActionPerformed
 
     private void n_orden_hcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n_orden_hcKeyTyped
@@ -1239,6 +1570,83 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cboDiagnostico1KeyReleased
 
+    private void txtTallaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTallaFocusLost
+
+    }//GEN-LAST:event_txtTallaFocusLost
+
+    private void txtTallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTallaActionPerformed
+        txtPesoTriaje.requestFocus();
+    }//GEN-LAST:event_txtTallaActionPerformed
+
+    private void txtTallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTallaKeyTyped
+        oFunc.NoLetras(evt);
+    }//GEN-LAST:event_txtTallaKeyTyped
+
+    private void txtPesoTriajeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPesoTriajeFocusLost
+
+    }//GEN-LAST:event_txtPesoTriajeFocusLost
+
+    private void txtPesoTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesoTriajeActionPerformed
+        txtCinturaTriaje.requestFocus();
+    }//GEN-LAST:event_txtPesoTriajeActionPerformed
+
+    private void txtPesoTriajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoTriajeKeyTyped
+        oFunc.NoLetras(evt);
+    }//GEN-LAST:event_txtPesoTriajeKeyTyped
+
+    private void txtImcTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImcTriajeActionPerformed
+        txtCinturaTriaje.requestFocus();
+    }//GEN-LAST:event_txtImcTriajeActionPerformed
+
+    private void txtCinturaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCinturaTriajeActionPerformed
+ 
+    }//GEN-LAST:event_txtCinturaTriajeActionPerformed
+
+    private void txtCinturaTriajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCinturaTriajeKeyTyped
+        oFunc.NoLetras(evt);
+    }//GEN-LAST:event_txtCinturaTriajeKeyTyped
+
+    private void txtIccTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIccTriajeActionPerformed
+
+    }//GEN-LAST:event_txtIccTriajeActionPerformed
+
+    private void txtCaderaTriajeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCaderaTriajeFocusLost
+
+    }//GEN-LAST:event_txtCaderaTriajeFocusLost
+
+    private void txtCaderaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaderaTriajeActionPerformed
+        txtTemperaturaTriaje.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCaderaTriajeActionPerformed
+
+    private void txtTemperaturaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTemperaturaTriajeActionPerformed
+
+    }//GEN-LAST:event_txtTemperaturaTriajeActionPerformed
+
+    private void txtFcardiacaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFcardiacaTriajeActionPerformed
+ 
+    }//GEN-LAST:event_txtFcardiacaTriajeActionPerformed
+
+    private void txtSatTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSatTriajeActionPerformed
+        txtPerimetroCuelloTriaje.requestFocus();
+    }//GEN-LAST:event_txtSatTriajeActionPerformed
+
+    private void txtPerimetroCuelloTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPerimetroCuelloTriajeActionPerformed
+
+    }//GEN-LAST:event_txtPerimetroCuelloTriajeActionPerformed
+
+    private void txtSistolicaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSistolicaTriajeActionPerformed
+
+        txtDiastolicaTriaje.requestFocus();
+    }//GEN-LAST:event_txtSistolicaTriajeActionPerformed
+
+    private void txtFRespiratoriaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFRespiratoriaTriajeActionPerformed
+
+    }//GEN-LAST:event_txtFRespiratoriaTriajeActionPerformed
+
+    private void txtDiastolicaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiastolicaTriajeActionPerformed
+
+    }//GEN-LAST:event_txtDiastolicaTriajeActionPerformed
+
                 private void cargarMedicamentos(){
             try {
                 String sQuery;
@@ -1440,9 +1848,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
         // Prepara el Query
         sQuery ="select CONCAT(dtp.nombres,' ',dtp.apellidos) as nombres,\n" +
-"	 EXTRACT(YEAR FROM age(current_date,dtp.fecha_nacimiento)) AS  edad, ddhc.fecha_registro as fecha_evaluacion\n" +
+"	 EXTRACT(YEAR FROM age(current_date,dtp.fecha_nacimiento)) AS  edad, ddhc.fecha_registro as fecha_evaluacion , t.talla, t.peso, \n" +
+                "       t.imc, t.cintura, t.icc, t.cadera, t.temperatura, t.f_cardiaca, t.sat_02, t.perimetro_cuello, \n" +
+                "       t.sistolica, t.diastolica, t.f_respiratoria, t.conclusion \n" +
 "	from desktop_datos_pacientes as dtp inner join desktop_datos_historia_clinica as ddhc\n" +
-"	on dtp.dni=ddhc.dni_paciente where ddhc.n_orden="+n_orden_hc.getText().trim();
+"	on dtp.dni=ddhc.dni_paciente  inner join desktop_triaje as t ON t.n_orden = ddhc.n_orden where ddhc.n_orden="+n_orden_hc.getText().trim();
         if (oConn.FnBoolQueryExecute(sQuery))
         {
             try 
@@ -1454,6 +1864,20 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                      nombres_hcpaciente.setText(oConn.setResult.getString ("nombres").toUpperCase());
                      edad.setText(oConn.setResult.getString ("edad").toUpperCase());
                      fecha_nacimiento.setDate(oConn.setResult.getDate("fecha_evaluacion"));
+                     txtTalla.setText(oConn.setResult.getString("talla"));
+                    txtPesoTriaje.setText(oConn.setResult.getString("peso"));
+                    txtImcTriaje.setText(oConn.setResult.getString("imc"));
+                    txtCinturaTriaje.setText(oConn.setResult.getString("cintura"));
+                    txtIccTriaje.setText(oConn.setResult.getString("icc"));
+                    txtCaderaTriaje.setText(oConn.setResult.getString("cadera"));
+                    txtTemperaturaTriaje.setText(oConn.setResult.getString("temperatura"));
+                    txtFcardiacaTriaje.setText(oConn.setResult.getString("f_cardiaca"));
+                    txtSatTriaje.setText(oConn.setResult.getString("sat_02"));
+                    txtPerimetroCuelloTriaje.setText(oConn.setResult.getString("perimetro_cuello"));
+                    txtSistolicaTriaje.setText(oConn.setResult.getString("sistolica"));
+                    txtDiastolicaTriaje.setText(oConn.setResult.getString("diastolica"));
+                    txtFRespiratoriaTriaje.setText(oConn.setResult.getString("f_respiratoria"));
+                    txtDiagnostico.setText(oConn.setResult.getString("conclusion"));
                  }
                  
                  // Cierra Resultados
@@ -1627,6 +2051,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton BuscarPaciente;
+    private javax.swing.JScrollPane atxtObservacionesAltura;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
@@ -1645,13 +2070,32 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JComboBox cboMedicamento4;
     private javax.swing.JTextField edad;
     private com.toedter.calendar.JDateChooser fecha_nacimiento;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -1662,6 +2106,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane5;
@@ -1681,5 +2126,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextRecom;
     private javax.swing.JTextField n_orden_hc;
     private javax.swing.JTextField nombres_hcpaciente;
+    private javax.swing.JTextField txtCaderaTriaje;
+    private javax.swing.JTextField txtCinturaTriaje;
+    private javax.swing.JTextArea txtDiagnostico;
+    private javax.swing.JTextField txtDiastolicaTriaje;
+    private javax.swing.JTextField txtFRespiratoriaTriaje;
+    private javax.swing.JTextField txtFcardiacaTriaje;
+    private javax.swing.JTextField txtIccTriaje;
+    private javax.swing.JTextField txtImcTriaje;
+    private javax.swing.JTextField txtPerimetroCuelloTriaje;
+    private javax.swing.JTextField txtPesoTriaje;
+    private javax.swing.JTextField txtSatTriaje;
+    private javax.swing.JTextField txtSistolicaTriaje;
+    private javax.swing.JTextField txtTalla;
+    private javax.swing.JTextField txtTemperaturaTriaje;
     // End of variables declaration//GEN-END:variables
 }

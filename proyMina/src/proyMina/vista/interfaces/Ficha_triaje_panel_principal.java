@@ -32,9 +32,8 @@ public class Ficha_triaje_panel_principal extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        asignarRol = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -49,20 +48,16 @@ public class Ficha_triaje_panel_principal extends javax.swing.JFrame {
             .addGap(0, 622, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("INICIO");
+        jMenu2.setText("Opc. Adicionales de Triaje");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/invoice.png"))); // NOI18N
-        jMenuItem1.setText("Ficha Triaje");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        asignarRol.setText("Asignar Rol");
+        asignarRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                asignarRolActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu2.add(asignarRol);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Opc. Adicionales de Triaje");
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -83,11 +78,11 @@ public class Ficha_triaje_panel_principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        FichaTriaje fi_tri = new FichaTriaje();
-        escritorio.add(fi_tri);
-        fi_tri.show();        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void asignarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarRolActionPerformed
+       AsignarRol asigRol = new AsignarRol();
+        escritorio.add(asigRol);
+        asigRol.show();     
+    }//GEN-LAST:event_asignarRolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,10 +120,9 @@ public class Ficha_triaje_panel_principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem asignarRol;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

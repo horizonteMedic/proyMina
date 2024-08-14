@@ -156,7 +156,7 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +164,6 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
             }
         });
 
-        tipo_emp_cont.setBackground(new java.awt.Color(255, 51, 51));
         tipo_emp_cont.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "EMPRESA", "CONTRATA" }));
         tipo_emp_cont.setName(""); // NOI18N
         tipo_emp_cont.addActionListener(new java.awt.event.ActionListener() {

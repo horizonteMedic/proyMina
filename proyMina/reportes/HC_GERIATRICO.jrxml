@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistoriaClinica" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3eb51c5-67f5-4f58-b008-e021877afc7f">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="639"/>
+	<property name="ireport.y" value="0"/>
 	<style name="miestilo">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[new Boolean($F{color}==1)]]></conditionExpression>
@@ -291,7 +291,7 @@
 				<text><![CDATA[GERIATRICO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="2" y="0" width="177" height="59" uuid="35ac554b-e0c3-4915-b049-dae53c07b691"/>
+				<reportElement x="0" y="0" width="179" height="59" uuid="35ac554b-e0c3-4915-b049-dae53c07b691"/>
 				<imageExpression><![CDATA["C:\\reportes\\Logo.jpg"]]></imageExpression>
 			</image>
 		</band>

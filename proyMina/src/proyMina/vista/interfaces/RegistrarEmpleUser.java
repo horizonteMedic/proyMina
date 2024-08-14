@@ -28,6 +28,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.json.JSONObject;
 import proyMina.modelo.DisableSSLVerification;
@@ -46,6 +47,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     private ImageIcon image;
     private Icon icon;
+    DefaultTableModel model; 
     
     
     public RegistrarEmpleUser() {
@@ -58,7 +60,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         btnLimpiar();
         estado.setSelected(true);
         this.setLocationRelativeTo(null);
-        //validar vacios
+        llenar_tabla_hc();
         
        
     }
@@ -82,7 +84,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_registro_empleado = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         btnRegistrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -166,7 +168,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         });
         RegistrarEmpresaoContrata.add(correo_elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 300, -1));
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,31 +180,18 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         jLabel6.setText("*Dni :");
         RegistrarEmpresaoContrata.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_registro_empleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Dni", "Nombres  y Apellidos", "Telefono", "Email", "Direccion "
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(35);
-        }
+        ));
+        jScrollPane1.setViewportView(tb_registro_empleado);
 
         RegistrarEmpresaoContrata.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 1010, 170));
         RegistrarEmpresaoContrata.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
@@ -577,9 +566,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
     }//GEN-LAST:event_FEMENINOActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
-        
-        
+   
         btnRegistrar();       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -1224,6 +1211,7 @@ public String Ubigeo(){
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado el Empleado con Éxito");
                
                 btnLimpiar();
+                llenar_tabla_hc();
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
                     
@@ -1279,6 +1267,56 @@ btnEditar.setEnabled(true);
 btnRegistrar.setEnabled(true);
 
 }
+
+private void llenar_tabla_hc(){
+               
+            try {
+                model = new DefaultTableModel(){
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return false;
+                    }};
+                String vSql="select dni as DNI ,CONCAT(nombres, ' ', apellidos) AS NOMBRES_Y_APELLIDOS ,CASE WHEN sexo = 'MASCULINO' THEN 'M' ELSE 'F' END AS GENERO,celular AS CELULAR , cargo AS PROFESION,cip AS COD_CIP ,name_user AS NOMBRE_USUARIO,pass AS CONTRASEÑA,\n" +
+                        "CASE WHEN estado = true THEN 'HABILITADO' ELSE 'DESHABILITADO' END AS ESTADO "+                       
+                        "from desktop_empleado  \n" ;
+                
+                if (oConn.FnBoolQueryExecute(vSql))
+                {
+                    try  {
+                        java.sql.ResultSetMetaData rsmt = oConn.setResult.getMetaData();
+                        int CantidaColumnas = rsmt.getColumnCount();
+                        for (int i = 1; i <= CantidaColumnas; i++) {
+                            model.addColumn(rsmt.getColumnLabel(i));
+                        }
+                        while (oConn.setResult.next())
+                        {
+                            Object [] Fila = new Object[CantidaColumnas];
+                            for (int i = 0; i < CantidaColumnas; i++) {
+                                Fila[i] = oConn.setResult.getObject(i+1);
+                            }
+                            model.addRow(Fila);
+                        }
+                        tb_registro_empleado.setModel(model);
+                        oConn.setResult.close();
+                    }
+                    catch (SQLException ex)
+                    {
+                        oFunc.SubSistemaMensajeError(ex.toString());
+                        Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+  
+
+
+
+
+
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1354,9 +1392,9 @@ btnRegistrar.setEnabled(true);
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField name_user;
     private javax.swing.JTextField nombres;
     private javax.swing.JTextField pass;
+    private javax.swing.JTable tb_registro_empleado;
     // End of variables declaration//GEN-END:variables
 }

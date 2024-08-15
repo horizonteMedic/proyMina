@@ -49,6 +49,8 @@ import proyMina.modelo.DisableSSLVerification;
 import proyMina.modelo.clsGlobales;
 import sun.misc.BASE64Decoder;
 public final class FichaTriaje extends javax.swing.JInternalFrame {
+        Date dateHoy = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
  clsConnection oConn = new clsConnection();
    clsFunciones  oFunc = new clsFunciones();
    clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
@@ -62,7 +64,7 @@ String[]Triaje = new String[]{};
      
    public FichaTriaje() {
       initComponents();
- 
+      jTextFieldNro.setEnabled(false);
 
        // CargarEmpresas();
       //CargarContratas();
@@ -70,6 +72,9 @@ String[]Triaje = new String[]{};
        sbCargarDatosOcupacional("");
        jtTriaje.setIconAt(0, new ImageIcon(ClassLoader.getSystemResource("imagenes/reportes.png")));
        calcularDniUser();
+       cargarEspecialidades();
+       AutoCompleteDecorator.decorate(this.cboEspecialidad);
+
    }
 
    
@@ -101,7 +106,6 @@ String[]Triaje = new String[]{};
         rbOrden = new javax.swing.JRadioButton();
         jLabel33 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
-        chkRocupacional = new javax.swing.JCheckBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -149,14 +153,6 @@ String[]Triaje = new String[]{};
         jScrollPane2 = new javax.swing.JScrollPane();
         txtConclusionTriaje = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
-        chkPacientes = new javax.swing.JCheckBox();
-        chkOcupacional = new javax.swing.JCheckBox();
-        jLabel35 = new javax.swing.JLabel();
-        txtBuscarCod = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         btnLimpiarCancelarTriaje = new javax.swing.JButton();
         jtTriaje = new javax.swing.JTabbedPane();
@@ -167,6 +163,18 @@ String[]Triaje = new String[]{};
         txtDiagnostico = new javax.swing.JTextArea();
         btnDiagnostico = new javax.swing.JButton();
         txtEditar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        cboEspecialidad = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableEspecialidad = new javax.swing.JTable();
+        jLabel31 = new javax.swing.JLabel();
+        jTextFieldNro = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -277,28 +285,10 @@ String[]Triaje = new String[]{};
             }
         });
 
-        tipoPaciente.add(chkRocupacional);
-        chkRocupacional.setSelected(true);
-        chkRocupacional.setText("Ocupacional");
-        chkRocupacional.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chkRocupacionalMouseClicked(evt);
-            }
-        });
-        chkRocupacional.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkRocupacionalActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(chkRocupacional)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -360,9 +350,7 @@ String[]Triaje = new String[]{};
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(chkRocupacional, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel28)
                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -783,103 +771,6 @@ String[]Triaje = new String[]{};
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar"));
-
-        jLabel31.setText("Nombres:");
-
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyReleased(evt);
-            }
-        });
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Selecciones Tipo Busqueda"));
-
-        btBuscar.add(chkPacientes);
-        chkPacientes.setText("Pacientes");
-
-        btBuscar.add(chkOcupacional);
-        chkOcupacional.setSelected(true);
-        chkOcupacional.setText("Ocupacional");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(chkPacientes)
-                .addGap(18, 18, 18)
-                .addComponent(chkOcupacional)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkPacientes)
-                    .addComponent(chkOcupacional))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel35.setText("Codigo:");
-
-        txtBuscarCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarCodActionPerformed(evt);
-            }
-        });
-        txtBuscarCod.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarCodKeyReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel35)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscarCod, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel31)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel35)
-                            .addComponent(txtBuscarCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add.png"))); // NOI18N
         btnRegistrar.setText("Registar/Actualizar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -939,6 +830,133 @@ String[]Triaje = new String[]{};
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel3.setText("TICKET SEGUN ESPECIALIDAD");
+
+        cboEspecialidad.setEditable(true);
+        cboEspecialidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
+        cboEspecialidad.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                cboEspecialidadPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        cboEspecialidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboEspecialidadMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cboEspecialidadMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cboEspecialidadMousePressed(evt);
+            }
+        });
+        cboEspecialidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEspecialidadActionPerformed(evt);
+            }
+        });
+        cboEspecialidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboEspecialidadKeyPressed(evt);
+            }
+        });
+
+        jLabel6.setText("ESPECIALIDAD:");
+
+        jTableEspecialidad.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableEspecialidad);
+
+        jLabel31.setText("Nro:");
+
+        jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Actualizar");
+
+        jButton3.setText("Limpiar");
+
+        jRadioButton1.setText("ESTADO");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jButton1)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jButton2)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jButton3))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldNro, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(jRadioButton1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel31)
+                            .addComponent(jTextFieldNro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton1)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -966,19 +984,24 @@ String[]Triaje = new String[]{};
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtTriaje, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 297, Short.MAX_VALUE))
-                    .addComponent(jtTriaje))
+                        .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
@@ -998,13 +1021,8 @@ String[]Triaje = new String[]{};
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnRegistrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLimpiarCancelarTriaje))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtTriaje)))
-                .addGap(5, 5, 5))
-            .addComponent(jSeparator1)
+                                .addComponent(btnLimpiarCancelarTriaje)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1052,7 +1070,6 @@ String[]Triaje = new String[]{};
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
      
-         if (chkRocupacional.isSelected()) {
               System.out.println("entro a ocupacional");
             if (!txtNumero.getText().isEmpty()) {
                  System.out.println("entro a txt numero con datos");
@@ -1096,7 +1113,7 @@ String[]Triaje = new String[]{};
                 
             
         }
-         }
+         
       
         
     }//GEN-LAST:event_txtNumeroActionPerformed
@@ -1191,7 +1208,6 @@ Date dateHoy = new Date();
             
     }//GEN-LAST:event_btnRegistrarActionPerformed
    private void AgregarTriaje(){
-        if(chkRocupacional.isSelected()){
            if(!txtNumero.getText().isEmpty()){
                  if(!OrdenExiste()){
                      if(validar()){
@@ -1223,6 +1239,7 @@ Date dateHoy = new Date();
                
                if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
              oFunc.SubSistemaMensajeInformacion("Se ha registrado la Entrada con Éxito");
+             jTextFieldNro.setText(txtNumero.getText().toString().trim());
              LimpiarFichaTriaje();
              txtNumero.setEnabled(true);
              txtNumero.requestFocus();
@@ -1243,7 +1260,7 @@ Date dateHoy = new Date();
         }
         }else{ oFunc.SubSistemaMensajeError("Número de Orden Utilizado");}
         }else {  oFunc.SubSistemaMensajeError("Llene los Campos correctamente");txtNumero.requestFocus();}
-       }
+       
    } 
 
     private boolean validar(){
@@ -1272,10 +1289,6 @@ boolean bResultado=true;
     private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
        txtTalla.requestFocus();
     }//GEN-LAST:event_txtEdadActionPerformed
-
-    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        
-    }//GEN-LAST:event_txtBuscarKeyReleased
     
     private void FechaTriajePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_FechaTriajePropertyChange
        txtTalla.requestFocus();
@@ -1345,23 +1358,6 @@ boolean bResultado=true;
 //        oFunc.SubSistemaMensajeInformacion("Debe ingresar todos los campos necesarios");
 //    }
     }//GEN-LAST:event_btnDiagnosticoActionPerformed
-
-    private void txtBuscarCodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodKeyReleased
-        if(chkOcupacional.isSelected()){ 
-        sbCargarDatosOcupacional(txtBuscar.getText());}
-        if(chkPacientes.isSelected()){ 
-        oFunc.SubSistemaMensajeError("no hay registros");
-       // sbCargarDatosOcupacional(txtBuscar.getText());
-        }
-    }//GEN-LAST:event_txtBuscarCodKeyReleased
-
-    private void chkRocupacionalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkRocupacionalMouseClicked
-       
-    }//GEN-LAST:event_chkRocupacionalMouseClicked
-
-    private void chkRocupacionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkRocupacionalActionPerformed
-        
-    }//GEN-LAST:event_chkRocupacionalActionPerformed
 
     private void txtTallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTallaKeyTyped
         oFunc.NoLetras(evt);
@@ -1621,28 +1617,43 @@ boolean bResultado=true;
         }
     }//GEN-LAST:event_tbTriajeMousePressed
 
-    private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtBuscarKeyPressed
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-        if(chkOcupacional.isSelected()){ 
-        sbCargarDatosOcupacional(txtBuscar.getText());}
-        if(chkPacientes.isSelected()){ 
-        oFunc.SubSistemaMensajeError("no hay registros");
-       // sbCargarDatosOcupacional(txtBuscar.getText());
-        }
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         cerrarVentana();        // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameClosing
 
-    private void txtBuscarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarCodActionPerformed
+    private void cboEspecialidadPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboEspecialidadPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarCodActionPerformed
+    }//GEN-LAST:event_cboEspecialidadPopupMenuWillBecomeInvisible
+
+    private void cboEspecialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboEspecialidadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEspecialidadMouseClicked
+
+    private void cboEspecialidadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboEspecialidadMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEspecialidadMouseEntered
+
+    private void cboEspecialidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboEspecialidadMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEspecialidadMousePressed
+
+    private void cboEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEspecialidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEspecialidadActionPerformed
+
+    private void cboEspecialidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboEspecialidadKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEspecialidadKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(!existenciaEspecialidades()){
+        registrarTicketEspecialiad();
+        
+        }
+        else
+                 oFunc.SubSistemaMensajeError("ERROR: Historia clinica por especialidad debe de ser unica");
+           
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
    
@@ -1657,9 +1668,10 @@ boolean bResultado=true;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox cboContratas;
     private javax.swing.JComboBox cboEmpresa;
-    private javax.swing.JCheckBox chkOcupacional;
-    private javax.swing.JCheckBox chkPacientes;
-    private javax.swing.JCheckBox chkRocupacional;
+    private javax.swing.JComboBox cboEspecialidad;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1682,14 +1694,15 @@ boolean bResultado=true;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1699,20 +1712,21 @@ boolean bResultado=true;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableEspecialidad;
+    private javax.swing.JTextField jTextFieldNro;
     private javax.swing.JTabbedPane jtTriaje;
     private javax.swing.JLabel lblBuscarID1;
     private javax.swing.JRadioButton rbOrden;
     private javax.swing.JRadioButton rbRecibo;
     private javax.swing.JTable tbTriaje;
     private javax.swing.ButtonGroup tipoPaciente;
-    private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtBuscarCod;
     private javax.swing.JTextField txtCaderaTriaje;
     private javax.swing.JTextField txtCinturaTriaje;
     private javax.swing.JTextArea txtConclusionTriaje;
@@ -1747,9 +1761,8 @@ boolean bResultado=true;
         String sQuery="";
         
         // Prepara el Query
-        if(chkRocupacional.isSelected()){
         sQuery  = "Select * from desktop_triaje Where n_orden="+txtNumero.getText().toString();
-        }
+        
    
         //Ejecuta el Query
         oConn.FnBoolQueryExecute(sQuery);
@@ -2265,7 +2278,99 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
         }
     }
    
-   
+       private void cargarEspecialidades(){
+      String sQuery;        
+        // Prepara el Query
+        sQuery ="select nombre_especialidad from desktop_especialidades WHERE estado=true;";
+        if (oConn.FnBoolQueryExecute(sQuery)){
+            try{
+                // Verifica resultados
+                while (oConn.setResult.next()){                     
+                     // Obtiene los datos de la Consulta
+                     cboEspecialidad.addItem(oConn.setResult.getString ("nombre_especialidad").toUpperCase());
+                }
+            } 
+            catch (SQLException ex){
+                //JOptionPane.showMessageDialorootPane,ex);
+                oFunc.SubSistemaMensajeInformacion(ex.toString());
+                Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            oConn.setResult.close();
+            oConn.sqlStmt.close(); 
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cboEspecialidad.setSelectedIndex(0);
+        }
+       
+              private boolean existenciaEspecialidades(){
+      String sQuery;     
+      boolean valor=false; 
+        // Prepara el Query
+        sQuery ="select nombre_especialidad  from desktop_ticket_espcialidad where n_orden="+jTextFieldNro.getText().toString().trim()
+                +" and nombre_especialidad='"+cboEspecialidad.getSelectedItem().toString().trim()+"'";
+        if (oConn.FnBoolQueryExecute(sQuery)){
+            try{
+                // Verifica resultados
+                while (oConn.setResult.next()){                     
+                     // Obtiene los datos de la Consulta
+                     valor=true; 
+                }
+            } 
+            catch (SQLException ex){
+                //JOptionPane.showMessageDialorootPane,ex);
+                oFunc.SubSistemaMensajeInformacion(ex.toString());
+                Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            oConn.setResult.close();
+            oConn.sqlStmt.close(); 
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cboEspecialidad.setSelectedIndex(0);
+        return valor;
+        }
+       
+                 private void registrarTicketEspecialiad(){
+            String strSqlStmt;
+             String Query ;
+            strSqlStmt="INSERT INTO desktop_ticket_espcialidad(";
+            Query="Values('";
+            strSqlStmt += "nombre_especialidad";Query += cboEspecialidad.getSelectedItem().toString().trim()+ "'";
+            strSqlStmt += ",n_orden";Query += ","+jTextFieldNro.getText().toString().trim();
+            if(jRadioButton1.isSelected()){
+            strSqlStmt += ",estado";Query += ",true ";}
+            else
+            {
+                           strSqlStmt += ",estado";Query += ",false "; 
+            }
+            strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
+            strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";  
+               
+               if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+             oFunc.SubSistemaMensajeInformacion("Se ha registrado la Entrada con Éxito");
+                try {
+                    oConn.sqlStmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }else{
+             oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
+               }
+                         try {
+                             oConn.sqlStmt.close();
+                         } catch (SQLException ex) {
+                             Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+        
+       
+   } 
 public int calcularEdad(Calendar fechaNac){
     Calendar today = Calendar.getInstance();
     int diay = today.get(Calendar.YEAR);

@@ -45,7 +45,7 @@ public class PrincipalMina extends javax.swing.JFrame {
 
     //jFrame
     Ficha_triaje_panel_principal ft;
-    Roles r;
+   
     AccesosUsuario au;
     Configuracion c;
   
@@ -425,8 +425,9 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_TriajeActionPerformed
 
     private void CrearRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearRolesActionPerformed
-        r =new Roles();
-          r.setVisible(true);
+        RegistrarRol rr = new RegistrarRol();
+        rr.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_CrearRolesActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

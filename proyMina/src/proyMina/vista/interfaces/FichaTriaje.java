@@ -833,6 +833,11 @@ String[]Triaje = new String[]{};
 
         jLabel35.setText("Codigo:");
 
+        txtBuscarCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarCodActionPerformed(evt);
+            }
+        });
         txtBuscarCod.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarCodKeyReleased(evt);
@@ -1634,6 +1639,10 @@ boolean bResultado=true;
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         cerrarVentana();        // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameClosing
+
+    private void txtBuscarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarCodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarCodActionPerformed
 
 
    

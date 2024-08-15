@@ -694,6 +694,7 @@ public class RegistrarPaciente extends javax.swing.JFrame {
                 cboEmpresaPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                cboEmpresaPopupMenuWillBecomeVisible(evt);
             }
         });
         cboEmpresa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1192,7 +1193,7 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarPacienteActionPerformed
 
     private void dni_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dni_pacienteActionPerformed
-         nombres.requestFocus();
+        nombres.requestFocus();
         BuscarPaciente();
     }//GEN-LAST:event_dni_pacienteActionPerformed
 
@@ -1322,6 +1323,10 @@ public class RegistrarPaciente extends javax.swing.JFrame {
        DemoButtons demo=new DemoButtons();
        demo.setVisible(true);
     }//GEN-LAST:event_btnFirmaActionPerformed
+
+    private void cboEmpresaPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboEmpresaPopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEmpresaPopupMenuWillBecomeVisible
 public void BuscarPaciente(){
     if(!dni_paciente.getText().isEmpty()){
         String Sql="SELECT dni, p.nombres ||' '|| p.apellidos as nombres, EXTRACT(YEAR FROM age(current_date,p.fecha_nacimiento)) AS  edad from desktop_datos_pacientes as p  "                

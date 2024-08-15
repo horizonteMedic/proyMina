@@ -4,17 +4,31 @@
  */
 package proyMina.vista.interfaces;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import proyMina.modelo.clsConnection;
+import proyMina.modelo.clsFunciones;
+import proyMina.modelo.clsGlobales;
+import proyMina.modelo.clsOperacionesUsuarios;
+
 /**
  *
  * @author Sistemas
  */
 public class AsignarEmpresaContrata extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AsignarRoles
-     */
+    Date dateHoy = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+    clsConnection oConn = new clsConnection();
+    clsFunciones oFunc = new clsFunciones();
+    clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     public AsignarEmpresaContrata() {
         initComponents();
+        AutoCompleteDecorator.decorate(this.cboAsigTipoEC);
+        AutoCompleteDecorator.decorate(this.cboAsigRazonSocial);
     }
 
     /**
@@ -27,25 +41,35 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        Asig_dni_empleado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        asig_nombre_empleado = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cboAsigTipoEC = new javax.swing.JComboBox<>();
+        btnEditarAsignacionEC = new javax.swing.JToggleButton();
+        btnActualizarAsignacionEC = new javax.swing.JToggleButton();
+        btnLimpiarAsignacionEC = new javax.swing.JToggleButton();
+        btnAsignarEC = new javax.swing.JToggleButton();
+        cboAsigRazonSocial = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        btnBuscarAsignacionEC = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Asig_dni_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Asig_dni_empleadoActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Dni :");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        asig_nombre_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                asig_nombre_empleadoActionPerformed(evt);
             }
         });
 
@@ -53,109 +77,335 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
-        jToggleButton1.setText("Editar");
-
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
-        jToggleButton2.setText("Actualizar");
-
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
-        jToggleButton3.setText("Limpiar");
-
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
-        jToggleButton4.setText("Asignar");
-        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+        cboAsigTipoEC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "EMPRESA", "CONTRATA" }));
+        cboAsigTipoEC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton4ActionPerformed(evt);
+                cboAsigTipoECActionPerformed(evt);
+            }
+        });
+        cboAsigTipoEC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboAsigTipoECKeyPressed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        btnEditarAsignacionEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
+        btnEditarAsignacionEC.setText("Editar");
+        btnEditarAsignacionEC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarAsignacionECActionPerformed(evt);
+            }
+        });
+
+        btnActualizarAsignacionEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
+        btnActualizarAsignacionEC.setText("Actualizar");
+        btnActualizarAsignacionEC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarAsignacionECActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarAsignacionEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
+        btnLimpiarAsignacionEC.setText("Limpiar");
+
+        btnAsignarEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
+        btnAsignarEC.setText("Asignar");
+        btnAsignarEC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarECActionPerformed(evt);
+            }
+        });
+
+        cboAsigRazonSocial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A" }));
+
+        jLabel4.setText("Razon Social :");
+
+        btnBuscarAsignacionEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
+        btnBuscarAsignacionEC.setText("Buscar");
+        btnBuscarAsignacionEC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarAsignacionECActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, 0, 288, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, 288, Short.MAX_VALUE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Asig_dni_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(asig_nombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cboAsigTipoEC, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBuscarAsignacionEC, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(cboAsigRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnLimpiarAsignacionEC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnActualizarAsignacionEC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEditarAsignacionEC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAsignarEC, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToggleButton2)
+                        .addComponent(btnEditarAsignacionEC)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizarAsignacionEC)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimpiarAsignacionEC)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAsignarEC)
+                        .addGap(1, 1, 1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(Asig_dni_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(asig_nombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cboAsigTipoEC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarAsignacionEC))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton4))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addComponent(cboAsigRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void asig_nombre_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asig_nombre_empleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_asig_nombre_empleadoActionPerformed
 
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+    private void btnAsignarECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarECActionPerformed
+        if (!Asig_dni_empleado.getText().isEmpty()){
+            if(!oPe.validarAsignacion(Asig_dni_empleado,"desktop_asignacion_empleado_emp_cont","dni_empleado","id_emp_contrata",id_empresa_contrata())){
+            
+            int key= oFunc.contadorPrimario("desktop_asignacion_empleado_emp_cont");
+            String strSqlStmt;
+            String Query ;
+            strSqlStmt="INSERT INTO desktop_asignacion_empleado_emp_cont (";
+            Query="Values(";
+            strSqlStmt += "id_asignacion";Query +=key+",";
+            strSqlStmt += ",dni_empleado";Query += Asig_dni_empleado.getText().trim();
+           
+            strSqlStmt += ",id_emp_contrata";Query += "," + id_empresa_contrata();
+                       
+            
+            strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
+            strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+            
+            System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+                oFunc.SubSistemaMensajeInformacion("Se ha registrado con Éxito");
+               
+            } else{
+                    oFunc.SubSistemaMensajeError("No se pudo Registrar");
+                    
+                    
+                       }  
+            }
+             else                     
+                oFunc.SubSistemaMensajeError("El Ruc ya se encuentra Registrado ");
+           }
+    }//GEN-LAST:event_btnAsignarECActionPerformed
+
+    private void Asig_dni_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Asig_dni_empleadoActionPerformed
+       Asignar_empresa_contrata();
+                
+    }//GEN-LAST:event_Asig_dni_empleadoActionPerformed
+
+    private void btnEditarAsignacionECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAsignacionECActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
+    }//GEN-LAST:event_btnEditarAsignacionECActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnActualizarAsignacionECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarAsignacionECActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarAsignacionECActionPerformed
+
+    private void cboAsigTipoECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAsigTipoECActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboAsigTipoECActionPerformed
+
+    private void cboAsigTipoECKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboAsigTipoECKeyPressed
+        
+    }//GEN-LAST:event_cboAsigTipoECKeyPressed
+
+    private void btnBuscarAsignacionECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAsignacionECActionPerformed
+cargarTipoRazonSocial();
+    }//GEN-LAST:event_btnBuscarAsignacionECActionPerformed
+
+    
+    
+    
+    
+    public void  Asignar_empresa_contrata(){
+    if(cboAsigTipoEC.getSelectedIndex() > 0){
+    if(!Asig_dni_empleado.getText().isEmpty()){
+        String Sql="SELECT dp.dni, dp.nombres ||' '|| dp.apellidos as nombres from desktop_empleado as dp  "                
+                +"WHERE dni ='"+Asig_dni_empleado.getText().trim()+"'"; 
+                System.out.println(Sql);                
+        oConn.FnBoolQueryExecute(Sql);
+          try {
+                if (oConn.setResult.next()) {
+                    Asig_dni_empleado.setText(oConn.setResult.getString("dni"));
+                    asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));                    
+                   
+                                     
+                    btnEditarAsignacionEC.setEnabled(false);                    
+                    btnActualizarAsignacionEC.setEnabled(false);
+                    btnLimpiarAsignacionEC.setEnabled(true);
+                    btnAsignarEC.setEnabled(true);
+                    }else{
+                    oFunc.SubSistemaMensajeError("No se encuentra registro del empleado");
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                oFunc.SubSistemaMensajeInformacion("Error:" + ex.getMessage());
+            }
+        }
+        else
+            oFunc.SubSistemaMensajeError("Debes crear al empleado");
+     }
+       else oFunc.SubSistemaMensajeError("Seleccione el tipo de empresa o contrata "); 
+    }
+    
+    private int id_empresa_contrata(){
+      String sQuery;  
+      int primaria = 0;
+        // Prepara el Query
+        sQuery ="select id_emp_contrata from  desktop_empresa_contrata where razon_social= '" +cboAsigRazonSocial.getSelectedItem().toString()+"' and tipo_emp_cont='"+cboAsigTipoEC.getSelectedItem()+"'";        
+        
+        if (oConn.FnBoolQueryExecute(sQuery))
+        {
+            try 
+            {
+                 while (oConn.setResult.next())
+                 {                     
+                     // Obtiene los datos de la Consulta
+                     primaria = oConn.setResult.getInt("id_emp_contrata");
+                    }
+            } 
+            catch (SQLException ex) 
+            {
+                //JOptionPane.showMessageDialorootPane,ex);
+                oFunc.SubSistemaMensajeInformacion(ex.toString());
+                Logger.getLogger(AsignarEmpresaContrata.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            oConn.setResult.close();
+            oConn.sqlStmt.close(); 
+        } catch (SQLException ex) {
+            Logger.getLogger(AsignarEmpresaContrata.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // selecciona
+        cboAsigRazonSocial.setSelectedIndex(0);
+return primaria;
+}
+
+    private void cargarTipoRazonSocial(){
+      String sQuery;        
+        // Prepara el Query
+        sQuery ="select  razon_social from desktop_empresa_contrata where tipo_emp_cont= '" + cboAsigTipoEC.getSelectedItem() +"'";        
+        if (cboAsigRazonSocial.getItemCount()>1)
+            cboAsigRazonSocial.removeAllItems();
+        else cboAsigRazonSocial.addItem("N/A");
+        if (oConn.FnBoolQueryExecute(sQuery))
+        {
+            try 
+            {
+                 while (oConn.setResult.next())
+                 {                     
+                     // Obtiene los datos de la Consulta
+                     cboAsigRazonSocial.addItem(oConn.setResult.getString ("razon_social").toUpperCase());
+                    }
+            } 
+            catch (SQLException ex) 
+            {
+                //JOptionPane.showMessageDialorootPane,ex);
+                oFunc.SubSistemaMensajeInformacion(ex.toString());
+                Logger.getLogger(AsignarEmpresaContrata.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            oConn.setResult.close();
+            oConn.sqlStmt.close(); 
+        } catch (SQLException ex) {
+            Logger.getLogger(AsignarEmpresaContrata.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // selecciona
+        cboAsigRazonSocial.setSelectedIndex(0);
+
+}
+    
+    
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -190,17 +440,21 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JTextField Asig_dni_empleado;
+    private javax.swing.JTextField asig_nombre_empleado;
+    private javax.swing.JToggleButton btnActualizarAsignacionEC;
+    private javax.swing.JToggleButton btnAsignarEC;
+    private javax.swing.JToggleButton btnBuscarAsignacionEC;
+    private javax.swing.JToggleButton btnEditarAsignacionEC;
+    private javax.swing.JToggleButton btnLimpiarAsignacionEC;
+    private javax.swing.JComboBox<String> cboAsigRazonSocial;
+    private javax.swing.JComboBox<String> cboAsigTipoEC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

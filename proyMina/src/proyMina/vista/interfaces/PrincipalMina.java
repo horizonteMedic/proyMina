@@ -440,7 +440,9 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_CambiarUserActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        AsignarEmpresaContrata aec = new AsignarEmpresaContrata();
+        aec.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void SedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SedeActionPerformed

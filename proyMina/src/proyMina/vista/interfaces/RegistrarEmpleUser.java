@@ -1000,7 +1000,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         }
     }
     
-     private void CargarDepartamentos(){
+    private void CargarDepartamentos(){
       String sQuery;        
         // Prepara el Query
         sQuery ="SELECT translate(nombre_departamento,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_departamento FROM desktop_ubigeo_departamento";

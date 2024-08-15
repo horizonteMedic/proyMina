@@ -221,7 +221,35 @@ public boolean validar(JTextField n, String t, String columna ){
   return bResultado;
 }
 
+public boolean validarAsignacion(JTextField n, String t, String columna , String id_asig , int asignacion ){
+  boolean bResultado = false;
+    if (!n.getText().isEmpty()) {
+            String sQuery;
 
+            sQuery = "Select "+columna+" from "+ t +" Where " + columna+" =" + n.getText().toString() + " and "+ id_asig +" ="+asignacion;
+              System.out.println(sQuery);
+            //Ejecuta el Query
+            oConn.FnBoolQueryExecute(sQuery);
+
+            // Capturo el Error
+            try {
+
+                // Verifico que haya habido resultados
+                if (oConn.setResult.next()) {
+                    // Resultado
+                    bResultado = true;
+                   // oFunc.SubSistemaMensajeError("Número de Orden Utilizado");
+                   // n.setText(null);
+                }
+
+                // Cierro los Resultados
+                oConn.setResult.close();
+
+            } catch (SQLException ex) {
+            }
+        }
+  return bResultado;
+}
 public boolean validarRuc_tipo(JTextField n,String valorTipo, String t, String columna, String tipo){
   boolean bResultado = false;
     if (!n.getText().isEmpty()) {

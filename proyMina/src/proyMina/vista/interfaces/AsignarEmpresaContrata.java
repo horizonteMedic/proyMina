@@ -4,6 +4,8 @@
  */
 package proyMina.vista.interfaces;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,7 +29,7 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
     clsFunciones oFunc = new clsFunciones();
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     DefaultTableModel model; 
-    
+    int id_asignacion = 0;
     public AsignarEmpresaContrata() {
         initComponents();
         AutoCompleteDecorator.decorate(this.cboAsigTipoEC);
@@ -52,7 +54,6 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cboAsigTipoEC = new javax.swing.JComboBox<>();
-        btnEditarAsignacionEC = new javax.swing.JToggleButton();
         btnActualizarAsignacionEC = new javax.swing.JToggleButton();
         btnLimpiarAsignacionEC = new javax.swing.JToggleButton();
         btnAsignarEC = new javax.swing.JToggleButton();
@@ -64,6 +65,7 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Asignar Empresas y  Contratas");
+        setResizable(false);
 
         Asig_dni_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +86,11 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
         jLabel3.setText("Tipo :");
 
         cboAsigTipoEC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "EMPRESA", "CONTRATA" }));
+        cboAsigTipoEC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboAsigTipoECMouseClicked(evt);
+            }
+        });
         cboAsigTipoEC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboAsigTipoECActionPerformed(evt);
@@ -92,14 +99,6 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
         cboAsigTipoEC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cboAsigTipoECKeyPressed(evt);
-            }
-        });
-
-        btnEditarAsignacionEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
-        btnEditarAsignacionEC.setText("Editar");
-        btnEditarAsignacionEC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarAsignacionECActionPerformed(evt);
             }
         });
 
@@ -113,6 +112,11 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
 
         btnLimpiarAsignacionEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiarAsignacionEC.setText("Limpiar");
+        btnLimpiarAsignacionEC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarAsignacionECActionPerformed(evt);
+            }
+        });
 
         btnAsignarEC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
         btnAsignarEC.setText("Asignar");
@@ -145,6 +149,11 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaAsignacionEmp_contrata.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablaAsignacionEmp_contrataMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaAsignacionEmp_contrata);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -154,6 +163,9 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(15, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,28 +186,15 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnLimpiarAsignacionEC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnActualizarAsignacionEC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEditarAsignacionEC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAsignarEC, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(15, Short.MAX_VALUE))))
+                        .addGap(36, 36, 36))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnEditarAsignacionEC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActualizarAsignacionEC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpiarAsignacionEC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAsignarEC)
-                        .addGap(13, 13, 13))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(Asig_dni_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -211,8 +210,15 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(cboAsigRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)))
+                            .addComponent(cboAsigRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(btnActualizarAsignacionEC)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimpiarAsignacionEC, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAsignarEC)))
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -224,7 +230,7 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,10 +282,6 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
        cboAsigTipoEC.requestFocus();
     }//GEN-LAST:event_Asig_dni_empleadoActionPerformed
 
-    private void btnEditarAsignacionECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAsignacionECActionPerformed
-       
-    }//GEN-LAST:event_btnEditarAsignacionECActionPerformed
-
     private void btnActualizarAsignacionECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarAsignacionECActionPerformed
         btnActualizarAsignacionEC();
     }//GEN-LAST:event_btnActualizarAsignacionECActionPerformed
@@ -293,35 +295,82 @@ public class AsignarEmpresaContrata extends javax.swing.JFrame {
     }//GEN-LAST:event_cboAsigTipoECKeyPressed
 
     private void btnBuscarAsignacionECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAsignacionECActionPerformed
-cargarTipoRazonSocial();
+//cargarTipoRazonSocial();
     }//GEN-LAST:event_btnBuscarAsignacionECActionPerformed
 
+    private void tablaAsignacionEmp_contrataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAsignacionEmp_contrataMousePressed
+       if (evt.getClickCount() == 1) {  
+        
+        // Obtener el código (DNI del empleado) desde la tabla
+        Integer cod = Integer.valueOf(tablaAsignacionEmp_contrata.getValueAt(tablaAsignacionEmp_contrata.getSelectedRow(), 1).toString());
+        id_asignacion = Integer.valueOf(tablaAsignacionEmp_contrata.getValueAt(tablaAsignacionEmp_contrata.getSelectedRow(), 0).toString());
+        // Construir la consulta SQL
+        String Sql = "SELECT asig_ec.dni_empleado, " +
+                     "desk_emple.nombres || ' ' || desk_emple.apellidos AS nombres, " +
+                     "dec.razon_social, " +
+                     "dec.tipo_emp_cont AS tipo_empresa_contrata " +
+                     "FROM desktop_asignacion_empleado_emp_cont AS asig_ec " +
+                     "INNER JOIN desktop_empleado AS desk_emple ON asig_ec.dni_empleado = desk_emple.dni " +
+                     "INNER JOIN desktop_empresa_contrata AS dec ON dec.id_emp_contrata = asig_ec.id_emp_contrata " +
+                     "WHERE asig_ec.dni_empleado = " + cod + " " +
+                     "AND dec.tipo_emp_cont = '" + tablaAsignacionEmp_contrata.getValueAt(tablaAsignacionEmp_contrata.getSelectedRow(), 5).toString() + "' " ;
+
+        System.out.println(Sql);
+
+        // Ejecutar la consulta
+        oConn.FnBoolQueryExecute(Sql);
+        try {
+            if (oConn.setResult.next()) {
+                Asig_dni_empleado.setText(oConn.setResult.getString("dni_empleado"));
+                asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));           
+                cboAsigRazonSocial.setSelectedItem(oConn.setResult.getString("razon_social"));           
+                cboAsigTipoEC.setSelectedItem(oConn.setResult.getString("tipo_empresa_contrata"));
+                btnActualizarAsignacionEC.setEnabled(true);
+                btnLimpiarAsignacionEC.setEnabled(true);
+                btnAsignarEC.setEnabled(false);        
+            }
+            oConn.sqlStmt.close();
+        } catch (Exception e) {
+            oFunc.SubSistemaMensajeError("Error al ejecutar la consulta: " + e.getMessage());
+        }
+    }
+    }//GEN-LAST:event_tablaAsignacionEmp_contrataMousePressed
+
+    private void btnLimpiarAsignacionECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarAsignacionECActionPerformed
+       btnLimpiarAsignacionEC(); 
+    }//GEN-LAST:event_btnLimpiarAsignacionECActionPerformed
+
+    private void cboAsigTipoECMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboAsigTipoECMouseClicked
+       cargarTipoRazonSocial();
+    }//GEN-LAST:event_cboAsigTipoECMouseClicked
+
+    
+    
+    
+    
+    
    private void btnActualizarAsignacionEC() {
-    String key = Asig_dni_empleado.getText();
-    if (!key.isEmpty()) {                
         String strSqlStmt;
         String query;
-        strSqlStmt = "UPDATE desktop_asignacion_empleado_emp_cont AS asig_ec ";
+        strSqlStmt = "UPDATE desktop_asignacion_empleado_emp_cont  ";
         
-        query = "SET asig_ec.dni_empleado = '" + key + "',";
-        query += ", ec.razon_social = '" +cboAsigRazonSocial.getSelectedItem().toString().trim()+ "'";
-        
+        query = " SET id_emp_contrata = " + id_empresa_contrata() ;
         query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
         query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
-        query += " FROM desktop_empresa_contrata AS ec";
-        query += " WHERE asig_ec.id_emp_contrata = ec.id_emp_contrata";
-        query += " AND asig_ec.dni_empleado = '" + key + "'";
+        query += " WHERE id_asignacion ="+ id_asignacion;
       
         System.out.println("El comando es :" + strSqlStmt + query);
         
        
         if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + query)) {
             oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
-            btnLimpiarAsignacionEC(); 
+            llenar_tabla_hc();
+            btnLimpiarAsignacionEC();
+            
         } else {
             oFunc.SubSistemaMensajeError("Error en registro");
         }            
-    }
+    
 }
     
     private void btnLimpiarAsignacionEC (){
@@ -329,6 +378,10 @@ cargarTipoRazonSocial();
     asig_nombre_empleado.setText(null);
     cboAsigTipoEC.setSelectedItem("N/A");
     cboAsigRazonSocial.setSelectedItem("N/A");
+    
+    btnActualizarAsignacionEC.setEnabled(true);
+    btnLimpiarAsignacionEC.setEnabled(true);
+    btnAsignarEC.setEnabled(true);
     
     }
     
@@ -350,10 +403,8 @@ cargarTipoRazonSocial();
                 if (oConn.setResult.next()) {
                     Asig_dni_empleado.setText(oConn.setResult.getString("dni"));
                     asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));                    
-                   
-                                     
-                    btnEditarAsignacionEC.setEnabled(true);                    
-                    btnActualizarAsignacionEC.setEnabled(true);
+                               
+                    btnActualizarAsignacionEC.setEnabled(false);
                     btnLimpiarAsignacionEC.setEnabled(true);
                     btnAsignarEC.setEnabled(true);
                     }else{
@@ -452,9 +503,9 @@ private void llenar_tabla_hc(){
                 String vSql="SELECT  asig_ec.id_asignacion, asig_ec.dni_empleado, desk_emple.nombres || ' ' || desk_emple.apellidos AS nombres,\n" +
                     " (SELECT razon_social FROM desktop_empresa_contrata  WHERE tipo_emp_cont = 'EMPRESA' AND id_emp_contrata = asig_ec.id_emp_contrata) AS razon_social_empresa,\n" +
                     " (SELECT razon_social FROM desktop_empresa_contrata  WHERE tipo_emp_cont = 'CONTRATA'AND id_emp_contrata = asig_ec.id_emp_contrata) AS razon_social_contrata\n" +
-                    "   FROM desktop_asignacion_empleado_emp_cont AS asig_ec\n" +
+                    " , dec.tipo_emp_cont  FROM desktop_asignacion_empleado_emp_cont AS asig_ec  inner join desktop_empresa_contrata as dec on asig_ec.id_emp_contrata=dec.id_emp_contrata \n" +
                     "   INNER JOIN desktop_empleado AS desk_emple ON asig_ec.dni_empleado = desk_emple.dni;" ;
-                
+                System.out.println(vSql);
                 if (oConn.FnBoolQueryExecute(vSql))
                 {
                     try  {
@@ -529,7 +580,6 @@ private void llenar_tabla_hc(){
     private javax.swing.JToggleButton btnActualizarAsignacionEC;
     private javax.swing.JToggleButton btnAsignarEC;
     private javax.swing.JToggleButton btnBuscarAsignacionEC;
-    private javax.swing.JToggleButton btnEditarAsignacionEC;
     private javax.swing.JToggleButton btnLimpiarAsignacionEC;
     private javax.swing.JComboBox<String> cboAsigRazonSocial;
     private javax.swing.JComboBox<String> cboAsigTipoEC;

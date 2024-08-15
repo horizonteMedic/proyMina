@@ -4,17 +4,38 @@
  */
 package proyMina.vista.interfaces;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import proyMina.modelo.clsConnection;
+import proyMina.modelo.clsFunciones;
+import proyMina.modelo.clsGlobales;
+import proyMina.modelo.clsOperacionesUsuarios;
+
 /**
  *
  * @author Sistemas
  */
 public class AsignarRoles extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AsignarRoles
-     */
+    Date dateHoy = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+    clsConnection oConn = new clsConnection();
+    clsFunciones oFunc = new clsFunciones();
+    clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
+    DefaultTableModel model; 
+    int id_asignacion = 0;
+    
     public AsignarRoles() {
         initComponents();
+        AutoCompleteDecorator.decorate(this.cboAsignarRol);
+        
+        llenar_tabla_hc();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,26 +48,33 @@ public class AsignarRoles extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        Asig_dni_empleado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        asig_nombre_empleado = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
+        cboAsignarRol = new javax.swing.JComboBox<>();
+        btnActualizarRol = new javax.swing.JToggleButton();
+        btnLimpiarRol = new javax.swing.JToggleButton();
+        btnAsignarRol = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaAsignacionRol = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("ASIGNAR ROL A EMPLEADO");
+        setResizable(false);
+
+        Asig_dni_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Asig_dni_empleadoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Dni :");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        asig_nombre_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                asig_nombre_empleadoActionPerformed(evt);
             }
         });
 
@@ -54,26 +82,28 @@ public class AsignarRoles extends javax.swing.JFrame {
 
         jLabel3.setText("Asignar Rol :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboAsignarRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A" }));
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
-        jToggleButton1.setText("Editar");
+        btnActualizarRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
+        btnActualizarRol.setText("Actualizar");
 
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
-        jToggleButton2.setText("Actualizar");
-
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
-        jToggleButton3.setText("Limpiar");
-
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
-        jToggleButton4.setText("Asignar");
-        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiarRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
+        btnLimpiarRol.setText("Limpiar");
+        btnLimpiarRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton4ActionPerformed(evt);
+                btnLimpiarRolActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnAsignarRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
+        btnAsignarRol.setText("Asignar");
+        btnAsignarRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarRolActionPerformed(evt);
+            }
+        });
+
+        TablaAsignacionRol.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -84,63 +114,56 @@ public class AsignarRoles extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaAsignacionRol);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField2)
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, 0, 288, Short.MAX_VALUE))
-                        .addGap(32, 32, 32)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(asig_nombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Asig_dni_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboAsignarRol, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                            .addComponent(btnLimpiarRol, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnActualizarRol, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAsignarRol, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(9, 9, 9))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(3, 3, 3)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
+                    .addComponent(btnActualizarRol)
+                    .addComponent(Asig_dni_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLimpiarRol)
+                    .addComponent(asig_nombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToggleButton2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton4))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(cboAsignarRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAsignarRol))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,8 +171,8 @@ public class AsignarRoles extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,17 +184,133 @@ public class AsignarRoles extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void asig_nombre_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asig_nombre_empleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_asig_nombre_empleadoActionPerformed
 
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
+    private void btnAsignarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarRolActionPerformed
+        if (!Asig_dni_empleado.getText().isEmpty()){
+            if(!oPe.validarAsignacion(Asig_dni_empleado,"desktop_asignacion_empleado_emp_cont","dni_empleado","id_emp_contrata",id_empresa_contrata())){
+            
+            int key= oFunc.contadorPrimario("desktop_asignacion_empleado_emp_cont");
+            String strSqlStmt;
+            String Query ;
+            strSqlStmt="INSERT INTO desktop_asignacion_empleado_emp_cont (";
+            Query="Values(";
+            strSqlStmt += "id_asignacion";Query +=key+"";
+            strSqlStmt += ",dni_empleado";Query += ",'"+ Asig_dni_empleado.getText().trim()+ "'";           
+           
+            strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
+            strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+            
+            System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+                oFunc.SubSistemaMensajeInformacion("Se ha registrado con Éxito");
+                btnLimpiarRoles();
+            } else{
+                    oFunc.SubSistemaMensajeError("No se pudo Registrar");   
+                    }  
+            }
+             else                     
+                oFunc.SubSistemaMensajeError("No se puede repetir las asignaciones de empresa o contrata al empleado");
+}
+    }//GEN-LAST:event_btnAsignarRolActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void Asig_dni_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Asig_dni_empleadoActionPerformed
+       asignarRol();
+    }//GEN-LAST:event_Asig_dni_empleadoActionPerformed
+
+    private void btnLimpiarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarRolActionPerformed
+       btnLimpiarRoles();
+    }//GEN-LAST:event_btnLimpiarRolActionPerformed
+
+  // asignar rol con dni 
+    public void asignarRol(){
+    if(!Asig_dni_empleado.getText().isEmpty()){
+        String Sql="SELECT dp.dni, dp.nombres ||' '|| dp.apellidos as nombres from desktop_empleado as dp  "                
+                +"WHERE dni ='"+Asig_dni_empleado.getText().trim()+"'"; 
+                System.out.println(Sql);                
+        oConn.FnBoolQueryExecute(Sql);
+          try {
+                if (oConn.setResult.next()) {
+                    Asig_dni_empleado.setText(oConn.setResult.getString("dni"));
+                    asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));                    
+                               
+                    btnActualizarRol.setEnabled(false);
+                    btnLimpiarRol.setEnabled(true);
+                    btnAsignarRol.setEnabled(true);
+                    }else{
+                    oFunc.SubSistemaMensajeError("No se encuentra registro del empleado");
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                oFunc.SubSistemaMensajeInformacion("Error:" + ex.getMessage());
+            }
+        }
+        else
+            oFunc.SubSistemaMensajeError("Debes crear al empleado");
+        if(cboAsignarRol.getSelectedIndex() > 0){
+            }
+                else oFunc.SubSistemaMensajeError("Selecciona el Rol "); 
+    }
+    
+    
+ public void btnLimpiarRoles(){
+    Asig_dni_empleado.setText(null);
+    asig_nombre_empleado.setText(null);
+    cboAsignarRol.setSelectedItem("N/A");
+    btnActualizarRol.setEnabled(true);
+    btnLimpiarRol.setEnabled(true);
+    btnAsignarRol.setEnabled(true);
+
+}
+ private void llenar_tabla_hc(){
+ try {
+                model = new DefaultTableModel(){
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return false;
+                    }};
+                String vSql="SELECT  asig_ec.id_asignacion, asig_ec.dni_empleado, desk_emple.nombres || ' ' || desk_emple.apellidos AS nombres,\n" +
+                    " (SELECT razon_social FROM desktop_empresa_contrata  WHERE tipo_emp_cont = 'EMPRESA' AND id_emp_contrata = asig_ec.id_emp_contrata) AS razon_social_empresa,\n" +
+                    " (SELECT razon_social FROM desktop_empresa_contrata  WHERE tipo_emp_cont = 'CONTRATA'AND id_emp_contrata = asig_ec.id_emp_contrata) AS razon_social_contrata\n" +
+                    " , dec.tipo_emp_cont  FROM desktop_asignacion_empleado_emp_cont AS asig_ec  inner join desktop_empresa_contrata as dec on asig_ec.id_emp_contrata=dec.id_emp_contrata \n" +
+                    "   INNER JOIN desktop_empleado AS desk_emple ON asig_ec.dni_empleado = desk_emple.dni;" ;
+                System.out.println(vSql);
+                if (oConn.FnBoolQueryExecute(vSql))
+                {
+                    try  {
+                        java.sql.ResultSetMetaData rsmt = oConn.setResult.getMetaData();
+                        int CantidaColumnas = rsmt.getColumnCount();
+                        for (int i = 1; i <= CantidaColumnas; i++) {
+                            model.addColumn(rsmt.getColumnLabel(i));
+                        }
+                        while (oConn.setResult.next())
+                        {
+                            Object [] Fila = new Object[CantidaColumnas];
+                            for (int i = 0; i < CantidaColumnas; i++) {
+                                Fila[i] = oConn.setResult.getObject(i+1);
+                            }
+                            model.addRow(Fila);
+                        }
+                        TablaAsignacionRol.setModel(model);
+                        oConn.setResult.close();
+                    }
+                    catch (SQLException ex)
+                    {
+                        oFunc.SubSistemaMensajeError(ex.toString());
+                        Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistrarEmpleUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}   
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -205,18 +344,17 @@ public class AsignarRoles extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField Asig_dni_empleado;
+    private javax.swing.JTable TablaAsignacionRol;
+    private javax.swing.JTextField asig_nombre_empleado;
+    private javax.swing.JToggleButton btnActualizarRol;
+    private javax.swing.JToggleButton btnAsignarRol;
+    private javax.swing.JToggleButton btnLimpiarRol;
+    private javax.swing.JComboBox<String> cboAsignarRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
 }

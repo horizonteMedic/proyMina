@@ -1339,16 +1339,13 @@ public class RegistrarPaciente extends javax.swing.JFrame {
        demo.setVisible(true);
     }//GEN-LAST:event_btnFirmaActionPerformed
 
-<<<<<<< HEAD
     private void cboEmpresaPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboEmpresaPopupMenuWillBecomeVisible
         // TODO add your handling code here:
     }//GEN-LAST:event_cboEmpresaPopupMenuWillBecomeVisible
-=======
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Ficha_triaje_panel_principal ft=new Ficha_triaje_panel_principal();
         ft.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
->>>>>>> 2e860466746ae262eda27012654ecb0147b09695
 public void BuscarPaciente(){
     if(!dni_paciente.getText().isEmpty()){
         String Sql="SELECT dni, p.nombres ||' '|| p.apellidos as nombres, EXTRACT(YEAR FROM age(current_date,p.fecha_nacimiento)) AS  edad from desktop_datos_pacientes as p  "                

@@ -3,9 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/FichaTriaje.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/RegistrarEmpleUser.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/TeamHM.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/AsignarRoles.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/PrincipalMina.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarPaciente.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/FichaTriaje.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/AsignarEmpresaContrata.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/modelo/clsOperacionesUsuarios.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarRol.java</file>
+=======
+            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/RegistrarEmpleUser.java</file>
+            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/RegistrarPaciente.java</file>
+>>>>>>> 8257b0dc447059ba9f5b4f66e14b1c5b4b72e565
+>>>>>>> be462fd0513eba9f338c1225b9bcb176fec838da
         </group>
     </open-files>
 </project-private>

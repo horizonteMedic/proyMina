@@ -1052,16 +1052,12 @@ public class RegistrarPaciente extends javax.swing.JFrame {
                     else
                     FEMENINO.setSelected(true);
                     String provincia=oConn.setResult.getString("nombre_provincia").trim().toUpperCase();
+                    
                     String distrito=oConn.setResult.getString("nombre_distrito").trim().toUpperCase();
-
-                    
-                    
-
                     String estadoCivil=oConn.setResult.getString("estado_civil").trim().toUpperCase();
                                     System.out.println(estadoCivil);                
                     String nivelEstudio=oConn.setResult.getString("nivel_estudio").trim().toUpperCase();
                                     System.out.println(nivelEstudio);      
-
                     cboDepartamento.setSelectedItem(oConn.setResult.getString("nombre_departamento").trim().toUpperCase());
                     cboProvincia.setSelectedItem(provincia);
                     cboDistrito.setSelectedItem(distrito);
@@ -1342,10 +1338,18 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     private void cboEmpresaPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboEmpresaPopupMenuWillBecomeVisible
         // TODO add your handling code here:
     }//GEN-LAST:event_cboEmpresaPopupMenuWillBecomeVisible
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8257b0dc447059ba9f5b4f66e14b1c5b4b72e565
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Ficha_triaje_panel_principal ft=new Ficha_triaje_panel_principal();
         ft.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8257b0dc447059ba9f5b4f66e14b1c5b4b72e565
 public void BuscarPaciente(){
     if(!dni_paciente.getText().isEmpty()){
         String Sql="SELECT dni, p.nombres ||' '|| p.apellidos as nombres, EXTRACT(YEAR FROM age(current_date,p.fecha_nacimiento)) AS  edad from desktop_datos_pacientes as p  "                

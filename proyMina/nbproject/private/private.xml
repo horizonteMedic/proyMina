@@ -3,16 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/FichaTriaje.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/RegistrarEmpleUser.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/RegistrarPaciente.java</file>
+            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/modelo/clsGlobales.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/HistoriaClinicaGeriatria.java</file>
-=======
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarPaciente.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/PermisosVisuales.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarEmpleUser.java</file>
-            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarEmpContra.java</file>
->>>>>>> 2fe637f5ba6d9c4d3e351bcae9428c18957c9291
+            <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/Ficha_triaje_panel_principal.java</file>
         </group>
     </open-files>
 </project-private>

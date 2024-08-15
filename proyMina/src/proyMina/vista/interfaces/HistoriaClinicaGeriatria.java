@@ -4,17 +4,38 @@
  */
 package proyMina.vista.interfaces;
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.json.JSONObject;
+import proyMina.modelo.DisableSSLVerification;
 import proyMina.modelo.clsConnection;
 import proyMina.modelo.clsFunciones;
 import proyMina.modelo.clsGlobales;
 import proyMina.modelo.clsOperacionesUsuarios;
+import sun.misc.BASE64Decoder;
 
 /**
  *
@@ -26,7 +47,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     clsConnection oConn = new clsConnection();
     clsFunciones oFunc = new clsFunciones();
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
-    DefaultTableModel model;   
+    DefaultTableModel model; 
+    int dni=0;
+    String base64String="";
     /**
      * Creates new form HistoriaClinicaGeriatria
      */
@@ -46,6 +69,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(this.cboMedicamento4);
        cargarMedicamentos();
         cargarDiagnosticos();
+        calcularDniUser();
     }
 
     /**
@@ -1442,7 +1466,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       
+        try {       
+            print();
+        } catch (Exception ex) {
+            Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -1698,7 +1726,95 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
-    
+            
+                
+      public void consumirApiSello() throws Exception {
+      SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+         try {
+            DisableSSLVerification.disableSSL();  
+            URL url = new URL("https://hmintegracion.azurewebsites.net/api/v01/st/registros/detalleArchivoEmpleado/"+dni+"/FIRMA");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
+
+
+            int code = con.getResponseCode();
+            System.out.println("Response Code: " + code);
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                System.out.println("Response line: " + responseLine.trim());
+                    response.append(responseLine.trim());
+                }
+                  System.out.println("Response: " + response.toString());
+                     JSONObject objectJson = new JSONObject(response.toString());
+                  System.out.println("Response: " + objectJson);
+                  System.out.println("Response: " + objectJson.getString("base64"));
+
+                     base64String=(objectJson.getString("base64"));
+                 
+
+
+                    /*
+                    System.out.println("el campo es:"+objectJson.getLong("id_resp"));
+                    
+                    System.out.println("el campo es:"+objectJson.getString("rucEmpresa"));
+                    System.out.println("el campo es:"+objectJson.getString("rucContrata"));
+                    System.out.println("el campo es:"+objectJson.getString("cargo"));
+                    System.out.println("el campo es:"+objectJson.getString("area"));
+                    System.out.println("el campo es:"+objectJson.getString("tipoExamen"));
+                    System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
+                      */
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+   
+   
+          private void print() throws Exception{
+                consumirApiSello();
+                Map parameters = new HashMap(); 
+               // parameters.put("Norden",cod);          
+              //  InputStream targetStream = IOUtils.toInputStream(base64String);  
+              //
+                BufferedImage image = null;
+                byte[] imageByte;
+
+                BASE64Decoder decoder = new BASE64Decoder();
+                    imageByte = decoder.decodeBuffer(base64String);
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+                image = ImageIO.read(bis);
+                bis.close();
+                
+                
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(image, "png", baos); 
+                InputStream stream = new ByteArrayInputStream(baos.toByteArray());
+                
+                
+                parameters.put("Firma",stream);             
+
+                System.out.println("los parametros son: "+parameters);
+                  try 
+                {
+                    String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"HC_GERIATRICO.jasper";
+                    JasperReport myReport = (JasperReport) JRLoader.loadObjectFromFile(direccionReporte);
+                    JasperPrint myPrint = JasperFillManager.fillReport(myReport,parameters,clsConnection.oConnection);
+                    JasperViewer viewer = new JasperViewer(myPrint, false);
+                    viewer.setTitle("HISTORIA CLINICA");
+                   // viewer.setAlwaysOnTop(true);
+                    viewer.setVisible(true);
+                 } catch (JRException ex) {
+                    Logger.getLogger(FichaTriaje.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ } 
         
             private void cargarDiagnosticosDescripcion(int nivel){
             try {
@@ -2002,7 +2118,47 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     }  
     }
     
-    
+         public void calcularDniUser()
+    {
+        // Para devolver el resultado
+        
+        // Para el Query
+        String sQuery="";
+        
+        // Prepara el Query
+        sQuery  = "select dni from desktop_empleado where name_user='"+clsGlobales.sUser+"'";
+        
+   
+        //Ejecuta el Query
+        oConn.FnBoolQueryExecute(sQuery);
+        
+        // Capturo el Error
+        try {
+            
+            // Verifico que haya habido resultados
+            if (oConn.setResult.next())
+            {
+                
+               dni= oConn.setResult.getInt("dni");
+                // Resultado
+//             oFunc.SubSistemaMensajeError("Número de Orden Utilizado");
+//             txtNumero.setText(null);
+//             txtNumero.requestFocus();
+            }
+            
+            // Cierro los Resultados
+            oConn.sqlStmt.close();
+            
+        } catch (SQLException ex) {
+         
+        }
+        
+        
+        
+        // Retorna el Resultado
+        
+    }
+     
     
     /**
      * @param args the command line arguments

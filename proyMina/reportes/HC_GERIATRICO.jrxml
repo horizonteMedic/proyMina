@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistoriaClinica" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3eb51c5-67f5-4f58-b008-e021877afc7f">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="246"/>
+	<property name="ireport.y" value="247"/>
 	<style name="miestilo">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[new Boolean($F{color}==1)]]></conditionExpression>
@@ -233,6 +233,9 @@
 			<style mode="Opaque" forecolor="#FF0000"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="Firma" class="java.io.InputStream">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[select 'N/A' AS empresa, 'N/A' AS contrata, 'JOSUE SPENCER ROJAS SIGUENZA' AS nombres, 29 as edad, '1995-07-19' as fecha_nacimiento, '2024-08-13' as fecha_examen, 4 as n_orden, 'SOLTERO' AS estado_civil, 942251815 AS celular, 'Resfrio severo, fiebre por encima de lo normal, se recomienda descanso medico' as diag, 6 as cantidad, 'cada 12 horas' as frecuencia, 6 as dias, 'consumir despues de comidas' as recomendacion]]>
 	</queryString>
@@ -696,6 +699,101 @@
 				<reportElement x="339" y="651" width="32" height="20" uuid="385806d3-9946-41bb-adbd-4c2e6e03cc4e"/>
 				<textFieldExpression><![CDATA[$F{dias}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="240" y="671" width="85" height="38" uuid="d72c698b-3543-4e04-886e-9c40eb02072a"/>
+				<imageExpression><![CDATA[$P{Firma}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="74" y="101" width="35" height="12" uuid="6854faf0-78a9-4268-9a2b-30e17911a94c"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1.64 m]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="120" width="35" height="12" uuid="7ee68341-c9b4-4742-bc2a-0e6022d6c000"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[69 KG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="135" width="35" height="12" uuid="05ddabbc-2adf-444a-8e85-02741a4e902c"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[25.65]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="151" width="35" height="12" uuid="7684648b-d044-45d4-97a3-316e590347ca"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[78]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="166" width="35" height="12" uuid="8a163cbb-30c0-4e8a-9f32-122f26e148d2"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1.11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="104" width="35" height="12" uuid="ea3352cb-1e5f-4443-bbea-5ff018c3d035"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[70]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="120" width="35" height="12" uuid="7573a69b-32ce-47d5-a4f5-e8818fd021d7"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[36]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="135" width="35" height="12" uuid="8cfc0c22-888b-4616-ba42-7624931563dc"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[80]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="151" width="35" height="12" uuid="1e85c9d2-69f4-405d-b990-8b13b63d68b6"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[97]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="166" width="35" height="12" uuid="900e0885-8d6c-4f14-94f7-d10ccccbd0d0"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[35]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="101" width="35" height="12" uuid="30916234-48f3-48a8-9a26-d9b175f5395f"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="117" width="35" height="12" uuid="08054333-c7dc-4c4d-9d43-c484267b906e"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="132" width="35" height="12" uuid="cdb4d088-6dca-4629-b418-2d7c1538c574"/>
+				<textElement>
+					<font fontName="Calibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
 		</band>
 		<band height="13"/>
 	</detail>

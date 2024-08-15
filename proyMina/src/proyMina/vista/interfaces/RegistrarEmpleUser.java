@@ -116,6 +116,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         jComboBoxEstadoCivil = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldEspecialidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -137,8 +139,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
         });
         RegistrarEmpresaoContrata.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 120, -1));
 
-        jLabel2.setText("Contraseña :");
-        RegistrarEmpresaoContrata.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
+        jLabel2.setText("Especialidad:");
+        RegistrarEmpresaoContrata.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
 
         jLabel3.setText("*Fecha Nacimiento :");
         RegistrarEmpresaoContrata.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
@@ -310,7 +312,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 estadoActionPerformed(evt);
             }
         });
-        RegistrarEmpresaoContrata.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 90, -1));
+        RegistrarEmpresaoContrata.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 240, 90, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -438,6 +440,10 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             }
         });
         RegistrarEmpresaoContrata.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 130, -1));
+
+        jLabel12.setText("Contraseña :");
+        RegistrarEmpresaoContrata.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
+        RegistrarEmpresaoContrata.add(jTextFieldEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 140, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -612,7 +618,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                   + "translate(des_ubi_pro.nombre_provincia,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_provincia ,"
                   + "translate(des_ubi_dep.nombre_departamento,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_departamento,"+ 
                 "dni,apellidos,nombres, direccion,celular, sexo, cargo,cip, correo_elect,estado,name_user,pass,\n" +
-                "direccion, fecha_nacimiento, des_emple.estado_civil from desktop_empleado as des_emple \n" +
+                "direccion, fecha_nacimiento, des_emple.estado_civil,des_emple.especialidad from desktop_empleado as des_emple \n" +
                 "left join desktop_ubigeo_distrito as des_ubi_dis on des_emple.ubigeo=des_ubi_dis.id_distrito_ubigeo \n" +
                 "left join desktop_ubigeo_provincia as des_ubi_pro on des_ubi_dis.id_provincia_ubigeo=des_ubi_pro.id_provincia_ubigeo\n" +
                 "left join desktop_ubigeo_departamento as des_ubi_dep on des_ubi_pro.id_departamento_ubigeo=des_ubi_dep.id_departamento_ubigeo\n" +
@@ -633,6 +639,8 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                     estado.setSelected(oConn.setResult.getBoolean("estado"));
                     name_user.setText(oConn.setResult.getString("name_user")); 
                     pass.setText(oConn.setResult.getString("pass"));
+                    jTextFieldEspecialidad.setText(oConn.setResult.getString("especialidad"));
+                    
                     if(oConn.setResult.getString("sexo").contains("MASCULINO"))
                     MASCULINO.setSelected(true);
                     else
@@ -979,6 +987,11 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
                 }         
             Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
             Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
+             if(jTextFieldEspecialidad.getText().toString().length()>1)
+            Query += ",especialidad='"+jTextFieldEspecialidad.getText().toString().trim()+ "'";
+             else
+            Query += ",especialidad="+null;
+                 
             Query +=" WHERE dni='" + Key + "'";
             System.out.println("El comando es :" + strSqlStmt + Query );
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + Query)){
@@ -1206,6 +1219,13 @@ public String Ubigeo(){
                 }
             strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
             strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+            if(jTextFieldEspecialidad.getText().toString().length()>1){
+            strSqlStmt += ",especialidad";Query += ",'"+jTextFieldEspecialidad.getText().toString().trim()+ "'";
+            }
+            else
+            {
+            strSqlStmt += ",especialidad";Query += ","+null;
+            }
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado el Empleado con Éxito");
@@ -1254,6 +1274,7 @@ cip.setText(null);
 correo_elect.setText(null);
 dni.setText(null);
 direccion.setText(null);
+jTextFieldEspecialidad.setText(null);
 fecha_nacimiento.setDate(new Date());
 cboDepartamento.setSelectedItem("Seleccione una opcion");
 cboProvincia.setSelectedItem("Seleccione una opcion");
@@ -1375,6 +1396,7 @@ private void llenar_tabla_hc(){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1392,6 +1414,7 @@ private void llenar_tabla_hc(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextFieldEspecialidad;
     private javax.swing.JTextField name_user;
     private javax.swing.JTextField nombres;
     private javax.swing.JTextField pass;

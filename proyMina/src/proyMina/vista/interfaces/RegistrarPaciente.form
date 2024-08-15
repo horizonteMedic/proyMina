@@ -206,7 +206,7 @@
                                               <Component id="cboNivelEstudios" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="9" max="32767" attributes="0"/>
+                                          <EmptySpace pref="18" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="lugar_nacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -301,7 +301,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="362" max="32767" attributes="0"/>
+                          <EmptySpace pref="368" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -656,7 +656,7 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -693,13 +693,9 @@
                               </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-=======
-                              <EmptySpace min="0" pref="366" max="32767" attributes="0"/>
->>>>>>> 2fe637f5ba6d9c4d3e351bcae9428c18957c9291
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -919,7 +915,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="540" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="557" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -953,6 +949,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Triaje"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

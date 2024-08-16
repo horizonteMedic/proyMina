@@ -1683,7 +1683,6 @@ public String cargaRuc(String tipo , String razon_soc){
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado al paciente con Éxito");
-                btnLimpiar();
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo registrar datos obligatorios incompletos");
                     
@@ -1694,6 +1693,12 @@ public String cargaRuc(String tipo , String razon_soc){
             else                     
                 oFunc.SubSistemaMensajeError("El Dni ya se encuentra Registrado");
     }
+        
+        dni_paciente.setText(dni.getText());
+        dni_paciente.requestFocus();
+        jTabbedPane2.requestFocusInWindow();
+                        btnLimpiar();
+
     }
 private boolean Validar(){
    boolean bResultado=true;

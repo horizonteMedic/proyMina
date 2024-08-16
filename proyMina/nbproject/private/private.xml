@@ -3,12 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/Ficha_triaje_panel_principal.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/AsignarRoles.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/PrincipalMina.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/FichaTriaje.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/RegistrarPaciente.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/NewJFrame.java</file>
+            <file>file:/D:/PROYECTO%20MINA/proyMina/proyMina/src/proyMina/vista/interfaces/AsignacionVistas.java</file>
+=======
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/PrincipalMina.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/RegistrarSede.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/modelo/clsGlobales.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/TicketHistoriaClinica.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/HistoriaClinicaGeriatria.java</file>
             <file>file:/C:/Users/josue/Documents/PROY%20MINA/codigo%20fuente/proyMina/src/proyMina/vista/interfaces/EvaluacionOftalmologica.java</file>
+>>>>>>> ef83aa8e7fa204a65be5e2f17df9506ccbf4b43d
         </group>
     </open-files>
 </project-private>

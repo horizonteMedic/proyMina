@@ -24,8 +24,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
     public RegistrarRol() {
         initComponents();
         limpiar();
-        agregar();
-        btnEditar.setEnabled(false);
+        btnEstado.setSelected(true);
         this.setLocationRelativeTo(null);
     }
 
@@ -38,10 +37,11 @@ public final class RegistrarRol extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         descripcion = new javax.swing.JTextField();
-        estado = new javax.swing.JCheckBox();
+        btnEstado = new javax.swing.JCheckBox();
         btnEditar = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
-        agregar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnRegistrarRoles = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TbRol = new javax.swing.JTable();
@@ -61,7 +61,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
 
         jLabel2.setText("Descripción : ");
 
-        estado.setText("Activo");
+        btnEstado.setText("Activo");
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
         btnEditar.setText("Editar");
@@ -79,11 +79,19 @@ public final class RegistrarRol extends javax.swing.JFrame {
             }
         });
 
-        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
-        agregar.setText("Guardar / Actualizar");
-        agregar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarRoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
+        btnRegistrarRoles.setText("Registrar");
+        btnRegistrarRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarRolesActionPerformed(evt);
             }
         });
 
@@ -98,26 +106,21 @@ public final class RegistrarRol extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(estado)
+                    .addComponent(btnEstado)
                     .addComponent(nombre_rol, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                     .addComponent(descripcion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegistrarRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(152, 152, 152))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(limpiar)
-                        .addGap(12, 12, 12))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -127,10 +130,17 @@ public final class RegistrarRol extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(estado)
-                    .addComponent(agregar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEstado))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(limpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegistrarRoles)))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -172,7 +182,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,7 +192,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -202,7 +212,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
                 if (oConn.setResult.next()) {
                     nombre_rol.setText(oConn.setResult.getString("nombre_rol"));
                     descripcion.setText(oConn.setResult.getString("descripcion"));
-                    estado.setSelected(oConn.setResult.getBoolean("estado"));
+                    btnEstado.setSelected(oConn.setResult.getBoolean("estado"));
                     }else{
                     oFunc.SubSistemaMensajeError("No se encuentra registro del rol ");
                 }
@@ -214,7 +224,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
             else
                 { oFunc.SubSistemaMensajeError("El rol si existe si desea actualizar - click Editar");
                     btnEditar.setEnabled(true);
-                    agregar.setEnabled(false);
+                    btnActualizar.setEnabled(false);
                 }
             }        
     }//GEN-LAST:event_nombre_rolActionPerformed
@@ -223,13 +233,12 @@ public final class RegistrarRol extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_limpiarActionPerformed
 
-    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
       if(oPe.validarText(nombre_rol, "desktop_rol","nombre_rol"))  {
         actualizar();
-       }else{
-        agregar();
        }
-    }//GEN-LAST:event_agregarActionPerformed
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
       if(!nombre_rol.getText().isEmpty()){
@@ -242,8 +251,8 @@ public final class RegistrarRol extends javax.swing.JFrame {
                 if (oConn.setResult.next()) {
                     nombre_rol.setText(oConn.setResult.getString("nombre_rol"));
                     descripcion.setText(oConn.setResult.getString("descripcion"));
-                    estado.setSelected(oConn.setResult.getBoolean("estado"));
-                    agregar.setEnabled(true);
+                    btnEstado.setSelected(oConn.setResult.getBoolean("estado"));
+                    btnActualizar.setEnabled(true);
                     btnEditar.setEnabled(false);
                     }else{
                     oFunc.SubSistemaMensajeError("No se encuentra registro del rol ");
@@ -256,6 +265,10 @@ public final class RegistrarRol extends javax.swing.JFrame {
       else
             oFunc.SubSistemaMensajeError("debes crear un nuevo rol");
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnRegistrarRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarRolesActionPerformed
+        agregar();
+    }//GEN-LAST:event_btnRegistrarRolesActionPerformed
 
     /**
      */
@@ -271,7 +284,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
             if (!nombre_rol.getText().isEmpty() )
                 {strSqlStmt += "nombre_rol";Query += "'"+nombre_rol.getText().toUpperCase().trim()+"'";}
                 strSqlStmt += ",descripcion";Query += ",'"+descripcion.getText().toUpperCase().trim()+ "'";
-                strSqlStmt += ",estado";Query += ",'"+estado.isSelected()+ "'";
+                strSqlStmt += ",estado";Query += ",'"+btnEstado.isSelected()+ "'";
                 //Auditoria
                 strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
                 strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
@@ -295,7 +308,7 @@ public final class RegistrarRol extends javax.swing.JFrame {
             Query="SET ";          
             Query += "nombre_rol='"+nombre_rol.getText().toUpperCase().trim()+ "'";
             Query += ",descripcion='"+descripcion.getText().toUpperCase().trim()+ "'";
-            Query += ",estado='"+estado.isSelected()+ "'";
+            Query += ",estado='"+btnEstado.isSelected()+ "'";
             Query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
             Query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
 
@@ -313,9 +326,9 @@ public final class RegistrarRol extends javax.swing.JFrame {
     public void limpiar(){
         nombre_rol.setText(null);
         descripcion.setText(null);
-        estado.setSelected(true);
+        btnEstado.setSelected(true);
         btnEditar.setEnabled(false);
-        agregar.setEnabled(true);
+        btnActualizar.setEnabled(true);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -352,10 +365,11 @@ public final class RegistrarRol extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TbRol;
-    private javax.swing.JButton agregar;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JCheckBox btnEstado;
+    private javax.swing.JToggleButton btnRegistrarRoles;
     private javax.swing.JTextField descripcion;
-    private javax.swing.JCheckBox estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

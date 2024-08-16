@@ -4,17 +4,41 @@
  */
 package proyMina.vista.interfaces;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import proyMina.modelo.clsConnection;
+import proyMina.modelo.clsFunciones;
+import proyMina.modelo.clsGlobales;
+import proyMina.modelo.clsOperacionesUsuarios;
+
 /**
  *
  * @author Sistemas
  */
 public class AsignarSede extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AsignarRoles
-     */
+    Date dateHoy = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+    clsConnection oConn = new clsConnection();
+    clsFunciones oFunc = new clsFunciones();
+    clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
+    DefaultTableModel model; 
+    int id_asignacion = 0;
+    
+    
     public AsignarSede() {
         initComponents();
+        AutoCompleteDecorator.decorate(this.cboAsignarSede);
+        listarSede();
+        llenar_tabla_sede();
+        this.setLocationRelativeTo(null);
+        
+        
     }
 
     /**
@@ -27,24 +51,35 @@ public class AsignarSede extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        dni_empleado_sede = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        nombres_empleado_sede = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
+        cboAsignarSede = new javax.swing.JComboBox<>();
+        btnActualizarSede = new javax.swing.JToggleButton();
+        btnLimpiarSede = new javax.swing.JToggleButton();
+        btnAsignarSede = new javax.swing.JToggleButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_sede_asignacion = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Asignar Sede ");
+
+        jPanel1.setToolTipText("");
+
+        dni_empleado_sede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dni_empleado_sedeActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Dni :");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        nombres_empleado_sede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                nombres_empleado_sedeActionPerformed(evt);
             }
         });
 
@@ -52,102 +87,366 @@ public class AsignarSede extends javax.swing.JFrame {
 
         jLabel3.setText("Asignar Sede :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboAsignarSede.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A" }));
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/configuracion.png"))); // NOI18N
-        jToggleButton1.setText("Editar");
-
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
-        jToggleButton2.setText("Actualizar");
-
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
-        jToggleButton3.setText("Limpiar");
-
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
-        jToggleButton4.setText("Asignar");
-        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizarSede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
+        btnActualizarSede.setText("Actualizar");
+        btnActualizarSede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton4ActionPerformed(evt);
+                btnActualizarSedeActionPerformed(evt);
             }
         });
+
+        btnLimpiarSede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
+        btnLimpiarSede.setText("Limpiar");
+        btnLimpiarSede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarSedeActionPerformed(evt);
+            }
+        });
+
+        btnAsignarSede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
+        btnAsignarSede.setText("Asignar");
+        btnAsignarSede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarSedeActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel2.setForeground(new java.awt.Color(102, 204, 255));
+
+        tabla_sede_asignacion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabla_sede_asignacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabla_sede_asignacionMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabla_sede_asignacion);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, 0, 288, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombres_empleado_sede, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dni_empleado_sede, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboAsignarSede, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnLimpiarSede, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnActualizarSede, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAsignarSede, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 4, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToggleButton2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dni_empleado_sede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton4))))
+                            .addComponent(jLabel2)
+                            .addComponent(nombres_empleado_sede, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboAsignarSede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(btnActualizarSede)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLimpiarSede)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(btnAsignarSede)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void nombres_empleado_sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombres_empleado_sedeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_nombres_empleado_sedeActionPerformed
 
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+    private void btnAsignarSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarSedeActionPerformed
+              if (!dni_empleado_sede.getText().isEmpty()){
+            if(!oPe.validar(dni_empleado_sede,"desktop_asignacion_empleado_sede","dni_empleado")){
+            
+            int key= oFunc.contadorPrimario("desktop_asignacion_empleado_sede");
+            String strSqlStmt;
+            String Query ;
+            strSqlStmt="INSERT INTO desktop_asignacion_empleado_sede (";
+            Query="Values(";
+            strSqlStmt += "id_asignacion";Query +=key+"";
+            strSqlStmt += ",dni_empleado";Query += ","+ dni_empleado_sede.getText().trim();           
+            strSqlStmt += ",nombre_sede";Query += ",'" +cboAsignarSede.getSelectedItem().toString().trim() + "'";
+            strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
+            strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+            
+            System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+                oFunc.SubSistemaMensajeInformacion("Se ha registrado con Éxito");
+                btnLimpiarSede();
+                llenar_tabla_sede();
+            } else{
+                    oFunc.SubSistemaMensajeError("No se pudo Registrar");   
+                    }  
+            }
+             else                     
+                oFunc.SubSistemaMensajeError("No puede repetir la sede al mismo empleado");
+}
+    }//GEN-LAST:event_btnAsignarSedeActionPerformed
+
+    private void dni_empleado_sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dni_empleado_sedeActionPerformed
+      asignacion_Sede();
+    }//GEN-LAST:event_dni_empleado_sedeActionPerformed
+
+    private void btnActualizarSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarSedeActionPerformed
+      ActualizarSede();
+    }//GEN-LAST:event_btnActualizarSedeActionPerformed
+
+    private void btnLimpiarSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarSedeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
+    }//GEN-LAST:event_btnLimpiarSedeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void tabla_sede_asignacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_sede_asignacionMousePressed
+       if (evt.getClickCount() == 1) {  
+        try {
+            Integer cod = Integer.valueOf(tabla_sede_asignacion.getValueAt(tabla_sede_asignacion.getSelectedRow(), 1).toString());
+            id_asignacion = Integer.valueOf(tabla_sede_asignacion.getValueAt(tabla_sede_asignacion.getSelectedRow(), 0).toString());
+            
+            // Construir la consulta SQL
+            String Sql = "SELECT asig_sede.dni_empleado, " +
+                         "desk_emple.nombres || ' ' || desk_emple.apellidos AS nombres, " +                     
+                         "asig_sede.nombre_sede " +
+                         "FROM desktop_asignacion_empleado_sede AS asig_sede " +
+                         "INNER JOIN desktop_empleado AS desk_emple ON asig_sede.dni_empleado = desk_emple.dni " +
+                         "WHERE asig_sede.dni_empleado = " + cod;
+
+            System.out.println(Sql);
+
+            // Ejecutar la consulta
+            oConn.FnBoolQueryExecute(Sql);
+            if (oConn.setResult.next()) {
+                dni_empleado_sede.setText(oConn.setResult.getString("dni_empleado"));
+                nombres_empleado_sede.setText(oConn.setResult.getString("nombres"));           
+                cboAsignarSede.setSelectedItem(oConn.setResult.getString("nombre_sede"));           
+
+                btnActualizarSede.setEnabled(true);
+                btnLimpiarSede.setEnabled(true);
+                btnAsignarSede.setEnabled(false);      
+            }
+            oConn.setResult.close();
+            oConn.sqlStmt.close();
+        } catch (NumberFormatException e) {
+            oFunc.SubSistemaMensajeError("Formato de número incorrecto: " + e.getMessage());
+        } catch (SQLException e) {
+            oFunc.SubSistemaMensajeError("Error al ejecutar la consulta: " + e.getMessage());
+        }
+    }
+    }//GEN-LAST:event_tabla_sede_asignacionMousePressed
+    public void ActualizarSede(){
+    String strSqlStmt;
+        String query;
+        strSqlStmt = "UPDATE desktop_asignacion_empleado_sede ";
+        
+        query = " SET "  ;
+        query += " dni_empleado ="+ dni_empleado_sede.getText().trim();
+        query += ",nombre_sede='" +cboAsignarSede.getSelectedItem().toString().trim() + "'";
+        query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
+        query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
+        query += " WHERE id_asignacion ="+ id_asignacion;
+      
+        System.out.println("El comando es :" + strSqlStmt + query);
+        
+       
+        if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + query)) {
+            oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+            llenar_tabla_sede();
+            btnLimpiarSede();
+            
+        } else {
+            oFunc.SubSistemaMensajeError("Error en registro");
+        }            
+    }
+
+    //llamo a dni , nombres de la tabla desktop_empleado
+    public void asignacion_Sede(){
+    if(!dni_empleado_sede.getText().isEmpty()){
+        String Sql="SELECT dp.dni, dp.nombres ||' '|| dp.apellidos as nombres from desktop_empleado as dp  "                
+                +"WHERE dni ='"+dni_empleado_sede.getText().trim()+"'"; 
+                System.out.println(Sql);                
+        oConn.FnBoolQueryExecute(Sql);
+          try {
+                if (oConn.setResult.next()) {
+                    dni_empleado_sede.setText(oConn.setResult.getString("dni"));
+                    nombres_empleado_sede.setText(oConn.setResult.getString("nombres"));                    
+                               
+                    btnActualizarSede.setEnabled(false);
+                    btnLimpiarSede.setEnabled(true);
+                    btnAsignarSede.setEnabled(true);
+                    }else{
+                    oFunc.SubSistemaMensajeError("No se encuentra registro del empleado");
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                oFunc.SubSistemaMensajeInformacion("Error:" + ex.getMessage());
+            }
+        }
+        else
+            oFunc.SubSistemaMensajeError("Debes crear al empleado");
+        if(cboAsignarSede.getSelectedIndex() > 0){
+            }
+                else oFunc.SubSistemaMensajeError("Selecciona Sede"); 
+    }
+    
+    
+    // listara sedes creadas 
+    private void listarSede(){
+    String sQuery;  
+        // Prepara el Query
+        sQuery ="select nombre_sede from  desktop_sede ";        
+        System.out.println(sQuery);
+        if (oConn.FnBoolQueryExecute(sQuery))
+        {
+            try 
+            {
+                 while (oConn.setResult.next())
+                 {                     
+                     
+                     cboAsignarSede.addItem(oConn.setResult.getString("nombre_sede"));
+                    }
+            } 
+            catch (SQLException ex) 
+            {
+                
+                oFunc.SubSistemaMensajeInformacion(ex.toString());
+                Logger.getLogger(AsignarSede.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            oConn.setResult.close();
+            oConn.sqlStmt.close(); 
+        } catch (SQLException ex) {
+            Logger.getLogger(AsignarSede.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+    
+    private void llenar_tabla_sede(){
+        try {
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        
+        String vSql = "SELECT asig_sede.id_asignacion, asig_sede.dni_empleado, " +
+                          "desk_emple.nombres || ' ' || desk_emple.apellidos AS nombres, " +
+                          "asig_sede.nombre_sede " +
+                          "FROM desktop_asignacion_empleado_sede AS asig_sede " +
+                          "INNER JOIN desktop_empleado AS desk_emple " +
+                          "ON asig_sede.dni_empleado = desk_emple.dni;";
+
+        System.out.println(vSql);
+        
+        if (oConn.FnBoolQueryExecute(vSql)) {
+            try {
+                java.sql.ResultSetMetaData rsmt = oConn.setResult.getMetaData();
+                int CantidaColumnas = rsmt.getColumnCount();
+                for (int i = 1; i <= CantidaColumnas; i++) {
+                    model.addColumn(rsmt.getColumnLabel(i));
+                }
+                
+                while (oConn.setResult.next()) {
+                    Object[] Fila = new Object[CantidaColumnas];
+                    for (int i = 0; i < CantidaColumnas; i++) {
+                        Fila[i] = oConn.setResult.getObject(i + 1);
+                    }
+                    model.addRow(Fila);
+                }
+                
+                tabla_sede_asignacion.setModel(model);
+                oConn.setResult.close();
+            } catch (SQLException ex) {
+                oFunc.SubSistemaMensajeError(ex.toString());
+                Logger.getLogger(AsignarSede.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        oConn.sqlStmt.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(AsignarSede.class.getName()).log(Level.SEVERE, null, ex);
+    }   
+    }
+    private void btnLimpiarSede(){
+    dni_empleado_sede.setText(null);
+    nombres_empleado_sede.setText(null);
+    cboAsignarSede.setSelectedItem("N/A");
+    btnActualizarSede.setEnabled(true);
+    btnLimpiarSede.setEnabled(true);
+    btnAsignarSede.setEnabled(true);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -182,16 +481,18 @@ public class AsignarSede extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JToggleButton btnActualizarSede;
+    private javax.swing.JToggleButton btnAsignarSede;
+    private javax.swing.JToggleButton btnLimpiarSede;
+    private javax.swing.JComboBox<String> cboAsignarSede;
+    private javax.swing.JTextField dni_empleado_sede;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nombres_empleado_sede;
+    private javax.swing.JTable tabla_sede_asignacion;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,7 +20,7 @@ import proyMina.modelo.clsOperacionesUsuarios;
  *
  * @author Sistemas
  */
-public class AsignarRoles extends javax.swing.JFrame {
+public class AsignacionVistas extends javax.swing.JFrame {
 
     Date dateHoy = new Date();
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
@@ -30,7 +30,7 @@ public class AsignarRoles extends javax.swing.JFrame {
     DefaultTableModel model; 
     int id_asignacion = 0;
     
-    public AsignarRoles() {
+    public AsignacionVistas() {
         initComponents();
         AutoCompleteDecorator.decorate(this.cboAsignarRol);
         listarRol();
@@ -373,14 +373,14 @@ public class AsignarRoles extends javax.swing.JFrame {
             {
                 
                 oFunc.SubSistemaMensajeInformacion(ex.toString());
-                Logger.getLogger(AsignarRoles.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AsignacionVistas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         try {
             oConn.setResult.close();
             oConn.sqlStmt.close(); 
         } catch (SQLException ex) {
-            Logger.getLogger(AsignarRoles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AsignacionVistas.class.getName()).log(Level.SEVERE, null, ex);
         }    
   }  
     
@@ -431,13 +431,13 @@ public class AsignarRoles extends javax.swing.JFrame {
                 oConn.setResult.close();
             } catch (SQLException ex) {
                 oFunc.SubSistemaMensajeError(ex.toString());
-                Logger.getLogger(AsignarRoles.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AsignacionVistas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
         oConn.sqlStmt.close();
     } catch (SQLException ex) {
-        Logger.getLogger(AsignarRoles.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AsignacionVistas.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
 
@@ -458,20 +458,21 @@ public class AsignarRoles extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AsignarRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AsignacionVistas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AsignarRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AsignacionVistas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AsignarRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AsignacionVistas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AsignarRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AsignacionVistas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AsignarRoles().setVisible(true);
+                new AsignacionVistas().setVisible(true);
             }
         });
     }

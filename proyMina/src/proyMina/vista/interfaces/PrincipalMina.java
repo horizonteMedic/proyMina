@@ -44,12 +44,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     
 
     //jFrame
-    Ficha_triaje_panel_principal ft;
    
-    AccesosUsuario au;
-    Configuracion c;
-  
-    RegistrarPaciente rp;
     
     javax.swing.ImageIcon oIconoSi = new javax.swing.ImageIcon(ClassLoader.getSystemResource("imagenes/chek.gif"));
     
@@ -78,31 +73,26 @@ public class PrincipalMina extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        Admision = new javax.swing.JButton();
+        Paciente_Triaje = new javax.swing.JButton();
         Triaje = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        BuscarEmpleado = new javax.swing.JButton();
-        Sede = new javax.swing.JButton();
-        CrearRoles = new javax.swing.JButton();
-        PrivilegiosEmpleados = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        Configuraciones = new javax.swing.JButton();
+        Especialidad = new javax.swing.JButton();
+        Reportes = new javax.swing.JButton();
+        Accesos = new javax.swing.JButton();
+        PorAsignar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        Configuracion = new javax.swing.JButton();
+        Farmacia = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        salir_Sistema = new javax.swing.JMenuItem();
         CambiarUser = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -141,13 +131,13 @@ public class PrincipalMina extends javax.swing.JFrame {
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setName(""); // NOI18N
 
-        Admision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/admision.png"))); // NOI18N
-        Admision.setMaximumSize(new java.awt.Dimension(70, 70));
-        Admision.setMinimumSize(new java.awt.Dimension(70, 70));
-        Admision.setPreferredSize(new java.awt.Dimension(94, 72));
-        Admision.addActionListener(new java.awt.event.ActionListener() {
+        Paciente_Triaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/admision.png"))); // NOI18N
+        Paciente_Triaje.setMaximumSize(new java.awt.Dimension(70, 70));
+        Paciente_Triaje.setMinimumSize(new java.awt.Dimension(70, 70));
+        Paciente_Triaje.setPreferredSize(new java.awt.Dimension(94, 72));
+        Paciente_Triaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdmisionActionPerformed(evt);
+                Paciente_TriajeActionPerformed(evt);
             }
         });
 
@@ -161,93 +151,76 @@ public class PrincipalMina extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/paciente.png"))); // NOI18N
-        jButton8.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton8.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        Configuraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/Configuracionprincipal.png"))); // NOI18N
+        Configuraciones.setMaximumSize(new java.awt.Dimension(70, 70));
+        Configuraciones.setMinimumSize(new java.awt.Dimension(70, 70));
+        Configuraciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                ConfiguracionesActionPerformed(evt);
             }
         });
 
-        BuscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/empleado.png"))); // NOI18N
-        BuscarEmpleado.setMaximumSize(new java.awt.Dimension(70, 70));
-        BuscarEmpleado.setMinimumSize(new java.awt.Dimension(70, 70));
-        BuscarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+        Especialidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/especialidad.png"))); // NOI18N
+        Especialidad.setMaximumSize(new java.awt.Dimension(70, 70));
+        Especialidad.setMinimumSize(new java.awt.Dimension(70, 70));
+        Especialidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarEmpleadoActionPerformed(evt);
+                EspecialidadActionPerformed(evt);
             }
         });
 
-        Sede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/sede.png"))); // NOI18N
-        Sede.setMaximumSize(new java.awt.Dimension(70, 70));
-        Sede.setMinimumSize(new java.awt.Dimension(70, 70));
-        Sede.addActionListener(new java.awt.event.ActionListener() {
+        Reportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/reportes.png"))); // NOI18N
+        Reportes.setMaximumSize(new java.awt.Dimension(70, 70));
+        Reportes.setMinimumSize(new java.awt.Dimension(70, 70));
+        Reportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SedeActionPerformed(evt);
+                ReportesActionPerformed(evt);
             }
         });
 
-        CrearRoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/rol.png"))); // NOI18N
-        CrearRoles.setMaximumSize(new java.awt.Dimension(70, 70));
-        CrearRoles.setMinimumSize(new java.awt.Dimension(70, 70));
-        CrearRoles.addActionListener(new java.awt.event.ActionListener() {
+        Accesos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/privilegio.png"))); // NOI18N
+        Accesos.setMaximumSize(new java.awt.Dimension(70, 70));
+        Accesos.setMinimumSize(new java.awt.Dimension(70, 70));
+        Accesos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearRolesActionPerformed(evt);
+                AccesosActionPerformed(evt);
             }
         });
 
-        PrivilegiosEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/privilegio.png"))); // NOI18N
-        PrivilegiosEmpleados.setMaximumSize(new java.awt.Dimension(70, 70));
-        PrivilegiosEmpleados.setMinimumSize(new java.awt.Dimension(70, 70));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/usuario.png"))); // NOI18N
-        jButton4.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton4.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        PorAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/contratas.png"))); // NOI18N
+        PorAsignar.setMaximumSize(new java.awt.Dimension(70, 70));
+        PorAsignar.setMinimumSize(new java.awt.Dimension(70, 70));
+        PorAsignar.setPreferredSize(new java.awt.Dimension(70, 70));
+        PorAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                PorAsignarActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/contratas.png"))); // NOI18N
-        jButton6.setMaximumSize(new java.awt.Dimension(70, 70));
-        jButton6.setMinimumSize(new java.awt.Dimension(70, 70));
-        jButton6.setPreferredSize(new java.awt.Dimension(70, 70));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Configuración");
+
+        jLabel2.setText("Triaje");
+
+        jLabel4.setText("Paciente y Triaje");
+
+        jLabel3.setText("Accesos");
+
+        jLabel8.setText("Reportes");
+
+        jLabel6.setText("POR ASIGNAR");
+
+        jLabel10.setText("Especialidad");
+
+        jLabel7.setText("Farmacia");
+
+        Farmacia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/medicamento.png"))); // NOI18N
+        Farmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Farmacia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Farmacia.setMaximumSize(new java.awt.Dimension(70, 70));
+        Farmacia.setMinimumSize(new java.awt.Dimension(70, 70));
+        Farmacia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("ADMISION");
-
-        jLabel2.setText("TRIAJE");
-
-        jLabel4.setText("PACIENTE");
-
-        jLabel3.setText("EMPLEADOS");
-
-        jLabel9.setText("CONF");
-
-        jLabel8.setText("ROL");
-
-        jLabel5.setText("PRIVILEGIOS");
-
-        jLabel6.setText("CONF");
-
-        jLabel10.setText("CONF");
-
-        jLabel7.setText("CONFIGURACION");
-
-        Configuracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imgmenu/empresa.png"))); // NOI18N
-        Configuracion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Configuracion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Configuracion.setMaximumSize(new java.awt.Dimension(70, 70));
-        Configuracion.setMinimumSize(new java.awt.Dimension(70, 70));
-        Configuracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfiguracionActionPerformed(evt);
+                FarmaciaActionPerformed(evt);
             }
         });
 
@@ -256,93 +229,81 @@ public class PrincipalMina extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel10)
-                        .addGap(98, 98, 98)
-                        .addComponent(jLabel8)
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel5)
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Admision, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Paciente_Triaje, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Farmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
-                                .addComponent(Sede, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(CrearRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(PrivilegiosEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Especialidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Triaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(41, 41, 41)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(Triaje, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(77, 77, 77)
-                .addComponent(jLabel2)
-                .addGap(76, 76, 76)
-                .addComponent(jLabel4)
-                .addGap(62, 62, 62)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(36, 36, 36))
+                                .addComponent(Configuraciones, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Accesos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabel8)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel6))
+                                    .addComponent(PorAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel2)
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel1)
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel3)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Admision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Paciente_Triaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Triaje, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Configuraciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Accesos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel4)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel9))))
-                .addGap(14, 14, 14)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Sede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CrearRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PrivilegiosEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Configuracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10)
+                    .addComponent(Especialidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Reportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PorAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
                     .addComponent(jLabel8)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel5))))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel7))
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -350,30 +311,30 @@ public class PrincipalMina extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(94, 94, 94)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(72, 72, 72)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 440));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 440));
 
         jMenu1.setText("INICIO");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        jMenuItem2.setText("Salir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        salir_Sistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        salir_Sistema.setText("Salir");
+        salir_Sistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                salir_SistemaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(salir_Sistema);
 
         CambiarUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         CambiarUser.setText("Cambiar de Usuario");
@@ -385,7 +346,6 @@ public class PrincipalMina extends javax.swing.JFrame {
         jMenu1.add(CambiarUser);
 
         jMenuBar1.add(jMenu1);
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -394,45 +354,46 @@ public class PrincipalMina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AdmisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmisionActionPerformed
-      rp =new RegistrarPaciente();
+    private void Paciente_TriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Paciente_TriajeActionPerformed
+      RegistrarPaciente rp =new RegistrarPaciente();
        rp.setVisible(true);
-    }//GEN-LAST:event_AdmisionActionPerformed
+    }//GEN-LAST:event_Paciente_TriajeActionPerformed
 
+<<<<<<< HEAD
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         TicketHistoriaClinica hc=new TicketHistoriaClinica();
         hc.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+=======
+    private void PorAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PorAsignarActionPerformed
+>>>>>>> 3166198189df736a5f7b2fb21c1ed0400ab17cc3
        
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_PorAsignarActionPerformed
 
-    private void BuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarEmpleadoActionPerformed
-       au =new AccesosUsuario();
-          au.setVisible(true);
-    }//GEN-LAST:event_BuscarEmpleadoActionPerformed
+    private void ConfiguracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfiguracionesActionPerformed
+      Configuracion conf = new Configuracion();
+        conf.setVisible(true);
+    }//GEN-LAST:event_ConfiguracionesActionPerformed
 
-    private void ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfiguracionActionPerformed
-          c =new Configuracion();
-          c.setVisible(true);
-    }//GEN-LAST:event_ConfiguracionActionPerformed
+    private void FarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FarmaciaActionPerformed
+         FarmaciaInventario fi =new FarmaciaInventario();
+          fi.setVisible(true);
+    }//GEN-LAST:event_FarmaciaActionPerformed
 
     private void TriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TriajeActionPerformed
-         ft =new Ficha_triaje_panel_principal();
-         ft.show();
-          //ft.setVisible(true);
+        Ficha_triaje_panel_principal ft =new Ficha_triaje_panel_principal();
+         ft.setVisible(true);
     }//GEN-LAST:event_TriajeActionPerformed
 
-    private void CrearRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearRolesActionPerformed
-        RegistrarRol rr = new RegistrarRol();
-        rr.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_CrearRolesActionPerformed
+    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
+        
+    }//GEN-LAST:event_ReportesActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void salir_SistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir_SistemaActionPerformed
      System.exit(0);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_salir_SistemaActionPerformed
 
     private void CambiarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarUserActionPerformed
        Ingreso i = new Ingreso();
@@ -440,16 +401,17 @@ public class PrincipalMina extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_CambiarUserActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        AsignarEmpresaContrata aec = new AsignarEmpresaContrata();
-        aec.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void AccesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesosActionPerformed
+        RegistrarEmpleUser reu = new RegistrarEmpleUser();
+        reu.setVisible(true);
+        //this.dispose();
+    }//GEN-LAST:event_AccesosActionPerformed
 
-    private void SedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SedeActionPerformed
-            FarmaciaInventario farmacia= new FarmaciaInventario();
-            farmacia.setVisible(true);
-    }//GEN-LAST:event_SedeActionPerformed
+    private void EspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspecialidadActionPerformed
+        HistoriaClinicaGeriatria hc=new HistoriaClinicaGeriatria();
+        hc.setVisible(true);
+       
+    }//GEN-LAST:event_EspecialidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,17 +452,15 @@ public class PrincipalMina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Admision;
-    private javax.swing.JButton BuscarEmpleado;
+    private javax.swing.JButton Accesos;
     private javax.swing.JMenuItem CambiarUser;
-    private javax.swing.JButton Configuracion;
-    private javax.swing.JButton CrearRoles;
-    private javax.swing.JButton PrivilegiosEmpleados;
-    private javax.swing.JButton Sede;
+    private javax.swing.JButton Configuraciones;
+    private javax.swing.JButton Especialidad;
+    private javax.swing.JButton Farmacia;
+    private javax.swing.JButton Paciente_Triaje;
+    private javax.swing.JButton PorAsignar;
+    private javax.swing.JButton Reportes;
     private javax.swing.JButton Triaje;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
@@ -508,21 +468,18 @@ public class PrincipalMina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem salir_Sistema;
     // End of variables declaration//GEN-END:variables
 
     

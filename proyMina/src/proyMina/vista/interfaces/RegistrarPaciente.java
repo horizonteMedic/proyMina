@@ -172,8 +172,12 @@ public class RegistrarPaciente extends javax.swing.JFrame {
         Tabla_HC = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PACIENTE");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setToolTipText("Agregar Nuevo Paciente");
 
@@ -1341,6 +1345,11 @@ public class RegistrarPaciente extends javax.swing.JFrame {
         Ficha_triaje_panel_principal ft=new Ficha_triaje_panel_principal();
         ft.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       PrincipalMina pm =new PrincipalMina();
+       pm.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
 public void BuscarPaciente(){
     if(!dni_paciente.getText().isEmpty()){

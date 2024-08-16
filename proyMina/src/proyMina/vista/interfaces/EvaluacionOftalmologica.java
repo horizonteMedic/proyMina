@@ -7,7 +7,16 @@ import proyMina.modelo.clsConnection;
 import proyMina.modelo.clsFunciones;
 import proyMina.modelo.clsGlobales;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -27,6 +37,9 @@ import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import org.json.JSONObject;
+import proyMina.modelo.DisableSSLVerification;
+import sun.misc.BASE64Decoder;
 
 /**
  *
@@ -37,9 +50,13 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
    clsFunciones  oFunc = new clsFunciones();
    DefaultTableModel model;
     String[]nombres = new String[]{};
+         int dni=0;
+     String base64String="";
     public EvaluacionOftalmologica() {
         initComponents();
         Deshabilitar(true);
+               calcularDniUser();
+
          if(clsGlobales.historiaClinica>0){
             cargarHC(String.valueOf(clsGlobales.historiaClinica));
         }
@@ -2000,7 +2017,100 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
         
         
     }
+     
+    
+        public void calcularDniUser()
+    {
+        // Para devolver el resultado
         
+        // Para el Query
+        String sQuery="";
+        
+        // Prepara el Query
+        sQuery  = "select dni from desktop_empleado where name_user='"+clsGlobales.sUser+"'";
+        
+   
+        //Ejecuta el Query
+        oConn.FnBoolQueryExecute(sQuery);
+        
+        // Capturo el Error
+        try {
+            
+            // Verifico que haya habido resultados
+            if (oConn.setResult.next())
+            {
+                
+               dni= oConn.setResult.getInt("dni");
+                // Resultado
+//             oFunc.SubSistemaMensajeError("Número de Orden Utilizado");
+//             txtNumero.setText(null);
+//             txtNumero.requestFocus();
+            }
+            
+            // Cierro los Resultados
+            oConn.sqlStmt.close();
+            
+        } catch (SQLException ex) {
+         
+        }
+        
+        
+        
+        // Retorna el Resultado
+        
+    }
+       
+        
+      public void consumirApiSello() throws Exception {
+      SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+         try {
+            DisableSSLVerification.disableSSL();  
+            URL url = new URL("https://hmintegracion.azurewebsites.net/api/v01/st/registros/detalleArchivoEmpleado/"+dni+"/FIRMA");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
+
+
+            int code = con.getResponseCode();
+            System.out.println("Response Code: " + code);
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                System.out.println("Response line: " + responseLine.trim());
+                    response.append(responseLine.trim());
+                }
+                  System.out.println("Response: " + response.toString());
+                     JSONObject objectJson = new JSONObject(response.toString());
+                  System.out.println("Response: " + objectJson);
+                  System.out.println("Response: " + objectJson.getString("base64"));
+
+                     base64String=(objectJson.getString("base64"));
+                 
+
+
+                    /*
+                    System.out.println("el campo es:"+objectJson.getLong("id_resp"));
+                    
+                    System.out.println("el campo es:"+objectJson.getString("rucEmpresa"));
+                    System.out.println("el campo es:"+objectJson.getString("rucContrata"));
+                    System.out.println("el campo es:"+objectJson.getString("cargo"));
+                    System.out.println("el campo es:"+objectJson.getString("area"));
+                    System.out.println("el campo es:"+objectJson.getString("tipoExamen"));
+                    System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
+                      */
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+   
+    
     private void cargarHC( String hc){
 
             String Sql="SELECT desktop_datos_pacientes.dni, "
@@ -2347,7 +2457,11 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        ReImp();
+            try {
+                ReImp();
+            } catch (Exception ex) {
+                Logger.getLogger(EvaluacionOftalmologica.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void txtCercaSinCorregirODFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCercaSinCorregirODFocusGained
@@ -2751,7 +2865,7 @@ Date fechaDate = new Date();
 Fecha.setDate(fechaDate);
 }
 
-private void ReImp(){
+private void ReImp() throws Exception{
 if(!txtImp.getText().isEmpty()){
     print(Integer.valueOf(txtImp.getText()));
     }else{oFunc.SubSistemaMensajeError("Ingresar numero ");}
@@ -2759,14 +2873,32 @@ if(!txtImp.getText().isEmpty()){
 }
 
   
- private void print(Integer cod){
+ private void print(Integer cod) throws IOException, Exception{
            
-    Map parameters = new HashMap(); 
-    parameters.put("Norden",cod);             
+                consumirApiSello();
+                Map parameters = new HashMap(); 
+                parameters.put("Norden",cod);          
+              //  InputStream targetStream = IOUtils.toInputStream(base64String);  
+              //
+                BufferedImage image = null;
+                byte[] imageByte;
 
+                BASE64Decoder decoder = new BASE64Decoder();
+                    imageByte = decoder.decodeBuffer(base64String);
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+                image = ImageIO.read(bis);
+                bis.close();
+                
+                
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(image, "png", baos); 
+                InputStream stream = new ByteArrayInputStream(baos.toByteArray());
+                
+                
+                parameters.put("Firma",stream);  
       try 
     {
-        String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"EvaluacionOftalmologica2021.jasper";
+        String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"DesktopOftalmologia.jasper";
         JasperReport myReport = (JasperReport) JRLoader.loadObjectFromFile(direccionReporte);
         JasperPrint myPrint = JasperFillManager.fillReport(myReport,parameters,clsConnection.oConnection);
         JasperViewer viewer = new JasperViewer(myPrint, false);
@@ -3173,7 +3305,8 @@ public void Agregar(){
             strSqlStmt += ",chkr2_cerca";Query += ",'"+chkR2_cerca.isSelected()+ "'"; 
             strSqlStmt += ",chkr3";Query += ",'"+chkR3.isSelected()+ "'"; 
             strSqlStmt += ",chkr4";Query += ",'"+chkR4.isSelected()+ "'"; 
-            strSqlStmt += ",txtrp";Query += ",'"+txtReflejosPupilares.getText()+ "'";         
+            strSqlStmt += ",txtrp";Query += ",'"+txtReflejosPupilares.getText()+ "'";    
+            System.out.print(strSqlStmt.concat(") ") + Query.concat(")"));
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                 
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado la Entrada con Éxito"); 

@@ -597,14 +597,14 @@ inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	d
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="8c123cbf-7a15-4af1-971e-76076846771b" x="226" y="20" width="128" height="16"/>
+				<reportElement x="226" y="20" width="128" height="16" uuid="8c123cbf-7a15-4af1-971e-76076846771b"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HISTORIA CLINICA]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="f5b38140-c023-4c74-9f62-50aeca8a3103" x="462" y="0" width="93" height="24"/>
+				<reportElement x="462" y="0" width="93" height="24" uuid="f5b38140-c023-4c74-9f62-50aeca8a3103"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -618,18 +618,18 @@ inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	d
 				<textFieldExpression><![CDATA[$F{n_orden}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="42aad801-c1a7-4300-a84d-950e153a8678" x="438" y="8" width="24" height="12"/>
+				<reportElement x="438" y="8" width="24" height="12" uuid="42aad801-c1a7-4300-a84d-950e153a8678"/>
 				<textElement>
 					<font size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[H. C.]]></text>
 			</staticText>
 			<image>
-				<reportElement uuid="35ac554b-e0c3-4915-b049-dae53c07b691" x="0" y="0" width="179" height="59"/>
+				<reportElement x="0" y="0" width="179" height="59" uuid="35ac554b-e0c3-4915-b049-dae53c07b691"/>
 				<imageExpression><![CDATA["C:\\reportes\\Logo.jpg"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement uuid="22261959-9269-4290-bc77-a71dc095f428" x="228" y="36" width="128" height="22"/>
+				<reportElement x="228" y="36" width="128" height="22" uuid="22261959-9269-4290-bc77-a71dc095f428"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -643,275 +643,271 @@ inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	d
 	<detail>
 		<band height="675" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="55514f12-c1ad-455a-94b4-12eee19d758d" x="139" y="3" width="177" height="12"/>
+				<reportElement x="139" y="3" width="177" height="12" uuid="55514f12-c1ad-455a-94b4-12eee19d758d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7e3106fe-2611-4461-913e-a296e144845b" x="30" y="3" width="109" height="12"/>
+				<reportElement x="30" y="3" width="109" height="12" uuid="7e3106fe-2611-4461-913e-a296e144845b"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[APELLIDOS Y NOMBRES:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="1d75f701-f09b-490d-9710-1854bee37d59" x="30" y="18" width="85" height="12"/>
+				<reportElement x="30" y="18" width="85" height="12" uuid="1d75f701-f09b-490d-9710-1854bee37d59"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[EDAD:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="b592a26b-26ed-4d51-ab95-77cf16db68ce" x="139" y="18" width="34" height="12"/>
+				<reportElement x="139" y="18" width="34" height="12" uuid="b592a26b-26ed-4d51-ab95-77cf16db68ce"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="acea7535-b719-48f0-bcc6-bf063564f60f" x="30" y="34" width="98" height="12"/>
+				<reportElement x="30" y="34" width="98" height="12" uuid="acea7535-b719-48f0-bcc6-bf063564f60f"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[FECHA NACIMIENTO:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="93915455-0289-4eb0-b574-ef7681c0b347" x="139" y="34" width="86" height="12"/>
+				<reportElement x="139" y="34" width="86" height="12" uuid="93915455-0289-4eb0-b574-ef7681c0b347"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="05dd7a96-f099-4851-8a50-304a947b02c6" x="0" y="47" width="555" height="1"/>
+				<reportElement x="0" y="47" width="555" height="1" uuid="05dd7a96-f099-4851-8a50-304a947b02c6"/>
 			</line>
 			<staticText>
-				<reportElement uuid="b36c11b9-3022-4008-9c80-d4d6e2b739b7" x="323" y="3" width="62" height="12"/>
+				<reportElement x="323" y="3" width="62" height="12" uuid="b36c11b9-3022-4008-9c80-d4d6e2b739b7"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[ESTADO CIVIL:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="99bd8f60-113f-4e4e-bb2b-7f7ffdf6013d" x="399" y="3" width="64" height="12"/>
+				<reportElement x="399" y="3" width="64" height="12" uuid="99bd8f60-113f-4e4e-bb2b-7f7ffdf6013d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estado_civil}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="b88fdb4d-6f0d-4234-8005-5e5dc6a5f8d6" x="323" y="22" width="62" height="12"/>
+				<reportElement x="323" y="22" width="62" height="12" uuid="b88fdb4d-6f0d-4234-8005-5e5dc6a5f8d6"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[CELULAR:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="cdd6de2e-178f-4c88-b154-63388eb6dfe7" x="399" y="22" width="64" height="12"/>
+				<reportElement x="399" y="22" width="64" height="12" uuid="cdd6de2e-178f-4c88-b154-63388eb6dfe7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="038b5a01-5361-4152-9e47-38784f47b8c2" x="190" y="204" width="35" height="12"/>
+				<reportElement x="190" y="204" width="35" height="12" uuid="038b5a01-5361-4152-9e47-38784f47b8c2"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[TALLA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="cb253758-c4b2-4746-85ff-bfffe2f0ad63" x="190" y="220" width="35" height="12"/>
+				<reportElement x="190" y="220" width="35" height="12" uuid="cb253758-c4b2-4746-85ff-bfffe2f0ad63"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[PESO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="a0886f6d-cc22-40e8-909a-398e7f1a480e" x="190" y="232" width="35" height="12"/>
+				<reportElement x="190" y="232" width="35" height="12" uuid="a0886f6d-cc22-40e8-909a-398e7f1a480e"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[IMC:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b799f209-e856-4636-9523-bb127c99feb0" x="304" y="205" width="45" height="12"/>
+				<reportElement x="304" y="205" width="45" height="12" uuid="b799f209-e856-4636-9523-bb127c99feb0"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[CINTURA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="a10c66b8-2d0d-4824-9824-2d07cc489551" x="304" y="235" width="45" height="12"/>
+				<reportElement x="304" y="235" width="45" height="12" uuid="a10c66b8-2d0d-4824-9824-2d07cc489551"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[ICC:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="d7ddbf2a-20ab-4d96-b8dc-6feddf2146da" x="424" y="205" width="98" height="12"/>
+				<reportElement x="424" y="205" width="98" height="12" uuid="d7ddbf2a-20ab-4d96-b8dc-6feddf2146da"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[PERIMETRO CUELLO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="4885fd4e-12ed-4973-b6ff-7d81fdb585bd" x="30" y="205" width="71" height="12"/>
+				<reportElement x="30" y="205" width="71" height="12" uuid="4885fd4e-12ed-4973-b6ff-7d81fdb585bd"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[TEMPERATURA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b3013d29-d9fc-4481-ae30-473c1d52d5e9" x="34" y="235" width="45" height="12"/>
+				<reportElement x="34" y="235" width="45" height="12" uuid="b3013d29-d9fc-4481-ae30-473c1d52d5e9"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[SAT. 02:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="fe89fea6-4ed1-4a21-b12f-8d8cf204c06d" x="303" y="220" width="45" height="12"/>
+				<reportElement x="303" y="220" width="45" height="12" uuid="fe89fea6-4ed1-4a21-b12f-8d8cf204c06d"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[CADERA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="3796021b-3b12-4c4d-893b-f4396b29e6bd" x="31" y="220" width="57" height="12"/>
+				<reportElement x="31" y="220" width="57" height="12" uuid="3796021b-3b12-4c4d-893b-f4396b29e6bd"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[F. CARDIACA:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2b852fd8-a1ca-420c-93cc-52edeb94d740" x="30" y="51" width="161" height="12"/>
+				<reportElement x="30" y="51" width="161" height="12" uuid="2b852fd8-a1ca-420c-93cc-52edeb94d740"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[ANMNESIS:]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="299d367c-9791-43f7-8170-118e24a72f2b" x="0" y="319" width="555" height="1"/>
+				<reportElement x="0" y="319" width="555" height="1" uuid="299d367c-9791-43f7-8170-118e24a72f2b"/>
 			</line>
 			<image>
-				<reportElement uuid="d72c698b-3543-4e04-886e-9c40eb02072a" x="244" y="582" width="85" height="38"/>
+				<reportElement x="244" y="582" width="85" height="38" uuid="d72c698b-3543-4e04-886e-9c40eb02072a"/>
 				<imageExpression><![CDATA[$P{Firma}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement uuid="6854faf0-78a9-4268-9a2b-30e17911a94c" x="270" y="204" width="21" height="12"/>
+				<reportElement x="270" y="204" width="21" height="12" uuid="6854faf0-78a9-4268-9a2b-30e17911a94c"/>
 				<textElement>
 					<font fontName="Calibri" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[m]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7ee68341-c9b4-4742-bc2a-0e6022d6c000" x="270" y="220" width="23" height="12"/>
+				<reportElement x="270" y="220" width="23" height="12" uuid="7ee68341-c9b4-4742-bc2a-0e6022d6c000"/>
 				<textElement>
 					<font fontName="Calibri" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[ KG]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="66ca516e-7106-4bd8-ac49-4725f64054af" x="29" y="63" width="515" height="55"/>
-				<textElement/>
+				<reportElement x="29" y="63" width="515" height="55" uuid="66ca516e-7106-4bd8-ac49-4725f64054af"/>
 				<textFieldExpression><![CDATA[$F{anamnesis}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="a28197ed-484d-4f5d-a52b-577e0fdef959" x="30" y="119" width="196" height="12"/>
+				<reportElement x="30" y="119" width="196" height="12" uuid="a28197ed-484d-4f5d-a52b-577e0fdef959"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[ANTECEDENTES FAMILIARES Y PATOLOGICOS:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="a27c6c0c-d2d0-42f1-afe8-0c8bfd4aa99b" x="29" y="131" width="515" height="55"/>
-				<textElement/>
+				<reportElement x="29" y="131" width="515" height="55" uuid="a27c6c0c-d2d0-42f1-afe8-0c8bfd4aa99b"/>
 				<textFieldExpression><![CDATA[$F{antecedentes_familiares_patologicos}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="3140f965-ad6a-4c1d-90a5-0d1eafc87fa4" x="30" y="190" width="196" height="12"/>
+				<reportElement x="30" y="190" width="196" height="12" uuid="3140f965-ad6a-4c1d-90a5-0d1eafc87fa4"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[SIGNOS VITALES:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="eb208ec9-6a42-4f96-80bf-d80f115f7f75" x="31" y="247" width="196" height="12"/>
+				<reportElement x="31" y="247" width="196" height="12" uuid="eb208ec9-6a42-4f96-80bf-d80f115f7f75"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[EXAMEN FISICO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="66cc77d9-da96-48b9-a9ff-a851c38a1a62" x="34" y="259" width="515" height="60"/>
-				<textElement/>
+				<reportElement x="34" y="259" width="515" height="60" uuid="66cc77d9-da96-48b9-a9ff-a851c38a1a62"/>
 				<textFieldExpression><![CDATA[$F{examen_fisico}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="5f068fdd-12f7-46f5-b51f-39573f8a0ef1" x="116" y="204" width="63" height="12"/>
+				<reportElement x="116" y="204" width="63" height="12" uuid="5f068fdd-12f7-46f5-b51f-39573f8a0ef1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{temperatura}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="c35eb745-f6d3-476e-9bed-b5a0b77980e4" x="430" y="220" width="100" height="30"/>
-				<textElement/>
+				<reportElement x="430" y="220" width="100" height="30" uuid="c35eb745-f6d3-476e-9bed-b5a0b77980e4"/>
 				<textFieldExpression><![CDATA[$F{perimetro_cuello}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="4a99be6c-639b-486b-9b42-f186855e43a5" x="101" y="219" width="82" height="13"/>
+				<reportElement x="101" y="219" width="82" height="13" uuid="4a99be6c-639b-486b-9b42-f186855e43a5"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{f_cardiaca}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="8f467a30-e19c-43f3-81d9-71eb9da8c567" x="86" y="234" width="78" height="12"/>
+				<reportElement x="86" y="234" width="78" height="12" uuid="8f467a30-e19c-43f3-81d9-71eb9da8c567"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sat_02}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="a72c5967-892c-4ed8-92cb-c35ea695c3fd" x="240" y="204" width="30" height="13"/>
+				<reportElement x="240" y="204" width="30" height="13" uuid="a72c5967-892c-4ed8-92cb-c35ea695c3fd"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{talla}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="fd83da76-e8c0-473a-89d3-9a49d8d8af96" x="240" y="220" width="30" height="12"/>
+				<reportElement x="240" y="220" width="30" height="12" uuid="fd83da76-e8c0-473a-89d3-9a49d8d8af96"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="bfa82ba4-e532-44f2-9496-cd5f9f986685" x="240" y="233" width="51" height="11"/>
+				<reportElement x="240" y="233" width="51" height="11" uuid="bfa82ba4-e532-44f2-9496-cd5f9f986685"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{imc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="220b6ebc-b6a3-42b1-a280-a81a2e8f0656" x="354" y="204" width="56" height="12"/>
+				<reportElement x="354" y="204" width="56" height="12" uuid="220b6ebc-b6a3-42b1-a280-a81a2e8f0656"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cintura}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="33fe5b88-24d2-4043-b628-dd528d1c45a6" x="354" y="220" width="66" height="14"/>
+				<reportElement x="354" y="220" width="66" height="14" uuid="33fe5b88-24d2-4043-b628-dd528d1c45a6"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cadera}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="976b811b-ca4b-4af5-b69a-d0584ca735e2" x="354" y="235" width="66" height="15"/>
+				<reportElement x="354" y="235" width="66" height="15" uuid="976b811b-ca4b-4af5-b69a-d0584ca735e2"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>

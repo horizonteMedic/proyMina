@@ -50,7 +50,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     DefaultTableModel model; 
     int dni=0;
     int dias=0, horas=0, cantidad=0;
-    String base64String="";
+     String base64String="";
     /**
      * Creates new form HistoriaClinicaGeriatria
      */
@@ -198,6 +198,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        txtImp = new javax.swing.JTextField();
+        btnImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("HISTORIA CLINICA GERIATRIA");
@@ -1296,45 +1299,85 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
 
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Imprimir"));
+
+        txtImp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImpActionPerformed(evt);
+            }
+        });
+
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora.png"))); // NOI18N
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(txtImp, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(208, 208, 208)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(76, 76, 76)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(107, 107, 107)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(70, 70, 70)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(411, 411, 411)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(208, 208, 208)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(76, 76, 76)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(107, 107, 107)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(70, 70, 70)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(16, 16, 16)
+                            .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(417, 417, 417)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(470, 470, 470)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1387,11 +1430,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        try {       
-            print();
-        } catch (Exception ex) {
-            Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -1830,6 +1869,22 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         horas=Integer.valueOf(jTextFieldHorario5.getText().toString().trim());
     }//GEN-LAST:event_jTextFieldHorario5ActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+             try {       
+            print(txtImp.getText().toString().trim());
+        } catch (Exception ex) {
+            Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void txtImpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImpActionPerformed
+             try {       
+            print(txtImp.getText().toString().trim());
+        } catch (Exception ex) {
+            Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtImpActionPerformed
+
                 private void cargarMedicamentos(){
             try {
                 String sQuery;
@@ -1974,10 +2029,10 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }
    
    
-          private void print() throws Exception{
+          private void print(String norden) throws Exception{
                 consumirApiSello();
                 Map parameters = new HashMap(); 
-               // parameters.put("Norden",cod);          
+              parameters.put("Norden",Integer.valueOf(norden));          
               //  InputStream targetStream = IOUtils.toInputStream(base64String);  
               //
                 BufferedImage image = null;
@@ -1994,6 +2049,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 ImageIO.write(image, "png", baos); 
                 InputStream stream = new ByteArrayInputStream(baos.toByteArray());
                 
+                parameters.put("tipo",clsGlobales.tipoEspecialidad);             
                 
                 parameters.put("Firma",stream);             
 
@@ -2315,6 +2371,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+                             try {       
+            print(n_orden_hc.getText().toString().trim());
+        } catch (Exception ex) {
+            Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
                 btnActualizar(clsGlobales.tipoEspecialidad,String.valueOf(clsGlobales.historiaClinica));
             } else{
@@ -2419,6 +2480,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JToggleButton BuscarPaciente;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox cboCodigo1;
@@ -2479,6 +2541,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2520,6 +2583,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JTextField txtFcardiacaTriaje;
     private javax.swing.JTextField txtIccTriaje;
     private javax.swing.JTextField txtImcTriaje;
+    private javax.swing.JTextField txtImp;
     private javax.swing.JTextField txtPerimetroCuelloTriaje;
     private javax.swing.JTextField txtPesoTriaje;
     private javax.swing.JTextField txtSatTriaje;

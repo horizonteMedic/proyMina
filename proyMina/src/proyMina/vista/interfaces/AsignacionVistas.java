@@ -34,7 +34,6 @@ public class AsignacionVistas extends javax.swing.JFrame {
         initComponents();
         AutoCompleteDecorator.decorate(this.cboAsignarRol);
         AutoCompleteDecorator.decorate(this.cboVistas);
-        listarRol();
         llenar_tabla_hc();
         this.setLocationRelativeTo(null);
     }
@@ -205,69 +204,11 @@ public class AsignacionVistas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAsignarVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarVistaActionPerformed
-        if (!Asig_dni_empleado.getText().isEmpty()){
-            if(!oPe.validar(Asig_dni_empleado,"desktop_asignacion_empleado_rol","dni_empleado")){
-            
-            int key= oFunc.contadorPrimario("desktop_asignacion_empleado_rol");
-            String strSqlStmt;
-            String Query ;
-            strSqlStmt="INSERT INTO desktop_asignacion_empleado_rol (";
-            Query="Values(";
-            strSqlStmt += "id_asignacion";Query +=key+"";
-            strSqlStmt += ",dni_empleado";Query += ","+ Asig_dni_empleado.getText().trim();           
-            strSqlStmt += ",nombre_rol";Query += ",'" +cboAsignarRol.getSelectedItem().toString().trim() + "'";
-            strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
-            strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
-            
-            System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
-            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
-                oFunc.SubSistemaMensajeInformacion("Se ha registrado con Éxito");
-                btnLimpiarRoles();
-                llenar_tabla_hc();
-            } else{
-                    oFunc.SubSistemaMensajeError("No se pudo Registrar");   
-                    }  
-            }
-             else                     
-                oFunc.SubSistemaMensajeError("No se puede repetir la asignacion del rol al mismo empleado");
-}
+
     }//GEN-LAST:event_btnAsignarVistaActionPerformed
 
     private void TablaAsignacionRolMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaAsignacionRolMousePressed
-    if (evt.getClickCount() == 1) {  
-        try {
-            Integer cod = Integer.valueOf(TablaAsignacionRol.getValueAt(TablaAsignacionRol.getSelectedRow(), 1).toString());
-            id_asignacion = Integer.valueOf(TablaAsignacionRol.getValueAt(TablaAsignacionRol.getSelectedRow(), 0).toString());
-            
-            // Construir la consulta SQL
-            String Sql = "SELECT asig_rol.dni_empleado, " +
-                         "desk_emple.nombres || ' ' || desk_emple.apellidos AS nombres, " +                     
-                         "asig_rol.nombre_rol " +
-                         "FROM desktop_asignacion_empleado_rol AS asig_rol " +
-                         "INNER JOIN desktop_empleado AS desk_emple ON asig_rol.dni_empleado = desk_emple.dni " +
-                         "WHERE asig_rol.dni_empleado = " + cod;
-
-            System.out.println(Sql);
-
-            // Ejecutar la consulta
-            oConn.FnBoolQueryExecute(Sql);
-            if (oConn.setResult.next()) {
-                Asig_dni_empleado.setText(oConn.setResult.getString("dni_empleado"));
-                asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));           
-                cboAsignarRol.setSelectedItem(oConn.setResult.getString("nombre_rol"));           
-
-                btnActualizarVista.setEnabled(true);
-                btnLimpiarVista.setEnabled(true);
-                btnAsignarVista.setEnabled(false);      
-            }
-            oConn.setResult.close();
-            oConn.sqlStmt.close();
-        } catch (NumberFormatException e) {
-            oFunc.SubSistemaMensajeError("Formato de número incorrecto: " + e.getMessage());
-        } catch (SQLException e) {
-            oFunc.SubSistemaMensajeError("Error al ejecutar la consulta: " + e.getMessage());
-        }
-    }
+   
     }//GEN-LAST:event_TablaAsignacionRolMousePressed
 
     private void btnActualizarVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarVistaActionPerformed
@@ -283,89 +224,13 @@ public class AsignacionVistas extends javax.swing.JFrame {
     }//GEN-LAST:event_cboAsignarRolActionPerformed
 // actualizar rol 
     private void Actualizacion(){
-    String strSqlStmt;
-        String query;
-        strSqlStmt = "UPDATE desktop_asignacion_empleado_rol ";
-        
-        query = " SET "  ;
-        query += " dni_empleado ="+ Asig_dni_empleado.getText().trim();
-        query += ",nombre_rol='" +cboAsignarRol.getSelectedItem().toString().trim() + "'";
-        query += ",user_actualizacion='"+clsGlobales.sUser+ "'";
-        query += ",fecha_actualizacion='"+formato.format(dateHoy)+ "'";
-        query += " WHERE id_asignacion ="+ id_asignacion;
-      
-        System.out.println("El comando es :" + strSqlStmt + query);
-        
-       
-        if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + query)) {
-            oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
-            llenar_tabla_hc();
-            btnLimpiarRoles();
-            
-        } else {
-            oFunc.SubSistemaMensajeError("Error en registro");
-        }            
-    
+   
     }
     
     
   // asignar rol con dni 
     public void asignarRol(){
-    if(!Asig_dni_empleado.getText().isEmpty()){
-        String Sql="SELECT dp.dni, dp.nombres ||' '|| dp.apellidos as nombres from desktop_empleado as dp  "                
-                +"WHERE dni ='"+Asig_dni_empleado.getText().trim()+"'"; 
-                System.out.println(Sql);                
-        oConn.FnBoolQueryExecute(Sql);
-          try {
-                if (oConn.setResult.next()) {
-                    Asig_dni_empleado.setText(oConn.setResult.getString("dni"));
-                    asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));                    
-                               
-                    btnActualizarVista.setEnabled(false);
-                    btnLimpiarVista.setEnabled(true);
-                    btnAsignarVista.setEnabled(true);
-                    }else{
-                    oFunc.SubSistemaMensajeError("No se encuentra registro del empleado");
-                }
-                oConn.sqlStmt.close();
-            } catch (SQLException ex) {
-                oFunc.SubSistemaMensajeInformacion("Error:" + ex.getMessage());
-            }
-        }
-        else
-            oFunc.SubSistemaMensajeError("Debes crear al empleado");
-        if(cboAsignarRol.getSelectedIndex() > 0){
-            }
-                else oFunc.SubSistemaMensajeError("Selecciona el Rol "); 
-    }
-  private void listarRol(){
-  String sQuery;  
-        // Prepara el Query
-        sQuery ="select nombre_rol from  desktop_rol";        
-        System.out.println(sQuery);
-        if (oConn.FnBoolQueryExecute(sQuery))
-        {
-            try 
-            {
-                 while (oConn.setResult.next())
-                 {                     
-                     
-                     cboAsignarRol.addItem(oConn.setResult.getString("nombre_rol"));
-                    }
-            } 
-            catch (SQLException ex) 
-            {
-                
-                oFunc.SubSistemaMensajeInformacion(ex.toString());
-                Logger.getLogger(AsignacionVistas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        try {
-            oConn.setResult.close();
-            oConn.sqlStmt.close(); 
-        } catch (SQLException ex) {
-            Logger.getLogger(AsignacionVistas.class.getName()).log(Level.SEVERE, null, ex);
-        }    
+    
   }  
     
  public void btnLimpiarRoles(){

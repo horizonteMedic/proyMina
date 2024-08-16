@@ -1985,7 +1985,7 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
                         txtNumero.setEnabled(false);
                         cargarDefecto();
                         Fecha();
-                        muestraVisual();
+                     //   muestraVisual();
                         txtECHallazgos.requestFocus();
                      
                        }else{
@@ -2023,7 +2023,7 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
                         txtNumero.setText(hc);
                         cargarDefecto();
                         Fecha();
-                        muestraVisual();
+                    //    muestraVisual();
                         txtECHallazgos.requestFocus();
                      
                        }else{

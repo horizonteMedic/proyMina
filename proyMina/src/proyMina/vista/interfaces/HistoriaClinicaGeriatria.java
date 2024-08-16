@@ -49,6 +49,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     DefaultTableModel model; 
     int dni=0;
+    int dias=0, horas=0, cantidad=0;
     String base64String="";
     /**
      * Creates new form HistoriaClinicaGeriatria
@@ -782,7 +783,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         });
         jPanel3.add(cboMedicamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 42, 377, -1));
         jPanel3.add(jTextFieldCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 42, 70, -1));
+
+        jTextFieldHorario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHorario1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldHorario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 42, 174, -1));
+
+        jTextFieldFrecuencia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFrecuencia1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldFrecuencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 42, 174, -1));
 
         cboMedicamento2.setEditable(true);
@@ -819,7 +832,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         });
         jPanel3.add(cboMedicamento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 76, 377, -1));
         jPanel3.add(jTextFieldCantidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 76, 70, -1));
+
+        jTextFieldHorario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHorario2ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 76, 174, -1));
+
+        jTextFieldFrecuencia2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFrecuencia2ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldFrecuencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 76, 174, -1));
 
         cboMedicamento3.setEditable(true);
@@ -856,7 +881,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         });
         jPanel3.add(cboMedicamento3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 116, 377, -1));
         jPanel3.add(jTextFieldCantidad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 116, 70, -1));
+
+        jTextFieldHorario3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHorario3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldHorario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 116, 174, -1));
+
+        jTextFieldFrecuencia3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFrecuencia3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldFrecuencia3, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 116, 174, -1));
 
         cboMedicamento4.setEditable(true);
@@ -893,7 +930,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         });
         jPanel3.add(cboMedicamento4, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 156, 377, -1));
         jPanel3.add(jTextFieldCantidad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 156, 70, -1));
+
+        jTextFieldHorario4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHorario4ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldHorario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 156, 174, -1));
+
+        jTextFieldFrecuencia4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFrecuencia4ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldFrecuencia4, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 156, 174, -1));
 
         jLabel47.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -907,7 +956,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jTextFieldMedicamento5.setText("N/A");
         jPanel3.add(jTextFieldMedicamento5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 190, 377, -1));
         jPanel3.add(jTextFieldCantidad5, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 190, 70, -1));
+
+        jTextFieldHorario5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHorario5ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldHorario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 190, 174, -1));
+
+        jTextFieldFrecuencia5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFrecuencia5ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextFieldFrecuencia5, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 190, 174, -1));
         jPanel3.add(jTextFieldObserv5, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 190, 295, -1));
 
@@ -1718,6 +1779,56 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private void cboCodigo1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo1PopupMenuWillBecomeInvisible
         // TODO add your handling code here:
     }//GEN-LAST:event_cboCodigo1PopupMenuWillBecomeInvisible
+
+    private void jTextFieldHorario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario1ActionPerformed
+    horas=Integer.valueOf(jTextFieldHorario1.getText().toString().trim());
+    }//GEN-LAST:event_jTextFieldHorario1ActionPerformed
+
+    private void jTextFieldFrecuencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia1ActionPerformed
+            dias=Integer.valueOf(jTextFieldFrecuencia1.getText().toString().trim());
+            cantidad=(dias*24)/horas;
+            jTextFieldCantidad1.setText(""+cantidad);
+    }//GEN-LAST:event_jTextFieldFrecuencia1ActionPerformed
+
+    private void jTextFieldHorario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario2ActionPerformed
+            horas=Integer.valueOf(jTextFieldHorario2.getText().toString().trim());
+    }//GEN-LAST:event_jTextFieldHorario2ActionPerformed
+
+    private void jTextFieldFrecuencia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia2ActionPerformed
+            dias=Integer.valueOf(jTextFieldFrecuencia2.getText().toString().trim());
+            cantidad=(dias*24)/horas;
+            jTextFieldCantidad2.setText(""+cantidad);
+    }//GEN-LAST:event_jTextFieldFrecuencia2ActionPerformed
+
+    private void jTextFieldFrecuencia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia3ActionPerformed
+                    dias=Integer.valueOf(jTextFieldFrecuencia3.getText().toString().trim());
+            cantidad=(dias*24)/horas;
+            jTextFieldCantidad3.setText(""+cantidad);
+    }//GEN-LAST:event_jTextFieldFrecuencia3ActionPerformed
+
+    private void jTextFieldFrecuencia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia4ActionPerformed
+                    dias=Integer.valueOf(jTextFieldFrecuencia4.getText().toString().trim());
+            cantidad=(dias*24)/horas;
+            jTextFieldCantidad4.setText(""+cantidad);
+    }//GEN-LAST:event_jTextFieldFrecuencia4ActionPerformed
+
+    private void jTextFieldFrecuencia5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia5ActionPerformed
+                    dias=Integer.valueOf(jTextFieldFrecuencia5.getText().toString().trim());
+            cantidad=(dias*24)/horas;
+            jTextFieldCantidad5.setText(""+cantidad);
+    }//GEN-LAST:event_jTextFieldFrecuencia5ActionPerformed
+
+    private void jTextFieldHorario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario3ActionPerformed
+        horas=Integer.valueOf(jTextFieldHorario3.getText().toString().trim());
+    }//GEN-LAST:event_jTextFieldHorario3ActionPerformed
+
+    private void jTextFieldHorario4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario4ActionPerformed
+        horas=Integer.valueOf(jTextFieldHorario4.getText().toString().trim());
+    }//GEN-LAST:event_jTextFieldHorario4ActionPerformed
+
+    private void jTextFieldHorario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario5ActionPerformed
+        horas=Integer.valueOf(jTextFieldHorario5.getText().toString().trim());
+    }//GEN-LAST:event_jTextFieldHorario5ActionPerformed
 
                 private void cargarMedicamentos(){
             try {

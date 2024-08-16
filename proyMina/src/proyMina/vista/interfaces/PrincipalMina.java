@@ -359,6 +359,14 @@ public class PrincipalMina extends javax.swing.JFrame {
        rp.setVisible(true);
     }//GEN-LAST:event_Paciente_TriajeActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        TicketHistoriaClinica hc=new TicketHistoriaClinica();
+        hc.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    }
+    
     private void PorAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PorAsignarActionPerformed
        
     }//GEN-LAST:event_PorAsignarActionPerformed
@@ -399,7 +407,7 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_AccesosActionPerformed
 
     private void EspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspecialidadActionPerformed
-        HistoriaClinicaGeriatria hc=new HistoriaClinicaGeriatria();
+        TicketHistoriaClinica hc=new TicketHistoriaClinica();
         hc.setVisible(true);
        
     }//GEN-LAST:event_EspecialidadActionPerformed

@@ -4,15 +4,20 @@
  */
 package proyMina.vista.interfaces;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import proyMina.modelo.clsConnection;
 import proyMina.modelo.clsFunciones;
+import proyMina.modelo.clsGlobales;
 import proyMina.modelo.clsOperacionesUsuarios;
 
 /**
@@ -30,13 +35,47 @@ public class TicketHistoriaClinica extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+         
     public TicketHistoriaClinica() {
         initComponents();
         AutoCompleteDecorator.decorate(this.cboEspecialidad);
         cargarEspecialidades();
         setLocationRelativeTo(null);
-    }
+                       popuptable();
 
+    }
+       public void popuptable(){
+    JPopupMenu popupMenu=new JPopupMenu();
+    JMenuItem menuItem1=new JMenuItem("ABRIR HISTORIA CLINICA");
+
+    menuItem1.addActionListener(new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+     int a =jTableEspecialidad.getSelectedRow();
+     clsGlobales.tipoEspecialidad=(String)jTableEspecialidad.getValueAt(a,0);
+     clsGlobales.historiaClinica=Integer.valueOf((String)jTableEspecialidad.getValueAt(a,1));
+        if(clsGlobales.tipoEspecialidad.contains("CORRECTORES OCULARES"))
+            {
+            FichaHistoriaClinicaOftamologia fco= new FichaHistoriaClinicaOftamologia();
+            fco.setVisible(true);
+            }
+            else{
+            HistoriaClinicaGeriatria fco= new HistoriaClinicaGeriatria();
+            fco.setVisible(true);            
+            }
+            
+            
+             //  JOptionPane.showMessageDialog(null, "Registro Eliminado");
+        }
+    
+    });   
+    
+
+    popupMenu.add(menuItem1);   
+
+    jTableEspecialidad.setComponentPopupMenu(popupMenu);
+  
+    }  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,8 +89,9 @@ public class TicketHistoriaClinica extends javax.swing.JFrame {
         jTableEspecialidad = new javax.swing.JTable();
         cboEspecialidad = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTableEspecialidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,20 +146,29 @@ public class TicketHistoriaClinica extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(238, 238, 238)
                 .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(94, 94, 94))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +176,11 @@ public class TicketHistoriaClinica extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -163,6 +213,11 @@ public class TicketHistoriaClinica extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        cargarTicketEspecialidadPorEspecializado(cboEspecialidad.getSelectedItem().toString().trim());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FichaHistoriaClinicaOftamologia ad=new FichaHistoriaClinicaOftamologia();
+        ad.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
        private void cargarEspecialidades(){
       String sQuery;        
         // Prepara el Query
@@ -187,13 +242,13 @@ public class TicketHistoriaClinica extends javax.swing.JFrame {
 
 
 private void cargarTicketEspecialidadPorEspecializado(String especialidad){
-    String [] titulos={"Especialidad","HC", "DNI","nombres", "fecha"};
-    String [] registros = new String[2];
-    String sql="select dte.nombre_especialidad,dte.n_orden as hc,ddp.dni, CONCAT(ddp.apellidos,' ',ddp.nombres) as nombres, dte.fecha_registro as fecha\n" +
+    String [] titulos={"Especialidad","HC", "DNI","nombres"};
+    String [] registros = new String[4];
+    String sql="select dte.nombre_especialidad,dte.n_orden as hc,ddp.dni, CONCAT(ddp.apellidos,' ',ddp.nombres) as nombres\n" +
 "	from desktop_ticket_espcialidad as dte \n" +
 "	inner join desktop_datos_historia_clinica as ddhc on 	ddhc.n_orden=dte.n_orden\n" +
 "	inner join 	desktop_datos_pacientes as ddp on ddhc.dni_paciente=ddp.dni\n" +
-"	where dte.nombre_especialidad='OTORRINOLARINGOLOGIA' and estado_registro=false;"+especialidad;
+"	where dte.nombre_especialidad='"+especialidad+"'"+" and estado_registro=false;";
     
       model = new DefaultTableModel(null,titulos){        
               @Override
@@ -210,8 +265,7 @@ private void cargarTicketEspecialidadPorEspecializado(String especialidad){
                     registros[0]= oConn.setResult.getString("nombre_especialidad");
                     registros[1]= oConn.setResult.getString("hc").toString();
                     registros[2]= oConn.setResult.getString("dni");
-                    registros[2]= oConn.setResult.getString("nombres");
-                    registros[2]= oConn.setResult.getString("fecha");
+                    registros[3]= oConn.setResult.getString("nombres");
                   
       
                      model.addRow(registros);
@@ -280,6 +334,7 @@ private void cargarTicketEspecialidadPorEspecializado(String especialidad){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cboEspecialidad;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableEspecialidad;
     // End of variables declaration//GEN-END:variables

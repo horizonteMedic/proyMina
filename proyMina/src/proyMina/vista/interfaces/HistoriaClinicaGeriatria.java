@@ -55,6 +55,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
      */
     public HistoriaClinicaGeriatria() {
         initComponents();
+        
+        jLabelTitulo.setText(clsGlobales.tipoEspecialidad);
         AutoCompleteDecorator.decorate(this.cboDiagnostico1);
         AutoCompleteDecorator.decorate(this.cboDiagnostico2);
         AutoCompleteDecorator.decorate(this.cboDiagnostico3);
@@ -67,6 +69,10 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(this.cboMedicamento2);
         AutoCompleteDecorator.decorate(this.cboMedicamento3);
         AutoCompleteDecorator.decorate(this.cboMedicamento4);
+        if(clsGlobales.historiaClinica>0){
+            cargarDatosPaciente(String.valueOf(clsGlobales.historiaClinica));
+            n_orden_hc.setText(String.valueOf(clsGlobales.historiaClinica));
+        }
        cargarMedicamentos();
         cargarDiagnosticos();
         calcularDniUser();
@@ -92,13 +98,21 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         fecha_nacimiento = new com.toedter.calendar.JDateChooser();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextRecom = new javax.swing.JTextArea();
-        jLabel29 = new javax.swing.JLabel();
+        jTabbedPane5 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextExamFisico = new javax.swing.JTextArea();
-        jLabel30 = new javax.swing.JLabel();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
+        jLabel29 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextExamAux = new javax.swing.JTextArea();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextExamAnamnesis = new javax.swing.JTextArea();
+        jLabel38 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextAntFamPat = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         cboCodigo1 = new javax.swing.JComboBox();
         cboDiagnostico1 = new javax.swing.JComboBox();
@@ -179,10 +193,10 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         txtDiastolicaTriaje = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        atxtObservacionesAltura = new javax.swing.JScrollPane();
-        txtDiagnostico = new javax.swing.JTextArea();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("HISTORIA CLINICA GERIATRIA");
@@ -276,23 +290,106 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26)
                     .addComponent(fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextRecom.setColumns(20);
-        jTextRecom.setRows(5);
-        jScrollPane1.setViewportView(jTextRecom);
+        jTabbedPane5.setBackground(new java.awt.Color(204, 255, 255));
+        jTabbedPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel29.setText("Recomendaciones:");
+        jLabel30.setText("ANAMNESIS:");
 
         jTextExamFisico.setColumns(20);
         jTextExamFisico.setRows(5);
         jScrollPane2.setViewportView(jTextExamFisico);
 
-        jLabel30.setText("Examen Fisico:");
+        jLabel29.setText("Y PATOLOGICOS:");
 
-        jTabbedPane5.setBackground(new java.awt.Color(204, 255, 255));
-        jTabbedPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextExamAux.setColumns(20);
+        jTextExamAux.setRows(5);
+        jScrollPane1.setViewportView(jTextExamAux);
+
+        jLabel36.setText("ANTECEDENTES FAMILIARES ");
+
+        jLabel37.setText("EXAMEN FISICO:");
+
+        jTextExamAnamnesis.setColumns(20);
+        jTextExamAnamnesis.setRows(5);
+        jScrollPane4.setViewportView(jTextExamAnamnesis);
+
+        jLabel38.setText("EXAMEN AUXILIAR:");
+
+        jTextAntFamPat.setColumns(20);
+        jTextAntFamPat.setRows(5);
+        jScrollPane5.setViewportView(jTextAntFamPat);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel37))
+                .addGap(418, 418, 418)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel36)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel29)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jLabel38)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(116, 116, 116)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(682, Short.MAX_VALUE)))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                    .addContainerGap(707, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(30, 30, 30)))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel29))
+                    .addComponent(jLabel30))
+                .addGap(57, 57, 57)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel38)))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(29, 29, 29)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(140, Short.MAX_VALUE)))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(29, 29, 29)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(140, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane5.addTab("Inicio", jPanel5);
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -585,7 +682,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addComponent(jLabel41)
                 .addGap(162, 162, 162))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
                     .addComponent(cboDiagnostico3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -625,7 +722,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     .addComponent(cboDiagnostico4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Diagnosticos", jPanel2);
@@ -644,11 +741,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jPanel3.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 19, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel45.setText("HORARIO");
+        jLabel45.setText("HORARIO( Horas)");
         jPanel3.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 19, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel46.setText("FRECUENCIA");
+        jLabel46.setText("FRECUENCIA (Dias)");
         jPanel3.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 19, -1, -1));
 
         cboMedicamento1.setEditable(true);
@@ -994,10 +1091,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
         jLabel21.setText("mm Hg");
 
-        txtDiagnostico.setColumns(20);
-        txtDiagnostico.setRows(2);
-        atxtObservacionesAltura.setViewportView(txtDiagnostico);
-
         jLabel34.setText("Recomendaciones");
 
         jLabel35.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -1062,13 +1155,10 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                                 .addComponent(jLabel28)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtFRespiratoriaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPerimetroCuelloTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSatTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(atxtObservacionesAltura)))
-                .addContainerGap())
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtPerimetroCuelloTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSatTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(279, 279, 279)
                 .addComponent(jLabel35)
@@ -1134,80 +1224,76 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                             .addComponent(txtFcardiacaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel34))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(atxtObservacionesAltura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel17)
-                                .addComponent(txtSatTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(txtSatTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabel1.setText("HISTORIA CLINICA DE ");
+
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(208, 208, 208)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(76, 76, 76)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(107, 107, 107)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(70, 70, 70)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(16, 16, 16)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
-                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel30)
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel29)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addGap(411, 411, 411)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel30))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel29)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnActualizar)
-                    .addComponent(btnEditar)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel4.getAccessibleContext().setAccessibleName("Información de Triaje");
 
+        getAccessibleContext().setAccessibleName("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void n_orden_hcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n_orden_hcActionPerformed
-        cargarDatosPaciente();
+        cargarDatosPaciente(n_orden_hc.getText().toString().trim());
     }//GEN-LAST:event_n_orden_hcActionPerformed
 
     private void n_orden_hcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n_orden_hcKeyTyped
@@ -1226,239 +1312,12 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     private void BuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPacienteActionPerformed
 
-        cargarDatosPaciente();
+        cargarDatosPaciente(n_orden_hc.getText().toString().trim());
     }//GEN-LAST:event_BuscarPacienteActionPerformed
 
     private void nombres_hcpacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombres_hcpacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombres_hcpacienteActionPerformed
-
-    private void cboCodigo4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo4KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo4KeyPressed
-
-    private void cboCodigo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo4ActionPerformed
-                if(cboCodigo4.getSelectedIndex()>0)        
-        cargarDiagnosticosDescripcion(4);
-    }//GEN-LAST:event_cboCodigo4ActionPerformed
-
-    private void cboCodigo4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo4MousePressed
-
-    private void cboCodigo4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo4MouseEntered
-
-    private void cboCodigo4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo4MouseClicked
-
-    private void cboCodigo4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo4PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo4PopupMenuWillBecomeInvisible
-
-    private void cboDiagnostico4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico4KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico4KeyPressed
-
-    private void cboDiagnostico4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico4ActionPerformed
-  
-    }//GEN-LAST:event_cboDiagnostico4ActionPerformed
-
-    private void cboDiagnostico4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico4MousePressed
-
-    private void cboDiagnostico4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico4MouseEntered
-
-    private void cboDiagnostico4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico4MouseClicked
-
-    private void cboDiagnostico4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico4PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico4PopupMenuWillBecomeInvisible
-
-    private void cboCodigo3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo3KeyPressed
-
-    private void cboCodigo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo3ActionPerformed
-                if(cboCodigo3.getSelectedIndex()>0)       
-        cargarDiagnosticosDescripcion(3);
-
-    }//GEN-LAST:event_cboCodigo3ActionPerformed
-
-    private void cboCodigo3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo3MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo3MousePressed
-
-    private void cboCodigo3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo3MouseEntered
-
-    private void cboCodigo3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo3MouseClicked
-
-    private void cboCodigo3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo3PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo3PopupMenuWillBecomeInvisible
-
-    private void cboDiagnostico3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico3KeyPressed
-
-    private void cboDiagnostico3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico3ActionPerformed
-
-    }//GEN-LAST:event_cboDiagnostico3ActionPerformed
-
-    private void cboDiagnostico3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico3MousePressed
-
-    private void cboDiagnostico3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico3MouseEntered
-
-    private void cboDiagnostico3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico3MouseClicked
-
-    private void cboDiagnostico3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico3PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico3PopupMenuWillBecomeInvisible
-
-    private void cboCodigo2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo2KeyPressed
-
-    private void cboCodigo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo2ActionPerformed
-                if(cboCodigo2.getSelectedIndex()>0)       
-        cargarDiagnosticosDescripcion(2);
-    }//GEN-LAST:event_cboCodigo2ActionPerformed
-
-    private void cboCodigo2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo2MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo2MousePressed
-
-    private void cboCodigo2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo2MouseEntered
-
-    private void cboCodigo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo2MouseClicked
-
-    private void cboCodigo2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo2PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo2PopupMenuWillBecomeInvisible
-
-    private void cboDiagnostico2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico2KeyPressed
-
-    private void cboDiagnostico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico2ActionPerformed
-
-    }//GEN-LAST:event_cboDiagnostico2ActionPerformed
-
-    private void cboDiagnostico2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico2MousePressed
-
-    private void cboDiagnostico2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico2MouseEntered
-
-    private void cboDiagnostico2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico2MouseClicked
-
-    private void cboDiagnostico2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico2PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico2PopupMenuWillBecomeInvisible
-
-    private void cboDiagnostico1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico1KeyPressed
-               System.out.println("llego al key released");
-           char c = (char) evt.getKeyCode();
-    if(c == evt.VK_ENTER){
-                System.out.println("esta en el enter");
-                cargarDiagnosticosCodigo(1);
-    }
-        
-    }//GEN-LAST:event_cboDiagnostico1KeyPressed
-
-    private void cboDiagnostico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico1ActionPerformed
-
-    }//GEN-LAST:event_cboDiagnostico1ActionPerformed
-
-    private void cboDiagnostico1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico1MousePressed
-
-    private void cboDiagnostico1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico1MouseEntered
-
-    private void cboDiagnostico1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico1MouseClicked
-
-    private void cboDiagnostico1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico1PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboDiagnostico1PopupMenuWillBecomeInvisible
-
-    private void cboCodigo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo1KeyPressed
-
-    private void cboCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo1ActionPerformed
-                if(cboCodigo1.getSelectedIndex()>0)
-        cargarDiagnosticosDescripcion(1);
-    }//GEN-LAST:event_cboCodigo1ActionPerformed
-
-    private void cboCodigo1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MousePressed
-        System.out.println("mouse presed");
-    }//GEN-LAST:event_cboCodigo1MousePressed
-
-    private void cboCodigo1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo1MouseEntered
-
-    private void cboCodigo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MouseClicked
-
-    }//GEN-LAST:event_cboCodigo1MouseClicked
-
-    private void cboCodigo1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo1PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCodigo1PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento1PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1MouseClicked
-
-    private void cboMedicamento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1MouseEntered
-
-    private void cboMedicamento1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1MousePressed
-
-    private void cboMedicamento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1ActionPerformed
-
-    private void cboMedicamento1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1KeyPressed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
     registrarHistoria();
@@ -1479,83 +1338,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void cboMedicamento2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento2PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2MouseClicked
-
-    private void cboMedicamento2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2MouseEntered
-
-    private void cboMedicamento2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2MousePressed
-
-    private void cboMedicamento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2ActionPerformed
-
-    private void cboMedicamento2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2KeyPressed
-
-    private void cboMedicamento3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento3PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3MouseClicked
-
-    private void cboMedicamento3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3MouseEntered
-
-    private void cboMedicamento3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3MousePressed
-
-    private void cboMedicamento3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3ActionPerformed
-
-    private void cboMedicamento3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3KeyPressed
-
-    private void cboMedicamento4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento4PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4MouseClicked
-
-    private void cboMedicamento4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4MouseEntered
-
-    private void cboMedicamento4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4MousePressed
-
-    private void cboMedicamento4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4ActionPerformed
-
-    private void cboMedicamento4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento4KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4KeyPressed
-
-    private void cboDiagnostico1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico1KeyReleased
-
-
-    }//GEN-LAST:event_cboDiagnostico1KeyReleased
 
     private void txtTallaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTallaFocusLost
 
@@ -1633,6 +1415,308 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private void txtDiastolicaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiastolicaTriajeActionPerformed
 
     }//GEN-LAST:event_txtDiastolicaTriajeActionPerformed
+
+    private void cboMedicamento4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento4KeyPressed
+
+    private void cboMedicamento4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento4ActionPerformed
+
+    private void cboMedicamento4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento4MousePressed
+
+    private void cboMedicamento4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento4MouseEntered
+
+    private void cboMedicamento4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento4MouseClicked
+
+    private void cboMedicamento4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento4PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento4PopupMenuWillBecomeInvisible
+
+    private void cboMedicamento3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento3KeyPressed
+
+    private void cboMedicamento3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento3ActionPerformed
+
+    private void cboMedicamento3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento3MousePressed
+
+    private void cboMedicamento3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento3MouseEntered
+
+    private void cboMedicamento3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento3MouseClicked
+
+    private void cboMedicamento3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento3PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento3PopupMenuWillBecomeInvisible
+
+    private void cboMedicamento2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento2KeyPressed
+
+    private void cboMedicamento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento2ActionPerformed
+
+    private void cboMedicamento2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento2MousePressed
+
+    private void cboMedicamento2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento2MouseEntered
+
+    private void cboMedicamento2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento2MouseClicked
+
+    private void cboMedicamento2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento2PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento2PopupMenuWillBecomeInvisible
+
+    private void cboMedicamento1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento1KeyPressed
+
+    private void cboMedicamento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento1ActionPerformed
+
+    private void cboMedicamento1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento1MousePressed
+
+    private void cboMedicamento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento1MouseEntered
+
+    private void cboMedicamento1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento1MouseClicked
+
+    private void cboMedicamento1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMedicamento1PopupMenuWillBecomeInvisible
+
+    private void cboCodigo4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo4KeyPressed
+
+    private void cboCodigo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo4ActionPerformed
+        if(cboCodigo4.getSelectedIndex()>0)
+        cargarDiagnosticosDescripcion(4);
+    }//GEN-LAST:event_cboCodigo4ActionPerformed
+
+    private void cboCodigo4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo4MousePressed
+
+    private void cboCodigo4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo4MouseEntered
+
+    private void cboCodigo4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo4MouseClicked
+
+    private void cboCodigo4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo4PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo4PopupMenuWillBecomeInvisible
+
+    private void cboDiagnostico4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico4KeyPressed
+
+    private void cboDiagnostico4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico4ActionPerformed
+
+    }//GEN-LAST:event_cboDiagnostico4ActionPerformed
+
+    private void cboDiagnostico4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico4MousePressed
+
+    private void cboDiagnostico4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico4MouseEntered
+
+    private void cboDiagnostico4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico4MouseClicked
+
+    private void cboDiagnostico4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico4PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico4PopupMenuWillBecomeInvisible
+
+    private void cboCodigo3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo3KeyPressed
+
+    private void cboCodigo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo3ActionPerformed
+        if(cboCodigo3.getSelectedIndex()>0)
+        cargarDiagnosticosDescripcion(3);
+    }//GEN-LAST:event_cboCodigo3ActionPerformed
+
+    private void cboCodigo3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo3MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo3MousePressed
+
+    private void cboCodigo3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo3MouseEntered
+
+    private void cboCodigo3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo3MouseClicked
+
+    private void cboCodigo3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo3PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo3PopupMenuWillBecomeInvisible
+
+    private void cboDiagnostico3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico3KeyPressed
+
+    private void cboDiagnostico3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico3ActionPerformed
+
+    }//GEN-LAST:event_cboDiagnostico3ActionPerformed
+
+    private void cboDiagnostico3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico3MousePressed
+
+    private void cboDiagnostico3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico3MouseEntered
+
+    private void cboDiagnostico3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico3MouseClicked
+
+    private void cboDiagnostico3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico3PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico3PopupMenuWillBecomeInvisible
+
+    private void cboCodigo2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo2KeyPressed
+
+    private void cboCodigo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo2ActionPerformed
+        if(cboCodigo2.getSelectedIndex()>0)
+        cargarDiagnosticosDescripcion(2);
+    }//GEN-LAST:event_cboCodigo2ActionPerformed
+
+    private void cboCodigo2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo2MousePressed
+
+    private void cboCodigo2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo2MouseEntered
+
+    private void cboCodigo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo2MouseClicked
+
+    private void cboCodigo2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo2PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo2PopupMenuWillBecomeInvisible
+
+    private void cboDiagnostico2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico2KeyPressed
+
+    private void cboDiagnostico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico2ActionPerformed
+
+    }//GEN-LAST:event_cboDiagnostico2ActionPerformed
+
+    private void cboDiagnostico2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico2MousePressed
+
+    private void cboDiagnostico2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico2MouseEntered
+
+    private void cboDiagnostico2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico2MouseClicked
+
+    private void cboDiagnostico2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico2PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico2PopupMenuWillBecomeInvisible
+
+    private void cboDiagnostico1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico1KeyReleased
+
+    }//GEN-LAST:event_cboDiagnostico1KeyReleased
+
+    private void cboDiagnostico1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico1KeyPressed
+        System.out.println("llego al key released");
+        char c = (char) evt.getKeyCode();
+        if(c == evt.VK_ENTER){
+            System.out.println("esta en el enter");
+            cargarDiagnosticosCodigo(1);
+        }
+
+    }//GEN-LAST:event_cboDiagnostico1KeyPressed
+
+    private void cboDiagnostico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico1ActionPerformed
+
+    }//GEN-LAST:event_cboDiagnostico1ActionPerformed
+
+    private void cboDiagnostico1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico1MousePressed
+
+    private void cboDiagnostico1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico1MouseEntered
+
+    private void cboDiagnostico1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico1MouseClicked
+
+    private void cboDiagnostico1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboDiagnostico1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDiagnostico1PopupMenuWillBecomeInvisible
+
+    private void cboCodigo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo1KeyPressed
+
+    private void cboCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo1ActionPerformed
+        if(cboCodigo1.getSelectedIndex()>0)
+        cargarDiagnosticosDescripcion(1);
+    }//GEN-LAST:event_cboCodigo1ActionPerformed
+
+    private void cboCodigo1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MousePressed
+        System.out.println("mouse presed");
+    }//GEN-LAST:event_cboCodigo1MousePressed
+
+    private void cboCodigo1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo1MouseEntered
+
+    private void cboCodigo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MouseClicked
+
+    }//GEN-LAST:event_cboCodigo1MouseClicked
+
+    private void cboCodigo1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboCodigo1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCodigo1PopupMenuWillBecomeInvisible
 
                 private void cargarMedicamentos(){
             try {
@@ -1916,9 +2000,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             }
 }
     
-    private void cargarDatosPaciente(){
+    private void cargarDatosPaciente( String hc){
       String sQuery;     
-      if(!n_orden_hc.getText().isEmpty()){
+      if(!hc.isEmpty()){
 
 
         // Prepara el Query
@@ -1927,7 +2011,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 "       t.imc, t.cintura, t.icc, t.cadera, t.temperatura, t.f_cardiaca, t.sat_02, t.perimetro_cuello, \n" +
                 "       t.sistolica, t.diastolica, t.f_respiratoria, t.conclusion \n" +
 "	from desktop_datos_pacientes as dtp inner join desktop_datos_historia_clinica as ddhc\n" +
-"	on dtp.dni=ddhc.dni_paciente  inner join desktop_triaje as t ON t.n_orden = ddhc.n_orden where ddhc.n_orden="+n_orden_hc.getText().trim();
+"	on dtp.dni=ddhc.dni_paciente  inner join desktop_triaje as t ON t.n_orden = ddhc.n_orden where ddhc.n_orden="+hc;
         if (oConn.FnBoolQueryExecute(sQuery))
         {
             try 
@@ -1952,7 +2036,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     txtSistolicaTriaje.setText(oConn.setResult.getString("sistolica"));
                     txtDiastolicaTriaje.setText(oConn.setResult.getString("diastolica"));
                     txtFRespiratoriaTriaje.setText(oConn.setResult.getString("f_respiratoria"));
-                    txtDiagnostico.setText(oConn.setResult.getString("conclusion"));
                  }
                  
                  // Cierra Resultados
@@ -1986,19 +2069,30 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             strSqlStmt="INSERT INTO desktop_historia_clinica_detalle (";
             Query="Values(";
             strSqlStmt += "n_orden";Query += n_orden_hc.getText();
-            strSqlStmt += ",tipo";Query += ",'GERIATRIA'";
+            strSqlStmt += ",tipo";Query += ",'"+clsGlobales.tipoEspecialidad+"'";
             
-            if(jTextExamFisico.getText().toString().trim().length()>0){
-            strSqlStmt += ",examen_fisico";Query += ",'"+jTextExamFisico.getText().toString().toUpperCase().trim()+ "'";}
+            if(jTextExamAnamnesis.getText().toString().trim().length()>0){
+            strSqlStmt += ",anamnesis";Query += ",'"+jTextExamAnamnesis.getText().toString().toUpperCase().trim()+ "'";}
             else{
-            strSqlStmt += ",examen_fisico";Query += ","+null;}
+            strSqlStmt += ",anamnesis";Query += ","+null;}
 
-            if(jTextRecom.getText().toString().trim().length()>0){            
-            strSqlStmt += ",recomendacion";Query += ",'"+jTextRecom.getText().toString().trim()+ "'";
+            if(jTextExamFisico.getText().toString().trim().length()>0){            
+            strSqlStmt += ",examen_fisico";Query += ",'"+jTextExamFisico.getText().toString().trim()+ "'";
             }
             else{
-            strSqlStmt += ",recomendacion";Query += ","+null;}
-                
+            strSqlStmt += ",examen_fisico";Query += ","+null;}
+            
+             if(jTextAntFamPat.getText().toString().trim().length()>0){
+            strSqlStmt += ",antecedentes_familiares_patologicos";Query += ",'"+jTextAntFamPat.getText().toString().toUpperCase().trim()+ "'";}
+            else{
+            strSqlStmt += ",antecedentes_familiares_patologicos";Query += ","+null;}
+
+            if(jTextExamAux.getText().toString().trim().length()>0){            
+            strSqlStmt += ",examen_auxiliar";Query += ",'"+jTextExamAux.getText().toString().trim()+ "'";
+            }
+            else{
+            strSqlStmt += ",examen_auxiliar";Query += ","+null;}
+            
             strSqlStmt += ",diagnostico1";Query += ",'"+cboDiagnostico1.getSelectedItem().toString().trim()+ "'";
             strSqlStmt += ",codigo_diag1";Query += ",'"+cboCodigo1.getSelectedItem().toString().trim()+ "'";
             strSqlStmt += ",diagnostico2";Query += ",'"+cboDiagnostico2.getSelectedItem().toString().trim()+ "'";
@@ -2110,6 +2204,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
+                btnActualizar(clsGlobales.tipoEspecialidad,String.valueOf(clsGlobales.historiaClinica));
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
                     btnEditar.setEnabled(false);
@@ -2159,6 +2254,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         
     }
      
+         
+         
+         private void btnActualizar(String tipo, String hc){
+            String strSqlStmt;
+            strSqlStmt="update desktop_ticket_espcialidad set estado_registro=true where nombre_especialidad='"+tipo+"' and n_orden="+hc;
+
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){
+               // oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+            }else{
+                 //oFunc.SubSistemaMensajeError("Error en registro");
+                 }            
+    
+}
     
     /**
      * @param args the command line arguments
@@ -2197,7 +2305,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton BuscarPaciente;
-    private javax.swing.JScrollPane atxtObservacionesAltura;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
@@ -2216,6 +2323,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JComboBox cboMedicamento4;
     private javax.swing.JTextField edad;
     private com.toedter.calendar.JDateChooser fecha_nacimiento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2242,6 +2350,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -2250,15 +2361,22 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTextArea jTextAntFamPat;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextExamAnamnesis;
+    private javax.swing.JTextArea jTextExamAux;
     private javax.swing.JTextArea jTextExamFisico;
     private javax.swing.JTextField jTextFieldCantidad1;
     private javax.swing.JTextField jTextFieldCantidad2;
@@ -2281,12 +2399,10 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldObserv3;
     private javax.swing.JTextField jTextFieldObserv4;
     private javax.swing.JTextField jTextFieldObserv5;
-    private javax.swing.JTextArea jTextRecom;
     private javax.swing.JTextField n_orden_hc;
     private javax.swing.JTextField nombres_hcpaciente;
     private javax.swing.JTextField txtCaderaTriaje;
     private javax.swing.JTextField txtCinturaTriaje;
-    private javax.swing.JTextArea txtDiagnostico;
     private javax.swing.JTextField txtDiastolicaTriaje;
     private javax.swing.JTextField txtFRespiratoriaTriaje;
     private javax.swing.JTextField txtFcardiacaTriaje;

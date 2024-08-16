@@ -84,6 +84,11 @@ public class AsignarRoles extends javax.swing.JFrame {
         jLabel3.setText("Asignar Rol :");
 
         cboAsignarRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A" }));
+        cboAsignarRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboAsignarRolActionPerformed(evt);
+            }
+        });
 
         btnActualizarRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         btnActualizarRol.setText("Actualizar");
@@ -297,6 +302,10 @@ public class AsignarRoles extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_TablaAsignacionRolMousePressed
+
+    private void cboAsignarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAsignarRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboAsignarRolActionPerformed
 // actualizar rol 
     private void Actualizacion(){
     String strSqlStmt;

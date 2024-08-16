@@ -52,11 +52,13 @@ public class AsignacionVistas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cboAsignarRol = new javax.swing.JComboBox<>();
-        btnAsignarRol = new javax.swing.JToggleButton();
+        btnAsignarVista = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaAsignacionRol = new javax.swing.JTable();
         cboVistas = new javax.swing.JComboBox<>();
+        btnActualizarVista = new javax.swing.JToggleButton();
+        btnLimpiarVista = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Asignar Roles");
@@ -64,15 +66,20 @@ public class AsignacionVistas extends javax.swing.JFrame {
 
         jLabel1.setText("Rol :");
 
-        jLabel2.setText("Nombre Empleado :");
+        jLabel2.setText("Nombre Vista :");
 
         cboAsignarRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A" }));
-
-        btnAsignarRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
-        btnAsignarRol.setText("Asignar");
-        btnAsignarRol.addActionListener(new java.awt.event.ActionListener() {
+        cboAsignarRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAsignarRolActionPerformed(evt);
+                cboAsignarRolActionPerformed(evt);
+            }
+        });
+
+        btnAsignarVista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chek.gif"))); // NOI18N
+        btnAsignarVista.setText("Asignar");
+        btnAsignarVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarVistaActionPerformed(evt);
             }
         });
 
@@ -116,64 +123,88 @@ public class AsignacionVistas extends javax.swing.JFrame {
 
         cboVistas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A" }));
 
+        btnActualizarVista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
+        btnActualizarVista.setText("Actualizar");
+        btnActualizarVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarVistaActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarVista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
+        btnLimpiarVista.setText("Limpiar");
+        btnLimpiarVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarVistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboAsignarRol, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cboVistas, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAsignarRol, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(57, 57, 57))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                            .addComponent(cboVistas, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAsignarVista, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnLimpiarVista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnActualizarVista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cboAsignarRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(btnActualizarVista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimpiarVista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAsignarVista))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(cboAsignarRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cboVistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cboVistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAsignarRol))
-                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAsignarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarRolActionPerformed
+    private void btnAsignarVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarVistaActionPerformed
         if (!Asig_dni_empleado.getText().isEmpty()){
             if(!oPe.validar(Asig_dni_empleado,"desktop_asignacion_empleado_rol","dni_empleado")){
             
@@ -200,7 +231,7 @@ public class AsignacionVistas extends javax.swing.JFrame {
              else                     
                 oFunc.SubSistemaMensajeError("No se puede repetir la asignacion del rol al mismo empleado");
 }
-    }//GEN-LAST:event_btnAsignarRolActionPerformed
+    }//GEN-LAST:event_btnAsignarVistaActionPerformed
 
     private void TablaAsignacionRolMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaAsignacionRolMousePressed
     if (evt.getClickCount() == 1) {  
@@ -225,9 +256,9 @@ public class AsignacionVistas extends javax.swing.JFrame {
                 asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));           
                 cboAsignarRol.setSelectedItem(oConn.setResult.getString("nombre_rol"));           
 
-                btnActualizarRol.setEnabled(true);
-                btnLimpiarRol.setEnabled(true);
-                btnAsignarRol.setEnabled(false);      
+                btnActualizarVista.setEnabled(true);
+                btnLimpiarVista.setEnabled(true);
+                btnAsignarVista.setEnabled(false);      
             }
             oConn.setResult.close();
             oConn.sqlStmt.close();
@@ -238,6 +269,18 @@ public class AsignacionVistas extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_TablaAsignacionRolMousePressed
+
+    private void btnActualizarVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarVistaActionPerformed
+        Actualizacion();
+    }//GEN-LAST:event_btnActualizarVistaActionPerformed
+
+    private void btnLimpiarVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVistaActionPerformed
+        btnLimpiarRoles();
+    }//GEN-LAST:event_btnLimpiarVistaActionPerformed
+
+    private void cboAsignarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAsignarRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboAsignarRolActionPerformed
 // actualizar rol 
     private void Actualizacion(){
     String strSqlStmt;
@@ -278,9 +321,9 @@ public class AsignacionVistas extends javax.swing.JFrame {
                     Asig_dni_empleado.setText(oConn.setResult.getString("dni"));
                     asig_nombre_empleado.setText(oConn.setResult.getString("nombres"));                    
                                
-                    btnActualizarRol.setEnabled(false);
-                    btnLimpiarRol.setEnabled(true);
-                    btnAsignarRol.setEnabled(true);
+                    btnActualizarVista.setEnabled(false);
+                    btnLimpiarVista.setEnabled(true);
+                    btnAsignarVista.setEnabled(true);
                     }else{
                     oFunc.SubSistemaMensajeError("No se encuentra registro del empleado");
                 }
@@ -326,12 +369,12 @@ public class AsignacionVistas extends javax.swing.JFrame {
   }  
     
  public void btnLimpiarRoles(){
-    Asig_dni_empleado.setText(null);
-    asig_nombre_empleado.setText(null);
+    
     cboAsignarRol.setSelectedItem("N/A");
-    btnActualizarRol.setEnabled(true);
-    btnLimpiarRol.setEnabled(true);
-    btnAsignarRol.setEnabled(true);
+    cboVistas.setSelectedItem("N/A");
+    btnActualizarVista.setEnabled(true);
+    btnLimpiarVista.setEnabled(true);
+    btnAsignarVista.setEnabled(true);
 
 }
  private void llenar_tabla_hc() {
@@ -343,7 +386,7 @@ public class AsignacionVistas extends javax.swing.JFrame {
             }
         };
         
-        String vSql = "SELECT asig_rol.id_asignacion, asig_rol.dni_empleado, " +
+        String vSql = "SELECT asig_rol.id_asignacion,  " +
                       "desk_emple.nombres || ' ' || desk_emple.apellidos AS nombres, " +
                       "asig_rol.nombre_rol " +
                       "FROM desktop_asignacion_empleado_rol AS asig_rol " +
@@ -382,7 +425,8 @@ public class AsignacionVistas extends javax.swing.JFrame {
     }
 }
 
-    
+  // prueba del select
+
     
     
     public static void main(String args[]) {
@@ -420,7 +464,9 @@ public class AsignacionVistas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaAsignacionRol;
-    private javax.swing.JToggleButton btnAsignarRol;
+    private javax.swing.JToggleButton btnActualizarVista;
+    private javax.swing.JToggleButton btnAsignarVista;
+    private javax.swing.JToggleButton btnLimpiarVista;
     private javax.swing.JComboBox<String> cboAsignarRol;
     private javax.swing.JComboBox<String> cboVistas;
     private javax.swing.JLabel jLabel1;

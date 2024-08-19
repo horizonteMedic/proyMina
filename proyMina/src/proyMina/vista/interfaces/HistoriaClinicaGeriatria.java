@@ -1821,6 +1821,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     private void jTextFieldHorario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario1ActionPerformed
     horas=Integer.valueOf(jTextFieldHorario1.getText().toString().trim());
+    jTextFieldFrecuencia1.requestFocus();
     }//GEN-LAST:event_jTextFieldHorario1ActionPerformed
 
     private void jTextFieldFrecuencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia1ActionPerformed
@@ -1831,6 +1832,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     private void jTextFieldHorario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario2ActionPerformed
             horas=Integer.valueOf(jTextFieldHorario2.getText().toString().trim());
+                jTextFieldFrecuencia2.requestFocus();
+
     }//GEN-LAST:event_jTextFieldHorario2ActionPerformed
 
     private void jTextFieldFrecuencia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia2ActionPerformed
@@ -1859,14 +1862,20 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     private void jTextFieldHorario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario3ActionPerformed
         horas=Integer.valueOf(jTextFieldHorario3.getText().toString().trim());
+            jTextFieldFrecuencia3.requestFocus();
+
     }//GEN-LAST:event_jTextFieldHorario3ActionPerformed
 
     private void jTextFieldHorario4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario4ActionPerformed
         horas=Integer.valueOf(jTextFieldHorario4.getText().toString().trim());
+            jTextFieldFrecuencia4.requestFocus();
+
     }//GEN-LAST:event_jTextFieldHorario4ActionPerformed
 
     private void jTextFieldHorario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario5ActionPerformed
         horas=Integer.valueOf(jTextFieldHorario5.getText().toString().trim());
+            jTextFieldFrecuencia5.requestFocus();
+
     }//GEN-LAST:event_jTextFieldHorario5ActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed

@@ -67,8 +67,8 @@ public class Ficha_triaje_panel_principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-      PrincipalMina pm =new PrincipalMina();
-       pm.setVisible(true);
+     // PrincipalMina pm =new PrincipalMina();
+       //pm.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {

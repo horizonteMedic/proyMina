@@ -1699,6 +1699,8 @@ boolean bResultado=true;
     }//GEN-LAST:event_cboEspecialidadKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(!cboEspecialidad.getSelectedItem().toString().trim().contains("N/A"))
+        {
         if(!existenciaEspecialidades()){
         registrarTicketEspecialiad();
                 cargarTicketEspecialidadPorNOrden(jTextFieldNro.getText().toString().trim());
@@ -1706,7 +1708,9 @@ boolean bResultado=true;
         }
         else
                  oFunc.SubSistemaMensajeError("ERROR: Historia clinica por especialidad debe de ser unica");
-           
+        }  
+                         oFunc.SubSistemaMensajeError("SELECCIONE UN ELEMENTO");
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

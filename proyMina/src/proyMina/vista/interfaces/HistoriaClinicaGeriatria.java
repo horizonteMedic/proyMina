@@ -127,6 +127,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
@@ -160,7 +165,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jTextFieldFrecuencia5 = new javax.swing.JTextField();
         jTextFieldObserv5 = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -194,7 +198,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         txtDiastolicaTriaje = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
@@ -380,17 +383,17 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel38)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(29, 29, 29)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(140, Short.MAX_VALUE)))
+                    .addContainerGap(141, Short.MAX_VALUE)))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(29, 29, 29)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(140, Short.MAX_VALUE)))
+                    .addContainerGap(141, Short.MAX_VALUE)))
         );
 
         jTabbedPane5.addTab("Inicio", jPanel5);
@@ -675,58 +678,104 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane3.setViewportView(jTextArea1);
 
+        jButton1.setBackground(new java.awt.Color(153, 0, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(153, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+
+        jButton3.setBackground(new java.awt.Color(153, 0, 0));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+
+        jButton4.setBackground(new java.awt.Color(153, 0, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+
+        jButton5.setBackground(new java.awt.Color(153, 0, 0));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(jLabel40)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel41)
-                .addGap(162, 162, 162))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
-                    .addComponent(cboDiagnostico3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboDiagnostico2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboDiagnostico1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboDiagnostico4, 0, 740, Short.MAX_VALUE))
-                .addGap(61, 61, 61)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboCodigo3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboCodigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboCodigo4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboCodigo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(jLabel40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 597, Short.MAX_VALUE)
+                        .addComponent(jLabel41)
+                        .addGap(94, 94, 94))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane3)
+                            .addComponent(cboDiagnostico3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboDiagnostico2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboDiagnostico1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboDiagnostico4, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboCodigo3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboCodigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboCodigo4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboCodigo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(75, 75, 75)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel41))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboDiagnostico1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCodigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboDiagnostico2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCodigo3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboDiagnostico3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCodigo4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboDiagnostico4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel41))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(cboCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cboDiagnostico1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(cboCodigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cboDiagnostico2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cboCodigo3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboDiagnostico3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboCodigo4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboDiagnostico4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55))))
         );
 
         jTabbedPane5.addTab("Diagnosticos", jPanel2);
@@ -985,14 +1034,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             }
         });
 
-        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -1002,7 +1043,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         });
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agegar.png"))); // NOI18N
-        btnRegistrar.setText("Registrar");
+        btnRegistrar.setText("Registrar/Actualizar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -1155,8 +1196,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
         jLabel21.setText("mm Hg");
 
-        jLabel34.setText("Recomendaciones");
-
         jLabel35.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel35.setText("INFORMACIÓN DE TRIAJE");
 
@@ -1195,10 +1234,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                             .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtFcardiacaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel34))
+                            .addComponent(txtFcardiacaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTemperaturaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1285,8 +1321,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(txtFcardiacaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34))
+                            .addComponent(txtFcardiacaTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
@@ -1339,11 +1374,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(208, 208, 208)
-                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(76, 76, 76)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(107, 107, 107)
+                            .addGap(275, 275, 275)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(209, 209, 209)
                             .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(70, 70, 70)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1382,11 +1415,10 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnRegistrar)
-                        .addComponent(btnActualizar)
-                        .addComponent(btnLimpiar)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegistrar))
+                    .addComponent(btnLimpiar))
                 .addContainerGap())
         );
 
@@ -1425,17 +1457,16 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_nombres_hcpacienteActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-    registrarHistoria();
+               if(validarExistenciaHistoriaClinica())
+                    registrarHistoria();
+               else         actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
        
     }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -1643,7 +1674,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico4KeyPressed
 
     private void cboDiagnostico4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico4ActionPerformed
-
+        if(cboDiagnostico4.getSelectedIndex()>0)
+          cargarDiagnosticosCodigo(4);
     }//GEN-LAST:event_cboDiagnostico4ActionPerformed
 
     private void cboDiagnostico4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico4MousePressed
@@ -1692,7 +1724,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico3KeyPressed
 
     private void cboDiagnostico3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico3ActionPerformed
-
+        if(cboDiagnostico3.getSelectedIndex()>0)
+          cargarDiagnosticosCodigo(3);
     }//GEN-LAST:event_cboDiagnostico3ActionPerformed
 
     private void cboDiagnostico3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico3MousePressed
@@ -1741,7 +1774,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico2KeyPressed
 
     private void cboDiagnostico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico2ActionPerformed
-
+        if(cboDiagnostico2.getSelectedIndex()>0)
+          cargarDiagnosticosCodigo(2);
     }//GEN-LAST:event_cboDiagnostico2ActionPerformed
 
     private void cboDiagnostico2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MousePressed
@@ -1765,16 +1799,13 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDiagnostico1KeyReleased
 
     private void cboDiagnostico1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboDiagnostico1KeyPressed
-        System.out.println("llego al key released");
-        char c = (char) evt.getKeyCode();
-        if(c == evt.VK_ENTER){
-            System.out.println("esta en el enter");
-            cargarDiagnosticosCodigo(1);
-        }
+
 
     }//GEN-LAST:event_cboDiagnostico1KeyPressed
 
     private void cboDiagnostico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico1ActionPerformed
+        if(cboDiagnostico1.getSelectedIndex()>0)
+          cargarDiagnosticosCodigo(1);
 
     }//GEN-LAST:event_cboDiagnostico1ActionPerformed
 
@@ -1893,6 +1924,20 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtImpActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                if(validarExistenciaHistoriaClinica()){
+                     actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                    if(validarExistenciaDiagnostico())
+                registrarMedicamento("1");
+
+                }
+                else{
+                    registrarHistoria();
+                if(!validarExistenciaDiagnostico())
+                registrarMedicamento("1");
+                }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
                 private void cargarMedicamentos(){
             try {
@@ -2113,7 +2158,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     catch (SQLException ex)
                     {
                         //JOptionPane.showMessageDialorootPane,ex);
-                        oFunc.SubSistemaMensajeInformacion(ex.toString());
+                     //   oFunc.SubSistemaMensajeInformacion(ex.toString());
                         Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -2164,7 +2209,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     catch (SQLException ex)
                     {
                         //JOptionPane.showMessageDialorootPane,ex);
-                        oFunc.SubSistemaMensajeInformacion(ex.toString());
+                   //     oFunc.SubSistemaMensajeInformacion(ex.toString());
                         Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -2269,113 +2314,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             }
             else{
             strSqlStmt += ",examen_auxiliar";Query += ","+null;}
-            
-            strSqlStmt += ",diagnostico1";Query += ",'"+cboDiagnostico1.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",codigo_diag1";Query += ",'"+cboCodigo1.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",diagnostico2";Query += ",'"+cboDiagnostico2.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",codigo_diag2";Query += ",'"+cboCodigo2.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",diagnostico3";Query += ",'"+cboDiagnostico3.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",codigo_diag3";Query += ",'"+cboCodigo3.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",diagnostico4";Query += ",'"+cboDiagnostico4.getSelectedItem().toString().trim()+ "'";
-            strSqlStmt += ",codigo_diag4";Query += ",'"+cboCodigo4.getSelectedItem().toString().trim()+ "'";
-            
-            if(jTextArea1.getText().toString().length()>0){
-                        strSqlStmt += ",diagnostico5";Query += ",'"+jTextArea1.getText().toString().trim()+ "'";
-            }
-            else
-            strSqlStmt += ",diagnostico5";Query += ",'NULL'";
-         
-            
-            strSqlStmt += ",trata1";Query += ",'"+cboMedicamento1.getSelectedItem().toString().trim()+ "'";
-            if(jTextFieldCantidad1.getText().toString().trim().length()>0){
-            strSqlStmt += ",cantidad1";Query += ","+jTextFieldCantidad1.getText().toString().trim();}
-            else{
-            strSqlStmt += ",cantidad1";Query += ","+null;}    
-            
-            if(jTextFieldHorario1.getText().toString().trim().length()>0){
-            strSqlStmt += ",horario1";Query += ","+jTextFieldHorario1.getText().toString().trim();}
-            else{
-            strSqlStmt += ",horario1";Query += ","+null;}   
-            
-            if(jTextFieldFrecuencia1.getText().toString().trim().length()>0){
-            strSqlStmt += ",frecuencia1";Query += ","+jTextFieldFrecuencia1.getText().toString().trim();}
-            else{
-            strSqlStmt += ",frecuencia1";Query += ","+null;}   
-            
-            if(jTextFieldObserv1.getText().toString().trim().length()>0){
-            strSqlStmt += ",recomen1";Query += ",'"+jTextFieldObserv1.getText().toString().trim()+"'";}
-            else{
-            strSqlStmt += ",recomen1";Query += ","+null;}  
-             
-             
-            
-            strSqlStmt += ",trata2";Query += ",'"+cboMedicamento2.getSelectedItem().toString().trim()+ "'";
-            if(jTextFieldCantidad2.getText().toString().trim().length()>0){
-            strSqlStmt += ",cantidad2";Query += ","+jTextFieldCantidad2.getText().toString().trim();}
-            else{
-            strSqlStmt += ",cantidad2";Query += ","+null;}    
-            
-            if(jTextFieldHorario2.getText().toString().trim().length()>0){
-            strSqlStmt += ",horario2";Query += ","+jTextFieldHorario2.getText().toString().trim();}
-            else{
-            strSqlStmt += ",horario2";Query += ","+null;}   
-            
-            if(jTextFieldFrecuencia2.getText().toString().trim().length()>0){
-            strSqlStmt += ",frecuencia2";Query += ","+jTextFieldFrecuencia2.getText().toString().trim();}
-            else{
-            strSqlStmt += ",frecuencia2";Query += ","+null;}  
-
-            if(jTextFieldObserv2.getText().toString().trim().length()>0){
-            strSqlStmt += ",recomen2";Query += ",'"+jTextFieldObserv2.getText().toString().trim()+"'";}
-            else{
-            strSqlStmt += ",recomen2";Query += ","+null;}  
-
-            
-            
-            strSqlStmt += ",trata3";Query += ",'"+cboMedicamento3.getSelectedItem().toString().trim()+ "'";
-            if(jTextFieldCantidad3.getText().toString().trim().length()>0){
-            strSqlStmt += ",cantidad3";Query += ","+jTextFieldCantidad3.getText().toString().trim();}
-            else{
-            strSqlStmt += ",cantidad3";Query += ","+null;}    
-            
-            if(jTextFieldHorario3.getText().toString().trim().length()>0){
-            strSqlStmt += ",horario3";Query += ","+jTextFieldHorario3.getText().toString().trim();}
-            else{
-            strSqlStmt += ",horario3";Query += ","+null;}   
-            
-            if(jTextFieldFrecuencia3.getText().toString().trim().length()>0){
-            strSqlStmt += ",frecuencia3";Query += ","+jTextFieldFrecuencia3.getText().toString().trim();}
-            else{
-            strSqlStmt += ",frecuencia3";Query += ","+null;}
-            
-            if(jTextFieldObserv3.getText().toString().trim().length()>0){
-            strSqlStmt += ",recomen3";Query += ",'"+jTextFieldObserv3.getText().toString().trim()+"'";}
-            else{
-            strSqlStmt += ",recomen3";Query += ","+null;}              
-            
-            
-            
-            strSqlStmt += ",trata4";Query += ",'"+cboMedicamento4.getSelectedItem().toString().trim()+ "'";
-            if(jTextFieldCantidad4.getText().toString().trim().length()>0){
-            strSqlStmt += ",cantidad4";Query += ","+jTextFieldCantidad4.getText().toString().trim();}
-            else{
-            strSqlStmt += ",cantidad4";Query += ","+null;}    
-
-            if(jTextFieldHorario4.getText().toString().trim().length()>0){
-            strSqlStmt += ",horario4";Query += ","+jTextFieldHorario4.getText().toString().trim();}
-            else{
-            strSqlStmt += ",horario4";Query += ","+null;}   
-            
-            if(jTextFieldFrecuencia4.getText().toString().trim().length()>0){
-            strSqlStmt += ",frecuencia4";Query += ","+jTextFieldFrecuencia4.getText().toString().trim();}
-            else{
-            strSqlStmt += ",frecuencia4";Query += ","+null;}   
-
-            if(jTextFieldObserv4.getText().toString().trim().length()>0){
-            strSqlStmt += ",recomen4";Query += ",'"+jTextFieldObserv4.getText().toString().trim()+"'";}
-            else{
-            strSqlStmt += ",recomen4";Query += ","+null;}              
-            
+                       
             strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
             strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
@@ -2386,14 +2325,65 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
         }
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
-                btnActualizar(clsGlobales.tipoEspecialidad,String.valueOf(clsGlobales.historiaClinica));
+                actualizarEstadoTicketEspecialidad(clsGlobales.tipoEspecialidad,String.valueOf(clsGlobales.historiaClinica));
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
                     btnEditar.setEnabled(false);
-                    btnActualizar.setEnabled(false);
                     
                     }  
     }
+    
+             private void actualizarEstadoTicketEspecialidad(String tipo, String hc){
+            String strSqlStmt;
+            strSqlStmt="update desktop_ticket_espcialidad set estado_registro=true where nombre_especialidad='"+tipo+"' and n_orden="+hc;
+
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){
+               // oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+            }else{
+                 //oFunc.SubSistemaMensajeError("Error en registro");
+                 }            
+    
+}
+        private void registrarMedicamento(String nivel){
+                String strSqlStmt;
+            String Query ;
+            int key= oFunc.contadorPrimario("desktop_diagnostico_x_expecialidad_hc");
+            strSqlStmt="INSERT INTO desktop_diagnostico_x_expecialidad_hc (";
+            Query="Values(";
+            strSqlStmt += "id_diag_x_espe_hc";Query +=key;
+            strSqlStmt += ",tipo";Query += ",'"+clsGlobales.tipoEspecialidad+"'";
+            strSqlStmt += ",n_orden";Query += ","+n_orden_hc.getText().toString().trim();
+            if(nivel.contains("1")){
+            strSqlStmt += ",codigo_cie10";Query += ",'"+cboCodigo1.getSelectedItem().toString().trim()+"'";
+            }
+            if(nivel.contains("2")){
+            strSqlStmt += ",codigo_cie10";Query += ",'"+cboCodigo2.getSelectedItem().toString().trim()+"'";
+            }
+            if(nivel.contains("3")){
+            strSqlStmt += ",codigo_cie10";Query += ",'"+cboCodigo3.getSelectedItem().toString().trim()+"'";
+            }
+            if(nivel.contains("4")){
+            strSqlStmt += ",codigo_cie10";Query += ",'"+cboCodigo4.getSelectedItem().toString().trim()+"'";
+            }            
+                                   
+            strSqlStmt += ",user_registro";Query += ",'"+clsGlobales.sUser+ "'";
+            strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
+            System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
+                             try {       
+            print(n_orden_hc.getText().toString().trim());
+        } catch (Exception ex) {
+            Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
+            } else{
+                    oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
+                    btnEditar.setEnabled(false);
+                    
+                    }  
+    }
+    
+    
     
          public void calcularDniUser()
     {
@@ -2436,12 +2426,91 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         
     }
      
-         
-         
-         private void btnActualizar(String tipo, String hc){
-            String strSqlStmt;
-            strSqlStmt="update desktop_ticket_espcialidad set estado_registro=true where nombre_especialidad='"+tipo+"' and n_orden="+hc;
+                public boolean validarExistenciaHistoriaClinica()
+    {
+        // Para devolver el resultado
+        
+        // Para el Query
+        String sQuery="";
+        boolean respuesta=false;
+        // Prepara el Query
+        sQuery  = "select n_orden from desktop_historia_clinica_detalle where tipo='"+clsGlobales.tipoEspecialidad+"' and n_orden="+n_orden_hc.getText().trim();
+        System.out.println(sQuery);
+   
+        //Ejecuta el Query
+        oConn.FnBoolQueryExecute(sQuery);
+        
+        // Capturo el Error
+        try {
+            
+            // Verifico que haya habido resultados
+            if (oConn.setResult.next())
+            {
+                
+               respuesta=true;
 
+            }
+            
+            // Cierro los Resultados
+            oConn.sqlStmt.close();
+            
+        } catch (SQLException ex) {
+         
+        }
+        
+        
+        
+        // Retorna el Resultado
+        return respuesta;
+    }  
+     
+        public boolean validarExistenciaDiagnostico()
+    {
+        // Para devolver el resultado
+        
+        // Para el Query
+        String sQuery="";
+        boolean respuesta=false;
+        // Prepara el Query
+        sQuery  = "select n_orden from desktop_diagnostico_x_expecialidad_hc where tipo='"+clsGlobales.tipoEspecialidad+"' and n_orden="+n_orden_hc.getText().trim()+" codigo_cie10='"+cboCodigo1.getSelectedItem()+"'";
+        
+   
+        //Ejecuta el Query
+        oConn.FnBoolQueryExecute(sQuery);
+        
+        // Capturo el Error
+        try {
+            
+            // Verifico que haya habido resultados
+            if (oConn.setResult.next())
+            {
+                
+               respuesta=true;
+
+            }
+            
+            // Cierro los Resultados
+            oConn.sqlStmt.close();
+            
+        } catch (SQLException ex) {
+         
+        }
+        
+        
+        
+        // Retorna el Resultado
+        return respuesta;
+    }  
+                
+                
+         private void actualizarHistoriaClinica(String tipo, String hc){
+            String strSqlStmt;
+            strSqlStmt="update desktop_historia_clinica_detalle set examen_fisico='"
+                    + jTextExamFisico.getText().trim().toUpperCase()+"', anamnesis='"+ jTextExamAnamnesis.getText().trim().toUpperCase()+"',antecedentes_familiares_patologicos='"+
+                    jTextAntFamPat.getText().trim().toUpperCase()+"',examen_auxiliar='"+jTextExamAux.getText().trim().toUpperCase()+"',fecha_actualizacion='"+formato.format(dateHoy)
+                    +"',user_actualizacion='"+clsGlobales.sUser+"' "
+                    +"where tipo='"+tipo+"' and n_orden="+hc;
+            System.out.println(strSqlStmt);
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){
                // oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
             }else{
@@ -2487,7 +2556,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton BuscarPaciente;
-    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiar;
@@ -2506,6 +2574,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JComboBox cboMedicamento4;
     private javax.swing.JTextField edad;
     private com.toedter.calendar.JDateChooser fecha_nacimiento;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2531,7 +2604,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;

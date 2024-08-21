@@ -37,5 +37,7 @@ public class clsGlobales {
     public static Integer fSerie;
     public static String tipoEspecialidad;
     public static Integer historiaClinica=0;
+    public static String descripcionDiagnostico;
+    public static String codigoDiagnostico;
      
 }

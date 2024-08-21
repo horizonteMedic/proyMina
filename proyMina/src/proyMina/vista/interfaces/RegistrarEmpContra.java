@@ -25,8 +25,6 @@ public class RegistrarEmpContra extends javax.swing.JFrame {
     public RegistrarEmpContra() {       
         initComponents();        
         setLocationRelativeTo(null);  
-        setLocationRelativeTo(null);  
-
        // llenar_tabla_hc();        
 
     }

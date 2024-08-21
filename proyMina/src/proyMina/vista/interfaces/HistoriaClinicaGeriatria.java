@@ -48,6 +48,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     clsFunciones oFunc = new clsFunciones();
     clsOperacionesUsuarios oPe = new clsOperacionesUsuarios();
     DefaultTableModel model; 
+    boolean imprimir=true;
     int dni=0;
     int dias=0, horas=0, cantidad=0;
      String base64String="";
@@ -66,15 +67,23 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(this.cboCodigo2);
         AutoCompleteDecorator.decorate(this.cboCodigo3);
         AutoCompleteDecorator.decorate(this.cboCodigo4);
-        AutoCompleteDecorator.decorate(this.cboMedicamento1);
-        AutoCompleteDecorator.decorate(this.cboMedicamento2);
-        AutoCompleteDecorator.decorate(this.cboMedicamento3);
-        AutoCompleteDecorator.decorate(this.cboMedicamento4);
+
         if(clsGlobales.historiaClinica>0){
             cargarDatosPaciente(String.valueOf(clsGlobales.historiaClinica));
             n_orden_hc.setText(String.valueOf(clsGlobales.historiaClinica));
         }
-       cargarMedicamentos();
+        cboCodigo1.setEnabled(false);
+        cboCodigo2.setEnabled(false);
+        cboCodigo3.setEnabled(false);
+        cboCodigo4.setEnabled(false);
+                    cboDiagnostico1.setSelectedIndex(0);
+                    cboCodigo1.setSelectedIndex(0);
+                    cboDiagnostico2.setSelectedIndex(0);
+                    cboCodigo2.setSelectedIndex(0);
+                    cboDiagnostico3.setSelectedIndex(0);
+                    cboCodigo3.setSelectedIndex(0);
+                    cboDiagnostico4.setSelectedIndex(0);
+                    cboCodigo4.setSelectedIndex(0);
         cargarDiagnosticos();
         calcularDniUser();
     }
@@ -132,38 +141,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        cboMedicamento1 = new javax.swing.JComboBox();
-        jTextFieldCantidad1 = new javax.swing.JTextField();
-        jTextFieldHorario1 = new javax.swing.JTextField();
-        jTextFieldFrecuencia1 = new javax.swing.JTextField();
-        cboMedicamento2 = new javax.swing.JComboBox();
-        jTextFieldCantidad2 = new javax.swing.JTextField();
-        jTextFieldHorario2 = new javax.swing.JTextField();
-        jTextFieldFrecuencia2 = new javax.swing.JTextField();
-        cboMedicamento3 = new javax.swing.JComboBox();
-        jTextFieldCantidad3 = new javax.swing.JTextField();
-        jTextFieldHorario3 = new javax.swing.JTextField();
-        jTextFieldFrecuencia3 = new javax.swing.JTextField();
-        cboMedicamento4 = new javax.swing.JComboBox();
-        jTextFieldCantidad4 = new javax.swing.JTextField();
-        jTextFieldHorario4 = new javax.swing.JTextField();
-        jTextFieldFrecuencia4 = new javax.swing.JTextField();
-        jLabel47 = new javax.swing.JLabel();
-        jTextFieldObserv1 = new javax.swing.JTextField();
-        jTextFieldObserv2 = new javax.swing.JTextField();
-        jTextFieldObserv3 = new javax.swing.JTextField();
-        jTextFieldObserv4 = new javax.swing.JTextField();
-        jTextFieldMedicamento5 = new javax.swing.JTextField();
-        jTextFieldCantidad5 = new javax.swing.JTextField();
-        jTextFieldHorario5 = new javax.swing.JTextField();
-        jTextFieldFrecuencia5 = new javax.swing.JTextField();
-        jTextFieldObserv5 = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
@@ -780,252 +757,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Diagnosticos", jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 19, -1, -1));
-
-        jLabel43.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel43.setText("MEDICAMENTOS");
-        jPanel3.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 19, -1, -1));
-
-        jLabel44.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel44.setText("UNIDAD");
-        jPanel3.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 19, -1, -1));
-
-        jLabel45.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel45.setText("HORARIO( Horas)");
-        jPanel3.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 19, -1, -1));
-
-        jLabel46.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel46.setText("FRECUENCIA (Dias)");
-        jPanel3.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 19, -1, -1));
-
-        cboMedicamento1.setEditable(true);
-        cboMedicamento1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
-        cboMedicamento1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                cboMedicamento1PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        cboMedicamento1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboMedicamento1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cboMedicamento1MouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cboMedicamento1MousePressed(evt);
-            }
-        });
-        cboMedicamento1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMedicamento1ActionPerformed(evt);
-            }
-        });
-        cboMedicamento1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cboMedicamento1KeyPressed(evt);
-            }
-        });
-        jPanel3.add(cboMedicamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 42, 377, -1));
-        jPanel3.add(jTextFieldCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 42, 70, -1));
-
-        jTextFieldHorario1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHorario1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldHorario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 42, 174, -1));
-
-        jTextFieldFrecuencia1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFrecuencia1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldFrecuencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 42, 174, -1));
-
-        cboMedicamento2.setEditable(true);
-        cboMedicamento2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
-        cboMedicamento2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                cboMedicamento2PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        cboMedicamento2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboMedicamento2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cboMedicamento2MouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cboMedicamento2MousePressed(evt);
-            }
-        });
-        cboMedicamento2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMedicamento2ActionPerformed(evt);
-            }
-        });
-        cboMedicamento2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cboMedicamento2KeyPressed(evt);
-            }
-        });
-        jPanel3.add(cboMedicamento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 76, 377, -1));
-        jPanel3.add(jTextFieldCantidad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 76, 70, -1));
-
-        jTextFieldHorario2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHorario2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 76, 174, -1));
-
-        jTextFieldFrecuencia2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFrecuencia2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldFrecuencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 76, 174, -1));
-
-        cboMedicamento3.setEditable(true);
-        cboMedicamento3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
-        cboMedicamento3.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                cboMedicamento3PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        cboMedicamento3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboMedicamento3MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cboMedicamento3MouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cboMedicamento3MousePressed(evt);
-            }
-        });
-        cboMedicamento3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMedicamento3ActionPerformed(evt);
-            }
-        });
-        cboMedicamento3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cboMedicamento3KeyPressed(evt);
-            }
-        });
-        jPanel3.add(cboMedicamento3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 116, 377, -1));
-        jPanel3.add(jTextFieldCantidad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 116, 70, -1));
-
-        jTextFieldHorario3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHorario3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldHorario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 116, 174, -1));
-
-        jTextFieldFrecuencia3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFrecuencia3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldFrecuencia3, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 116, 174, -1));
-
-        cboMedicamento4.setEditable(true);
-        cboMedicamento4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
-        cboMedicamento4.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                cboMedicamento4PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        cboMedicamento4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboMedicamento4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cboMedicamento4MouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cboMedicamento4MousePressed(evt);
-            }
-        });
-        cboMedicamento4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMedicamento4ActionPerformed(evt);
-            }
-        });
-        cboMedicamento4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cboMedicamento4KeyPressed(evt);
-            }
-        });
-        jPanel3.add(cboMedicamento4, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 156, 377, -1));
-        jPanel3.add(jTextFieldCantidad4, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 156, 70, -1));
-
-        jTextFieldHorario4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHorario4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldHorario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 156, 174, -1));
-
-        jTextFieldFrecuencia4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFrecuencia4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldFrecuencia4, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 156, 174, -1));
-
-        jLabel47.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel47.setText("OBSERVACIONES");
-        jPanel3.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(974, 19, -1, -1));
-        jPanel3.add(jTextFieldObserv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 42, 295, -1));
-        jPanel3.add(jTextFieldObserv2, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 76, 295, -1));
-        jPanel3.add(jTextFieldObserv3, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 116, 295, -1));
-        jPanel3.add(jTextFieldObserv4, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 156, 295, -1));
-
-        jTextFieldMedicamento5.setText("N/A");
-        jPanel3.add(jTextFieldMedicamento5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 190, 377, -1));
-        jPanel3.add(jTextFieldCantidad5, new org.netbeans.lib.awtextra.AbsoluteConstraints(424, 190, 70, -1));
-
-        jTextFieldHorario5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHorario5ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldHorario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 190, 174, -1));
-
-        jTextFieldFrecuencia5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFrecuencia5ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldFrecuencia5, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 190, 174, -1));
-        jPanel3.add(jTextFieldObserv5, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 190, 295, -1));
-
-        jTabbedPane5.addTab("TRATAMIENTO", jPanel3);
-
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -1376,9 +1107,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(275, 275, 275)
                             .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(209, 209, 209)
+                            .addGap(152, 152, 152)
                             .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(70, 70, 70)
+                            .addGap(127, 127, 127)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(16, 16, 16)
@@ -1415,11 +1146,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRegistrar))
-                    .addComponent(btnLimpiar))
-                .addContainerGap())
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLimpiar)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7))
         );
 
         jPanel4.getAccessibleContext().setAccessibleName("Información de Triaje");
@@ -1430,7 +1161,14 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void n_orden_hcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n_orden_hcActionPerformed
+        if(!validarExistenciaHistoriaClinica())
         cargarDatosPaciente(n_orden_hc.getText().toString().trim());
+        else 
+        {
+        cargarDatosPaciente(n_orden_hc.getText().toString().trim());    
+        oFunc.SubSistemaMensajeInformacion("Ya se encuentra un registro, seleccione EDITAR!");
+        btnRegistrar.setEnabled(false);
+        }
     }//GEN-LAST:event_n_orden_hcActionPerformed
 
     private void n_orden_hcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n_orden_hcKeyTyped
@@ -1457,7 +1195,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_nombres_hcpacienteActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-               if(validarExistenciaHistoriaClinica())
+               if(!validarExistenciaHistoriaClinica())
                     registrarHistoria();
                else         actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
 
@@ -1465,10 +1203,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       
+        cargarEditar();       
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+         limpiarHistoria(); 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtTallaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTallaFocusLost
@@ -1547,102 +1286,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private void txtDiastolicaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiastolicaTriajeActionPerformed
 
     }//GEN-LAST:event_txtDiastolicaTriajeActionPerformed
-
-    private void cboMedicamento4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento4KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4KeyPressed
-
-    private void cboMedicamento4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4ActionPerformed
-
-    private void cboMedicamento4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4MousePressed
-
-    private void cboMedicamento4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4MouseEntered
-
-    private void cboMedicamento4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4MouseClicked
-
-    private void cboMedicamento4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento4PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento4PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3KeyPressed
-
-    private void cboMedicamento3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3ActionPerformed
-
-    private void cboMedicamento3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3MousePressed
-
-    private void cboMedicamento3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3MouseEntered
-
-    private void cboMedicamento3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3MouseClicked
-
-    private void cboMedicamento3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento3PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento3PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2KeyPressed
-
-    private void cboMedicamento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2ActionPerformed
-
-    private void cboMedicamento2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2MousePressed
-
-    private void cboMedicamento2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2MouseEntered
-
-    private void cboMedicamento2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2MouseClicked
-
-    private void cboMedicamento2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento2PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento2PopupMenuWillBecomeInvisible
-
-    private void cboMedicamento1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1KeyPressed
-
-    private void cboMedicamento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1ActionPerformed
-
-    private void cboMedicamento1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1MousePressed
-
-    private void cboMedicamento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1MouseEntered
-
-    private void cboMedicamento1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMedicamento1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1MouseClicked
-
-    private void cboMedicamento1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cboMedicamento1PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboMedicamento1PopupMenuWillBecomeInvisible
 
     private void cboCodigo4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCodigo4KeyPressed
         // TODO add your handling code here:
@@ -1775,7 +1418,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
     private void cboDiagnostico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDiagnostico2ActionPerformed
         if(cboDiagnostico2.getSelectedIndex()>0)
-          cargarDiagnosticosCodigo(2);
+        {   
+            System.out.println("cargar diagnostico 2");
+            cargarDiagnosticosCodigo(2);}
     }//GEN-LAST:event_cboDiagnostico2ActionPerformed
 
     private void cboDiagnostico2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboDiagnostico2MousePressed
@@ -1830,8 +1475,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodigo1KeyPressed
 
     private void cboCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo1ActionPerformed
-        if(cboCodigo1.getSelectedIndex()>0)
-        cargarDiagnosticosDescripcion(1);
+
     }//GEN-LAST:event_cboCodigo1ActionPerformed
 
     private void cboCodigo1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo1MousePressed
@@ -1850,65 +1494,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboCodigo1PopupMenuWillBecomeInvisible
 
-    private void jTextFieldHorario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario1ActionPerformed
-    horas=Integer.valueOf(jTextFieldHorario1.getText().toString().trim());
-    jTextFieldFrecuencia1.requestFocus();
-    }//GEN-LAST:event_jTextFieldHorario1ActionPerformed
-
-    private void jTextFieldFrecuencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia1ActionPerformed
-            dias=Integer.valueOf(jTextFieldFrecuencia1.getText().toString().trim());
-            cantidad=(dias*24)/horas;
-            jTextFieldCantidad1.setText(""+cantidad);
-    }//GEN-LAST:event_jTextFieldFrecuencia1ActionPerformed
-
-    private void jTextFieldHorario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario2ActionPerformed
-            horas=Integer.valueOf(jTextFieldHorario2.getText().toString().trim());
-                jTextFieldFrecuencia2.requestFocus();
-
-    }//GEN-LAST:event_jTextFieldHorario2ActionPerformed
-
-    private void jTextFieldFrecuencia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia2ActionPerformed
-            dias=Integer.valueOf(jTextFieldFrecuencia2.getText().toString().trim());
-            cantidad=(dias*24)/horas;
-            jTextFieldCantidad2.setText(""+cantidad);
-    }//GEN-LAST:event_jTextFieldFrecuencia2ActionPerformed
-
-    private void jTextFieldFrecuencia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia3ActionPerformed
-                    dias=Integer.valueOf(jTextFieldFrecuencia3.getText().toString().trim());
-            cantidad=(dias*24)/horas;
-            jTextFieldCantidad3.setText(""+cantidad);
-    }//GEN-LAST:event_jTextFieldFrecuencia3ActionPerformed
-
-    private void jTextFieldFrecuencia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia4ActionPerformed
-                    dias=Integer.valueOf(jTextFieldFrecuencia4.getText().toString().trim());
-            cantidad=(dias*24)/horas;
-            jTextFieldCantidad4.setText(""+cantidad);
-    }//GEN-LAST:event_jTextFieldFrecuencia4ActionPerformed
-
-    private void jTextFieldFrecuencia5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuencia5ActionPerformed
-                    dias=Integer.valueOf(jTextFieldFrecuencia5.getText().toString().trim());
-            cantidad=(dias*24)/horas;
-            jTextFieldCantidad5.setText(""+cantidad);
-    }//GEN-LAST:event_jTextFieldFrecuencia5ActionPerformed
-
-    private void jTextFieldHorario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario3ActionPerformed
-        horas=Integer.valueOf(jTextFieldHorario3.getText().toString().trim());
-            jTextFieldFrecuencia3.requestFocus();
-
-    }//GEN-LAST:event_jTextFieldHorario3ActionPerformed
-
-    private void jTextFieldHorario4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario4ActionPerformed
-        horas=Integer.valueOf(jTextFieldHorario4.getText().toString().trim());
-            jTextFieldFrecuencia4.requestFocus();
-
-    }//GEN-LAST:event_jTextFieldHorario4ActionPerformed
-
-    private void jTextFieldHorario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHorario5ActionPerformed
-        horas=Integer.valueOf(jTextFieldHorario5.getText().toString().trim());
-            jTextFieldFrecuencia5.requestFocus();
-
-    }//GEN-LAST:event_jTextFieldHorario5ActionPerformed
-
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
              try {       
             print(txtImp.getText().toString().trim());
@@ -1926,62 +1511,29 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_txtImpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                clsGlobales.descripcionDiagnostico=cboDiagnostico1.getSelectedItem().toString().trim();
+                clsGlobales.codigoDiagnostico=cboCodigo1.getSelectedItem().toString().trim();
+                clsGlobales.historiaClinica=Integer.valueOf(n_orden_hc.getText().trim());
+                imprimir=false;
                 if(validarExistenciaHistoriaClinica()){
                      actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
-                    if(validarExistenciaDiagnostico())
-                registrarMedicamento("1");
-
+                    if(!validarExistenciaDiagnostico())
+                        registrarDiagnostico("1");
+                        //actualizarDiagnostico(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
                 }
                 else{
                     registrarHistoria();
                 if(!validarExistenciaDiagnostico())
-                registrarMedicamento("1");
+                registrarDiagnostico("1");
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-                private void cargarMedicamentos(){
-            try {
-                String sQuery;
-                // Prepara el Query
-                sQuery ="select nombre_producto from desktop_farmacia_inventario;";
-                System.out.println(sQuery);
-                if (oConn.FnBoolQueryExecute(sQuery))
-                {
-                    try
-                    {
-                        // Verifica resultados
-                        while (oConn.setResult.next())
-                        {
-        
-                                cboMedicamento1.addItem(oConn.setResult.getString ("nombre_producto"));
-                                cboMedicamento2.addItem(oConn.setResult.getString ("nombre_producto"));
-                                cboMedicamento3.addItem(oConn.setResult.getString ("nombre_producto"));
-                                cboMedicamento4.addItem(oConn.setResult.getString ("nombre_producto"));
-                           
-                        }
-                        
-                        // Cierra Resultados
-                        oConn.setResult.close();
-                    }
-                    catch (SQLException ex)
-                    {
-                        //JOptionPane.showMessageDialorootPane,ex);
-                        oFunc.SubSistemaMensajeInformacion(ex.toString());
-                        Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                
-                // selecciona
-                    cboMedicamento1.setSelectedIndex(0);
-                    cboMedicamento2.setSelectedIndex(0);
-                    cboMedicamento3.setSelectedIndex(0);
-                    cboMedicamento4.setSelectedIndex(0);
-      
-                oConn.sqlStmt.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-}
+           
             private void cargarDiagnosticos(){
             try {
                 String sQuery;
@@ -2018,14 +1570,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 }
                 
                 // selecciona
-                    cboDiagnostico1.setSelectedIndex(0);
-                    cboCodigo1.setSelectedIndex(0);
-                    cboDiagnostico2.setSelectedIndex(0);
-                    cboCodigo2.setSelectedIndex(0);
-                    cboDiagnostico3.setSelectedIndex(0);
-                    cboCodigo3.setSelectedIndex(0);
-                    cboDiagnostico4.setSelectedIndex(0);
-                    cboCodigo4.setSelectedIndex(0);
+
                 oConn.sqlStmt.close();
             } catch (SQLException ex) {
                 Logger.getLogger(RegistrarPaciente.class.getName()).log(Level.SEVERE, null, ex);
@@ -2285,6 +1830,171 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 }
     
     
+    
+    
+        private void cargarEditar(){
+      String sQuery;     
+
+        // Prepara el Query
+        sQuery ="select \n" +
+"	UPPER(dskt_hcdet.examen_fisico) as examen_fisico,\n" +
+"	dskt_hcdet.anamnesis,\n" +
+"	dskt_hcdet.antecedentes_familiares_patologicos,\n" +
+"	UPPER(dskt_hcdet.examen_auxiliar) as examen_auxiliar,\n" +
+"	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico1 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (\n" +
+"	select dcie.descripcion from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=1\n" +
+"	group by descripcion) as diagnostico1,\n" +
+"\n" +
+"	(select (CASE WHEN count(*)>0 THEN tbb.codigo else 'N/A' end) as codigo1 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.codigo from (\n" +
+"	select dcie.codigo from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=1\n" +
+"	group by codigo) as codigo1,	\n" +
+"	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico2 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (\n" +
+"	select dcie.descripcion from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=2\n" +
+"	group by descripcion) as diagnostico2,\n" +
+"\n" +
+"		(select (CASE WHEN count(*)>0 THEN tbb.codigo else 'N/A' end) as codigo2 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.codigo from (\n" +
+"	select dcie.codigo from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=2\n" +
+"	group by codigo) as codigo2,	\n" +
+"	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico3 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (\n" +
+"	select dcie.descripcion from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=3\n" +
+"	group by descripcion) as diagnostico3,\n" +
+"\n" +
+"			(select (CASE WHEN count(*)>0 THEN tbb.codigo else 'N/A' end) as codigo3 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.codigo from (\n" +
+"	select dcie.codigo from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=3\n" +
+"	group by codigo) as codigo3,\n" +
+"	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico4 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (\n" +
+"	select dcie.descripcion from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=4\n" +
+"	group by descripcion) as diagnostico4,\n" +
+"			(select (CASE WHEN count(*)>0 THEN tbb.codigo else 'N/A' end) as codigo4 \n" +
+"	from(select ROW_NUMBER() over () as id_clave, tb.codigo from (\n" +
+"	select dcie.codigo from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni\n" +
+"inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	) as  tb)  as tbb where tbb.id_clave=4\n" +
+"	group by codigo) as codigo4\n" +
+"from desktop_datos_historia_clinica as deskt_hist_clini\n" +
+"inner join desktop_datos_pacientes as deskt_dat_pa on deskt_hist_clini.dni_paciente=deskt_dat_pa.dni\n" +
+"inner join desktop_triaje as deskt_dskt_t on deskt_hist_clini.n_orden=	deskt_dskt_t.n_orden\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcdet on deskt_hist_clini.n_orden=dskt_hcdet.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxehc on dskt_dxehc.n_orden=deskt_hist_clini.n_orden\n" +
+"	where deskt_hist_clini.n_orden="+n_orden_hc.getText().toString().trim()+" and dskt_hcdet.tipo='"+clsGlobales.tipoEspecialidad+"' limit 1";
+        if (oConn.FnBoolQueryExecute(sQuery))
+        {
+            try 
+            {
+                // Verifica resultados
+                 while (oConn.setResult.next())
+                 {                     
+                     // Obtiene los datos de la Consulta
+                     jTextExamAnamnesis.setText(oConn.setResult.getString ("anamnesis").toUpperCase());
+                     jTextExamFisico.setText(oConn.setResult.getString ("examen_fisico").toUpperCase());
+                    jTextAntFamPat.setText(oConn.setResult.getString("antecedentes_familiares_patologicos"));
+                    jTextExamAux.setText(oConn.setResult.getString("examen_auxiliar"));
+                    String diag1,diag2,diag3,diag4,cod1,cod2,cod3,cod4;
+                    diag1=oConn.setResult.getString("diagnostico1");
+                    diag2=oConn.setResult.getString("diagnostico2");
+                    diag3=oConn.setResult.getString("diagnostico3");
+                    diag4=oConn.setResult.getString("diagnostico4");
+                    cod1=oConn.setResult.getString("codigo1");
+                    cod2=oConn.setResult.getString("codigo2");
+                    cod3=oConn.setResult.getString("codigo3");
+                    cod4=oConn.setResult.getString("codigo4");
+                    
+
+                    cboDiagnostico1.setSelectedItem(diag1);
+                    cboDiagnostico2.setSelectedItem(diag2);
+                    cboDiagnostico3.setSelectedItem(diag3);
+                    cboDiagnostico4.setSelectedItem(diag4);
+                    cboCodigo1.setSelectedItem(cod1);
+                    cboCodigo2.setSelectedItem(cod2);
+                    cboCodigo3.setSelectedItem(cod3);
+                    cboCodigo4.setSelectedItem(cod4);
+    
+                 }
+                 
+                 // Cierra Resultados
+               
+            } 
+            catch (SQLException ex) 
+            {
+                //JOptionPane.showMessageDialorootPane,ex);
+                oFunc.SubSistemaMensajeInformacion(ex.toString());
+                Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            oConn.setResult.close();
+            oConn.sqlStmt.close(); 
+
+        } catch (SQLException ex) {
+            Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // selecciona
+
+
+}
+    
+    
     private void registrarHistoria(){
                 String strSqlStmt;
             String Query ;
@@ -2319,12 +2029,14 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             strSqlStmt += ",fecha_registro";Query += ",'"+formato.format(dateHoy)+ "'";
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
-                             try {       
+                             try {    
+             if(imprimir)
             print(n_orden_hc.getText().toString().trim());
         } catch (Exception ex) {
             Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
         }
-                oFunc.SubSistemaMensajeInformacion("Se ha registrado el empleado con Éxito");
+                oFunc.SubSistemaMensajeInformacion("Se ha registrado con Éxito");
+                
                 actualizarEstadoTicketEspecialidad(clsGlobales.tipoEspecialidad,String.valueOf(clsGlobales.historiaClinica));
             } else{
                     oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
@@ -2344,7 +2056,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                  }            
     
 }
-        private void registrarMedicamento(String nivel){
+        private void registrarDiagnostico(String nivel){
                 String strSqlStmt;
             String Query ;
             int key= oFunc.contadorPrimario("desktop_diagnostico_x_expecialidad_hc");
@@ -2518,7 +2230,40 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                  }            
     
 }
+   
+         private void actualizarDiagnostico(String tipo, String hc){
+            String strSqlStmt;
+            strSqlStmt="update desktop_diagnostico_x_expecialidad_hc set codigo_cie10='"
+                    + cboCodigo1.getSelectedItem().toString().trim()+"',fecha_actualizacion='"+formato.format(dateHoy)
+                    +"',user_actualizacion='"+clsGlobales.sUser+"' "
+                    +"where tipo='"+tipo+"' and n_orden="+hc +" and codigo_cie10='"+cboCodigo1.getSelectedItem().toString().trim()+"+'";
+            System.out.println(strSqlStmt);
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){
+               // oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+            }else{
+                 //oFunc.SubSistemaMensajeError("Error en registro");
+                 }            
     
+}         
+         
+         public void limpiarHistoria(){
+         jTextExamAnamnesis.setText("");
+         jTextAntFamPat.setText("");
+         jTextExamFisico.setText("");
+         jTextExamAux.setText("");
+         jTextArea1.setText("");
+         cboDiagnostico1.setSelectedItem("N/A");
+         cboDiagnostico2.setSelectedItem("N/A");
+         cboDiagnostico3.setSelectedItem("N/A");
+         cboDiagnostico4.setSelectedItem("N/A");
+         cboCodigo1.setSelectedItem("N/A");
+         cboCodigo2.setSelectedItem("N/A");
+         cboCodigo3.setSelectedItem("N/A");
+         cboCodigo4.setSelectedItem("N/A");
+         btnRegistrar.setEnabled(true);
+         }
+         
+         
     /**
      * @param args the command line arguments
      */
@@ -2568,10 +2313,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JComboBox cboDiagnostico2;
     private javax.swing.JComboBox cboDiagnostico3;
     private javax.swing.JComboBox cboDiagnostico4;
-    private javax.swing.JComboBox cboMedicamento1;
-    private javax.swing.JComboBox cboMedicamento2;
-    private javax.swing.JComboBox cboMedicamento3;
-    private javax.swing.JComboBox cboMedicamento4;
     private javax.swing.JTextField edad;
     private com.toedter.calendar.JDateChooser fecha_nacimiento;
     private javax.swing.JButton jButton1;
@@ -2610,16 +2351,9 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel9;
@@ -2634,27 +2368,6 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextExamAnamnesis;
     private javax.swing.JTextArea jTextExamAux;
     private javax.swing.JTextArea jTextExamFisico;
-    private javax.swing.JTextField jTextFieldCantidad1;
-    private javax.swing.JTextField jTextFieldCantidad2;
-    private javax.swing.JTextField jTextFieldCantidad3;
-    private javax.swing.JTextField jTextFieldCantidad4;
-    private javax.swing.JTextField jTextFieldCantidad5;
-    private javax.swing.JTextField jTextFieldFrecuencia1;
-    private javax.swing.JTextField jTextFieldFrecuencia2;
-    private javax.swing.JTextField jTextFieldFrecuencia3;
-    private javax.swing.JTextField jTextFieldFrecuencia4;
-    private javax.swing.JTextField jTextFieldFrecuencia5;
-    private javax.swing.JTextField jTextFieldHorario1;
-    private javax.swing.JTextField jTextFieldHorario2;
-    private javax.swing.JTextField jTextFieldHorario3;
-    private javax.swing.JTextField jTextFieldHorario4;
-    private javax.swing.JTextField jTextFieldHorario5;
-    private javax.swing.JTextField jTextFieldMedicamento5;
-    private javax.swing.JTextField jTextFieldObserv1;
-    private javax.swing.JTextField jTextFieldObserv2;
-    private javax.swing.JTextField jTextFieldObserv3;
-    private javax.swing.JTextField jTextFieldObserv4;
-    private javax.swing.JTextField jTextFieldObserv5;
     private javax.swing.JTextField n_orden_hc;
     private javax.swing.JTextField nombres_hcpaciente;
     private javax.swing.JTextField txtCaderaTriaje;

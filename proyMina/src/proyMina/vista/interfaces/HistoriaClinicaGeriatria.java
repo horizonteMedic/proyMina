@@ -665,12 +665,27 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(153, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(153, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(153, 0, 0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(153, 0, 0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamentos.png"))); // NOI18N
@@ -1292,8 +1307,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCodigo4KeyPressed
 
     private void cboCodigo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigo4ActionPerformed
-        if(cboCodigo4.getSelectedIndex()>0)
-        cargarDiagnosticosDescripcion(4);
+          
     }//GEN-LAST:event_cboCodigo4ActionPerformed
 
     private void cboCodigo4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboCodigo4MousePressed
@@ -1517,7 +1531,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 imprimir=false;
                 if(validarExistenciaHistoriaClinica()){
                      actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
-                    if(!validarExistenciaDiagnostico())
+                    if(!validarExistenciaDiagnostico("1"))
                         registrarDiagnostico("1");
                         //actualizarDiagnostico(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
                 
@@ -1526,13 +1540,85 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 }
                 else{
                     registrarHistoria();
-                if(!validarExistenciaDiagnostico())
+                if(!validarExistenciaDiagnostico("1"))
                 registrarDiagnostico("1");
                 
                 RecetaFarmacia rf=new RecetaFarmacia();
                 rf.setVisible(true);
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                clsGlobales.descripcionDiagnostico=cboDiagnostico2.getSelectedItem().toString().trim();
+                clsGlobales.codigoDiagnostico=cboCodigo2.getSelectedItem().toString().trim();
+                clsGlobales.historiaClinica=Integer.valueOf(n_orden_hc.getText().trim());
+                imprimir=false;
+                if(validarExistenciaHistoriaClinica()){
+                     actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                    if(!validarExistenciaDiagnostico("2"))
+                        registrarDiagnostico("2");
+                        //actualizarDiagnostico(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
+                }
+                else{
+                    registrarHistoria();
+                if(!validarExistenciaDiagnostico("2"))
+                registrarDiagnostico("2");
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
+                }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                clsGlobales.descripcionDiagnostico=cboDiagnostico3.getSelectedItem().toString().trim();
+                clsGlobales.codigoDiagnostico=cboCodigo3.getSelectedItem().toString().trim();
+                clsGlobales.historiaClinica=Integer.valueOf(n_orden_hc.getText().trim());
+                imprimir=false;
+                if(validarExistenciaHistoriaClinica()){
+                     actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                    if(!validarExistenciaDiagnostico("3"))
+                        registrarDiagnostico("3");
+                        //actualizarDiagnostico(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
+                }
+                else{
+                    registrarHistoria();
+                if(!validarExistenciaDiagnostico("3"))
+                registrarDiagnostico("3");
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
+                }          
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+                        clsGlobales.descripcionDiagnostico=cboDiagnostico4.getSelectedItem().toString().trim();
+                clsGlobales.codigoDiagnostico=cboCodigo4.getSelectedItem().toString().trim();
+                clsGlobales.historiaClinica=Integer.valueOf(n_orden_hc.getText().trim());
+                imprimir=false;
+                if(validarExistenciaHistoriaClinica()){
+                     actualizarHistoriaClinica(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                    if(!validarExistenciaDiagnostico("4"))
+                        registrarDiagnostico("4");
+                        //actualizarDiagnostico(clsGlobales.tipoEspecialidad,n_orden_hc.getText().trim());
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
+                }
+                else{
+                    registrarHistoria();
+                if(!validarExistenciaDiagnostico("4"))
+                registrarDiagnostico("4");
+                
+                RecetaFarmacia rf=new RecetaFarmacia();
+                rf.setVisible(true);
+                } 
+    }//GEN-LAST:event_jButton4ActionPerformed
            
             private void cargarDiagnosticos(){
             try {
@@ -1944,7 +2030,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             {
                 // Verifica resultados
                  while (oConn.setResult.next())
-                 {                     
+                 {    
+                     btnRegistrar.setEnabled(true);
                      // Obtiene los datos de la Consulta
                      jTextExamAnamnesis.setText(oConn.setResult.getString ("anamnesis").toUpperCase());
                      jTextExamFisico.setText(oConn.setResult.getString ("examen_fisico").toUpperCase());
@@ -2083,7 +2170,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             System.out.println("el comando es: " + strSqlStmt.concat(") ") + Query.concat(")")); 
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                              try {       
-            print(n_orden_hc.getText().toString().trim());
+           // print(n_orden_hc.getText().toString().trim());
         } catch (Exception ex) {
             Logger.getLogger(HistoriaClinicaGeriatria.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2176,7 +2263,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         return respuesta;
     }  
      
-        public boolean validarExistenciaDiagnostico()
+        public boolean validarExistenciaDiagnostico(String nivel)
     {
         // Para devolver el resultado
         
@@ -2184,9 +2271,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         String sQuery="";
         boolean respuesta=false;
         // Prepara el Query
-        sQuery  = "select n_orden from desktop_diagnostico_x_expecialidad_hc where tipo='"+clsGlobales.tipoEspecialidad+"' and n_orden="+n_orden_hc.getText().trim()+" codigo_cie10='"+cboCodigo1.getSelectedItem()+"'";
-        
-   
+        if(nivel.contains("1")){
+        sQuery  = "select n_orden from desktop_diagnostico_x_expecialidad_hc where tipo='"+clsGlobales.tipoEspecialidad+"' and n_orden="+n_orden_hc.getText().trim()+" and codigo_cie10='"+cboCodigo1.getSelectedItem()+"'";
+        }
+        if(nivel.contains("2")){
+        sQuery  = "select n_orden from desktop_diagnostico_x_expecialidad_hc where tipo='"+clsGlobales.tipoEspecialidad+"' and n_orden="+n_orden_hc.getText().trim()+" and codigo_cie10='"+cboCodigo2.getSelectedItem()+"'";
+        }
+        if(nivel.contains("3")){
+        sQuery  = "select n_orden from desktop_diagnostico_x_expecialidad_hc where tipo='"+clsGlobales.tipoEspecialidad+"' and n_orden="+n_orden_hc.getText().trim()+" and codigo_cie10='"+cboCodigo3.getSelectedItem()+"'";
+        }
+        if(nivel.contains("4")){
+        sQuery  = "select n_orden from desktop_diagnostico_x_expecialidad_hc where tipo='"+clsGlobales.tipoEspecialidad+"' and n_orden="+n_orden_hc.getText().trim()+" and codigo_cie10='"+cboCodigo4.getSelectedItem()+"'";
+        }        
+        System.out.println(sQuery);
         //Ejecuta el Query
         oConn.FnBoolQueryExecute(sQuery);
         
@@ -2261,6 +2358,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
          cboCodigo3.setSelectedItem("N/A");
          cboCodigo4.setSelectedItem("N/A");
          btnRegistrar.setEnabled(true);
+         imprimir=true;
          }
          
          

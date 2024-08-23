@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RECETA_M" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="79c6847e-8083-409f-87b2-d831888e8ea6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Proyecto_mina"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Firma" class="java.io.InputStream"/>
+	<parameter name="tipo" class="java.lang.String"/>
+	<parameter name="Norden" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select desk_dat_pa.sexo,UPPER(desk_dat_pa.direccion) as direccion, desk_hist_clini.dni_paciente,desk_dat_pa.apellidos ||' '|| desk_dat_pa.nombres as nombres, dskt_dxesp.tipo , desk_dat_pa.fecha_registro,
+EXTRACT(YEAR FROM AGE(CURRENT_DATE, desk_dat_pa.fecha_nacimiento)) AS edad ,dskt_triaje.n_orden, dat_emple.apellidos ||''||dat_emple.nombres as medico,
+(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico1 from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (
+select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+) as  tb)  as tbb where tbb.id_clave=1
+group by descripcion) as diagnostico1,
+(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico2 	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (	select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+) as  tb)  as tbb where tbb.id_clave=2 	group by descripcion) as diagnostico2,
+(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico3 	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from ( select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=3 	group by descripcion) as diagnostico3,
+	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico4
+from(select ROW_NUMBER() over () as id_clave, tb.descripcion from ( select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=4	group by descripcion) as diagnostico4,
+	(select (CASE WHEN count(*)>0 THEN
+	UPPER(  '- ' || 	 tbb.nombre_producto || '                      ' ||   tbb.cantidad_total_recetado     || '                ' || tbb.horas || '  c/h                 ' || tbb.frecuencia_dias || '               ' ||
+    tbb.recomendacion )
+	else 'N/A' end) as tratamiento1
+	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
+	dskt_mxe.recomendacion
+	from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=1
+	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento1,
+	(select (CASE WHEN count(*)>0 THEN
+	UPPER(  '- ' || 	   tbb.nombre_producto || '                      ' ||  tbb.cantidad_total_recetado || '                ' || tbb.horas || '   c/h                 ' || tbb.frecuencia_dias || '               ' ||
+    tbb.recomendacion )
+	else 'N/A' end) as tratamiento2
+	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
+	dskt_mxe.recomendacion
+	from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=2
+	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento2,
+		(select (CASE WHEN count(*)>0 THEN
+	UPPER( '- ' || 	 tbb.nombre_producto || '                      ' ||   tbb.cantidad_total_recetado     || '                ' || tbb.horas || '  c/h                 ' || tbb.frecuencia_dias || '               ' ||
+    tbb.recomendacion )
+	else 'N/A' end) as tratamiento3
+	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
+	dskt_mxe.recomendacion
+	from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=3
+	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento3,
+	(select (CASE WHEN count(*)>0 THEN
+	UPPER(  '- ' || 	 tbb.nombre_producto || '                      ' ||   tbb.cantidad_total_recetado     || '                ' || tbb.horas || '  c/h                 ' || tbb.frecuencia_dias || '               ' ||
+    tbb.recomendacion )
+	else 'N/A' end) as tratamiento4
+	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
+	dskt_mxe.recomendacion
+	from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=4
+	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento4
+from desktop_datos_historia_clinica as desk_hist_clini
+inner join desktop_datos_pacientes as desk_dat_pa on desk_hist_clini.dni_paciente=desk_dat_pa.dni
+inner join desktop_triaje as dskt_triaje on desk_hist_clini.n_orden=dskt_triaje.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcdll on desk_hist_clini.n_orden=	dskt_hcdll.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxesp on dskt_dxesp.n_orden=desk_hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxesp on dskt_mxesp.id_diag_x_espe_hc=dskt_dxesp.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminvent on dskt_fminvent.id_farmacia=dskt_mxesp.id_farmacia
+inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user_registro)
+	WHERE desk_hist_clini.n_orden=  $P{Norden}  AND dskt_hcdll.tipo=  $P{tipo}]]>
+	</queryString>
+	<field name="sexo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.label" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="desktop_datos_pacientes"/>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+	</field>
+	<field name="dni_paciente" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="dni_paciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni_paciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="desktop_datos_historia_clinica"/>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombres"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombres"/>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="desktop_diagnostico_x_expecialidad_hc"/>
+	</field>
+	<field name="fecha_registro" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_registro"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_registro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="desktop_datos_pacientes"/>
+	</field>
+	<field name="edad" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="edad"/>
+		<property name="com.jaspersoft.studio.field.label" value="edad"/>
+	</field>
+	<field name="n_orden" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="n_orden"/>
+		<property name="com.jaspersoft.studio.field.label" value="n_orden"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="desktop_triaje"/>
+	</field>
+	<field name="medico" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="medico"/>
+		<property name="com.jaspersoft.studio.field.label" value="medico"/>
+	</field>
+	<field name="diagnostico1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diagnostico1"/>
+		<property name="com.jaspersoft.studio.field.label" value="diagnostico1"/>
+	</field>
+	<field name="diagnostico2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diagnostico2"/>
+		<property name="com.jaspersoft.studio.field.label" value="diagnostico2"/>
+	</field>
+	<field name="diagnostico3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diagnostico3"/>
+		<property name="com.jaspersoft.studio.field.label" value="diagnostico3"/>
+	</field>
+	<field name="diagnostico4" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diagnostico4"/>
+		<property name="com.jaspersoft.studio.field.label" value="diagnostico4"/>
+	</field>
+	<field name="tratamiento1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tratamiento1"/>
+		<property name="com.jaspersoft.studio.field.label" value="tratamiento1"/>
+	</field>
+	<field name="tratamiento2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tratamiento2"/>
+		<property name="com.jaspersoft.studio.field.label" value="tratamiento2"/>
+	</field>
+	<field name="tratamiento3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tratamiento3"/>
+		<property name="com.jaspersoft.studio.field.label" value="tratamiento3"/>
+	</field>
+	<field name="tratamiento4" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tratamiento4"/>
+		<property name="com.jaspersoft.studio.field.label" value="tratamiento4"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="40" y="0" width="130" height="70" uuid="a854d0d3-2dcf-4e1a-88c3-62db8679b784"/>
+				<imageExpression><![CDATA["C:/reportes/logomina.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="189" y="27" width="140" height="19" uuid="c2590f04-743f-4014-95f5-5b016ef41599"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RECETA MEDICA   ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="293" y="27" width="127" height="19" uuid="b5105834-3769-4e6c-907d-f70045923631"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="442" y="27" width="52" height="20" uuid="dc9a5004-bc54-4b59-9606-abddaf0794ee"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[H.C :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="27" width="60" height="30" uuid="46690535-e5ef-404a-8dd2-3d95550dcc38"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{n_orden}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="436" splitType="Stretch">
+			<rectangle>
+				<reportElement x="460" y="19" width="10" height="10" uuid="a25a1d3c-90ad-4694-bd82-c5a97cfda9d5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="9" width="60" height="14" uuid="052b7897-5f6c-4991-8f9e-bde5a43e09a7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="19" width="60" height="14" uuid="1274847d-7542-4648-ba46-8cb81c40e3c0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[EDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="29" width="60" height="14" uuid="d82a515c-6f52-4465-8868-92e8296edd4c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MEDICO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="9" width="220" height="14" uuid="680b3b29-9202-473c-876d-5fbb84f1c275"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="19" width="100" height="14" uuid="61dd6671-e48d-49b6-b664-e7d1d16e3e1a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="29" width="220" height="14" uuid="e2586167-f066-48c4-bc41-64498a5c7a2e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="341" y="9" width="60" height="14" uuid="7e71a84a-8415-4268-b573-230b4da8f174"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="19" width="60" height="14" uuid="da0e52fa-3edc-4127-8727-d21a3428caaa"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[SEXO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="29" width="101" height="14" uuid="727d8685-44ea-4f8d-802b-a335336c6c54"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA DE EVALUACION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="29" width="98" height="14" uuid="d6b4ad4a-a43d-4a62-88dd-fd577892ab46"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_registro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="445" y="19" width="15" height="14" uuid="e9771adf-d49b-4a86-8d8f-093f4d275765"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[F]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="494" y="19" width="16" height="14" uuid="c8fac33f-b9a3-4288-ac74-8a19e733f97e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[M]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="460" y="17" width="10" height="14" uuid="8c4955f7-ee0b-4381-a79f-404314f5e775"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}.equals("FEMENINO") ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="510" y="20" width="10" height="10" uuid="620db3b9-5d77-4c01-b7ba-a3d847131627"/>
+			</rectangle>
+			<textField>
+				<reportElement x="510" y="19" width="10" height="13" uuid="d38eab3d-8fab-44a6-bca0-947a1173efe7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}.equals("MASCULINO") ? "X" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="9" width="100" height="11" uuid="17837def-df62-4fa8-acb6-6f826f81c644"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni_paciente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="438" y="9" width="10" height="12" uuid="fc790b42-2b98-4e99-8050-69472ffe57c2"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="19" width="10" height="12" uuid="3aff33f1-08dd-4e00-ba10-ddd571b23706"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="28" width="10" height="12" uuid="82a40441-b6c3-42ef-b0dd-bcf4e3ebc9ae"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="9" width="10" height="12" uuid="f04a830c-63b3-4bc3-9e0b-3f1e6a76bb9b"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="19" width="10" height="12" uuid="7ff1be14-fad4-4dc9-96e9-bbe5a19c5601"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="28" width="10" height="12" uuid="2da287e3-b94e-4c86-a436-af1fea17e6c9"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="40" y="50" width="489" height="1" uuid="c3c37df9-7d70-43c5-bfa7-5c5d4bea0e88"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="55" y="65" width="465" height="14" uuid="8f9324d7-bcfc-4661-988c-aa085c916518"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : $F{diagnostico1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="151" width="434" height="14" uuid="395cc629-d2e4-4488-af33-660744c64b12"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : $F{diagnostico2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="90" width="474" height="40" uuid="66340281-d026-4ad7-8ec1-429ba2e50054"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento1} == null || $F{tratamiento1} .trim().isEmpty() ? " " : $F{tratamiento1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="177" width="474" height="32" uuid="b087d6c7-217b-45fb-b4fe-1ceaf742a7ad"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento2}== null || $F{tratamiento2}.trim().isEmpty() ? " " : $F{tratamiento2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="224" width="474" height="14" uuid="97f8208e-d426-49c6-ba27-3510259a41e1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.trim().isEmpty() ? " " : $F{diagnostico3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="250" width="474" height="30" uuid="efc08dc5-d15a-4f24-b4fe-b7c0f8b9f951"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento3} == null || $F{tratamiento3}.isEmpty() ? " " : $F{tratamiento3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="213" width="325" height="11" uuid="b1aaf55f-3883-4f04-883b-430f29f675f3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.trim().isEmpty() ? " " : "DIAGNOSTICO 3"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="238" width="94" height="14" uuid="3f5df79a-6c86-45f1-8b37-65c7dc1018e0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "TRATAMIENTO 3"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="238" width="34" height="14" uuid="6010de4b-2c86-4096-8cde-5859f604e4f0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "CANT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="239" width="34" height="14" uuid="27be8020-93d5-4d08-95b8-dd77c1b36ec1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "HRS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="238" width="30" height="14" uuid="a38d3d59-a99b-47fe-8dca-51b12d3dcaa1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "DIAS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="238" width="150" height="14" uuid="f5168331-3ec4-40a5-9d9b-7b265ac1f1a4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "INDICACIONES :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="54" width="465" height="14" uuid="9cf54e65-5e1f-4bc8-b062-902342b7bf17"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "DIAGNOSTICO 1"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="79" width="81" height="14" uuid="4340488c-5d56-400a-a112-e30a69c29984"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "TRATAMIENTO 1"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="79" width="33" height="11" uuid="98e12040-a95d-4ad7-a23a-4016da83cb10"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "CANT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="228" y="79" width="33" height="11" uuid="81ff8e87-ae11-47e4-b249-1dc62e182c79"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "HRS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="79" width="33" height="11" uuid="074249d7-a6f8-4efe-aef8-e3de55fdc27f"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "DIAS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="79" width="100" height="11" uuid="ae59bc84-74c7-4b08-a42b-beca59975c02"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "INDICACIONES :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="140" width="398" height="14" uuid="39f40742-0360-4db1-8522-db971b8579ba"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : "DIAGNOSTICO 2"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="165" width="118" height="12" uuid="e7cd416f-1401-4b26-9fb8-cbea759f3734"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : "TRATAMIENTO 2"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="165" width="23" height="12" uuid="446886b8-a189-4874-a783-3b3428a26400"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : "CANT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="228" y="165" width="33" height="12" uuid="4bfa0d5b-8f29-44fa-8986-04c9594376a2"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : "HRS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="165" width="31" height="12" uuid="e1da2450-4125-4836-b4d5-448d0522ebc9"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : "DIAS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="165" width="124" height="12" uuid="37e66ebb-21ce-468b-a4d6-c1951a61f49c"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : "INDICACIONES :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="283" width="305" height="13" uuid="dff18764-7d88-4a64-8ceb-6388db28ddd0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico4} == null || $F{diagnostico4}.trim().isEmpty() ? " " : "DIAGNOSTICO 4"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="296" width="424" height="14" uuid="3179d89e-1a91-4562-90cd-414408660180"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico4} == null || $F{diagnostico4}.trim().isEmpty() ? " " : $F{diagnostico4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="309" width="100" height="11" uuid="04e1655d-fe16-41b2-9fa3-bcac6ec2b3f9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"TRATAMIENTO 4"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="310" width="34" height="11" uuid="080adeca-88a2-4597-88b1-39d465c52e0c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"CANT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="310" width="34" height="11" uuid="1b27e902-17b7-450b-b80f-c4621de36035"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"HRS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="310" width="34" height="11" uuid="c58a014b-bbb8-4048-a9a3-71f811c2b07c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"DIAS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="331" y="310" width="148" height="11" uuid="d6532b91-20cb-4d88-b058-a9610d17e7a0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"INDICACIONES :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="321" width="474" height="49" uuid="1c82a082-29ea-43bf-8faf-c93721e8c74d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :$F{tratamiento4}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="207" y="380" width="143" height="55" uuid="2b691006-6eab-438f-acfb-3c47b19e81f3"/>
+				<imageExpression><![CDATA[$P{Firma}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="45" y="203" width="483" height="11" uuid="65a45d46-0ca4-4729-b58b-8c704f0fa27a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico2} == null || $F{diagnostico2}.trim().isEmpty() ? " " : "_____________________________________________________________________________________________________________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="126" width="483" height="14" uuid="bcbc3a6b-51fb-49f9-b369-8189622db525"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "_____________________________________________________________________________________________________________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="274" width="485" height="11" uuid="968de13b-147b-4e47-a54b-5a61c4a168d7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.trim().isEmpty() ? " " : "_____________________________________________________________________________________________________________"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="6" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="4" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="154" y="4" width="276" height="13" uuid="52efeef5-c59f-47de-b029-c8a19f2c05ba"/>
+				<text><![CDATA[Av. Huancavelica N°2225 - Distrito El Tambo - Huancayo]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="28" splitType="Stretch"/>
+	</summary>
+</jasperReport>

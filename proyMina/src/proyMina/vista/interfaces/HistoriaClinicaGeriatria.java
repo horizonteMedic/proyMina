@@ -2065,7 +2065,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             catch (SQLException ex) 
             {
                 //JOptionPane.showMessageDialorootPane,ex);
-                oFunc.SubSistemaMensajeInformacion(ex.toString());
+              //  oFunc.SubSistemaMensajeInformacion(ex.toString());
                 Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

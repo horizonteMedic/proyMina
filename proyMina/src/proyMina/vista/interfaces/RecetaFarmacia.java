@@ -833,6 +833,7 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                     jTextFieldHorario1.getText().trim()+",frecuencia_dias="+jTextFieldFrecuencia1.getText().trim()+",cantidad_total_recetado="+jTextFieldCantidad1.getText().trim()
                     +",fecha_actualizacion='"+formato.format(dateHoy)
                     +"',user_actualizacion='"+clsGlobales.sUser+"' "
+                    +",recomendacion='"+jTextFieldObserv1.getText().toString().trim()+"' "               
                     +"where id_medicamento_diag="+id_receta_medica;
             System.out.println(strSqlStmt);
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){

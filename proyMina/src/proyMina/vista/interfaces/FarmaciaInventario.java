@@ -4,6 +4,7 @@
  */
 package proyMina.vista.interfaces;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,6 +39,8 @@ public class FarmaciaInventario extends javax.swing.JFrame {
      */
     public FarmaciaInventario() {
         initComponents();
+        jTableRecetas.setDefaultRenderer(Object.class, new ColorCelda());
+
         this.setLocationRelativeTo(null);
         AutoCompleteDecorator.decorate(this.jComboBoxSede);
         cargarSedes();
@@ -72,8 +75,10 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         jTextFieldDatosMedico = new javax.swing.JTextField();
         fecha_nacimiento = new com.toedter.calendar.JDateChooser();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableRecetas = new javax.swing.JTable();
         btnLimpiarCancelarTriaje = new javax.swing.JButton();
+        BuscarPaciente1 = new javax.swing.JToggleButton();
+        btnActualizar1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -214,7 +219,7 @@ public class FarmaciaInventario extends javax.swing.JFrame {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableRecetas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -225,7 +230,7 @@ public class FarmaciaInventario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTableRecetas);
 
         btnLimpiarCancelarTriaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiarCancelarTriaje.setText("Limpiar");
@@ -235,51 +240,79 @@ public class FarmaciaInventario extends javax.swing.JFrame {
             }
         });
 
+        BuscarPaciente1.setBackground(new java.awt.Color(222, 116, 17));
+        BuscarPaciente1.setForeground(new java.awt.Color(243, 131, 5));
+        BuscarPaciente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        BuscarPaciente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarPaciente1ActionPerformed(evt);
+            }
+        });
+
+        btnActualizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
+        btnActualizar1.setText("Actualizar");
+        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLimpiarCancelarTriaje)
-                .addGap(16, 16, 16))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(208, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextFieldHc, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                         .addComponent(jLabel19)
-                        .addGap(33, 33, 33)
-                        .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))))
+                        .addGap(46, 46, 46)
+                        .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(BuscarPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(230, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnLimpiarCancelarTriaje)
+                                .addGap(55, 55, 55))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldHc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldHc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19)
+                        .addComponent(jLabel20))
+                    .addComponent(BuscarPaciente1))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
                         .addComponent(btnLimpiarCancelarTriaje)
-                        .addGap(340, 340, 340))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+                        .addGap(38, 38, 38)
+                        .addComponent(btnActualizar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Recetas", jPanel2);
@@ -451,7 +484,7 @@ public class FarmaciaInventario extends javax.swing.JFrame {
                             .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(110, 110, 110)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,16 +536,13 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1021, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -525,7 +555,7 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -617,11 +647,66 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         cargarDatosPacienteHC();
     }//GEN-LAST:event_jTextFieldHcActionPerformed
 
+    private void BuscarPaciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPaciente1ActionPerformed
+        if(cboEspecialidad.getSelectedIndex()>0 && jTextFieldHc.getText().toString().trim().length()>0)
+        llenar_tabla_hc();
+    }//GEN-LAST:event_BuscarPaciente1ActionPerformed
+
+    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
+        
+        actualizarRecetarioFarmacia();
+        
+    }//GEN-LAST:event_btnActualizar1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
+             private void actualizarRecetarioFarmacia(){
+            String strSqlStmt="";
+            Integer cant_total=0,cantidad_despachada=0;
+                 int a =jTableRecetas.getSelectedRow();
+       System.out.println("la fila es:"+a);
+            for(int i=0; i<jTableRecetas.getRowCount();i++)
+            {
+                cant_total=Integer.valueOf(String.valueOf(jTableRecetas.getValueAt(i, 3)));
+                cantidad_despachada=Integer.valueOf(String.valueOf(jTableRecetas.getValueAt(i, 6)));
+                       System.out.println("CANTIDADA DESPACHADA ES:"+cantidad_despachada);
+                       System.out.println("CANTIDADA TOTAL ES:"+cant_total);
+
+                if(cantidad_despachada<=cant_total)
+                {
+                    if(String.valueOf(jTableRecetas.getValueAt(i, 7)).trim().equals("SIN ATENDER"))
+                    {
+                    strSqlStmt="update desktop_medicamento_x_expecialidad_hc set cantidad_despachada_farmacia="
+                    + String.valueOf(jTableRecetas.getValueAt(i, 6)).trim()+", estado_atendido_farmacia="+true+",fecha_registro_farmacia='"+
+                    formato.format(dateHoy)+"',user_registro_farmacia='"+clsGlobales.sUser+"' "              
+                    +"where id_medicamento_diag='"+String.valueOf(jTableRecetas.getValueAt(i, 0)).trim()+"'";
+                    System.out.println(strSqlStmt);
+                    }
+                    else
+                    {
+                    strSqlStmt="update desktop_medicamento_x_expecialidad_hc set cantidad_despachada_farmacia="
+                    + String.valueOf(jTableRecetas.getValueAt(i, 6)).trim()+",fecha_actualizacion_farmacia='"+
+                    formato.format(dateHoy)+"',user_actualizacion_farmacia='"+clsGlobales.sUser+"' "            
+                    +"where id_medicamento_diag='"+String.valueOf(jTableRecetas.getValueAt(i, 0)).trim()+"'";
+                    System.out.println(strSqlStmt);
+                    }
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){
+               // oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+            }else{
+                 //oFunc.SubSistemaMensajeError("Error en registro");
+                 }
+                }
+                else
+                    oFunc.SubSistemaMensajeError("La cantidad despacahada tiene que ser menor o igual al total recetado");
+            
+            }
+                    llenar_tabla_hc();
+
+      
     
+}
         private void btnRegistrar(){
             if(!oPe.validarText(jTextFieldNameProd,"desktop_farmacia_inventario","nombre_sede")){
             if (Validar()){
@@ -819,8 +904,70 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         }
 }
          
-       
-         
+private void llenar_tabla_hc(){
+               
+            try {
+                model = new DefaultTableModel(){
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        if (columnIndex==6)
+                            return true;
+                        else
+                        return false;
+                    }};
+                String vSql="select dskt_mxe.id_medicamento_diag as id_med, dcie.descripcion as cie10,dskt_fminv.nombre_producto as medicamento,\n" +
+"		dskt_mxe.cantidad_total_recetado as cantidad,dskt_mxe.horas as horario,dskt_mxe.frecuencia_dias as dias,\n" +
+"		dskt_mxe.cantidad_despachada_farmacia as cantidad_despachada, \n" +
+"		(case when (dskt_mxe.estado_atendido_farmacia)=true then 'ATENDIDO' ELSE 'SIN ATENDER' END) AS estado\n" +
+"		from desktop_datos_historia_clinica as hist_clini\n" +
+"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
+"inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
+"inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc\n" +
+"inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo\n" +
+"inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia	"
+ + "where dskt_hcd.n_orden="+jTextFieldHc.getText().toString().trim()+" and dskt_hcd.tipo='"+cboEspecialidad.getSelectedItem().toString().trim()+"'";
+                
+                if (oConn.FnBoolQueryExecute(vSql))
+                {
+                    try  {
+                        java.sql.ResultSetMetaData rsmt = oConn.setResult.getMetaData();
+                        int CantidaColumnas = rsmt.getColumnCount();
+                        for (int i = 1; i <= CantidaColumnas; i++) {
+                            model.addColumn(rsmt.getColumnLabel(i));
+                        }
+                        while (oConn.setResult.next())
+                        {
+                            Object [] Fila = new Object[CantidaColumnas];
+                            for (int i = 0; i < CantidaColumnas; i++) {
+                                Fila[i] = oConn.setResult.getObject(i+1);
+                            }
+                            model.addRow(Fila);
+                        }
+                        jTableRecetas.setModel(model);
+                        ajustarTamañoTabla();
+                        oConn.setResult.close();
+                    }
+                    catch (SQLException ex)
+                    {
+                        oFunc.SubSistemaMensajeError(ex.toString());
+                        Logger.getLogger(FarmaciaInventario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FarmaciaInventario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }       
+         public void ajustarTamañoTabla(){
+    jTableRecetas.getColumn("id_med").setMaxWidth(20); 
+    jTableRecetas.getColumn("cie10").setMaxWidth(500);
+        jTableRecetas.getColumn("medicamento").setMaxWidth(300);
+    jTableRecetas.getColumn("cantidad").setMaxWidth(60); 
+    jTableRecetas.getColumn("horario").setMaxWidth(60);
+    jTableRecetas.getColumn("dias").setMaxWidth(60);
+    jTableRecetas.getColumn("cantidad_despachada").setMaxWidth(180);
+    jTableRecetas.getColumn("estado").setMaxWidth(100);
+    }       
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -856,7 +1003,9 @@ public class FarmaciaInventario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton BuscarPaciente;
+    private javax.swing.JToggleButton BuscarPaciente1;
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizar1;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiarCancelarTriaje;
@@ -889,8 +1038,8 @@ public class FarmaciaInventario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableFarmacia;
+    private javax.swing.JTable jTableRecetas;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextFieldCantidad;
     private javax.swing.JTextField jTextFieldDatosMedico;

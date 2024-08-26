@@ -33,7 +33,7 @@ public class Ficha_triaje_panel_principal extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FICHA TRIAJE");
+        setTitle("CAMPAÑA ");
         setExtendedState(Ficha_triaje_panel_principal.MAXIMIZED_BOTH);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

@@ -76,7 +76,19 @@ String[]Triaje = new String[]{};
        AutoCompleteDecorator.decorate(this.cboEspecialidad);
        jRadioButton1.setSelected(true);
                popuptable();
+               ocultar(false);
    }
+   
+   public void ocultar (boolean estado){
+   txtCinturaTriaje.setVisible(estado);
+   jLabel13.setVisible(estado);
+   txtPerimetroCuelloTriaje.setVisible(estado);
+   jLabel19.setVisible(estado);
+   txtIccTriaje.setVisible(estado);
+   jLabel18.setVisible(estado);
+   
+   }
+   
        public void popuptable(){
     JPopupMenu popupMenu=new JPopupMenu();
     JMenuItem menuItem1=new JMenuItem("Eliminar Registro");
@@ -318,29 +330,28 @@ String[]Triaje = new String[]{};
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(cboContratas, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(cboContratas, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGap(33, 33, 33)
-                            .addComponent(lblBuscarID1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(rbRecibo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(rbOrden)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblBuscarID1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbRecibo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbOrden))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
@@ -361,7 +372,7 @@ String[]Triaje = new String[]{};
                                 .addComponent(jLabel33)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(57, 57, 57))
+                .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,14 +458,14 @@ String[]Triaje = new String[]{};
 
         jLabel13.setText("Cintura:");
 
-        txtCaderaTriaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCaderaTriajeActionPerformed(evt);
-            }
-        });
         txtCaderaTriaje.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCaderaTriajeFocusLost(evt);
+            }
+        });
+        txtCaderaTriaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCaderaTriajeActionPerformed(evt);
             }
         });
 
@@ -611,17 +622,20 @@ String[]Triaje = new String[]{};
                                 .addComponent(jLabel10)
                                 .addComponent(jLabel12)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCinturaTriaje, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                            .addComponent(txtIccTriaje)
-                            .addComponent(txtPesoTriaje)
-                            .addComponent(txtImcTriaje)
-                            .addComponent(txtTalla))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel30))
-                        .addGap(22, 22, 22)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtCinturaTriaje, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                        .addComponent(txtIccTriaje))
+                                    .addComponent(txtPesoTriaje)
+                                    .addComponent(txtTalla))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel30)))
+                            .addComponent(txtImcTriaje))
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -638,7 +652,7 @@ String[]Triaje = new String[]{};
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -697,7 +711,7 @@ String[]Triaje = new String[]{};
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -751,7 +765,7 @@ String[]Triaje = new String[]{};
                     .addComponent(txtFevFvcTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFefTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -876,6 +890,11 @@ String[]Triaje = new String[]{};
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         jButton3.setText("Limpiar");
@@ -1007,14 +1026,12 @@ String[]Triaje = new String[]{};
                         .addComponent(jLabel34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDiagnostico))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(atxtObservacionesAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(atxtObservacionesAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiarCancelarTriaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLimpiarCancelarTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1042,16 +1059,16 @@ String[]Triaje = new String[]{};
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1323,13 +1340,13 @@ boolean bResultado=true;
         {oFunc.SubSistemaMensajeError("Ingrese Fecha ");bResultado = false;}
     else if(txtTalla.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Talla");bResultado=false; }
     else if(txtPesoTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Peso");bResultado=false; }
-    else if(txtCinturaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Cintura");bResultado=false; }
+  //   else if(txtCinturaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Cintura");bResultado=false; }
     
      else if(txtCaderaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Cadera");bResultado=false; }
      else if(txtTemperaturaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Temperatura");bResultado=false; }
      else if(txtFcardiacaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Frecuencia Cardica");bResultado=false; }
      else if(txtSatTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Sat02");bResultado=false; }
-     else if(txtPerimetroCuelloTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Perimetro Cuello");bResultado=false; }
+  //   else if(txtPerimetroCuelloTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Perimetro Cuello");bResultado=false; }
      else if(txtSistolicaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Sistólica");bResultado=false; }
      else if(txtDiastolicaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Diastólica");bResultado=false; }
      else if(txtFRespiratoriaTriaje.getText().isEmpty()){oFunc.SubSistemaMensajeError("Ingrese Función respiratoria");bResultado=false; }
@@ -1510,7 +1527,7 @@ boolean bResultado=true;
     }//GEN-LAST:event_txtFcardiacaTriajeActionPerformed
 
     private void txtTemperaturaTriajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTemperaturaTriajeActionPerformed
-        if(!txtIccTriaje.getText().isEmpty()){
+        /*if(!txtIccTriaje.getText().isEmpty()){
             String sql="SELECT dp.sexo FROM desktop_datos_paciente as dp "
             +"inner join desktop_datos_historia_clinica AS n ON(dp.dni = n.dni_paciente) "
             + "where n.n_orden='"+txtNumero.getText().toString()+"'";
@@ -1541,6 +1558,7 @@ boolean bResultado=true;
                 oFunc.SubSistemaMensajeError("No existe registros del cliente");
             }
         }
+        */
         txtFcardiacaTriaje.requestFocus();
     }//GEN-LAST:event_txtTemperaturaTriajeActionPerformed
 
@@ -1708,7 +1726,8 @@ boolean bResultado=true;
         }
         else
                  oFunc.SubSistemaMensajeError("ERROR: Historia clinica por especialidad debe de ser unica");
-        }  
+        }
+        else
                          oFunc.SubSistemaMensajeError("SELECCIONE UN ELEMENTO");
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1724,6 +1743,10 @@ boolean bResultado=true;
     private void jTextFieldNroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNroActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
    

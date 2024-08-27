@@ -1966,6 +1966,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "	UPPER(dskt_hcdet.examen_fisico) as examen_fisico,\n" +
 "	dskt_hcdet.anamnesis,\n" +
 "	dskt_hcdet.antecedentes_familiares_patologicos,\n" +
+"	dskt_hcdet.glucosa,\n" +
 "	UPPER(dskt_hcdet.examen_auxiliar) as examen_auxiliar,\n" +
 "	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico1 \n" +
 "	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (\n" +
@@ -1975,7 +1976,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=1\n" +
 "	group by descripcion) as diagnostico1,\n" +
 "\n" +
@@ -1987,7 +1988,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=1\n" +
 "	group by codigo) as codigo1,	\n" +
 "	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico2 \n" +
@@ -1998,7 +1999,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=2\n" +
 "	group by descripcion) as diagnostico2,\n" +
 "\n" +
@@ -2010,7 +2011,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=2\n" +
 "	group by codigo) as codigo2,	\n" +
 "	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico3 \n" +
@@ -2021,7 +2022,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=3\n" +
 "	group by descripcion) as diagnostico3,\n" +
 "\n" +
@@ -2033,7 +2034,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=3\n" +
 "	group by codigo) as codigo3,\n" +
 "	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico4 \n" +
@@ -2044,7 +2045,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"		where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=4\n" +
 "	group by descripcion) as diagnostico4,\n" +
 "			(select (CASE WHEN count(*)>0 THEN tbb.codigo else 'N/A' end) as codigo4 \n" +
@@ -2055,7 +2056,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	\n" +
-"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo\n" +
+"	where dskt_hcd.n_orden=dskt_hcdet.n_orden and dskt_hcd.tipo=dskt_hcdet.tipo  and  dskt_dxe.tipo=dskt_hcdet.tipo\n" +
 "	) as  tb)  as tbb where tbb.id_clave=4\n" +
 "	group by codigo) as codigo4\n" +
 "from desktop_datos_historia_clinica as deskt_hist_clini\n" +
@@ -2063,12 +2064,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_triaje as deskt_dskt_t on deskt_hist_clini.n_orden=	deskt_dskt_t.n_orden\n" +
 "inner join desktop_historia_clinica_detalle as dskt_hcdet on deskt_hist_clini.n_orden=dskt_hcdet.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxehc on dskt_dxehc.n_orden=deskt_hist_clini.n_orden\n" +
-"	where deskt_hist_clini.n_orden="+n_orden_hc.getText().toString().trim()+" and dskt_hcdet.tipo='"+clsGlobales.tipoEspecialidad+"' limit 1";
-<<<<<<< HEAD
+"inner join desktop_cie10 as dcie on  dskt_dxehc.codigo_cie10=dcie.codigo where deskt_hist_clini.n_orden="+n_orden_hc.getText().toString().trim()+" and dskt_hcdet.tipo='"+clsGlobales.tipoEspecialidad+"'  limit 1";
         System.out.println(sQuery);
-=======
-       System.out.println(sQuery);
->>>>>>> f0e988ad3c56c2e1c59bf42fdfd33f8d2f0cc2f3
         if (oConn.FnBoolQueryExecute(sQuery))
         {
             try 
@@ -2082,6 +2079,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                      jTextExamFisico.setText(oConn.setResult.getString ("examen_fisico").toUpperCase());
                     jTextAntFamPat.setText(oConn.setResult.getString("antecedentes_familiares_patologicos"));
                     jTextExamAux.setText(oConn.setResult.getString("examen_auxiliar"));
+                    jTextFieldGlucosa.setText(oConn.setResult.getString("glucosa"));                    
                     String diag1,diag2,diag3,diag4,cod1,cod2,cod3,cod4;
                     diag1=oConn.setResult.getString("diagnostico1");
                     diag2=oConn.setResult.getString("diagnostico2");

@@ -11,10 +11,11 @@
 	<parameter name="tipo" class="java.lang.String"/>
 	<parameter name="Norden" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[select desk_dat_pa.sexo,UPPER(desk_dat_pa.direccion) as direccion, desk_hist_clini.dni_paciente,desk_dat_pa.apellidos ||' '|| desk_dat_pa.nombres as nombres, dskt_dxesp.tipo , desk_dat_pa.fecha_registro,
+		<![CDATA[select desk_dat_pa.sexo,UPPER(desk_dat_pa.direccion) as direccion, desk_hist_clini.dni_paciente,desk_dat_pa.apellidos ||' '|| desk_dat_pa.nombres as nombres, dskt_dxesp.tipo , TO_CHAR(desk_dat_pa.fecha_registro, 'DD/MM/YYYY') AS fecha_registro,
 EXTRACT(YEAR FROM AGE(CURRENT_DATE, desk_dat_pa.fecha_nacimiento)) AS edad ,dskt_triaje.n_orden, dat_emple.apellidos ||''||dat_emple.nombres as medico,
-(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico1 from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (
-select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico1
+	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (
+	select Distinct(dcie.descripcion) from desktop_datos_historia_clinica as hist_clini
 inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
 inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
 inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
@@ -22,10 +23,12 @@ inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
 inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
-WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
-) as  tb)  as tbb where tbb.id_clave=1
-group by descripcion) as diagnostico1,
-(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico2 	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (	select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=1
+	group by descripcion) as diagnostico1,
+	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico2
+	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (
+	select Distinct(dcie.descripcion) from desktop_datos_historia_clinica as hist_clini
 inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
 inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
 inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
@@ -33,9 +36,12 @@ inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
 inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
-WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
-) as  tb)  as tbb where tbb.id_clave=2 	group by descripcion) as diagnostico2,
-(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico3 	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from ( select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=2
+	group by descripcion) as diagnostico2,
+	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico3
+	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (
+	select Distinct(dcie.descripcion) from desktop_datos_historia_clinica as hist_clini
 inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
 inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
 inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
@@ -43,10 +49,12 @@ inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
 inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
-WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
-	) as  tb)  as tbb where tbb.id_clave=3 	group by descripcion) as diagnostico3,
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=3
+	group by descripcion) as diagnostico3,
 	(select (CASE WHEN count(*)>0 THEN tbb.descripcion else 'N/A' end) as diagnostico4
-from(select ROW_NUMBER() over () as id_clave, tb.descripcion from ( select dcie.descripcion from desktop_datos_historia_clinica as hist_clini
+	from(select ROW_NUMBER() over () as id_clave, tb.descripcion from (
+	select Distinct(dcie.descripcion) from desktop_datos_historia_clinica as hist_clini
 inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
 inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
 inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
@@ -54,13 +62,16 @@ inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
 inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
-WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
-	) as  tb)  as tbb where tbb.id_clave=4	group by descripcion) as diagnostico4,
-	(select (CASE WHEN count(*)>0 THEN
-	UPPER(  '- ' || 	 tbb.nombre_producto || '                      ' ||   tbb.cantidad_total_recetado     || '                ' || tbb.horas || '  c/h                 ' || tbb.frecuencia_dias || '               ' ||
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	) as  tb)  as tbb where tbb.id_clave=4
+	group by descripcion) as diagnostico4,
+	
+	(select string_agg(tratamiento1,chr(10)) AS tratamiento1  from (select (CASE WHEN count(*)>0 THEN
+	UPPER(  '- ' || 	 tbb.nombre_producto   || '                      ' || tbb.cantidad_total_recetado || '                   ' || tbb.horas || '                        ' || tbb.frecuencia_dias || '               ' ||
     tbb.recomendacion )
 	else 'N/A' end) as tratamiento1
-	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	from
+	(select ROW_NUMBER() over () as id_clave, tb.* from (
 	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
 	dskt_mxe.recomendacion
 	from desktop_datos_historia_clinica as hist_clini
@@ -71,14 +82,35 @@ inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
 inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
-WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+	WHERE dskt_dxe.id_diag_x_espe_hc=( 
+	
+	select (CASE WHEN count(*)>0 THEN tbb.id_diag_x_espe_hc else 0 end) as diagnostico1
+	from(select ROW_NUMBER() over () as id_clave, tb.id_diag_x_espe_hc from (
+	select Distinct(dcie.descripcion),dskt_dxe.id_diag_x_espe_hc from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
 	) as  tb)  as tbb where tbb.id_clave=1
-	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento1,
-	(select (CASE WHEN count(*)>0 THEN
-	UPPER(  '- ' || 	   tbb.nombre_producto || '                      ' ||  tbb.cantidad_total_recetado || '                ' || tbb.horas || '   c/h                 ' || tbb.frecuencia_dias || '               ' ||
+	group by id_diag_x_espe_hc	
+	)
+	) as  tb) 
+	as tbb 
+group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion)
+	
+	) AS tratamiento1
+	
+	,
+		(select string_agg(tratamiento1,chr(10)) AS tratamiento1  from (select (CASE WHEN count(*)>0 THEN
+	UPPER(  '- ' || 	 tbb.nombre_producto   || '                      ' || tbb.cantidad_total_recetado || '                   ' || tbb.horas || '                        ' || tbb.frecuencia_dias || '               ' ||
     tbb.recomendacion )
-	else 'N/A' end) as tratamiento2
-	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	else 'N/A' end) as tratamiento1
+	from
+	(select ROW_NUMBER() over () as id_clave, tb.* from (
 	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
 	dskt_mxe.recomendacion
 	from desktop_datos_historia_clinica as hist_clini
@@ -88,14 +120,34 @@ inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	d
 inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
-inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+	WHERE dskt_dxe.id_diag_x_espe_hc=( 
+	
+	select (CASE WHEN count(*)>0 THEN tbb.id_diag_x_espe_hc else 0 end) as diagnostico1
+	from(select ROW_NUMBER() over () as id_clave, tb.id_diag_x_espe_hc from (
+	select Distinct(dcie.descripcion),dskt_dxe.id_diag_x_espe_hc from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
 	) as  tb)  as tbb where tbb.id_clave=2
-	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento2,
-		(select (CASE WHEN count(*)>0 THEN
-	UPPER( '- ' || 	 tbb.nombre_producto || '                      ' ||   tbb.cantidad_total_recetado     || '                ' || tbb.horas || '  c/h                 ' || tbb.frecuencia_dias || '               ' ||
+	group by id_diag_x_espe_hc	
+	)
+	) as  tb) 
+	as tbb 
+group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion)
+	) AS tratamiento2,
+		(
+	select string_agg(tratamiento1,chr(10)) AS tratamiento1  from (select (CASE WHEN count(*)>0 THEN
+	UPPER(  '- ' || 	 tbb.nombre_producto   || '                      ' || tbb.cantidad_total_recetado || '                   ' || tbb.horas || '                        ' || tbb.frecuencia_dias || '               ' ||
     tbb.recomendacion )
-	else 'N/A' end) as tratamiento3
-	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	else 'N/A' end) as tratamiento1
+	from
+	(select ROW_NUMBER() over () as id_clave, tb.* from (
 	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
 	dskt_mxe.recomendacion
 	from desktop_datos_historia_clinica as hist_clini
@@ -105,14 +157,34 @@ inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	d
 inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
-inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+	WHERE dskt_dxe.id_diag_x_espe_hc=( 
+	
+	select (CASE WHEN count(*)>0 THEN tbb.id_diag_x_espe_hc else 0 end) as diagnostico1
+	from(select ROW_NUMBER() over () as id_clave, tb.id_diag_x_espe_hc from (
+	select Distinct(dcie.descripcion),dskt_dxe.id_diag_x_espe_hc from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
 	) as  tb)  as tbb where tbb.id_clave=3
-	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento3,
-	(select (CASE WHEN count(*)>0 THEN
-	UPPER(  '- ' || 	 tbb.nombre_producto || '                      ' ||   tbb.cantidad_total_recetado     || '                ' || tbb.horas || '  c/h                 ' || tbb.frecuencia_dias || '               ' ||
+	group by id_diag_x_espe_hc	
+	)
+	) as  tb) 
+	as tbb 
+group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion)
+		) AS tratamiento3,
+	(
+select string_agg(tratamiento1,chr(10)) AS tratamiento1  from (select (CASE WHEN count(*)>0 THEN
+	UPPER(  '- ' || 	 tbb.nombre_producto   || '                      ' || tbb.cantidad_total_recetado || '                   ' || tbb.horas || '                        ' || tbb.frecuencia_dias || '               ' ||
     tbb.recomendacion )
-	else 'N/A' end) as tratamiento4
-	from(select ROW_NUMBER() over () as id_clave, tb.* from (
+	else 'N/A' end) as tratamiento1
+	from
+	(select ROW_NUMBER() over () as id_clave, tb.* from (
 	select dskt_mxe.cantidad_total_recetado,dskt_fminv.nombre_producto,dskt_mxe.horas,dskt_mxe.frecuencia_dias,
 	dskt_mxe.recomendacion
 	from desktop_datos_historia_clinica as hist_clini
@@ -122,9 +194,28 @@ inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	d
 inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
-inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+	WHERE dskt_dxe.id_diag_x_espe_hc=( 
+	
+	select (CASE WHEN count(*)>0 THEN tbb.id_diag_x_espe_hc else 0 end) as diagnostico1
+	from(select ROW_NUMBER() over () as id_clave, tb.id_diag_x_espe_hc from (
+	select Distinct(dcie.descripcion),dskt_dxe.id_diag_x_espe_hc from desktop_datos_historia_clinica as hist_clini
+inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni
+inner join desktop_triaje as dskt_t on hist_clini.n_orden=	dskt_t.n_orden
+inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden
+inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden
+inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc
+inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia
+inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo
+	WHERE hist_clini.n_orden=desk_hist_clini.n_orden AND dskt_hcd.tipo=dskt_hcdll.tipo
 	) as  tb)  as tbb where tbb.id_clave=4
-	group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion) AS tratamiento4
+	group by id_diag_x_espe_hc	
+	)
+	) as  tb) 
+	as tbb 
+group by cantidad_total_recetado,nombre_producto,horas,frecuencia_dias,recomendacion)
+	
+	) AS tratamiento4
 from desktop_datos_historia_clinica as desk_hist_clini
 inner join desktop_datos_pacientes as desk_dat_pa on desk_hist_clini.dni_paciente=desk_dat_pa.dni
 inner join desktop_triaje as dskt_triaje on desk_hist_clini.n_orden=dskt_triaje.n_orden
@@ -132,7 +223,7 @@ inner join desktop_historia_clinica_detalle as dskt_hcdll on desk_hist_clini.n_o
 inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxesp on dskt_dxesp.n_orden=desk_hist_clini.n_orden
 inner join desktop_medicamento_x_expecialidad_hc as dskt_mxesp on dskt_mxesp.id_diag_x_espe_hc=dskt_dxesp.id_diag_x_espe_hc
 inner join desktop_farmacia_inventario as dskt_fminvent on dskt_fminvent.id_farmacia=dskt_mxesp.id_farmacia
-inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user_registro)
+inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user_registro)	
 	WHERE desk_hist_clini.n_orden=  $P{Norden}  AND dskt_hcdll.tipo=  $P{tipo}]]>
 	</queryString>
 	<field name="sexo" class="java.lang.String">
@@ -158,7 +249,7 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="desktop_diagnostico_x_expecialidad_hc"/>
 	</field>
-	<field name="fecha_registro" class="java.sql.Date">
+	<field name="fecha_registro" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="fecha_registro"/>
 		<property name="com.jaspersoft.studio.field.label" value="fecha_registro"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="desktop_datos_pacientes"/>
@@ -239,9 +330,9 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 				<text><![CDATA[H.C :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="480" y="27" width="60" height="30" uuid="46690535-e5ef-404a-8dd2-3d95550dcc38"/>
+				<reportElement x="480" y="21" width="60" height="30" uuid="46690535-e5ef-404a-8dd2-3d95550dcc38"/>
 				<textElement markup="styled">
-					<font size="12" isBold="true" isUnderline="true"/>
+					<font size="17" isBold="true" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{n_orden}]]></textFieldExpression>
 			</textField>
@@ -430,63 +521,63 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 				<textFieldExpression><![CDATA[$F{tratamiento1} == null || $F{tratamiento1} .trim().isEmpty() ? " " : $F{tratamiento1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="55" y="177" width="474" height="32" uuid="b087d6c7-217b-45fb-b4fe-1ceaf742a7ad"/>
+				<reportElement x="55" y="177" width="474" height="48" uuid="b087d6c7-217b-45fb-b4fe-1ceaf742a7ad"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tratamiento2}== null || $F{tratamiento2}.trim().isEmpty() ? " " : $F{tratamiento2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="55" y="224" width="474" height="14" uuid="97f8208e-d426-49c6-ba27-3510259a41e1"/>
+				<reportElement x="55" y="237" width="474" height="14" uuid="97f8208e-d426-49c6-ba27-3510259a41e1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.trim().isEmpty() ? " " : $F{diagnostico3}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="55" y="250" width="474" height="30" uuid="efc08dc5-d15a-4f24-b4fe-b7c0f8b9f951"/>
+				<reportElement x="55" y="263" width="474" height="30" uuid="efc08dc5-d15a-4f24-b4fe-b7c0f8b9f951"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tratamiento3} == null || $F{tratamiento3}.isEmpty() ? " " : $F{tratamiento3}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="45" y="213" width="325" height="11" uuid="b1aaf55f-3883-4f04-883b-430f29f675f3"/>
+				<reportElement x="45" y="226" width="325" height="11" uuid="b1aaf55f-3883-4f04-883b-430f29f675f3"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.trim().isEmpty() ? " " : "DIAGNOSTICO 3"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="45" y="238" width="94" height="14" uuid="3f5df79a-6c86-45f1-8b37-65c7dc1018e0"/>
+				<reportElement x="45" y="250" width="94" height="14" uuid="3f5df79a-6c86-45f1-8b37-65c7dc1018e0"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "TRATAMIENTO 3"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="176" y="238" width="34" height="14" uuid="6010de4b-2c86-4096-8cde-5859f604e4f0"/>
+				<reportElement x="176" y="250" width="34" height="14" uuid="6010de4b-2c86-4096-8cde-5859f604e4f0"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "CANT"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="230" y="239" width="34" height="14" uuid="27be8020-93d5-4d08-95b8-dd77c1b36ec1"/>
+				<reportElement x="230" y="251" width="34" height="14" uuid="27be8020-93d5-4d08-95b8-dd77c1b36ec1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "HRS"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="238" width="30" height="14" uuid="a38d3d59-a99b-47fe-8dca-51b12d3dcaa1"/>
+				<reportElement x="280" y="250" width="30" height="14" uuid="a38d3d59-a99b-47fe-8dca-51b12d3dcaa1"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico3} == null || $F{diagnostico3}.isEmpty() ? " " : "DIAS"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="238" width="150" height="14" uuid="f5168331-3ec4-40a5-9d9b-7b265ac1f1a4"/>
+				<reportElement x="330" y="250" width="150" height="14" uuid="f5168331-3ec4-40a5-9d9b-7b265ac1f1a4"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -507,7 +598,7 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "TRATAMIENTO 1"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="177" y="79" width="33" height="11" uuid="98e12040-a95d-4ad7-a23a-4016da83cb10"/>
+				<reportElement x="177" y="79" width="51" height="11" uuid="98e12040-a95d-4ad7-a23a-4016da83cb10"/>
 				<textElement textAlignment="Justified">
 					<font size="8"/>
 				</textElement>
@@ -577,56 +668,56 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 				<textFieldExpression><![CDATA[$F{diagnostico2}== null || $F{diagnostico2}.trim().isEmpty() ? " " : "INDICACIONES :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="45" y="283" width="305" height="13" uuid="dff18764-7d88-4a64-8ceb-6388db28ddd0"/>
+				<reportElement x="45" y="305" width="305" height="13" uuid="dff18764-7d88-4a64-8ceb-6388db28ddd0"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico4} == null || $F{diagnostico4}.trim().isEmpty() ? " " : "DIAGNOSTICO 4"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="55" y="296" width="424" height="14" uuid="3179d89e-1a91-4562-90cd-414408660180"/>
+				<reportElement x="55" y="317" width="424" height="14" uuid="3179d89e-1a91-4562-90cd-414408660180"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{diagnostico4} == null || $F{diagnostico4}.trim().isEmpty() ? " " : $F{diagnostico4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="45" y="309" width="100" height="11" uuid="04e1655d-fe16-41b2-9fa3-bcac6ec2b3f9"/>
+				<reportElement x="45" y="330" width="100" height="11" uuid="04e1655d-fe16-41b2-9fa3-bcac6ec2b3f9"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"TRATAMIENTO 4"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="176" y="310" width="34" height="11" uuid="080adeca-88a2-4597-88b1-39d465c52e0c"/>
+				<reportElement x="176" y="331" width="34" height="11" uuid="080adeca-88a2-4597-88b1-39d465c52e0c"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"CANT"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="230" y="310" width="34" height="11" uuid="1b27e902-17b7-450b-b80f-c4621de36035"/>
+				<reportElement x="230" y="331" width="34" height="11" uuid="1b27e902-17b7-450b-b80f-c4621de36035"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"HRS"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="310" width="34" height="11" uuid="c58a014b-bbb8-4048-a9a3-71f811c2b07c"/>
+				<reportElement x="280" y="331" width="34" height="11" uuid="c58a014b-bbb8-4048-a9a3-71f811c2b07c"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"DIAS"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="331" y="310" width="148" height="11" uuid="d6532b91-20cb-4d88-b058-a9610d17e7a0"/>
+				<reportElement x="331" y="331" width="148" height="11" uuid="d6532b91-20cb-4d88-b058-a9610d17e7a0"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tratamiento4} == null || $F{tratamiento4}.trim().isEmpty() ? " " :"INDICACIONES :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="55" y="321" width="474" height="49" uuid="1c82a082-29ea-43bf-8faf-c93721e8c74d"/>
+				<reportElement x="55" y="341" width="474" height="39" uuid="1c82a082-29ea-43bf-8faf-c93721e8c74d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -637,7 +728,7 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 				<imageExpression><![CDATA[$P{Firma}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="45" y="203" width="483" height="11" uuid="65a45d46-0ca4-4729-b58b-8c704f0fa27a"/>
+				<reportElement x="45" y="214" width="483" height="11" uuid="65a45d46-0ca4-4729-b58b-8c704f0fa27a"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -651,7 +742,7 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 				<textFieldExpression><![CDATA[$F{diagnostico1} == null || $F{diagnostico1}.trim().isEmpty() ? " " : "_____________________________________________________________________________________________________________"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="44" y="274" width="485" height="11" uuid="968de13b-147b-4e47-a54b-5a61c4a168d7"/>
+				<reportElement x="44" y="294" width="485" height="11" uuid="968de13b-147b-4e47-a54b-5a61c4a168d7"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -672,6 +763,9 @@ inner join desktop_empleado as dat_emple on (dat_emple.name_user=dskt_mxesp.user
 		<band height="17" splitType="Stretch">
 			<staticText>
 				<reportElement x="154" y="4" width="276" height="13" uuid="52efeef5-c59f-47de-b029-c8a19f2c05ba"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Av. Huancavelica N°2225 - Distrito El Tambo - Huancayo]]></text>
 			</staticText>
 		</band>

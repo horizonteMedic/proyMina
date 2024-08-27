@@ -2064,7 +2064,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 "inner join desktop_historia_clinica_detalle as dskt_hcdet on deskt_hist_clini.n_orden=dskt_hcdet.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxehc on dskt_dxehc.n_orden=deskt_hist_clini.n_orden\n" +
 "	where deskt_hist_clini.n_orden="+n_orden_hc.getText().toString().trim()+" and dskt_hcdet.tipo='"+clsGlobales.tipoEspecialidad+"' limit 1";
+<<<<<<< HEAD
         System.out.println(sQuery);
+=======
+       System.out.println(sQuery);
+>>>>>>> f0e988ad3c56c2e1c59bf42fdfd33f8d2f0cc2f3
         if (oConn.FnBoolQueryExecute(sQuery))
         {
             try 

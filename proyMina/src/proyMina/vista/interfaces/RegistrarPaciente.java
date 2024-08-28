@@ -1342,6 +1342,8 @@ public class RegistrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_cboEmpresaPopupMenuWillBecomeVisible
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        clsGlobales.historiaClinica=Integer.valueOf(Tabla_HC.getValueAt(0,0).toString());
+
         Ficha_triaje_panel_principal ft=new Ficha_triaje_panel_principal();
         ft.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1698,6 +1700,7 @@ public String cargaRuc(String tipo , String razon_soc){
         dni_paciente.requestFocus();
         jTabbedPane2.requestFocusInWindow();
                         btnLimpiar();
+                        BuscarPaciente();
 
     }
 private boolean Validar(){
@@ -1781,7 +1784,7 @@ private void llenar_tabla_hc(){
                     "AND ruc=ruc_empresa) end ) as razon_social_empresa ,(case when ruc_contrata is null then 'N/A' \n" +
                     "else (select razon_social from desktop_empresa_contrata where tipo_emp_cont = 'CONTRATA' \n" +
                     "AND ruc=ruc_contrata) end ) as razon_social_contrata from desktop_datos_historia_clinica as hist_clini \n" +
-                    "inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni";
+                    "inner join desktop_datos_pacientes as dat_pa on hist_clini.dni_paciente=dat_pa.dni order by hist_clini.n_orden desc ";
                 
                 if (oConn.FnBoolQueryExecute(vSql))
                 {

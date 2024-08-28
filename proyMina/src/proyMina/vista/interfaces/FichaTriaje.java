@@ -77,6 +77,9 @@ String[]Triaje = new String[]{};
        jRadioButton1.setSelected(true);
                popuptable();
                ocultar(false);
+                       if(clsGlobales.historiaClinica>0){
+            txtNumero.setText(String.valueOf(clsGlobales.historiaClinica));
+        }
    }
    
    public void ocultar (boolean estado){

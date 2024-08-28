@@ -1864,6 +1864,12 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Imprimir"));
 
+        txtImp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImpActionPerformed(evt);
+            }
+        });
+
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora.png"))); // NOI18N
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2859,6 +2865,10 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_chkRefraccionNoAplicaActionPerformed
 
+    private void txtImpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtImpActionPerformed
+
     void Fecha(){
 Date fechaDate = new Date();
 //SimpleDateFormat formateador = new SimpleDateFormat("'HUAMACHUCO - ' EEEEE dd MMMMM yyyy");
@@ -3412,7 +3422,7 @@ private void printer1(Integer cod) {
         parameters.put("Norden", cod);
         try {
             String master = System.getProperty("user.dir")
-                    + "/reportes/EvaluacionOftalmologica2021.jasper";
+                    + "/reportes/DesktopOftalmologia.jasper";
 
             System.out.println("master" + master);
             if (master == null) {

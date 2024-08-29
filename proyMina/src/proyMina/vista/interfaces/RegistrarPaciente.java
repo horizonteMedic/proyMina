@@ -1523,7 +1523,7 @@ public void BuscarPaciente(){
       cboProvincia.addItem("Seleccione Provincia");
         // Prepara el Query
         sQuery ="select translate(nombre_provincia,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_provincia from desktop_ubigeo_departamento as ubi_dep inner join desktop_ubigeo_provincia as ubi_prov\n" +
-        "	on ubi_dep.id_departamento_ubigeo=ubi_prov.id_departamento_ubigeo where TRIM(UPPER(ubi_dep.nombre_departamento))='"+cboDepartamento.getSelectedItem().toString().trim()+"'";
+        "	on ubi_dep.id_departamento_ubigeo=ubi_prov.id_departamento_ubigeo where translate(TRIM(UPPER(ubi_dep.nombre_departamento)),'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU')='"+cboDepartamento.getSelectedItem().toString().trim()+"'";
         System.out.println("la consulta "+sQuery);
         if (oConn.FnBoolQueryExecute(sQuery)){
             try{
@@ -1557,7 +1557,7 @@ private void CargarDistrito(){
 
         // Prepara el Query
         sQuery ="select translate(nombre_distrito,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_distrito from desktop_ubigeo_provincia as ubi_prov inner join desktop_ubigeo_distrito as ubi_dis\n" +
-"	on ubi_prov.id_provincia_ubigeo=ubi_dis.id_provincia_ubigeo where TRIM(UPPER(ubi_prov.nombre_provincia))='" +cboProvincia.getSelectedItem().toString().trim()+"'";
+"	on ubi_prov.id_provincia_ubigeo=ubi_dis.id_provincia_ubigeo where translate(TRIM(UPPER(ubi_prov.nombre_provincia)),'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU')='" +cboProvincia.getSelectedItem().toString().trim()+"'";
         System.out.println("la consulta "+sQuery);
         if (oConn.FnBoolQueryExecute(sQuery))
         {

@@ -369,8 +369,8 @@ public class PrincipalMina extends javax.swing.JFrame {
     }
     
     private void PorAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PorAsignarActionPerformed
-        CargaMasiva carga=new CargaMasiva();
-        carga.setVisible(true);
+       // CargaMasiva carga=new CargaMasiva();
+       // carga.setVisible(true);
     }//GEN-LAST:event_PorAsignarActionPerformed
 
     private void ConfiguracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfiguracionesActionPerformed
@@ -403,9 +403,12 @@ public class PrincipalMina extends javax.swing.JFrame {
     }//GEN-LAST:event_CambiarUserActionPerformed
 
     private void AccesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesosActionPerformed
-       RegistrarEmpleUser reu = new RegistrarEmpleUser();
+       if(clsGlobales.sUser.contains("caguirre"))
+       {
+        RegistrarEmpleUser reu = new RegistrarEmpleUser();
         reu.setVisible(true);
-        this.dispose();
+        //this.dispose();
+       }
     }//GEN-LAST:event_AccesosActionPerformed
 
     private void EspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspecialidadActionPerformed

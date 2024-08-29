@@ -2081,6 +2081,7 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
 
             int code = con.getResponseCode();
             System.out.println("Response Code: " + code);
+              if(code!=500){
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(con.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
@@ -2093,7 +2094,8 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
                      JSONObject objectJson = new JSONObject(response.toString());
                   System.out.println("Response: " + objectJson);
                   System.out.println("Response: " + objectJson.getString("base64"));
-
+                     
+         
                      base64String=(objectJson.getString("base64"));
                  
 
@@ -2109,6 +2111,11 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
                     System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
                       */
             }
+            
+            
+            }
+            else
+                        base64String="OTROJASPER";
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -2429,7 +2436,11 @@ public final class EvaluacionOftalmologica extends javax.swing.JInternalFrame {
           
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt + Query)){
                 oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
-                imprimir1();
+                try {
+                    imprimir1();
+                } catch (Exception ex) {
+                    Logger.getLogger(EvaluacionOftalmologica.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Limpiar();  
             }else{
                 oFunc.SubSistemaMensajeError("No se pudo registrar La Entrada");
@@ -2886,10 +2897,13 @@ if(!txtImp.getText().isEmpty()){
  private void print(Integer cod) throws IOException, Exception{
            
                 consumirApiSello();
+                String direccionReporte="";
                 Map parameters = new HashMap(); 
                 parameters.put("Norden",cod);          
               //  InputStream targetStream = IOUtils.toInputStream(base64String);  
               //
+              if(!base64String.contains("OTROJASPER"))
+              {
                 BufferedImage image = null;
                 byte[] imageByte;
 
@@ -2905,10 +2919,15 @@ if(!txtImp.getText().isEmpty()){
                 InputStream stream = new ByteArrayInputStream(baos.toByteArray());
                 
                 
-                parameters.put("Firma",stream);  
+                parameters.put("Firma",stream);             
+              } 
       try 
     {
-        String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"DesktopOftalmologia.jasper";
+        if(!base64String.contains("OTROJASPER"))
+           direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"DesktopOftalmologia.jasper";
+        else
+           direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"DesktopOftalmologia_sinfirma.jasper";
+                       
         JasperReport myReport = (JasperReport) JRLoader.loadObjectFromFile(direccionReporte);
         JasperPrint myPrint = JasperFillManager.fillReport(myReport,parameters,clsConnection.oConnection);
         JasperViewer viewer = new JasperViewer(myPrint, false);
@@ -3320,11 +3339,16 @@ public void Agregar(){
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt.concat(") ") + Query.concat(")"))){
                 
                 oFunc.SubSistemaMensajeInformacion("Se ha registrado la Entrada con Éxito"); 
-                imprimir1();
+                try {
+                    imprimir1();
+                } catch (Exception ex) {
+                    Logger.getLogger(EvaluacionOftalmologica.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Limpiar();  
                 txtNumero.setEnabled(true);
                 txtNumero.requestFocus();   
                                 btnActualizar(clsGlobales.tipoEspecialidad,String.valueOf(clsGlobales.historiaClinica));
+                //actualizarEstadoTicketEspecialidad(clsGlobales.tipoEspecialidad,String.valueOf(clsGlobales.historiaClinica));
 
                 
             }else{
@@ -3393,7 +3417,7 @@ private boolean validar(){
                  }            
     
 }
-private void imprimir1(){
+private void imprimir1() throws Exception{
 int seleccion = JOptionPane.showOptionDialog(
     this, // Componente padre
     "¿Desea Imprimir ?", //Mensaje
@@ -3407,7 +3431,7 @@ int seleccion = JOptionPane.showOptionDialog(
     {
    if((seleccion + 1)==1)
    {
-      printer1(Integer.valueOf(txtNumero.getText()));
+      print(Integer.valueOf(txtNumero.getText()));
        
    }
    else
@@ -3488,4 +3512,17 @@ private void printer1(Integer cod) {
 
     }
 
+    
+                 private void actualizarEstadoTicketEspecialidad(String tipo, String hc){
+            String strSqlStmt;
+            strSqlStmt="update desktop_ticket_espcialidad set estado_registro=true where nombre_especialidad='"+tipo+"' and n_orden="+hc;
+
+            if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){
+               // oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+            }else{
+                 //oFunc.SubSistemaMensajeError("Error en registro");
+                 }            
+    
+}
+    
 }

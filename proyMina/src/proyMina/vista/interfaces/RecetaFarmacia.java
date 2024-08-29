@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -75,6 +76,8 @@ public class RecetaFarmacia extends javax.swing.JFrame {
         llenar_tabla_recetaFarmacia();
          calcularDniUser();
         popuptable();
+        
+        txtImp.setText(clsGlobales.historiaClinica.toString());
     }
        public void popuptable(){
     JPopupMenu popupMenu=new JPopupMenu();
@@ -132,6 +135,7 @@ public class RecetaFarmacia extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cboMedicamento1.setEditable(true);
         cboMedicamento1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
@@ -165,36 +169,54 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                 cboMedicamento1KeyPressed(evt);
             }
         });
+        getContentPane().add(cboMedicamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 55, 377, -1));
 
         jTextFieldCantidad1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCantidad1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextFieldCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 155, 39, -1));
 
         jTextFieldHorario1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldHorario1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextFieldHorario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 83, 33, -1));
 
         jTextFieldFrecuencia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldFrecuencia1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextFieldFrecuencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 121, 33, -1));
+
+        jTextFieldObserv1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldObserv1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldObserv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 155, 276, -1));
+        getContentPane().add(jTextFieldDiagnostico, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 21, 377, -1));
 
         jLabel1.setText("Diagnostico:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 24, -1, -1));
 
         jLabel2.setText("Medicamento:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 58, -1, -1));
 
         jLabel3.setText("Horas:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 86, -1, -1));
 
         jLabel4.setText("Fecuencia:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 124, -1, -1));
 
         jLabel5.setText("Cantidad total:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 158, -1, -1));
 
         jLabel6.setText("Instruccion:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 158, -1, -1));
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add.png"))); // NOI18N
         btnRegistrar.setText("Registrar");
@@ -203,6 +225,7 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 195, -1, -1));
 
         btnLimpiarCancelarTriaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar.png"))); // NOI18N
         btnLimpiarCancelarTriaje.setText("Limpiar/Cancelar");
@@ -211,6 +234,7 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                 btnLimpiarCancelarTriajeActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLimpiarCancelarTriaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 195, 153, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -225,9 +249,14 @@ public class RecetaFarmacia extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 255, 593, 325));
+        getContentPane().add(jTextFieldCodigoDiag, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 21, 79, -1));
+
         jLabel7.setText("h");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 86, -1, -1));
 
         jLabel8.setText("dias");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 124, 39, -1));
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Imprimir"));
 
@@ -264,6 +293,8 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                 .addGap(8, 8, 8))
         );
 
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 195, -1, -1));
+
         jButtonUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         jButtonUpdate.setText("Actualizar");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -271,111 +302,11 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                 jButtonUpdateActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 195, -1, -1));
 
         jLabel9.setBackground(new java.awt.Color(204, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldDiagnostico, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboMedicamento1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
-                                .addComponent(jTextFieldCodigoDiag, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldFrecuencia1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldHorario1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel5)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jTextFieldCantidad1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(jLabel6))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnRegistrar)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(jButtonUpdate)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnLimpiarCancelarTriaje, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldObserv1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(44, 44, 44))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextFieldCodigoDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboMedicamento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldHorario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel7))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldFrecuencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCantidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldObserv1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnRegistrar)
-                        .addComponent(btnLimpiarCancelarTriaje)
-                        .addComponent(jButtonUpdate))
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 83, 226, 32));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -397,7 +328,7 @@ public class RecetaFarmacia extends javax.swing.JFrame {
     }//GEN-LAST:event_cboMedicamento1MousePressed
 
     private void cboMedicamento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMedicamento1ActionPerformed
-        // TODO add your handling code here:
+        cargarStock();
     }//GEN-LAST:event_cboMedicamento1ActionPerformed
 
     private void cboMedicamento1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboMedicamento1KeyPressed
@@ -437,30 +368,75 @@ public class RecetaFarmacia extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCantidad1ActionPerformed
 
     private void txtImpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImpActionPerformed
-           try {  
-            print(txtImp.getText().toString());
-        } catch (Exception ex) {
-            Logger.getLogger(RecetaFarmacia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int seleccion = JOptionPane.showOptionDialog(
+    this, // Componente padre
+    "¿Desea Imprimir ?", //Mensaje
+    "Seleccione una opción", // Título
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,    // null para icono por defecto.
+    new Object[] { "Si", "No"},    // null para YES, NO y CANCEL
+    "Si");
+    if (seleccion != -1)
+    {
+   if((seleccion + 1)==1)
+   {
+       try {
+           print(txtImp.getText().toString());
+       } catch (Exception ex) {
+           Logger.getLogger(RecetaFarmacia.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+   }
+   else
+   {
+      // PRESIONO NO
+   }
+  }   
+        
     }//GEN-LAST:event_txtImpActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        try {  
-            print(txtImp.getText().toString());
-        } catch (Exception ex) {
-            Logger.getLogger(RecetaFarmacia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int seleccion = JOptionPane.showOptionDialog(
+    this, // Componente padre
+    "¿Desea Imprimir ?", //Mensaje
+    "Seleccione una opción", // Título
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,    // null para icono por defecto.
+    new Object[] { "Si", "No"},    // null para YES, NO y CANCEL
+    "Si");
+    if (seleccion != -1)
+    {
+   if((seleccion + 1)==1)
+   {
+       try {
+           print(txtImp.getText().toString());
+       } catch (Exception ex) {
+           Logger.getLogger(RecetaFarmacia.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+   }
+   else
+   {
+      // PRESIONO NO
+   }
+  }
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         actualizarRecetaFarmacia();
         limpiar();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jTextFieldObserv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldObserv1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldObserv1ActionPerformed
                 private void cargarMedicamentos(){
             try {
                 String sQuery;
                 // Prepara el Query
-                sQuery ="select nombre_producto from desktop_farmacia_inventario;";
+                sQuery ="select nombre_producto from desktop_farmacia_inventario order by nombre_producto;";
                 System.out.println(sQuery);
                 if (oConn.FnBoolQueryExecute(sQuery))
                 {
@@ -494,6 +470,55 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                 Logger.getLogger(RecetaFarmacia.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
+                
+                
+                                private void cargarStock(){
+            try {
+                String sQuery="";
+                // Prepara el Query
+                if(cboMedicamento1.getSelectedIndex()>0)
+                {
+                sQuery ="select \n" +
+"	(dskt_fminv.cantidad - \n" +
+"	(case when (select SUM(cantidad_total_recetado) from desktop_medicamento_x_expecialidad_hc as dme where dme.id_farmacia=dskt_fminv.id_farmacia ) is null \n" +
+"	then 0 else \n" +
+"	(select SUM(cantidad_total_recetado) from desktop_medicamento_x_expecialidad_hc as dme where dme.id_farmacia=dskt_fminv.id_farmacia ) end  )	) as restante\n" +
+"	from desktop_farmacia_inventario as dskt_fminv WHERE nombre_producto= '"+cboMedicamento1.getSelectedItem().toString().trim()+"';";
+                }
+                System.out.println(sQuery);
+                if (oConn.FnBoolQueryExecute(sQuery))
+                {
+                    try
+                    {
+                        // Verifica resultados
+                        while (oConn.setResult.next())
+                        {
+        
+                               jLabel9.setText("STOCK: "+ oConn.setResult.getString ("restante"));
+
+                           
+                        }
+                        
+                        // Cierra Resultados
+                        oConn.setResult.close();
+                    }
+                    catch (SQLException ex)
+                    {
+                        //JOptionPane.showMessageDialorootPane,ex);
+                        oFunc.SubSistemaMensajeInformacion(ex.toString());
+                        Logger.getLogger(RecetaFarmacia.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+                // selecciona
+      
+                oConn.sqlStmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(RecetaFarmacia.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
+                
+                   
                 
                                 private void editarRegistro(String id){
             try {
@@ -633,6 +658,7 @@ public class RecetaFarmacia extends javax.swing.JFrame {
 
             int code = con.getResponseCode();
             System.out.println("Response Code: " + code);
+           if(code!=500){
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(con.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
@@ -645,7 +671,8 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                      JSONObject objectJson = new JSONObject(response.toString());
                   System.out.println("Response: " + objectJson);
                   System.out.println("Response: " + objectJson.getString("base64"));
-
+                     
+         
                      base64String=(objectJson.getString("base64"));
                  
 
@@ -661,6 +688,12 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                     System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
                       */
             }
+            
+            
+            }
+            else
+                        base64String="OTROJASPER";
+             
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -670,10 +703,13 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                  
           private void print(String norden) throws Exception{
                 consumirApiSello();
+                String direccionReporte ="";
                 Map parameters = new HashMap(); 
               parameters.put("Norden",Integer.valueOf(norden));          
               //  InputStream targetStream = IOUtils.toInputStream(base64String);  
               //
+              if(!base64String.contains("OTROJASPER"))
+              {
                 BufferedImage image = null;
                 byte[] imageByte;
 
@@ -688,14 +724,19 @@ public class RecetaFarmacia extends javax.swing.JFrame {
                 ImageIO.write(image, "png", baos); 
                 InputStream stream = new ByteArrayInputStream(baos.toByteArray());
                 
-                parameters.put("tipo",clsGlobales.tipoEspecialidad);             
                 
                 parameters.put("Firma",stream);             
+              }
+                parameters.put("tipo",clsGlobales.tipoEspecialidad);             
 
                 System.out.println("los parametros son: "+parameters);
                   try 
-                {
-                    String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"RECETA_M.jasper";
+                {                    
+                    if(!base64String.contains("OTROJASPER"))
+                    direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"RECETA_M.jasper";
+                    else
+                    direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"RECETA_M__sinfirma.jasper";
+                       
                     JasperReport myReport = (JasperReport) JRLoader.loadObjectFromFile(direccionReporte);
                     JasperPrint myPrint = JasperFillManager.fillReport(myReport,parameters,clsConnection.oConnection);
                     JasperViewer viewer = new JasperViewer(myPrint, false);
@@ -831,6 +872,7 @@ public class RecetaFarmacia extends javax.swing.JFrame {
     cboMedicamento1.setSelectedItem("N/A");
     jButtonUpdate.setEnabled(false);
     btnRegistrar.setEnabled(true);
+    jLabel9.setText("");
     }                 
       
     private void actualizarRecetaFarmacia(){

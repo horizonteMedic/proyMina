@@ -705,7 +705,7 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
             }});
       System.out.println("EventoActionPerformed");
       //cboProvincia.removeAllItems();
-       CargarProvincias();
+       cargarProvincias();
 
     }//GEN-LAST:event_cboDepartamentoActionPerformed
 
@@ -1052,16 +1052,16 @@ public class RegistrarEmpleUser extends javax.swing.JFrame {
 }
      
      
-     private void CargarProvincias(){
+     private void cargarProvincias(){
       String sQuery; 
-      System.out.println("llego al metodo cargar provincias");
+      System.out.println("llego al metodo cargar provincias despues de departamento");
       if(cboDepartamento.getSelectedIndex()>0){
       cboProvincia.removeAllItems();
       cboProvincia.addItem("Seleccione Provincia");
         // Prepara el Query
         sQuery ="select translate(nombre_provincia,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_provincia from desktop_ubigeo_departamento as ubi_dep inner join desktop_ubigeo_provincia as ubi_prov\n" +
-"	on ubi_dep.id_departamento_ubigeo=ubi_prov.id_departamento_ubigeo where TRIM(UPPER(ubi_dep.nombre_departamento))='"+cboDepartamento.getSelectedItem().toString().trim()+"'";
-        System.out.println("la consulta "+sQuery);
+"	on ubi_dep.id_departamento_ubigeo=ubi_prov.id_departamento_ubigeo where translate(TRIM(UPPER(ubi_dep.nombre_departamento)),'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU')='"+cboDepartamento.getSelectedItem().toString().trim()+"'";
+        System.out.println("la consulta de provincia es"+sQuery);
         if (oConn.FnBoolQueryExecute(sQuery))
         {
             try 
@@ -1104,7 +1104,7 @@ private void CargarDistrito(){
 
         // Prepara el Query
         sQuery ="select translate(nombre_distrito,'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU') as nombre_distrito from desktop_ubigeo_provincia as ubi_prov inner join desktop_ubigeo_distrito as ubi_dis\n" +
-"	on ubi_prov.id_provincia_ubigeo=ubi_dis.id_provincia_ubigeo where TRIM(UPPER(ubi_prov.nombre_provincia))='" +cboProvincia.getSelectedItem().toString().trim()+"'";
+"	on ubi_prov.id_provincia_ubigeo=ubi_dis.id_provincia_ubigeo where translate(TRIM(UPPER(ubi_prov.nombre_provincia)),'áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ','aeiouAEIOUaeiouAEIOU')='" +cboProvincia.getSelectedItem().toString().trim()+"'";
         System.out.println("la consulta "+sQuery);
         if (oConn.FnBoolQueryExecute(sQuery))
         {

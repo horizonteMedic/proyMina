@@ -21,7 +21,7 @@ class ColorCelda extends DefaultTableCellRenderer
  { setEnabled(table == null || table.isEnabled()); 
  
  // see question above 
- {if(column==6)
+ {if(column==6 || column==3)
  //////aca indico que me pinte de color verde todas //las filas en la cual la ultima columna tiene valor 0. 
  setBackground(Color.green); 
  else setBackground(null); } 

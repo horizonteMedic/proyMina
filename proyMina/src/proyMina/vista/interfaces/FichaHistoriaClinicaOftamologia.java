@@ -15,6 +15,7 @@ public class FichaHistoriaClinicaOftamologia extends javax.swing.JFrame {
      */
     public FichaHistoriaClinicaOftamologia() {
         initComponents();
+        this.setSize(1200, 630);
         EvaluacionOftalmologica fi_tri = new EvaluacionOftalmologica();
         escritorio.add(fi_tri);
         fi_tri.show();     
@@ -33,7 +34,7 @@ public class FichaHistoriaClinicaOftamologia extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FICHA TRIAJE");
+        setTitle("FICHA OFTAMOLOGIA");
         setExtendedState(Ficha_triaje_panel_principal.MAXIMIZED_BOTH);
         setPreferredSize(new java.awt.Dimension(1244, 613));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -46,11 +47,11 @@ public class FichaHistoriaClinicaOftamologia extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1246, Short.MAX_VALUE)
+            .addGap(0, 1122, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
+            .addGap(0, 597, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -61,7 +62,7 @@ public class FichaHistoriaClinicaOftamologia extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();

@@ -1388,9 +1388,12 @@ boolean bResultado=true;
        private void print(Integer cod) throws Exception{
                 consumirApiSello();
                 Map parameters = new HashMap(); 
-                parameters.put("Norden",cod);          
+                parameters.put("Norden",cod);      
+                String direccionReporte="";
               //  InputStream targetStream = IOUtils.toInputStream(base64String);  
               //
+              if(!base64String.contains("OTROJASPER"))
+              {
                 BufferedImage image = null;
                 byte[] imageByte;
 
@@ -1407,11 +1410,15 @@ boolean bResultado=true;
                 
                 
                 parameters.put("Firma",stream);             
-
+              }
                 System.out.println("los parametros son: "+parameters);
                   try 
-                {
-                    String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"Triaje_1.jasper";
+                {   
+                    if(!base64String.contains("OTROJASPER"))
+                    direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"Triaje_1.jasper";
+                    else
+                    direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"Triaje_1_sinfirma.jasper";
+                       
                     JasperReport myReport = (JasperReport) JRLoader.loadObjectFromFile(direccionReporte);
                     JasperPrint myPrint = JasperFillManager.fillReport(myReport,parameters,clsConnection.oConnection);
                     JasperViewer viewer = new JasperViewer(myPrint, false);
@@ -2341,6 +2348,8 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
 
             int code = con.getResponseCode();
             System.out.println("Response Code: " + code);
+
+            if(code!=500){
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(con.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
@@ -2353,7 +2362,8 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
                      JSONObject objectJson = new JSONObject(response.toString());
                   System.out.println("Response: " + objectJson);
                   System.out.println("Response: " + objectJson.getString("base64"));
-
+                     
+         
                      base64String=(objectJson.getString("base64"));
                  
 
@@ -2369,11 +2379,19 @@ public class MyCellRenderer extends DefaultTableCellRenderer {
                     System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
                       */
             }
+            
+            
+            }
+            else
+                        base64String="OTROJASPER";
+             
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e);
         }
+         
+         
     }
    
        private void cargarEspecialidades(){

@@ -40,7 +40,6 @@ public class FarmaciaInventario extends javax.swing.JFrame {
     public FarmaciaInventario() {
         initComponents();
         jTableRecetas.setDefaultRenderer(Object.class, new ColorCelda());
-
         this.setLocationRelativeTo(null);
         AutoCompleteDecorator.decorate(this.jComboBoxSede);
         cargarSedes();
@@ -83,9 +82,6 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFarmacia = new javax.swing.JTable();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        BuscarPaciente = new javax.swing.JToggleButton();
         btnRegistrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -331,50 +327,19 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableFarmacia);
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
-        jLabel17.setText("Producto:");
-
-        BuscarPaciente.setBackground(new java.awt.Color(222, 116, 17));
-        BuscarPaciente.setForeground(new java.awt.Color(243, 131, 5));
-        BuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
-        BuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarPacienteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BuscarPaciente)
-                        .addGap(0, 471, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17))
-                    .addComponent(BuscarPaciente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -388,7 +353,7 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         });
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setText("Refresh");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -557,16 +522,6 @@ public class FarmaciaInventario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void BuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPacienteActionPerformed
-      
-        
-
-    }//GEN-LAST:event_BuscarPacienteActionPerformed
-
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         btnRegistrar();
@@ -578,7 +533,8 @@ public class FarmaciaInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+                        cargarTablaFarmacia();
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -689,7 +645,7 @@ public class FarmaciaInventario extends javax.swing.JFrame {
                     System.out.println(strSqlStmt);
                     }
             if (oConn.FnBoolQueryExecuteUpdate(strSqlStmt)){
-               // oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
+               oFunc.SubSistemaMensajeInformacion("Se ha actualizado con Éxito");
             }else{
                  //oFunc.SubSistemaMensajeError("Error en registro");
                  }
@@ -798,24 +754,14 @@ public class FarmaciaInventario extends javax.swing.JFrame {
                         return false;
                     }};
                 String vSql="select dfi.id_farmacia,dfi.nombre_sede,dfi.tipo,dfi.nombre_producto,dfi.cantidad as cantidad_total,\n" +
-"	(CASE WHEN (select (case when cantidad1 is null then 0 else cantidad1 end) +\n" +
-"		(case when cantidad2 is null then 0 else cantidad2 end) +\n" +
-"		(case when cantidad3 is null then 0 else cantidad3 end) +\n" +
-"		(case when cantidad4 is null then 0 else cantidad4 end)\n" +
-"	from desktop_historia_clinica_detalle where (trata1 <> 'N/A' and trata2 <> 'N/A' and trata3 <> 'N/A' and trata4 <> 'N/A') or \n" +
-"	trata1=dfi.nombre_producto or trata2=dfi.nombre_producto or trata3=dfi.nombre_producto or trata4=dfi.nombre_producto\n" +
-"	) IS NULL THEN 0 ELSE \n" +
-"	(select (case when cantidad1 is null then 0 else cantidad1 end) +\n" +
-"		(case when cantidad2 is null then 0 else cantidad2 end) +\n" +
-"		(case when cantidad3 is null then 0 else cantidad3 end) +\n" +
-"		(case when cantidad4 is null then 0 else cantidad4 end)\n" +
-"	from desktop_historia_clinica_detalle where (trata1 <> 'N/A' and trata2 <> 'N/A' and trata3 <> 'N/A' and trata4 <> 'N/A') or \n" +
-"	trata1=dfi.nombre_producto or trata2=dfi.nombre_producto or trata3=dfi.nombre_producto or trata4=dfi.nombre_producto\n" +
-"	)\n" +
-"	END) as cantidad_consumida,\n" +
+"	(case when (select SUM(cantidad_total_recetado) from desktop_medicamento_x_expecialidad_hc as dme where dme.id_farmacia=dfi.id_farmacia and dme.estado_atendido_farmacia=true) is null \n" +
+"	then 0 else \n" +
+"	(select SUM(cantidad_total_recetado) from desktop_medicamento_x_expecialidad_hc as dme where dme.id_farmacia=dfi.id_farmacia and dme.estado_atendido_farmacia=true )\n" +
+"	end  ) as cantidad_consumida,\n" +
 "	dfi.descripcion,dfi.marca,dfi.fecha_vencimiento \n" +
 "	from desktop_farmacia_inventario AS dfi;";
     
+                System.out.println(vSql);
                 if (oConn.FnBoolQueryExecute(vSql))
                 {
                     try  {
@@ -850,7 +796,7 @@ public class FarmaciaInventario extends javax.swing.JFrame {
            private void cargarEspecialidades(){
       String sQuery;        
         // Prepara el Query
-        sQuery ="select tipo from desktop_historia_clinica_detalle where n_orden="+jTextFieldHc.getText().toString().trim();
+        sQuery ="select DISTINCT(tipo) from desktop_diagnostico_x_expecialidad_hc where n_orden="+jTextFieldHc.getText().toString().trim();
         if (oConn.FnBoolQueryExecute(sQuery)){
             try{
                 // Verifica resultados
@@ -914,15 +860,21 @@ private void llenar_tabla_hc(){
                 String vSql="select dskt_mxe.id_medicamento_diag as id_med, dcie.descripcion as cie10,dskt_fminv.nombre_producto as medicamento,\n" +
 "		dskt_mxe.cantidad_total_recetado as cantidad,dskt_mxe.horas as horario,dskt_mxe.frecuencia_dias as dias,\n" +
 "		dskt_mxe.cantidad_despachada_farmacia as cantidad_despachada, \n" +
-"		(case when (dskt_mxe.estado_atendido_farmacia)=true then 'ATENDIDO' ELSE 'SIN ATENDER' END) AS estado\n" +
+"		(case when (dskt_mxe.estado_atendido_farmacia)=true then 'ATENDIDO' ELSE 'SIN ATENDER' END) AS estado,\n" +
+"		(select \n" +
+"	(dskt_fminvent.cantidad - \n" +
+"	(case when (select SUM(cantidad_total_recetado) from desktop_medicamento_x_expecialidad_hc as dme where dme.id_farmacia=dskt_fminvent.id_farmacia and dme.estado_atendido_farmacia=true) is null \n" +
+"	then 0 else \n" +
+"	(select SUM(cantidad_total_recetado) from desktop_medicamento_x_expecialidad_hc as dme where dme.id_farmacia=dskt_fminvent.id_farmacia and dme.estado_atendido_farmacia=true ) end  )	) as restante\n" +
+"	from desktop_farmacia_inventario as dskt_fminvent WHERE dskt_fminvent.nombre_producto=dskt_fminv.nombre_producto ) as stock \n" +
 "		from desktop_datos_historia_clinica as hist_clini\n" +
-"inner join desktop_historia_clinica_detalle as dskt_hcd on hist_clini.n_orden=	dskt_hcd.n_orden\n" +
 "inner join desktop_diagnostico_x_expecialidad_hc as dskt_dxe on dskt_dxe.n_orden=hist_clini.n_orden\n" +
 "inner join desktop_medicamento_x_expecialidad_hc as dskt_mxe on dskt_mxe.id_diag_x_espe_hc=dskt_dxe.id_diag_x_espe_hc\n" +
 "inner join desktop_cie10 as dcie on  dskt_dxe.codigo_cie10=dcie.codigo\n" +
 "inner join desktop_farmacia_inventario as dskt_fminv on dskt_fminv.id_farmacia=dskt_mxe.id_farmacia	"
- + "where dskt_hcd.n_orden="+jTextFieldHc.getText().toString().trim()+" and dskt_hcd.tipo='"+cboEspecialidad.getSelectedItem().toString().trim()+"'";
-                
+ + "where dskt_dxe.n_orden="+jTextFieldHc.getText().toString().trim()+" and dskt_dxe.tipo='"+cboEspecialidad.getSelectedItem().toString().trim()+"'";
+               
+                System.out.println(vSql);
                 if (oConn.FnBoolQueryExecute(vSql))
                 {
                     try  {
@@ -963,6 +915,9 @@ private void llenar_tabla_hc(){
     jTableRecetas.getColumn("dias").setMaxWidth(60);
     jTableRecetas.getColumn("cantidad_despachada").setMaxWidth(180);
     jTableRecetas.getColumn("estado").setMaxWidth(100);
+        jTableRecetas.getColumn("stock").setMaxWidth(100);
+
+    
     }       
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -998,7 +953,6 @@ private void llenar_tabla_hc(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton BuscarPaciente;
     private javax.swing.JToggleButton BuscarPaciente1;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnActualizar1;
@@ -1017,7 +971,6 @@ private void llenar_tabla_hc(){
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1036,7 +989,6 @@ private void llenar_tabla_hc(){
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableFarmacia;
     private javax.swing.JTable jTableRecetas;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextFieldCantidad;
     private javax.swing.JTextField jTextFieldDatosMedico;
     private javax.swing.JTextArea jTextFieldDescripcion;

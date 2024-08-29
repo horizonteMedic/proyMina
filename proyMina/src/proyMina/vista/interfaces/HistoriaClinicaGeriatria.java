@@ -289,7 +289,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26)
                     .addComponent(fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 31, 497, 179));
@@ -682,7 +682,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Diagnosticos", jPanel2);
 
-        getContentPane().add(jTabbedPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 228, -1, -1));
+        getContentPane().add(jTabbedPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 228, -1, 280));
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiz.png"))); // NOI18N
         btnEditar.setText("Editar");
@@ -998,7 +998,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 6, -1, -1));
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 6, 275, 19));
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, -1, 275, 30));
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Imprimir"));
 
@@ -1032,7 +1032,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 538, -1, -1));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, -1, -1));
 
         getAccessibleContext().setAccessibleName("");
 
@@ -1488,7 +1488,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
             try {
                 String sQuery;
                 // Prepara el Query
-                sQuery ="select codigo,descripcion from desktop_cie10;";
+                sQuery ="select codigo,descripcion from desktop_cie10 ORDER BY descripcion;";
                 System.out.println(sQuery);
                 if (oConn.FnBoolQueryExecute(sQuery))
                 {
@@ -1542,6 +1542,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
 
             int code = con.getResponseCode();
             System.out.println("Response Code: " + code);
+                      if(code!=500){
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(con.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
@@ -1554,7 +1555,8 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                      JSONObject objectJson = new JSONObject(response.toString());
                   System.out.println("Response: " + objectJson);
                   System.out.println("Response: " + objectJson.getString("base64"));
-
+                     
+         
                      base64String=(objectJson.getString("base64"));
                  
 
@@ -1570,6 +1572,11 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                     System.out.println("el campo es:"+objectJson.getString("fechaReserva"));
                       */
             }
+            
+            
+            }
+            else
+                        base64String="OTROJASPER";
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1580,10 +1587,13 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
    
           private void print(String norden) throws Exception{
                 consumirApiSello();
+                String direccionReporte ="";
                 Map parameters = new HashMap(); 
               parameters.put("Norden",Integer.valueOf(norden));          
               //  InputStream targetStream = IOUtils.toInputStream(base64String);  
               //
+                            if(!base64String.contains("OTROJASPER"))
+              {
                 BufferedImage image = null;
                 byte[] imageByte;
 
@@ -1598,14 +1608,19 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 ImageIO.write(image, "png", baos); 
                 InputStream stream = new ByteArrayInputStream(baos.toByteArray());
                 
-                parameters.put("tipo",clsGlobales.tipoEspecialidad);             
                 
                 parameters.put("Firma",stream);             
+              }
+                                            parameters.put("tipo",clsGlobales.tipoEspecialidad);             
 
                 System.out.println("los parametros son: "+parameters);
                   try 
                 {
-                    String direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"HC_GERIATRICO.jasper";
+                    if(!base64String.contains("OTROJASPER"))
+                    direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"HC_GERIATRICO.jasper";
+                    else
+                    direccionReporte = System.getProperty("user.dir")+File.separator+"reportes"+File.separator+"HC_GERIATRICO_sinfirma.jasper";
+                    
                     JasperReport myReport = (JasperReport) JRLoader.loadObjectFromFile(direccionReporte);
                     JasperPrint myPrint = JasperFillManager.fillReport(myReport,parameters,clsConnection.oConnection);
                     JasperViewer viewer = new JasperViewer(myPrint, false);
@@ -1622,14 +1637,14 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
                 String sQuery="";
                 // Prepara el Query
                 if(nivel ==1)
-                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo1.getSelectedItem().toString().trim()+"'";
+                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo1.getSelectedItem().toString().trim()+"' ORDER BY descripcion DESC";
                 if(nivel ==2)
-                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo2.getSelectedItem().toString().trim()+"'";
+                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo2.getSelectedItem().toString().trim()+"' ORDER BY descripcion DESC ";
                 if(nivel ==3)
-                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo3.getSelectedItem().toString().trim()+"'";
+                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo3.getSelectedItem().toString().trim()+"' ORDER BY descripcion DESC";
                 if(nivel ==4)
-                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo4.getSelectedItem().toString().trim()+"'";                
-                                                
+                sQuery ="select descripcion from desktop_cie10 where codigo='"+cboCodigo4.getSelectedItem().toString().trim()+"' ORDER BY descripcion DESC ";                
+                          System.out.println("");                      
                 if (oConn.FnBoolQueryExecute(sQuery))
                 {
                     try
@@ -2254,6 +2269,7 @@ public class HistoriaClinicaGeriatria extends javax.swing.JFrame {
          cboCodigo4.setSelectedItem("N/A");
          btnRegistrar.setEnabled(true);
          imprimir=true;
+         jTextFieldGlucosa.setText("");
          }
          
          
